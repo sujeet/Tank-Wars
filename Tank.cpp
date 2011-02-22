@@ -86,7 +86,7 @@ void Tank::move ()
 }
 
 
-void Tank::evaluate_state (char Map[][51])
+void Tank::evaluate_state (char Map[][NUMBER])
 {
      // Check if on_gold (), if crashed_into_wall ()
      // etc. and call their respective functions
@@ -130,7 +130,7 @@ void Tank::die_by_tank (Tank t)
 }
 
 
-void Tank::pick_up_gold_if_possible (char Map[][51])
+void Tank::pick_up_gold_if_possible (char Map[][NUMBER])
 {
      // Increment score, set curr_gold value for updating map later on
      int map_x = this->curr_posn.x;
@@ -141,7 +141,7 @@ void Tank::pick_up_gold_if_possible (char Map[][51])
      }
 }
 
-bool Tank::crashed_into_wall (char Map[][51])
+bool Tank::crashed_into_wall (char Map[][NUMBER])
 {
      // Increment score, set curr_gold value for updating map later on
      int map_x = this->curr_posn.x;
@@ -186,7 +186,7 @@ void Tank::incr_score (event e)
 }
 
 
-void Tank::update_on_map (char Map[][51])
+void Tank::update_on_map (char Map[][NUMBER])
 {
 #ifdef COUT_DEBUG
      cout << "Tank - Prev posn : " << this->prev_posn.x << " " << this->prev_posn.y << endl;
@@ -245,7 +245,7 @@ void Tank::Bullet::move ()
      
 }
 
-void Tank::Bullet::check_for_crashes (char Map[][51])
+void Tank::Bullet::check_for_crashes (char Map[][NUMBER])
 {
      int map_x = this->curr_posn.x;
      int map_y = this->curr_posn.y;
@@ -255,7 +255,7 @@ void Tank::Bullet::check_for_crashes (char Map[][51])
      }
 }
 
-// void Tank::Bullet::mark_danger_zones (char Map[][51]) 
+// void Tank::Bullet::mark_danger_zones (char Map[][NUMBER]) 
 // {
 //      int x_dir = this->curr_dirn.xdir;
 //      int y_dir = this->curr_dirn.ydir;
@@ -270,7 +270,7 @@ void Tank::Bullet::check_for_crashes (char Map[][51])
 //      }
 // }
 
-void Tank::Bullet::update_on_map (char Map[][51])
+void Tank::Bullet::update_on_map (char Map[][NUMBER])
 {
 #ifdef COUT_DEBUG
      cout << "Bullet - Prev posn : " << this->prev_posn.x << " " << this->prev_posn.y << endl;

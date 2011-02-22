@@ -11,7 +11,7 @@ class Arena
 {
 public:
      // Attributes
-     char Map[51][51];
+     char Map[NUMBER][NUMBER];
      bool game_over_flag;
      Tank tank1, tank2;
      ifstream infile;

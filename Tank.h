@@ -93,13 +93,13 @@ public:
                disappear_flag = false;
           }
           void move ();		// Change Bullet's position
-          void check_for_crashes (char Map[][51]);  // Variables);
+          void check_for_crashes (char Map[][NUMBER]);  // Variables);
           void set_disappear_flag ()
           {
                disappear_flag = true;
           }
-          void update_on_map (char Map[][51]);
-          /* void mark_danger_zones (char Map[][51]); */
+          void update_on_map (char Map[][NUMBER]);
+          /* void mark_danger_zones (char Map[][NUMBER]); */
           void print ()
           {
                curr_dirn.print ();
@@ -136,25 +136,25 @@ public:
      void move ();			// Change Tank's position
      void shoot_bullet ();
 
-     void evaluate_state (char Map[][51]);
+     void evaluate_state (char Map[][NUMBER]);
 
      void incr_score (event e);
      void check_bullet_interactions (Tank t);
 
 //      bool on_gold ();
-     bool crashed_into_wall (char Map[][51]);	// Just set_dead_flag () as of now
+     bool crashed_into_wall (char Map[][NUMBER]);	// Just set_dead_flag () as of now
      bool is_killed_by (Tank t);
      bool crashed_tank (Tank t); // Can be skipped as of now. Should
      // check if two tanks are crashing in
      // any manner
-     void pick_up_gold_if_possible (char Map[][51]);
+     void pick_up_gold_if_possible (char Map[][NUMBER]);
      void die_by_wall_crash ();
      void die_by_tank (Tank t);
      void do_nothing ();		// Comment out if not necessary. There just in case.
      void set_dead_flag ();		// Flag to denote that when all the
      // tanks' evaluations are done, die
-     void update_on_map (char Map[][51]);		// Call bullet_list[i].update_map () and change own position on map, erase old position, and erase curr_gold_posn on the map if gold_flag is set
-     void mark_danger_zones (char Map[][51]);
+     void update_on_map (char Map[][NUMBER]);		// Call bullet_list[i].update_map () and change own position on map, erase old position, and erase curr_gold_posn on the map if gold_flag is set
+     void mark_danger_zones (char Map[][NUMBER]);
 };
 
 #endif

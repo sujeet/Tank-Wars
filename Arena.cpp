@@ -15,8 +15,8 @@ Arena::Arena ()
 
 void Arena::print_map ()
 {
-     for (int i=0; i<50; i++){
-          for (int j=0; j<50; j++){
+     for (int i=0; i<NUMBER - 1; i++){
+          for (int j=0; j<NUMBER - 1; j++){
                if (Map[i][j] == EMPTY) {
                     cout << char(EMPTY_DISPLAY);
                }
@@ -43,8 +43,8 @@ void Arena::print_map ()
 void Arena::create_from_file ()
 {
      infile.open ("backup_map.txt");
-     for (int i=0; i<50; i++){
-          for (int j=0; j<50; j++){
+     for (int i=0; i<NUMBER - 1; i++){
+          for (int j=0; j<NUMBER - 1; j++){
                infile >> Map[i][j];
           }
      }
