@@ -4,39 +4,6 @@
 
 using namespace std;
 
-void Direction::get_from_integer (int inp)
-{
-     switch (inp){
-     case 0:
-          this->xdir = -1;
-          this->ydir = 0;
-          break;
-     case 1:
-          this->xdir = 1;
-          this->ydir = 0;
-          break;
-     case 2:
-          this->xdir = 0;
-          this->ydir = 1;
-          break;
-     case 3:
-          this->xdir = 0;
-          this->ydir = -1;
-          break;
-     }
-     
-}
-
-void Move::interpret_move (int user_move)
-{
-     if (user_move / 4 == 1)
-          this->shoot = true;
-     else
-          this->shoot = false;
-     this->dirn.get_from_integer (user_move % 4);
-     
-}
-
 
 void Tank::initialize_from (char symbol, int init_x, int init_y)
 {
@@ -86,7 +53,7 @@ void Tank::move ()
 }
 
 
-void Tank::evaluate_state (char Map[][NUMBER])
+void Tank::evaluate_state (MapClass & Map)
 {
      // Check if on_gold (), if crashed_into_wall ()
      // etc. and call their respective functions
@@ -130,24 +97,18 @@ void Tank::die_by_tank (Tank t)
 }
 
 
-void Tank::pick_up_gold_if_possible (char Map[][NUMBER])
+void Tank::pick_up_gold_if_possible (MapClass & Map)
 {
      // Increment score, set curr_gold value for updating map later on
-     int map_x = this->curr_posn.x;
-     int map_y = this->curr_posn.y;
-
-     if (Map[map_x][map_y] == GOLD){
+     if ( Map.is_symbol(curr_posn, GOLD) ){
           incr_score (PICKED_UP_GOLD);
      }
 }
 
-bool Tank::crashed_into_wall (char Map[][NUMBER])
+bool Tank::crashed_into_wall (MapClass & Map)
 {
      // Increment score, set curr_gold value for updating map later on
-     int map_x = this->curr_posn.x;
-     int map_y = this->curr_posn.y;
-
-     if (Map[map_x][map_y] == WALL){
+     if ( Map.is_symbol(curr_posn, WALL) ){
           return true;
      }    
      return false;
@@ -186,7 +147,7 @@ void Tank::incr_score (event e)
 }
 
 
-void Tank::update_on_map (char Map[][NUMBER])
+void Tank::update_on_map (MapClass & Map)
 {
 #ifdef COUT_DEBUG
      cout << "Tank - Prev posn : " << this->prev_posn.x << " " << this->prev_posn.y << endl;
@@ -194,10 +155,6 @@ void Tank::update_on_map (char Map[][NUMBER])
 #endif
 
 
-     int prev_x = this->prev_posn.x;
-     int prev_y = this->prev_posn.y;
-     int curr_x = this->curr_posn.x;
-     int curr_y = this->curr_posn.y;
      unsigned int i;
      
      for (i = 0; i < this->bullet_list.size (); i++) {
@@ -230,12 +187,12 @@ void Tank::update_on_map (char Map[][NUMBER])
 //      cout << endl;
 //      cout << "After : " << endl;
 //      this->print_bullets ();
-     Map[prev_x][prev_y] = EMPTY;
+     Map.set_element (this->prev_posn, EMPTY);
      if (this->dead_flag){
-          Map[curr_x][curr_y] = DEAD;
+          Map.set_element (this->curr_posn, DEAD);
      }
      else
-          Map[curr_x][curr_y] = this->symbol ;
+          Map.set_element (this->curr_posn, this->symbol);
 }
 
 void Tank::Bullet::move ()
@@ -245,17 +202,16 @@ void Tank::Bullet::move ()
      
 }
 
-void Tank::Bullet::check_for_crashes (char Map[][NUMBER])
+void Tank::Bullet::check_for_crashes (MapClass & Map)
 {
-     int map_x = this->curr_posn.x;
-     int map_y = this->curr_posn.y;
-     
-     if (Map[map_x][map_y] == GOLD || Map[map_x][map_y] == WALL){
+     if ( Map.is_symbol(this->curr_posn, GOLD) 
+          || Map.is_symbol(this->curr_posn, WALL)
+          ){
           this->set_disappear_flag ();
      }
 }
 
-// void Tank::Bullet::mark_danger_zones (char Map[][NUMBER]) 
+// void Tank::Bullet::mark_danger_zones (char Map[][MAP_SIZE]) 
 // {
 //      int x_dir = this->curr_dirn.xdir;
 //      int y_dir = this->curr_dirn.ydir;
@@ -270,18 +226,14 @@ void Tank::Bullet::check_for_crashes (char Map[][NUMBER])
 //      }
 // }
 
-void Tank::Bullet::update_on_map (char Map[][NUMBER])
+void Tank::Bullet::update_on_map (MapClass & Map)
 {
 #ifdef COUT_DEBUG
      cout << "Bullet - Prev posn : " << this->prev_posn.x << " " << this->prev_posn.y << endl;
      cout << "Bullet - curr posn : " << this->curr_posn.x << " " << this->curr_posn.y << endl;
 #endif
-     int prev_x = this->prev_posn.x;
-     int prev_y = this->prev_posn.y;
-     int curr_x = this->curr_posn.x;
-     int curr_y = this->curr_posn.y;
      
-     Map[prev_x][prev_y] = EMPTY;
+     Map.set_element (this->prev_posn, EMPTY);
      if (this->disappear_flag){
           // Map[curr_x][curr_y] = EMPTY;
           // the bullet died because it hit
@@ -292,7 +244,7 @@ void Tank::Bullet::update_on_map (char Map[][NUMBER])
           // from the vector
      }
      else {
-          Map[curr_x][curr_y] = BULLET;
+          Map.set_element (this->curr_posn, BULLET);
      }
 }
 

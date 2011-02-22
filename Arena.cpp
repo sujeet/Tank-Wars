@@ -1,5 +1,6 @@
 #include "Tank.h"
 #include "Arena.h"
+#include "Map.h"
 
 #include <iostream>
 using namespace std;
@@ -8,20 +9,20 @@ using namespace std;
 Arena::Arena () 
 {
      game_over_flag = false;
-     this->create_from_file ();
-     tank1.initialize_from ('1', 13, 18);
+     this->Map.create_from_file ("backup_map.txt");
+     tank1.initialize_from ('1', 33, 18);
      tank2.initialize_from ('2', 13, 20);
 }
 
 void Arena::print_map ()
 {
-     for (int i=0; i<NUMBER - 1; i++){
-          for (int j=0; j<NUMBER - 1; j++){
-               if (Map[i][j] == EMPTY) {
+     for (int i=0; i<MAP_SIZE - 1; i++){
+          for (int j=0; j<MAP_SIZE - 1; j++){
+               if ( Map.is_symbol(i, j, EMPTY) ) {
                     cout << char(EMPTY_DISPLAY);
                }
                else {
-                    cout << Map[i][j];
+                    cout << Map.get_element(i, j);
                }
           }
           if (i == 2) {
@@ -38,17 +39,6 @@ void Arena::print_map ()
      cout << " Tank 2 : " << tank1.score << endl;
 #endif
      
-}
-
-void Arena::create_from_file ()
-{
-     infile.open ("backup_map.txt");
-     for (int i=0; i<NUMBER - 1; i++){
-          for (int j=0; j<NUMBER - 1; j++){
-               infile >> Map[i][j];
-          }
-     }
-     infile.close ();
 }
 
 void Arena::get_player_moves ()
