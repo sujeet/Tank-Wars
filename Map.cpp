@@ -49,7 +49,7 @@ bool MapClass::is_symbol (Position posn, char symbol) const
      return this->get_element(posn) == symbol;
 }
 
-void MapClass::set_element (int x_coord, int y_coord, char data)
+void MapClass::set_element (int x_coord, int y_coord, char data, bool print_log)
 {
      if ( (x_coord >= MAP_SIZE) 
           || (y_coord >= MAP_SIZE)
@@ -60,10 +60,13 @@ void MapClass::set_element (int x_coord, int y_coord, char data)
           exit(-1);
      }
      this->map[x_coord][y_coord] = data;
-     // cout << data << endl;
+     if (print_log) {
+          // The following code prints the "diff" into the logfile
+          cout << x_coord << " " << y_coord << " " << data << endl;
+     }
 }
 
-void MapClass::set_element (Position posn, char data) 
+void MapClass::set_element (Position posn, char data, bool print_log) 
 {
-     this->set_element(posn.x, posn.y, data);
+     this->set_element(posn.x, posn.y, data, print_log);
 }

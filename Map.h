@@ -7,8 +7,8 @@
 class MapClass
 {
 private :
-public :
      char map[MAP_SIZE][MAP_SIZE];
+public :
      /* Method to initiate from a file */
      void create_from_file (std::string filename);
      
@@ -21,8 +21,8 @@ public :
      bool is_symbol (Position posn, char symbol) const;
      
      /* Methods to set the elements of map */
-     void set_element(int x_coord, int y_coord, char data);
-     void set_element(Position posn, char data);
+     void set_element(int x_coord, int y_coord, char data, bool print_log = true);
+     void set_element(Position posn, char data, bool print_log = true);
 };
      
 #endif

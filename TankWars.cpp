@@ -33,13 +33,10 @@ int main()
           arena.update_map ();
           arena.print_map ();
           if (arena.game_over_flag){
-               cout << "Bye Bye!" << endl;
+               // cout << "Bye Bye!" << endl;
                break;
           }
      }
 
      return 0;
 }
-
-
-

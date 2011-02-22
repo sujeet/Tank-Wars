@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 void Tank::initialize_from (char symbol, int init_x, int init_y)
 {
      this->symbol = symbol;
@@ -24,7 +23,7 @@ void Tank::get_next_move ()
      temp = MOVE_DEBUG;
 #endif
 #ifndef MOVE_DEBUG
-     temp = rand () % 4;	
+     temp = rand () % 8;	
 #endif
      this->next_move.interpret_move (temp);
 }
