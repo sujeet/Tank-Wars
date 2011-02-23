@@ -27,6 +27,8 @@ char MapClass::get_element (int x_coord, int y_coord) const
           || (y_coord < 0)
           ) {
           cerr << "ERROR : Tried to access map element out of bound." << endl;
+          cerr << "    x : " << x_coord << endl;
+          cerr << "    y : " << y_coord << endl;
           exit(-1);
      }
      else {
@@ -57,6 +59,8 @@ void MapClass::set_element (int x_coord, int y_coord, char data, bool print_log)
           || (y_coord < 0)
           ) {
           cerr << "ERROR : Tried to access map element out of bound." << endl;
+          cerr << "    x : " << x_coord << endl;
+          cerr << "    y : " << y_coord << endl;
           exit(-1);
      }
      this->map[x_coord][y_coord] = data;

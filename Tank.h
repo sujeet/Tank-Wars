@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <vector>
+
+#include "Info.h"
 #include "Map.h"
 
 using namespace std;

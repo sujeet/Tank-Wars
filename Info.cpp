@@ -2,9 +2,9 @@
 #include<vector>
 #include<iostream>
 #include<fstream>
+
 #include "Info.h"
 #include "Map.h"
-#define N 20
 
 using namespace std;
 
@@ -17,7 +17,7 @@ void object_info::print ()
 }
 
 
-Info::Info(const ID mine, const ID enemy)
+void Info::initializer(const ID mine, const ID enemy)
 {
     my_ID.tank_symbol = mine.tank_symbol;
     my_ID.falcon_symbol = mine.falcon_symbol;
@@ -63,7 +63,7 @@ Move Info::calculate_best_move( int mode )
 
     float real_weightage[4];
     Move moves[4];
-    int i,j,maximum;
+    int maximum;
 
 
     real_weightage[GO_TO_GOLD] = 
@@ -82,8 +82,7 @@ Move Info::calculate_best_move( int mode )
         float ( weightage_table[mode][DEFEND_MY_FALCON]) / float( my_falcon.shortest_distance );
     moves[DEFEND_MY_FALCON] = my_falcon.initial_move;
     
-    maximum = 0;
-    //maximum = find_the_maximum ( real_weightage );
+    maximum = find_the_maximum ( real_weightage );
     return moves[maximum];
 
 }
@@ -95,9 +94,9 @@ Move Info::calculate_best_move( int mode )
 void Info::update_distances(MapClass &map,Position source)
 {
     queue <Position> q;
-    vector< vector <int> > visited(N+2,vector <int>(N+2,0));
-    vector< vector <Move> > initial_move(N+2,vector <Move>(N+2));
-    vector< vector <int> > distance(N+2,vector <int>(N+2));
+    vector< vector <int> > visited(MAP_SIZE - 1,vector <int>(MAP_SIZE - 1,0));
+    vector< vector <Move> > initial_move(MAP_SIZE - 1,vector <Move>(MAP_SIZE - 1));
+    vector< vector <int> > distance(MAP_SIZE - 1,vector <int>(MAP_SIZE - 1));
     Position temp, temp3;
     Direction d;
     char char_buffer;
@@ -211,27 +210,27 @@ void Info::print_info()
 
 
 
-int main()
-{
-    MapClass test_map;
-    test_map.create_from_file("log_file");
-    int i, j;
-    char a;
-    Position check;
-    check.x=4;
-    check.y=10;
-    ID mine, enemy;
-    mine.player_no = 1;
-    mine.tank_symbol = '1';
-    mine.falcon_symbol = 'M';
+// int main()
+// {
+//     MapClass test_map;
+//     test_map.create_from_file("log_file");
+//     int i, j;
+//     char a;
+//     Position check;
+//     check.x=4;
+//     check.y=10;
+//     ID mine, enemy;
+//     mine.player_no = 1;
+//     mine.tank_symbol = '1';
+//     mine.falcon_symbol = 'M';
 
-    enemy.player_no = 2;
-    enemy.tank_symbol = '2';
-    enemy.falcon_symbol = 'E';
-    Info player1(mine, enemy);
-    player1.update_info(test_map, check);
-    player1.print_info();
-    return 0;
-}
+//     enemy.player_no = 2;
+//     enemy.tank_symbol = '2';
+//     enemy.falcon_symbol = 'E';
+//     Info player1(mine, enemy);
+//     player1.update_info(test_map, check);
+//     player1.print_info();
+//     return 0;
+// }
 
 

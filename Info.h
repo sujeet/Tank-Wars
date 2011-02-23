@@ -1,10 +1,14 @@
+#ifndef INFO_H
+#define INFO_H
+
 #include<queue>
 #include<vector>
 #include<iostream>
 #include<fstream>
+
 #include "Misc_Classes.h"
 #include "Map.h"
-#define N 20
+
 #define GO_TO_GOLD 0
 #define ATTACK_ENEMY_FALCON 1
 #define ATTACK_ENEMY_TANK 2
@@ -26,13 +30,13 @@ class ID
         char falcon_symbol;
 };		  
 
-struct symbol_list
-{
-    char my_tank;
-    char my_falcon;
-    char enemy_tank;
-    char enemy_falcon;
-};
+/* struct symbol_list */
+/* { */
+/*     char my_tank; */
+/*     char my_falcon; */
+/*     char enemy_tank; */
+/*     char enemy_falcon; */
+/* }; */
 
 class object_info
 {
@@ -49,7 +53,7 @@ class Info
 
     public:
         Position curr_posn;
-        Info (const ID , const ID);			// Constructor
+        void initializer (const ID , const ID);			// Constructor
         ID my_ID, enemy_ID;
         Move strategic_moves_array[4];
 
@@ -60,7 +64,7 @@ class Info
         object_info opp_tank; 
         object_info nearest_gold;
         int weightage_table[4][4] ;
-        struct symbol_list symbol;
+        /* struct symbol_list symbol; */
 
         void update_info (MapClass &, Position );
         void update_distances(MapClass &, Position);
@@ -70,8 +74,4 @@ class Info
 
 };
 
-
-
-
-
-
+#endif

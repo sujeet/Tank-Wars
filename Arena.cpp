@@ -1,8 +1,10 @@
+#include <iostream>
+
+#include "Info.h"
 #include "Tank.h"
 #include "Arena.h"
 #include "Map.h"
 
-#include <iostream>
 using namespace std;
 
 
@@ -58,8 +60,8 @@ void Arena::get_player_moves ()
 {
      // Get each tank's next moves
 
-     info1.update_info (Map, tank1.curr_posn);
-     info2.update_info (Map, tank2.curr_posn);
+     info1.update_info (this->Map, tank1.curr_posn);
+     info2.update_info (this->Map, tank2.curr_posn);
      
      // 1 : Choice - Say, Aggressive
      tank1.get_next_move (info1, 1);
