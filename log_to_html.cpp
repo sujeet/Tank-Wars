@@ -11,12 +11,22 @@ int main()
      ifstream map;
      map.open("map.txt");
      char letter;
-     cout << "<html><head></head><body onload = update_map_0()>" << endl;
-     cout << "<div style='width: 500px; height: 500px; margin: 0pt; padding: 0pt; border: 0pt none; background: none repeat scroll 0% 0% black;' id='divboard'>" << endl;
+     cout << "<html><head>" << endl;
+     cout << "<style type='text/css'>\n\
+    .wall {width: 10px; height: 10px; background: none repeat scroll 0% 0% #282B1F; margin: 0pt; padding: 0pt; float: left;}\n\
+    .empty {-moz-border-radius:5px; -webkit-border-radius:5px; width: 10px; height: 10px; background: none repeat scroll 0% 0% none; margin: 0pt; padding: 0pt; float: left;}\n\
+    .tank1 {-moz-border-radius:5px; -webkit-border-radius:5px; width: 10px; height: 10px; background: none repeat scroll 0% 0% green; margin: 0pt; padding: 0pt; float: left;}\n\
+    .tank2 {-moz-border-radius:5px; -webkit-border-radius:5px; width: 10px; height: 10px; background: none repeat scroll 0% 0% blue; margin: 0pt; padding: 0pt; float: left;}\n\
+    .bullet {-moz-border-radius:5px; -webkit-border-radius:5px; width:  5px; height:  5px; background: none repeat scroll 0% 0% black; margin: 2.5px; padding: 0pt; float: left;}\n\
+    .gold {-moz-border-radius:3px; -webkit-border-radius:3px; width: 8px; height: 8px; background: none repeat scroll 0% 0% goldenRod; margin: 0pt; padding: 0pt; float: left; border-style: solid; border-width:1px;}\n\
+    .dead {-moz-border-radius:5px; -webkit-border-radius:5px; width: 10px; height: 10px; background: none repeat scroll 0% 0% white; margin: 0pt; padding: 0pt; float: left;}\n\
+</style>" << endl;
+     cout << "</head><body onload = update_map_0()>" << endl;
+     cout << "<div style='width: 500px; height: 500px; margin: 0pt; padding: 0pt; border: 0pt none; background: none repeat scroll 0% 0% #E7ECD6;' id='divboard'>" << endl;
      for (int i = 0; i < MAP_SIZE - 1; i++){
           for (int j = 0; j < MAP_SIZE - 1; j++){
                map >> letter;
-               cout << "    <div id = '"<< i << "q" << j << "' style='-moz-border-radius:5px; -webkit-border-radius:5px; width: 10px; height: 10px; background: none repeat scroll 0% 0% black; margin: 0pt; padding: 0pt; float: left;' class = 'cell'></div>" << endl;
+               cout << "    <div id = '"<< i << "q" << j << "' class = 'cell'></div>" << endl;
           }
      }
      cout << "</div>" << endl;
@@ -24,19 +34,28 @@ int main()
      int x, y, i = 0;
      char k;
      cout << "<script type='text/javascript'>" << endl;
-     cout << "var char_to_color_table = {}; \
-              char_to_color_table['.'] = 'black'; \
-              char_to_color_table['#'] = 'brown'; \
-              char_to_color_table['G'] = 'yellow'; \
-              char_to_color_table['D'] = 'white'; \ 
-              char_to_color_table['2'] = 'blue'; \ 
-              char_to_color_table['1'] = 'green'; \
-              char_to_color_table['*'] = 'red';" << endl;
+     // cout << "var char_to_color_table = {}; \n\
+     //          char_to_color_table['.'] = 'black'; \n\
+     //          char_to_color_table['#'] = 'brown'; \n\
+     //          char_to_color_table['G'] = 'yellow'; \n\
+     //          char_to_color_table['D'] = 'white'; \n\
+     //          char_to_color_table['2'] = 'blue'; \n\
+     //          char_to_color_table['1'] = 'green'; \n\
+     //          char_to_color_table['*'] = 'red';" << endl;
+     cout << "var char_to_color_table = {}; \n\
+              char_to_color_table['.'] = 'empty'; \n\
+              char_to_color_table['#'] = 'wall'; \n\
+              char_to_color_table['G'] = 'gold'; \n\
+              char_to_color_table['D'] = 'dead'; \n\
+              char_to_color_table['2'] = 'tank2'; \n\
+              char_to_color_table['1'] = 'tank1'; \n\
+              char_to_color_table['*'] = 'bullet';" << endl;
      cout << "function update_map_" << i << "() {" << endl;
      do {
           infile >> x >> y >> k;
           if (x != -1) {
-               cout << "    document.getElementById('" << x << "q" << y << "').style.background = char_to_color_table['" << k << "'];" << endl;
+               // cout << "    document.getElementById('" << x << "q" << y << "').style.background = char_to_color_table['" << k << "'];" << endl;
+               cout << "    document.getElementById('" << x << "q" << y << "').className = char_to_color_table['" << k << "'];" << endl;
           }
           else {
                i++;
