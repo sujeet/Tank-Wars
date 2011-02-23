@@ -16,7 +16,7 @@ Arena::Arena ()
 
 void Arena::print_map ()
 {
-     cout << -1 << " " << -1 << " " << "F" << endl;
+     cout << tank1.score << " " << tank2.score << " " << "F" << endl;
      // for (int i=0; i<MAP_SIZE - 1; i++){
      //      for (int j=0; j<MAP_SIZE - 1; j++){
      //           if ( Map.is_symbol(i, j, EMPTY) ) {

@@ -19,7 +19,7 @@ int main()
     .tank2 {-moz-border-radius:5px; -webkit-border-radius:5px; width: 10px; height: 10px; background: none repeat scroll 0% 0% blue; margin: 0pt; padding: 0pt; float: left;}\n\
     .bullet {-moz-border-radius:5px; -webkit-border-radius:5px; width:  5px; height:  5px; background: none repeat scroll 0% 0% black; margin: 2.5px; padding: 0pt; float: left;}\n\
     .gold {-moz-border-radius:3px; -webkit-border-radius:3px; width: 8px; height: 8px; background: none repeat scroll 0% 0% goldenRod; margin: 0pt; padding: 0pt; float: left; border-style: solid; border-width:1px;}\n\
-    .dead {-moz-border-radius:5px; -webkit-border-radius:5px; width: 10px; height: 10px; background: none repeat scroll 0% 0% white; margin: 0pt; padding: 0pt; float: left;}\n\
+    .dead {-moz-border-radius:5px; -webkit-border-radius:5px; width: 10px; height: 10px; background: none repeat scroll 0% 0% red; margin: 0pt; padding: 0pt; float: left;}\n\
 </style>" << endl;
      cout << "</head><body onload = update_map_0()>" << endl;
      cout << "<div style='width: 500px; height: 500px; margin: 0pt; padding: 0pt; border: 0pt none; background: none repeat scroll 0% 0% #E7ECD6;' id='divboard'>" << endl;
@@ -30,6 +30,8 @@ int main()
           }
      }
      cout << "</div>" << endl;
+     cout << "<span> Player one (green) score : <div id = 'player1_score'>foo</div> </span>" << endl;
+     cout << "<span> Player one (green) score : <div id = 'player2_score'>foo</div> </span>" << endl;
      infile.open("foobar");
      int x, y, i = 0;
      char k;
@@ -53,11 +55,12 @@ int main()
      cout << "function update_map_" << i << "() {" << endl;
      do {
           infile >> x >> y >> k;
-          if (x != -1) {
-               // cout << "    document.getElementById('" << x << "q" << y << "').style.background = char_to_color_table['" << k << "'];" << endl;
+          if (k != 'F') {
                cout << "    document.getElementById('" << x << "q" << y << "').className = char_to_color_table['" << k << "'];" << endl;
           }
           else {
+               cout <<      "document.getElementById('player1_score').innerHTML = '" << x << "';" << endl;
+               cout <<      "document.getElementById('player2_score').innerHTML = '" << y << "';" << endl;
                i++;
                cout << "    var t= setTimeout('update_map_" << i << "()', 200);" << endl;
                cout << "}" << endl;
