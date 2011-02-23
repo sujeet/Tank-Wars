@@ -187,7 +187,6 @@ string insert_js()
      str_out << "var pause = true;                    " << endl
              << "var func_array = {};                 " << endl
              << "var function_counter = 0;            " << endl
-             << "var pause = false;                   " << endl
              << "var char_to_color_table = {};        " << endl
 
              << "char_to_color_table['.'] = 'empty';  " << endl

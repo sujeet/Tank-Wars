@@ -43,7 +43,7 @@ void Tank::get_next_move (Info& info, int choice)
      temp = MOVE_DEBUG;
 #endif
 #ifndef MOVE_DEBUG
-     temp = rand () % 8;	
+     // temp = rand () % 8;	
 #endif
      // this->next_move.interpret_move (temp);
 }
