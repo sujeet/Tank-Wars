@@ -9,7 +9,10 @@ using namespace std;
 #define MAX_CLASS_NAME_LENGTH 10
 #define MAP_FILE "backup_map.txt"
 #define LOG_FILE "foobar"
-#define PAUSE_DURATION 200
+#define DELAY 200
+#define DELAY_STEP 50 
+#define MIN_DELAY 50
+#define MAX_DELAY 1000
 #define END_SCORE_CHAR 'F'
 
 string symbol_to_html_class (char symbol) 
@@ -184,10 +187,14 @@ string insert_js()
      str_out << "<script type='text/javascript'>" << endl;
 
      // Global variabrles for js
-     str_out << "var pause = true;                    " << endl
-             << "var func_array = {};                 " << endl
-             << "var function_counter = 0;            " << endl
-             << "var char_to_color_table = {};        " << endl
+     str_out << "var pause = true;                      " << endl
+             << "var func_array = {};                   " << endl
+             << "var function_counter = 0;              " << endl
+             << "var delay = " << DELAY << ";           " << endl
+             << "var delay_step = " << DELAY_STEP << "; " << endl
+             << "var min_delay = " << MIN_DELAY << ";   " << endl
+             << "var max_delay = " << MAX_DELAY << ";   " << endl
+             << "var char_to_color_table = {};          " << endl
 
              << "char_to_color_table['.'] = 'empty';  " << endl
              << "char_to_color_table['#'] = 'wall';   " << endl 
@@ -218,7 +225,7 @@ string insert_js()
              << "   if (! pause) {                                               " << endl
              << "       func_array[function_counter]();                          " << endl
              << "       function_counter = function_counter + 1;                 " << endl
-             << "       var t = setTimeout ('play()', 200);                      " << endl
+             << "       var t = setTimeout ('play()', delay);                    " << endl
              << "   }                                                            " << endl
              << "   else {                                                       " << endl
              << "       return;                                                  " << endl
@@ -235,6 +242,20 @@ string insert_js()
              << "    }                                                                " << endl
              << "}                                                                    " << endl;
 
+     str_out << "function fast()                                             " << endl
+             << "{                                                           " << endl
+             << "    if (delay >= min_delay) {                               " << endl
+             << "        delay -= delay_step;                                " << endl
+             << "    }                                                       " << endl
+             << "}                                                           " << endl;
+                                                                             
+     str_out << "function slow()                                             " << endl
+             << "{                                                           " << endl
+             << "    if (delay <= max_delay) {                               " << endl
+             << "        delay += delay_step;                                " << endl
+             << "    }                                                       " << endl
+             << "}                                                           " << endl;
+
      str_out << "</script>" << endl;
 
      return str_out.str();
@@ -245,6 +266,12 @@ string insert_control()
      ostringstream str_out;
      str_out << "<button id = 'pause_button' onclick = 'pause_game()'> " << endl
              << "  Play                                                " << endl
+             << "</button>                                             " << endl
+             << "<button id = 'slow_button' onclick = 'slow()'>        " << endl
+             << "  Slower                                              " << endl
+             << "</button>                                             " << endl
+             << "<button id = 'fast_button' onclick = 'fast()'>        " << endl
+             << "  Faster                                              " << endl
              << "</button>                                             " << endl;
      return str_out.str();
 }
