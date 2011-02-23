@@ -13,7 +13,7 @@ void MapClass::create_from_file (string filename)
      for (int i = 0; i < MAP_SIZE - 1; i++){
           for (int j = 0; j < MAP_SIZE - 1; j++){
                infile >> letter;
-               this->set_element (i, j, letter);
+               this->set_element (i, j, letter, false);
           }
      }
      infile.close ();

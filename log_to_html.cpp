@@ -4,12 +4,28 @@
 
 using namespace std;
 #define MAP_SIZE 51
+#define ASCII_CHARS 128
+#define MAX_CLASS_NAME_LENGTH 10
+
+
+string symbol_to_html_class (char symbol) 
+{
+     switch (symbol){
+     case '*' : return "bullet"; break;
+     case '#' : return "wall"; break;
+     case '.' : return "empty"; break;
+     case '1' : return "tank1"; break;
+     case '2' : return "tank2"; break;
+     case 'D' : return "dead"; break;
+     case 'G' : return "gold"; break;
+     }
+}
 
 int main() 
 {
      ifstream infile;
      ifstream map;
-     map.open("map.txt");
+     map.open("backup_map.txt");
      char letter;
      cout << "<html><head>" << endl;
      cout << "<style type='text/css'>\n\
@@ -26,8 +42,10 @@ int main()
      for (int i = 0; i < MAP_SIZE - 1; i++){
           for (int j = 0; j < MAP_SIZE - 1; j++){
                map >> letter;
-               cout << "    <div id = '"<< i << "q" << j << "' class = 'cell'></div>" << endl;
+               // cout << letter;
+               cout << "    <div id = '"<< i << "q" << j << "' class = '" << symbol_to_html_class(letter) << "'></div>" << endl;
           }
+          // cout << endl;
      }
      cout << "</div>" << endl;
      cout << "<span> Player one (green) score : <div id = 'player1_score'>foo</div> </span>" << endl;
@@ -36,14 +54,6 @@ int main()
      int x, y, i = 0;
      char k;
      cout << "<script type='text/javascript'>" << endl;
-     // cout << "var char_to_color_table = {}; \n\
-     //          char_to_color_table['.'] = 'black'; \n\
-     //          char_to_color_table['#'] = 'brown'; \n\
-     //          char_to_color_table['G'] = 'yellow'; \n\
-     //          char_to_color_table['D'] = 'white'; \n\
-     //          char_to_color_table['2'] = 'blue'; \n\
-     //          char_to_color_table['1'] = 'green'; \n\
-     //          char_to_color_table['*'] = 'red';" << endl;
      cout << "var char_to_color_table = {}; \n\
               char_to_color_table['.'] = 'empty'; \n\
               char_to_color_table['#'] = 'wall'; \n\
