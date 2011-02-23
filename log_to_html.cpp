@@ -54,8 +54,6 @@ int main()
      int x, y, i = 0;
      char k;
      cout << "<script type='text/javascript'>" << endl;
-     cout << "var pause = false;" << endl;
-     cout << "var update_map = {};" << endl;
      cout << "var char_to_color_table = {}; \n\
               char_to_color_table['.'] = 'empty'; \n\
               char_to_color_table['#'] = 'wall'; \n\
