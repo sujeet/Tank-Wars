@@ -6,6 +6,7 @@ using namespace std;
 
 void Tank::initialize_from (char symbol, int init_x, int init_y)
 {
+     // Initialize a tank's symbol and initial position
      this->symbol = symbol;
      this->curr_posn.x = init_x;
      this->curr_posn.y = init_y;
@@ -18,6 +19,7 @@ void Tank::initialize_from (char symbol, int init_x, int init_y)
 void Tank::get_next_move ()
 {
      // Call player function and get response
+     // Just a random move returned as of now
      int temp;
 #ifdef MOVE_DEBUG
      temp = MOVE_DEBUG;
@@ -28,7 +30,7 @@ void Tank::get_next_move ()
      this->next_move.interpret_move (temp);
 }
 
-void Tank::update()
+void Tank::execute_next_move()
 {
      // Call either this.move () or this.shoot_bullet ()
      // Call bullet_list[i].move () for every bullet_list[i] in bullet_list
@@ -39,6 +41,8 @@ void Tank::update()
      else{
           this->move ();
      }
+
+     // Move the bullets already shot by this tank 
      for (i = 0; i < this->bullet_list.size (); i++){
           this->bullet_list[i].move ();
      }
@@ -46,32 +50,50 @@ void Tank::update()
 
 void Tank::move ()
 {
+     // Move Tank in the direction of the next move 
+
      this->prev_posn = this->curr_posn;
      this->curr_posn.go_in_direction (this->next_move.dirn);
 //      this->curr_dirn = this->next_move.dirn;
 }
 
-
-void Tank::evaluate_state (MapClass & Map)
+void Tank::shoot_bullet ()
 {
-     // Check if on_gold (), if crashed_into_wall ()
-     // etc. and call their respective functions
+     // Shoot a new bullet in the direction given
+
+     Bullet b;
+     b.curr_dirn = this->next_move.dirn;
+     b.curr_posn = this->curr_posn;
+     b.prev_posn = b.curr_posn;
+     this->bullet_list.push_back (b);
+}
+
+void Tank::evaluate_static_interactions (MapClass & Map)
+{
+     // Check if Tank is on a gold piece, or if it has crashed into a
+     // wall and do the required. Do the same for its bullets
+
      unsigned int i;
      pick_up_gold_if_possible (Map);
      if (crashed_into_wall (Map)){
           die_by_wall_crash ();
      }
+
+     // Check for bullet crashes
      for (i = 0; i < this->bullet_list.size (); i++){
           this->bullet_list[i].check_for_crashes (Map);
      }
      
 }
 
-
 bool Tank::is_killed_by (Tank t)
 {
+     // Check if Tank is killed by enemy tank t's bullets or has
+     // crashed into it
+
      bool flag = false;
      unsigned int i;
+
      for (i = 0; i < t.bullet_list.size (); i++) {
           if (t.bullet_list[i].curr_posn == this->curr_posn) {
                flag = true;
@@ -82,7 +104,7 @@ bool Tank::is_killed_by (Tank t)
      if (flag)
           t.bullet_list[i].set_disappear_flag ();
 
-     // Check for tank crossing later
+     // TODO : Check for tank crossing later
      if (this->curr_posn == t.curr_posn){
           flag = true;
      }
@@ -91,10 +113,10 @@ bool Tank::is_killed_by (Tank t)
 
 void Tank::die_by_tank (Tank t)
 {
+     // Tank is dead; Will end the game after updating map
      this->dead_flag = true;
      t.incr_score(ENEMY_KILLED);
 }
-
 
 void Tank::pick_up_gold_if_possible (MapClass & Map)
 {
@@ -115,20 +137,14 @@ bool Tank::crashed_into_wall (MapClass & Map)
 
 void Tank::die_by_wall_crash ()
 {
+     // Die
      dead_flag = true;
-}
-
-void Tank::shoot_bullet ()
-{
-     Bullet b;
-     b.curr_dirn = this->next_move.dirn;
-     b.curr_posn = this->curr_posn;
-     b.prev_posn = b.curr_posn;
-     this->bullet_list.push_back (b);
 }
 
 void Tank::check_bullet_interactions (Tank t)
 {
+     // Check if any of Tank's bullets are colliding with t's bullets
+
      unsigned int i, j;
      for (i = 0; i < this->bullet_list.size (); i++) {
           for (j = 0; j < t.bullet_list.size (); j++) {
@@ -142,29 +158,30 @@ void Tank::check_bullet_interactions (Tank t)
 
 void Tank::incr_score (event e)
 {
+     // Update score based on the event
+
      score += e;
 }
 
-
 void Tank::update_on_map (MapClass & Map)
 {
+
 #ifdef COUT_DEBUG
      cout << "Tank - Prev posn : " << this->prev_posn.x << " " << this->prev_posn.y << endl;
      cout << "Tank - Curr posn : " << this->curr_posn.x << " " << this->curr_posn.y << endl;
 #endif
 
-
      unsigned int i;
      
+     // Update Tank's bullets' positions on the map
      for (i = 0; i < this->bullet_list.size (); i++) {
           bullet_list[i].update_on_map (Map);
      }
-//      cout << endl;
-//      cout << "Before : " << endl;
-//      this->print_bullets ();
-//      for (i = 0; i < this->bullet_list.size (); i++) {
+
      bool flag = false;
      vector<Bullet>::iterator iter;
+
+     // Delete Bullets that have crashed
      while (1){
           iter = bullet_list.begin ();
           while (iter != bullet_list.end ()){
@@ -183,10 +200,10 @@ void Tank::update_on_map (MapClass & Map)
           }
      }
 
-//      cout << endl;
-//      cout << "After : " << endl;
-//      this->print_bullets ();
+     // Blank previous position on map
      Map.set_element (this->prev_posn, EMPTY);
+
+     // Set current position on map
      if (this->dead_flag){
           Map.set_element (this->curr_posn, DEAD);
      }
@@ -196,6 +213,8 @@ void Tank::update_on_map (MapClass & Map)
 
 void Tank::Bullet::move ()
 {
+     // Move Bullet forward
+
      this->prev_posn = this->curr_posn;
      this->curr_posn.go_in_direction (this->curr_dirn);
      
@@ -203,35 +222,25 @@ void Tank::Bullet::move ()
 
 void Tank::Bullet::check_for_crashes (MapClass & Map)
 {
+     // Check if Bullet has collided with a GOLD piece or a WALL
+
      if ( Map.is_symbol(this->curr_posn, GOLD) 
-          || Map.is_symbol(this->curr_posn, WALL)
-          ){
+          || Map.is_symbol(this->curr_posn, WALL) ){
+
           this->set_disappear_flag ();
      }
 }
 
-// void Tank::Bullet::mark_danger_zones (char Map[][MAP_SIZE]) 
-// {
-//      int x_dir = this->curr_dirn.xdir;
-//      int y_dir = this->curr_dirn.ydir;
-//      int x_posn = this->curr_posn.x;
-//      int y_posn = this->curr_posn.y;
-//      for (int i = 0; i < BULLET_SPEED; i++) {
-//           x_posn += x_dir;
-//           y_posn += y_dir;
-//           if (Map[x_posn][y_posn] == EMPTY) {
-//                Map[x_posn][y_posn] = DANGER;
-//           }
-//      }
-// }
-
 void Tank::Bullet::update_on_map (MapClass & Map)
 {
+     // Update Bullet on map
+
 #ifdef COUT_DEBUG
      cout << "Bullet - Prev posn : " << this->prev_posn.x << " " << this->prev_posn.y << endl;
      cout << "Bullet - curr posn : " << this->curr_posn.x << " " << this->curr_posn.y << endl;
 #endif
      
+     // Blank previous position
      Map.set_element (this->prev_posn, EMPTY);
      if (this->disappear_flag){
           // Map[curr_x][curr_y] = EMPTY;
@@ -242,6 +251,7 @@ void Tank::Bullet::update_on_map (MapClass & Map)
           // here, do something to delete the bullet
           // from the vector
      }
+     // Set current position
      else {
           Map.set_element (this->curr_posn, BULLET);
      }

@@ -65,11 +65,11 @@ public:
      }
 	  
      void get_next_move ();
-     void update ();
+     void execute_next_move ();
      void move ();			// Change Tank's position
      void shoot_bullet ();
 
-     void evaluate_state (MapClass & Map);
+     void evaluate_static_interactions (MapClass & Map);
 
      void incr_score (event e);
      void check_bullet_interactions (Tank t);
