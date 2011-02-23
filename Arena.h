@@ -15,14 +15,15 @@ public:
      MapClass Map;
      bool game_over_flag;
      Tank tank1, tank2;
+     Info info1, info2;
      ifstream infile;
      // Methods
      Arena ();
-     void print_map ();
+     void print_scores ();
      void get_player_moves ();
-     void update_posns ();
-     void evaluate_tank_states ();
-     void evaluate_interactions ();
+     void execute_moves ();
+     void evaluate_static_interactions ();
+     void evaluate_dynamic_interactions ();
      void update_map ();
 };
      
