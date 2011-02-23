@@ -12,8 +12,15 @@ Arena::Arena ()
 
      game_over_flag = false;
      this->Map.create_from_file ("backup_map.txt");
-     tank1.initialize_from ('1', 33, 18);
-     tank2.initialize_from ('2', 13, 20);
+
+     // Assuming 1 has its falcon in the upper half
+     // Assuming 2 has its falcon in the lower half
+     tank1.initialize_from (1, '1', 33, 18, 'F', MAP_SIZE/2, MAP_SIZE - 2);
+     tank2.initialize_from (2, '2', 13, 20, 'E', MAP_SIZE/2, 1);
+     
+     info1.initializer (tank1.id, tank2.id);
+     info2.initializer (tank2.id, tank1.id);
+     
 }
 
 void Arena::print_scores ()
@@ -51,8 +58,12 @@ void Arena::get_player_moves ()
 {
      // Get each tank's next moves
 
-     tank1.get_next_move ();
-     tank2.get_next_move ();
+     info1.update_info (Map, tank1.curr_posn);
+     info2.update_info (Map, tank2.curr_posn);
+     
+     // 1 : Choice - Say, Aggressive
+     tank1.get_next_move (info1, 1);
+     tank2.get_next_move (info2, 2);
 }
 
 void Arena::execute_moves ()
@@ -85,11 +96,21 @@ void Arena::evaluate_dynamic_interactions ()
      if (tank2.is_killed_by (tank1)){
           tank2.die_by_tank(tank1);
      }
+
+     // Check for falcon being killed
+     if (tank1.falcon.is_killed_by (tank2)){
+	  tank1.falcon.set_dead_flag ();
+     }
+
+     if (tank2.falcon.is_killed_by (tank1)){
+	  tank2.falcon.set_dead_flag ();
+     }
+     
      // Check bullet-bullet interactions
      tank1.check_bullet_interactions (tank2);
      tank2.check_bullet_interactions (tank1);
 
-     if (tank1.dead_flag || tank2.dead_flag)
+     if (tank1.dead_flag || tank2.dead_flag || tank1.falcon.dead_flag || tank2.falcon.dead_flag)
           this->game_over_flag = true;
 }
 

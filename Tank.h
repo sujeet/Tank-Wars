@@ -45,8 +45,29 @@ public:
 	  
      };
 
+     class Falcon
+     {
+     public:
+	  // Variables
+	  bool dead_flag;
+	  char symbol;
+	  Position posn;
+
+	  // Methods
+	  Falcon (){
+	       dead_flag = false;
+	  }
+	
+	  bool is_killed_by (Tank t);
+	  bool crashed_tank (Tank t);
+	  void set_dead_flag ();
+	  void update_on_map (MapClass & Map);
+     };
+     
      // Variables
      char symbol;
+     ID id;
+     Falcon falcon;
      vector<Bullet> bullet_list;
      Move next_move;
      Position curr_posn, prev_posn;
@@ -56,7 +77,7 @@ public:
      
      // Methods
      Tank () { };
-     void initialize_from (char symbol, int init_x, int init_y);
+     void initialize_from (int given_player_no, char symbol, int init_x, int init_y, char falcon_symbol, int falcon_init_x, int falcon_init_y);
      void print_bullets ()
      {
           for (unsigned int i = 0; i < bullet_list.size (); i++){
@@ -64,7 +85,7 @@ public:
           }
      }
 	  
-     void get_next_move ();
+     void get_next_move (Info info, int choice);
      void execute_next_move ();
      void move ();			// Change Tank's position
      void shoot_bullet ();
@@ -87,7 +108,6 @@ public:
      void set_dead_flag ();		// Flag to denote that when all the
      // tanks' evaluations are done, die
      void update_on_map (MapClass & Map);		// Call bullet_list[i].update_map () and change own position on map, erase old position, and erase curr_gold_posn on the map if gold_flag is set
-     void mark_danger_zones (MapClass & Map);
 };
 
 #endif

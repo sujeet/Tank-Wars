@@ -4,20 +4,34 @@
 
 using namespace std;
 
-void Tank::initialize_from (char symbol, int init_x, int init_y)
+void Tank::initialize_from (int given_player_no, char symbol, int init_x, int init_y, char falcon_symbol, int falcon_init_x, int falcon_init_y)
 {
      // Initialize a tank's symbol and initial position
      this->symbol = symbol;
      this->curr_posn.x = init_x;
      this->curr_posn.y = init_y;
      this->prev_posn = this->curr_posn;
+
+     this->falcon.symbol = falcon_symbol;
+     this->falcon.posn.x = falcon_init_x;
+     this->falcon.posn.y = falcon_init_y;
+     
+
+     this->id.player_no = given_player_no;
+     this->id.tank_symbol = symbol;
+     this->id.falcon_symbol = falcon_symbol;
      
      dead_flag = false;
      score = 0;
 }
 
-void Tank::get_next_move ()
+void Tank::get_next_move (Info info, int choice)
 {
+
+     // CHANGE THIS
+
+
+
      // Call player function and get response
      // Just a random move returned as of now
      int temp;
@@ -108,6 +122,7 @@ bool Tank::is_killed_by (Tank t)
      if (this->curr_posn == t.curr_posn){
           flag = true;
      }
+
      return flag;
 }
 
@@ -257,4 +272,35 @@ void Tank::Bullet::update_on_map (MapClass & Map)
      }
 }
 
+
+void Tank::Falcon::set_dead_flag ()
+{
+     dead_flag = true;
+}
+
+
+bool Tank::Falcon::is_killed_by (Tank t)
+{
+     // Check if Falcon is killed by enemy tank t's bullets or has
+     // been crashed into
+
+     bool flag = false;
+     unsigned int i;
+
+     for (i = 0; i < t.bullet_list.size (); i++) {
+          if (t.bullet_list[i].curr_posn == this->posn) {
+               flag = true;
+               break;
+          }
+     }
+
+     if (flag)
+          t.bullet_list[i].set_disappear_flag ();
+
+     if (this->posn == t.curr_posn){
+          flag = true;
+     }
+
+     return flag;
+}
 

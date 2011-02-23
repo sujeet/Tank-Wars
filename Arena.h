@@ -15,6 +15,7 @@ public:
      MapClass Map;
      bool game_over_flag;
      Tank tank1, tank2;
+     Info info1, info2;
      ifstream infile;
      // Methods
      Arena ();
