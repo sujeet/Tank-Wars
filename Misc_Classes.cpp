@@ -66,3 +66,24 @@ void Position::print ()
 {
      cout << "Position : " << x << " " << y << endl;
 }
+
+Position Position::operator = (Position pos)
+{
+     this->x = pos.x;
+     this->y = pos.y;
+     return *this;
+}
+
+Move Move::operator = (Move mov)
+{
+     this->shoot = mov.shoot;
+     this->dirn = mov.dirn;
+     return *this;
+}
+
+Direction Direction::operator = (Direction dir)
+{
+     this->xdir = dir.xdir;
+     this->ydir = dir.ydir;
+     return *this;
+}

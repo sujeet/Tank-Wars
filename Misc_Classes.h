@@ -26,6 +26,7 @@ class Direction
 public:
      int xdir, ydir;
      void get_from_integer (int inp);
+     Direction operator = (Direction dir);
      void print ();
 };
 
@@ -35,6 +36,7 @@ public:
      bool shoot;
      Direction dirn;
      Move ();
+     Move operator = (Move mov);
      void interpret_move (int user_move);
      void print ();
 };
@@ -45,6 +47,7 @@ public:
      int x, y;
      
      void go_in_direction (Direction d);
+     Position operator = (Position pos);
      bool operator== (Position p);
      void print ();
 };

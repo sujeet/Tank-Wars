@@ -27,7 +27,7 @@ void Tank::initialize_from (int given_player_no, char symbol, int init_x, int in
      score = 0;
 }
 
-void Tank::get_next_move (Info info, int choice)
+void Tank::get_next_move (Info& info, int choice)
 {
 
      // CHANGE THIS

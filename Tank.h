@@ -87,7 +87,7 @@ public:
           }
      }
 	  
-     void get_next_move (Info info, int choice);
+     void get_next_move (Info& info, int choice);
      void execute_next_move ();
      void move ();			// Change Tank's position
      void shoot_bullet ();
