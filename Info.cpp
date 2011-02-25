@@ -8,6 +8,11 @@
 
 using namespace std;
 
+object_info::object_info ()
+{
+     shortest_distance = -1;
+}
+
 void object_info::print ()
 {
     cout << "Shortest_Distance : " << shortest_distance << endl;
@@ -16,14 +21,15 @@ void object_info::print ()
     posn.print ();
 }
 
-
 void Info::initializer(const ID mine, const ID enemy)
 {
+     // Just use assignment operators
     my_ID.tank_symbol = mine.tank_symbol;
     my_ID.falcon_symbol = mine.falcon_symbol;
     enemy_ID.tank_symbol = enemy.tank_symbol;
     enemy_ID.falcon_symbol = enemy.falcon_symbol;
             
+    // Have set_weightage (CHOICE, Row_values) function ?
     weightage_table[0][0] = 5; 
     weightage_table[0][1] = 5; 
     weightage_table[0][2] = 5; 
@@ -61,25 +67,26 @@ Move Info::calculate_best_move( int mode )
 {
     //a call to  am i in danger to be included.
 
-    float real_weightage[4];
+     float real_weightage[4];	// Other name?
     Move moves[4];
     int maximum;
 
 
     real_weightage[GO_TO_GOLD] = 
         float ( weightage_table[mode][GO_TO_GOLD]) / float( nearest_gold.shortest_distance );
-    moves[GO_TO_GOLD] = nearest_gold.initial_move;
 
     real_weightage[ATTACK_ENEMY_FALCON] = 
         float ( weightage_table[mode][ATTACK_ENEMY_FALCON]) / float( opp_falcon.shortest_distance );
-    moves[ATTACK_ENEMY_FALCON] = opp_falcon.initial_move;
 
     real_weightage[ATTACK_ENEMY_TANK] = 
         float ( weightage_table[mode][ATTACK_ENEMY_TANK]) / float( opp_tank.shortest_distance );
-    moves[ATTACK_ENEMY_TANK] = opp_tank.initial_move;
 
     real_weightage[DEFEND_MY_FALCON] = 
         float ( weightage_table[mode][DEFEND_MY_FALCON]) / float( my_falcon.shortest_distance );
+
+    moves[GO_TO_GOLD] = nearest_gold.initial_move;
+    moves[ATTACK_ENEMY_FALCON] = opp_falcon.initial_move;
+    moves[ATTACK_ENEMY_TANK] = opp_tank.initial_move;
     moves[DEFEND_MY_FALCON] = my_falcon.initial_move;
     
     maximum = find_the_maximum ( real_weightage );
@@ -106,6 +113,8 @@ void Info::update_distances(MapClass &map,Position source)
     y=source.y;
     visited[source.x][source.y] = 1;
     distance[source.x][source.y] = 0;
+    
+    gold.clear ();
 
     // Initially pushing all the valid neighbors into the queue
     for(int i = 0; i<4; i++)
@@ -192,6 +201,15 @@ void Info::update_info (MapClass &map,Position source)
     strategic_moves_array[DEFENSIVE] = calculate_best_move(DEFENSIVE);
     strategic_moves_array[GREEDY] = calculate_best_move(GREEDY);
     strategic_moves_array[CUSTOMISED] = calculate_best_move(CUSTOMISED);
+//     cout << "Aggressive : \n";
+//     strategic_moves_array[AGGRESSIVE].print ();
+//     cout << "Defensive : \n";
+//     strategic_moves_array[DEFENSIVE].print ();
+//     cout << "Greedy : \n";
+//     strategic_moves_array[GREEDY].print ();
+//     cout << "Customised : \n";
+//     strategic_moves_array[CUSTOMISED].print ();
+    
 }
 
 void Info::print_info()

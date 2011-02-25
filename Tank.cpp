@@ -32,8 +32,8 @@ void Tank::get_next_move (Info& info, int choice)
 
      // CHANGE THIS
      this->next_move = info.strategic_moves_array[choice];
-     cerr << "shoot : " << boolalpha << this->next_move.shoot << endl;
-     cerr << "dirn  : " << this->next_move.dirn.xdir << " " << this->next_move.dirn.ydir << endl;
+//      cerr << "shoot : " << boolalpha << this->next_move.shoot << endl;
+//      cerr << "dirn  : " << this->next_move.dirn.xdir << " " << this->next_move.dirn.ydir << endl;
      
 
      // Call player function and get response

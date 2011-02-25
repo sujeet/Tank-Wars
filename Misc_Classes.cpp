@@ -3,6 +3,12 @@
 
 using namespace std;
 
+Direction::Direction()
+{
+     // By default goes up
+     this->get_from_integer (0);
+}
+
 void Direction::print ()
 {
      cout << "Direction : " << xdir << " " << ydir << endl;
@@ -49,6 +55,11 @@ void Move::print()
 {
      cout << "Shoot " << boolalpha << shoot << endl;
      this->dirn.print();
+}
+
+Position::Position ()
+{
+     x = y = 0;
 }
 
 void Position::go_in_direction (Direction d)

@@ -64,7 +64,7 @@ void Arena::get_player_moves ()
      info2.update_info (this->Map, tank2.curr_posn);
      
      // 1 : Choice - Say, Aggressive
-     tank1.get_next_move (info1, 1);
+     tank1.get_next_move (info1, 2);
      tank2.get_next_move (info2, 2);
 }
 

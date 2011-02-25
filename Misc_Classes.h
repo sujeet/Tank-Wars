@@ -25,6 +25,9 @@ class Direction
      // 3 : LEFT
 public:
      int xdir, ydir;
+     
+     // Methods
+     Direction ();
      void get_from_integer (int inp);
      Direction operator = (Direction dir);
      void print ();
@@ -46,6 +49,8 @@ class Position
 public:
      int x, y;
      
+     // Methods
+     Position ();
      void go_in_direction (Direction d);
      Position operator = (Position pos);
      bool operator== (Position p);
