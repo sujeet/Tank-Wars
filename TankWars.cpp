@@ -16,9 +16,6 @@ int main()
      Arena arena;
      srand(time(NULL));
      for (i = 0; i < TIMES; i++){
-#ifdef COUT_DEBUG
-          cout << "Iteration no : " << i << endl;
-#endif
           arena.get_player_moves ();
 
           // For each Tank, first, either shoot or move tank

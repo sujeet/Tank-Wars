@@ -13,7 +13,7 @@ Arena::Arena ()
      // 
 
      game_over_flag = false;
-     this->Map.create_from_file ("backup_map.txt");
+     this->Map.create_from_file (MAP_FILE);
 
      // Assuming 1 has its falcon in the upper half
      // Assuming 2 has its falcon in the lower half
@@ -30,25 +30,8 @@ void Arena::print_scores ()
      // Print scores
      // The rest of the map is being displayed by Map
 
-     cout << tank1.score << " " << tank2.score << " " << "F" << endl;
-     // for (int i=0; i<MAP_SIZE - 1; i++){
-     //      for (int j=0; j<MAP_SIZE - 1; j++){
-     //           if ( Map.is_symbol(i, j, EMPTY) ) {
-     //                cout << char(EMPTY_DISPLAY);
-     //           }
-     //           else {
-     //                cout << Map.get_element(i, j);
-     //           }
-     //      }
-     //      if (i == 2) {
-     //           cout << "  Tank 1 : " << tank1.score;
-     //      }
-     //      if (i == 3) {
-     //           cout << "  Tank 2 : " << tank2.score;
-     //      }
-     //      cout << endl;
-     // }
-     cout << endl;
+     this->Map.print_log(tank1.score, tank2.score, 'F');
+
 #ifdef COUT_DEBUG
      cout << " Tank 1 : " << tank1.score << endl;
      cout << " Tank 2 : " << tank1.score << endl;

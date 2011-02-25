@@ -17,6 +17,7 @@ public:
      Tank tank1, tank2;
      Info info1, info2;
      ifstream infile;
+     ofstream log;
      // Methods
      Arena ();
      void print_scores ();

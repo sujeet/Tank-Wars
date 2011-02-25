@@ -5,11 +5,17 @@
 
 using namespace std;
 
+MapClass::MapClass ()
+{
+     this->log_file.open(LOG_FILE);
+}
+
 void MapClass::create_from_file (string filename) 
 {
      ifstream infile;
      char letter;
      infile.open (filename.c_str());
+
      for (int i = 0; i < MAP_SIZE - 1; i++){
           for (int j = 0; j < MAP_SIZE - 1; j++){
                infile >> letter;
@@ -66,7 +72,7 @@ void MapClass::set_element (int x_coord, int y_coord, char data, bool print_log)
      this->map[x_coord][y_coord] = data;
      if (print_log) {
           // The following code prints the "diff" into the logfile
-          cout << x_coord << " " << y_coord << " " << data << endl;
+          this->print_log(x_coord, y_coord, data);
      }
 }
 
@@ -74,3 +80,15 @@ void MapClass::set_element (Position posn, char data, bool print_log)
 {
      this->set_element(posn.x, posn.y, data, print_log);
 }
+
+MapClass::~MapClass ()
+{
+     this->log_file.close();
+}
+
+void MapClass::print_log(int x, int y, char k)
+{
+     this->log_file << x << " " << y << " " << k << endl;
+}
+
+     
