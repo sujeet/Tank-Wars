@@ -7,8 +7,6 @@ using namespace std;
 #define MAP_SIZE 51
 #define ASCII_CHARS 128
 #define MAX_CLASS_NAME_LENGTH 10
-#define MAP_FILE "backup_map.txt"
-#define LOG_FILE "foobar"
 #define DELAY 200
 #define DELAY_STEP 50 
 #define MIN_DELAY 50
@@ -278,15 +276,19 @@ string insert_control()
 
 int main() 
 {
-     cout << "<html>" << endl;
-     cout << "<head>" << endl;
-     cout << insert_css();
-     cout << "</head>" << endl;
-     cout << "<body>" << endl;
-     cout << make_divs (MAP_FILE);
-     cout << status_notifier();
-     cout << insert_js();
-     cout << insert_control();
+     ofstream html_file;
+     html_file.open(HTML_FILE);
+     
+     html_file << "<html>" << endl;
+     html_file << "<head>" << endl;
+     html_file << insert_css();
+     html_file << "</head>" << endl;
+     html_file << "<body>" << endl;
+     html_file << make_divs (MAP_FILE);
+     html_file << status_notifier();
+     html_file << insert_js();
+     html_file << insert_control();
 
+     html_file.close();
      return 0;
 }
