@@ -25,10 +25,10 @@ void Tank::initialize_from (int given_player_no, char symbol, int init_x, int in
 
      // Initialize Bullet Symbol
      if (symbol == '1'){
-	  bullet_symbol = 'A';
+          bullet_symbol = 'A';
      }
      else{
-	  bullet_symbol = 'B';
+          bullet_symbol = 'B';
      }
     
      
@@ -57,22 +57,26 @@ void Tank::get_next_move (Info& info, int choice)
      this->next_move.interpret_move (temp);
 }
 
+void Tank::move_bullets ()
+{
+     unsigned int i;
+     // Move the bullets already shot by this tank 
+     // Call bullet_list[i].move () for every bullet_list[i] in bullet_list
+     for (i = 0; i < this->bullet_list.size (); i++){
+          this->bullet_list[i].move ();
+     }
+}
+
 void Tank::execute_next_move()
 {
      // Call either this.move () or this.shoot_bullet ()
-     // Call bullet_list[i].move () for every bullet_list[i] in bullet_list
-     unsigned int i;
      if (this->next_move.shoot){
-          this->shoot_bullet ();
+          this->shoot_bullet (); // Shoot and move new bullet
      }
      else{
           this->move ();
      }
 
-     // Move the bullets already shot by this tank 
-     for (i = 0; i < this->bullet_list.size (); i++){
-          this->bullet_list[i].move ();
-     }
 }
 
 void Tank::move ()
@@ -93,6 +97,8 @@ void Tank::shoot_bullet ()
      b.curr_posn = this->curr_posn;
      b.prev_posn = b.curr_posn;
      b.symbol = this->bullet_symbol;
+     // A new bullet has to move itself
+     b.move ();
      this->bullet_list.push_back (b);
 }
 
@@ -157,12 +163,16 @@ void Tank::pick_up_gold_if_possible (MapClass & Map)
 
 bool Tank::crashed_into_wall (MapClass & Map)
 {
-     // Increment score, set curr_gold value for updating map later on
      if ( Map.is_symbol(curr_posn, WALL) ){
           return true;
      }    
      return false;
 }
+
+// void Tank::evaluate_dangers (Tank t)
+// {
+//      if (crashed_into_wall (Map, true) || is_killed_by (t, true))
+// }
 
 void Tank::die_by_wall_crash ()
 {
@@ -192,16 +202,9 @@ void Tank::incr_score (event e)
      score += e;
 }
 
-void Tank::update_on_map (MapClass & Map)
+void Tank::update_bullets_on_map (MapClass & Map)
 {
-
-#ifdef COUT_DEBUG
-     cout << "Tank - Prev posn : " << this->prev_posn.x << " " << this->prev_posn.y << endl;
-     cout << "Tank - Curr posn : " << this->curr_posn.x << " " << this->curr_posn.y << endl;
-#endif
-
      unsigned int i;
-     
      // Update Tank's bullets' positions on the map
      for (i = 0; i < this->bullet_list.size (); i++) {
           bullet_list[i].update_on_map (Map);
@@ -228,6 +231,15 @@ void Tank::update_on_map (MapClass & Map)
                break;
           }
      }
+}
+
+void Tank::update_on_map (MapClass & Map)
+{
+
+#ifdef COUT_DEBUG
+     cout << "Tank - Prev posn : " << this->prev_posn.x << " " << this->prev_posn.y << endl;
+     cout << "Tank - Curr posn : " << this->curr_posn.x << " " << this->curr_posn.y << endl;
+#endif
 
      // Blank previous position on map
      Map.set_element (this->prev_posn, EMPTY);
@@ -251,7 +263,8 @@ void Tank::Bullet::move ()
 
 void Tank::Bullet::check_for_crashes (MapClass & Map)
 {
-     // Check if Bullet has collided with a GOLD piece or a WALL
+     // Check if Bullet has collided with a GOLD piece or a WALL 
+     // or its own falcon (to do)
 
      if ( Map.is_symbol(this->curr_posn, GOLD) 
           || Map.is_symbol(this->curr_posn, WALL) ){
