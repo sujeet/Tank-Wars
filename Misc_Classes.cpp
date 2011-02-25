@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Misc_Classes.h"
 
+#define DO_NOT_MOVE 10
+
 using namespace std;
 
 Direction::Direction()
@@ -33,8 +35,13 @@ void Direction::get_from_integer (int inp)
           this->xdir = 0;
           this->ydir = -1;
           break;
+          // The following is used for unmovables
+          // eg machine guns ect. (?)
+     case DO_NOT_MOVE:
+          this->xdir = 0;
+          this->ydir = 0;
+          break;
      }
-     
 }
 
 Move::Move() 
@@ -42,12 +49,21 @@ Move::Move()
      this->shoot = false;
 }
 
-void Move::interpret_move (int user_move)
+void Move::interpret_move (int user_move, bool is_machine_gun_move)
 {
-     if (user_move / 4 == 1)
+     if ( (not is_machine_gun_move) and (user_move / 4 == 1) ) {
           this->shoot = true;
-     else
+     }
+     // else if ( (is_machine_gun_move) and (user_move / 4 == 1) ) {
+     else if (is_machine_gun_move) {
+          this->shoot = true;
+     }
+     else {
           this->shoot = false;
+     }
+     if ( (is_machine_gun_move) and (this->shoot != true) ) {
+          this->dirn.get_from_integer (DO_NOT_MOVE);
+     }
      this->dirn.get_from_integer (user_move % 4);
 }
 

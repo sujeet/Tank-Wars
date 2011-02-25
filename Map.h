@@ -3,6 +3,7 @@
 #define MAP_H
 
 #include <fstream>
+#include <vector>
 
 #include "Misc_Classes.h"
 
@@ -16,6 +17,9 @@ public :
      /* Variables indicating tank1 and tank2 init_posns */
      Position tank1_init_posn;
      Position tank2_init_posn;
+
+     /* Variables indicating machineguns' positions */
+     std::vector <Position> machine_guns_posns;
      
      /* Constructor */
      MapClass();

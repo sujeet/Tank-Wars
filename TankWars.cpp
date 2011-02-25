@@ -16,7 +16,7 @@ int main()
      Arena arena;
      srand(time(NULL));
      for (i = 0; i < TIMES; i++){
-          arena.get_player_moves ();
+          arena.get_moves ();
 
           // For each Tank, first, either shoot or move tank
           // (ie. update its curr_posn) Next, move bullets

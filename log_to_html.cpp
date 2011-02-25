@@ -32,13 +32,15 @@ string symbol_to_html_class (char symbol)
      case '#' : return "wall"                  ; break;
      case '.' : return "empty"                 ; break;
      case '1' : return "tank1"                 ; break;
-     case '2' : return "tank2"                 ; break;
+     case '2' : return "tank1"                 ; break;
      case 'A' : return "bullet1"               ; break;
-     case 'B' : return "bullet2"               ; break;
+     case 'B' : return "bullet1"               ; break;
      case 'D' : return "dead"                  ; break;
      case 'G' : return "gold"                  ; break;
      case 'E' : return "falcon1"               ; break;
      case 'F' : return "falcon2"               ; break;
+     case 'M' : return "tank2"                 ; break;
+     case 'K' : return "bullet2"               ; break;
      default  : return "Some thing went wrong" ;
      }
 }
@@ -244,22 +246,15 @@ string insert_js()
              << "char_to_color_table['#'] = 'wall';   " << endl 
              << "char_to_color_table['G'] = 'gold';   " << endl 
              << "char_to_color_table['D'] = 'dead';   " << endl 
-             << "char_to_color_table['2'] = 'tank2';  " << endl  
+             << "char_to_color_table['2'] = 'tank1';  " << endl  
              << "char_to_color_table['1'] = 'tank1';  " << endl
              << "char_to_color_table['A'] = 'bullet1';" << endl
-             << "char_to_color_table['B'] = 'bullet2';" << endl
+             << "char_to_color_table['B'] = 'bullet1';" << endl
              << "char_to_color_table['E'] = 'falcon1';" << endl
-             << "char_to_color_table['F'] = 'falcon2';" << endl;
+             << "char_to_color_table['F'] = 'falcon2';" << endl
+             << "char_to_color_table['M'] = 'tank2';  " << endl
+             << "char_to_color_table['K'] = 'bullet2';" << endl;
 
-     // Function for sleeping
-     str_out << "function pausecomp(millis)        " << endl
-             << "{                                 " << endl 
-             << "    var date = new Date();        " << endl 
-             << "    var curDate = null;           " << endl 
-             << "    do { curDate = new Date(); }  " << endl 
-             << "    while(curDate-date < millis); " << endl 
-             << "}                                 " << endl;
-     
      // Now insert the function list
      str_out << insert_func_list();
      

@@ -9,12 +9,14 @@ enum event
 
 enum
 {
-     GOLD = 'G',
-     WALL = '#',
-     EMPTY = '.',
-     EMPTY_DISPLAY = ' ',
-     DEAD = 'D',
-     BULLET = '*'
+     GOLD               = 'G',
+     WALL               = '#',
+     EMPTY              = '.',
+     EMPTY_DISPLAY      = ' ',
+     DEAD               = 'D',
+     BULLET             = '*',
+     MACHINE_GUN        = 'M',
+     MACHINE_GUN_BULLET = 'K'
 };
 
 class Direction 
@@ -40,7 +42,7 @@ public:
      Direction dirn;
      Move ();
      Move operator = (Move mov);
-     void interpret_move (int user_move);
+     void interpret_move (int user_move, bool is_machine_gun_move = false);
      void print ();
 };
 
