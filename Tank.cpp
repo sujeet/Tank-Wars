@@ -25,10 +25,10 @@ void Tank::initialize_from (int given_player_no, char symbol, int init_x, int in
 
      // Initialize Bullet Symbol
      if (symbol == '1'){
-	  bullet_symbol = 'A';
+          bullet_symbol = 'A';
      }
      else{
-	  bullet_symbol = 'B';
+          bullet_symbol = 'B';
      }
     
      
@@ -263,7 +263,8 @@ void Tank::Bullet::move ()
 
 void Tank::Bullet::check_for_crashes (MapClass & Map)
 {
-     // Check if Bullet has collided with a GOLD piece or a WALL
+     // Check if Bullet has collided with a GOLD piece or a WALL 
+     // or its own falcon (to do)
 
      if ( Map.is_symbol(this->curr_posn, GOLD) 
           || Map.is_symbol(this->curr_posn, WALL) ){

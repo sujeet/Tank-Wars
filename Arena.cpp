@@ -17,8 +17,8 @@ Arena::Arena ()
 
      // Assuming 1 has its falcon in the upper half
      // Assuming 2 has its falcon in the lower half
-     tank1.initialize_from (1, '1', 33, 18, 'F', MAP_SIZE/2, MAP_SIZE - 2);
-     tank2.initialize_from (2, '2', 13, 20, 'E', MAP_SIZE/2, 1);
+     tank1.initialize_from (1, '1', this->Map.tank1_init_posn.x, this->Map.tank1_init_posn.y, 'F', MAP_SIZE/2, MAP_SIZE - 2);
+     tank2.initialize_from (2, '2', this->Map.tank2_init_posn.x, this->Map.tank2_init_posn.y, 'E', MAP_SIZE/2, 1);
      
      info1.initializer (tank1.id, tank2.id);
      info2.initializer (tank2.id, tank1.id);
@@ -89,15 +89,24 @@ void Arena::evaluate_dynamic_interactions ()
           tank2.die_by_tank(tank1);
      }
 
-     // Check for falcon being killed
+     // Check for falcon being killed by enemy bullet
      if (tank1.falcon.is_killed_by (tank2)){
-	  tank1.falcon.set_dead_flag ();
+          tank1.falcon.set_dead_flag ();
      }
 
      if (tank2.falcon.is_killed_by (tank1)){
-	  tank2.falcon.set_dead_flag ();
+          tank2.falcon.set_dead_flag ();
      }
      
+     // Check for falcon being killed by own bullet
+     if (tank1.falcon.is_killed_by (tank1)){
+          tank1.falcon.set_dead_flag ();
+     }
+
+     if (tank2.falcon.is_killed_by (tank2)){
+          tank2.falcon.set_dead_flag ();
+     }
+
      // Check bullet-bullet interactions
      tank1.check_bullet_interactions (tank2);
      tank2.check_bullet_interactions (tank1);
