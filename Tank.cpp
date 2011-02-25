@@ -22,6 +22,15 @@ void Tank::initialize_from (int given_player_no, char symbol, int init_x, int in
      this->id.player_no = given_player_no;
      this->id.tank_symbol = symbol;
      this->id.falcon_symbol = falcon_symbol;
+
+     // Initialize Bullet Symbol
+     if (symbol == '1'){
+	  bullet_symbol = 'A';
+     }
+     else{
+	  bullet_symbol = 'B';
+     }
+    
      
      dead_flag = false;
      score = 0;
@@ -31,7 +40,7 @@ void Tank::get_next_move (Info& info, int choice)
 {
 
      // CHANGE THIS
-     // this->next_move = info.strategic_moves_array[choice];
+//      this->next_move = info.strategic_moves_array[choice];
      // cerr << "shoot : " << boolalpha << this->next_move.shoot << endl;
      // cerr << "dirn  : " << this->next_move.dirn.xdir << " " << this->next_move.dirn.ydir << endl;
      
@@ -83,6 +92,7 @@ void Tank::shoot_bullet ()
      b.curr_dirn = this->next_move.dirn;
      b.curr_posn = this->curr_posn;
      b.prev_posn = b.curr_posn;
+     b.symbol = this->bullet_symbol;
      this->bullet_list.push_back (b);
 }
 
@@ -272,7 +282,7 @@ void Tank::Bullet::update_on_map (MapClass & Map)
      }
      // Set current position
      else {
-          Map.set_element (this->curr_posn, BULLET);
+          Map.set_element (this->curr_posn, this->symbol);
      }
 }
 

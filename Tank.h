@@ -18,6 +18,7 @@ public:
      {
      public:
           // Variables
+	  char symbol;
           Direction curr_dirn;
           Position curr_posn, prev_posn;
           bool disappear_flag;
@@ -70,6 +71,7 @@ public:
      char symbol;
      ID id;
      Falcon falcon;
+     char bullet_symbol;
      vector<Bullet> bullet_list;
      Move next_move;
      Position curr_posn, prev_posn;
