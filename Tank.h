@@ -89,6 +89,7 @@ public:
           }
      }
 	  
+     void move_bullets ();
      void get_next_move (Info& info, int choice);
      void execute_next_move ();
      void move ();			// Change Tank's position
@@ -106,7 +107,7 @@ public:
      // check if two tanks are crashing in
      // any manner
      void pick_up_gold_if_possible (MapClass & Map);
-	//      void evaluate_dangers ();
+     void evaluate_dangers ();
      void die_by_wall_crash ();
      void die_by_tank (Tank t);
      void do_nothing ();		// Comment out if not necessary. There just in case.
