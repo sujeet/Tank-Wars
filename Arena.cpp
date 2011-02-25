@@ -39,6 +39,13 @@ void Arena::print_scores ()
      
 }
 
+void Arena::move_bullets ()
+{
+     tank1.move_bullets ();
+     tank2.move_bullets ();
+}
+
+
 void Arena::get_player_moves ()
 {
      // Get each tank's next moves
@@ -51,7 +58,7 @@ void Arena::get_player_moves ()
      tank2.get_next_move (info2, 2);
 }
 
-void Arena::execute_moves ()
+void Arena::execute_tank_moves ()
 {
      // Execute Tanks' moves
 
