@@ -24,53 +24,45 @@ using namespace std;
 
 class ID
 {
-    public:
-        int player_no;
-        char tank_symbol;
-        char falcon_symbol;
+public:
+     int player_no;
+     char tank_symbol;
+     char falcon_symbol;
 };		  
-
-/* struct symbol_list */
-/* { */
-/*     char my_tank; */
-/*     char my_falcon; */
-/*     char enemy_tank; */
-/*     char enemy_falcon; */
-/* }; */
 
 class object_info
 {
-    public:
-        int shortest_distance;
-        Move initial_move;
-        Position posn;
-        void print ();
+public:
+     object_info ();
+     int shortest_distance;
+     Move initial_move;
+     Position posn;
+     void print ();
 };
 
 class Info
 {
-    // Info object contains info reg a particular player 
+     // Info object contains info reg a particular player 
 
-    public:
-        Position curr_posn;
-        void initializer (const ID , const ID);			// Constructor
-        ID my_ID, enemy_ID;
-        Move strategic_moves_array[4];
+public:
+     Position curr_posn;
+     void initializer (const ID , const ID);			// Constructor
+     ID my_ID, enemy_ID;
+     Move strategic_moves_array[4];
 
-        // Sets player info initially
-        vector <object_info> gold;
-        object_info my_falcon;
-        object_info opp_falcon;
-        object_info opp_tank; 
-        object_info nearest_gold;
-        int weightage_table[4][4] ;
-        /* struct symbol_list symbol; */
+     // Sets player info initially
+     vector <object_info> gold;
+     object_info my_falcon;
+     object_info opp_falcon;
+     object_info opp_tank; 
+     object_info nearest_gold;
+     int weightage_table[4][4] ;
 
-        void update_info (MapClass &, Position );
-        void update_distances(MapClass &, Position);
-        int find_the_maximum(float*);
-        void print_info ();
-        Move calculate_best_move(int );
+     void update_info (MapClass &, Position );
+     void update_distances(MapClass &, Position);
+     int find_the_maximum(float*);
+     void print_info ();
+     Move calculate_best_move(int );
 
 };
 
