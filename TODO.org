@@ -12,3 +12,5 @@ To-do List:
 ** TODO Use Tank's ID everywhere
 ** TODO Change bullet colours
 ** TODO Initialize positions, etc. from the Map...
+** TODO Do stuff when the game gets over
+*** Increment the score of the surviving players, etc.

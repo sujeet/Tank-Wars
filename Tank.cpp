@@ -192,16 +192,9 @@ void Tank::incr_score (event e)
      score += e;
 }
 
-void Tank::update_on_map (MapClass & Map)
+void Tank::update_bullets_on_map (MapClass & Map)
 {
-
-#ifdef COUT_DEBUG
-     cout << "Tank - Prev posn : " << this->prev_posn.x << " " << this->prev_posn.y << endl;
-     cout << "Tank - Curr posn : " << this->curr_posn.x << " " << this->curr_posn.y << endl;
-#endif
-
      unsigned int i;
-     
      // Update Tank's bullets' positions on the map
      for (i = 0; i < this->bullet_list.size (); i++) {
           bullet_list[i].update_on_map (Map);
@@ -228,7 +221,18 @@ void Tank::update_on_map (MapClass & Map)
                break;
           }
      }
+}
 
+void Tank::update_on_map (MapClass & Map)
+{
+
+#ifdef COUT_DEBUG
+     cout << "Tank - Prev posn : " << this->prev_posn.x << " " << this->prev_posn.y << endl;
+     cout << "Tank - Curr posn : " << this->curr_posn.x << " " << this->curr_posn.y << endl;
+#endif
+
+     unsigned int i;
+     
      // Blank previous position on map
      Map.set_element (this->prev_posn, EMPTY);
 

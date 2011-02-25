@@ -120,14 +120,10 @@ void Arena::update_map ()
 {
      // Update the Tanks' and Bullets' positions on the map
 
-#ifdef COUT_DEBUG
-     cout << "Tank 1 : " << endl;
-#endif
-     tank1.update_on_map (Map);
+     tank1.update_bullets_on_map (Map);
+     tank2.update_bullets_on_map (Map);
 
-#ifdef COUT_DEBUG
-     cout << "Tank 2 : " << endl;
-#endif
+     tank1.update_on_map (Map);
      tank2.update_on_map (Map);
 }
 

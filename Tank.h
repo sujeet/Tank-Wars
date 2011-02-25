@@ -106,12 +106,14 @@ public:
      // check if two tanks are crashing in
      // any manner
      void pick_up_gold_if_possible (MapClass & Map);
+	//      void evaluate_dangers ();
      void die_by_wall_crash ();
      void die_by_tank (Tank t);
      void do_nothing ();		// Comment out if not necessary. There just in case.
      void set_dead_flag ();		// Flag to denote that when all the
      // tanks' evaluations are done, die
-     void update_on_map (MapClass & Map);		// Call bullet_list[i].update_map () and change own position on map, erase old position, and erase curr_gold_posn on the map if gold_flag is set
+     void update_bullets_on_map (MapClass & Map); // Call bullet_list[i].update_map ()
+     void update_on_map (MapClass & Map); // Change own position on map, erase old position
 };
 
 #endif
