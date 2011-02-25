@@ -62,7 +62,7 @@ public:
 	  }
 	
 	  bool is_killed_by (Tank t);
-	  bool crashed_tank (Tank t);
+	  bool crashed_tank (Tank t); // TODO
 	  void set_dead_flag ();
 	  void update_on_map (MapClass & Map);
      };
