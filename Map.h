@@ -11,7 +11,12 @@ class MapClass
 private :
      char map[MAP_SIZE][MAP_SIZE];
      std::ofstream log_file;
+
 public :
+     /* Variables indicating tank1 and tank2 init_posns */
+     Position tank1_init_posn;
+     Position tank2_init_posn;
+     
      /* Constructor */
      MapClass();
      

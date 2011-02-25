@@ -62,6 +62,12 @@ Position::Position ()
      x = y = 0;
 }
 
+Position::Position (int x, int y)
+{
+     this->x = x;
+     this->y = y;
+}
+
 void Position::go_in_direction (Direction d)
 {
      x += d.xdir;
