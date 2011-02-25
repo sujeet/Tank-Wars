@@ -27,8 +27,9 @@ public:
      void print_scores ();
      void get_moves ();
      void get_machine_moves ();
+     void move_bullets ();
      void get_player_moves ();
-     void execute_moves ();
+     void execute_tank_moves ();
      void evaluate_static_interactions ();
      void evaluate_dynamic_interactions ();
      void update_map ();

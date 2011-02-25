@@ -17,10 +17,12 @@ int main()
      srand(time(NULL));
      for (i = 0; i < TIMES; i++){
           arena.get_moves ();
+          arena.move_bullets ();
+          arena.get_player_moves ();
 
           // For each Tank, first, either shoot or move tank
-          // (ie. update its curr_posn) Next, move bullets
-          arena.execute_moves ();
+          // (ie. update its curr_posn)
+          arena.execute_tank_moves ();
 
           // Now, check for tank picking up gold. If it crashes into
           // walls, set dead_flag.Then, check each bullet for crashes

@@ -82,6 +82,11 @@ void Arena::get_machine_moves ()
           this->machine_gun_list[i].get_machine_random_move();
      }
 }
+void Arena::move_bullets ()
+{
+     tank1.move_bullets ();
+     tank2.move_bullets ();
+}
 
 void Arena::get_player_moves ()
 {
@@ -95,7 +100,7 @@ void Arena::get_player_moves ()
      tank2.get_next_move (info2, 2);
 }
 
-void Arena::execute_moves ()
+void Arena::execute_tank_moves ()
 {
      // Execute Tanks' moves
 
