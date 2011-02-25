@@ -21,6 +21,8 @@ string symbol_to_html_class (char symbol)
      case '.' : return "empty"                 ; break;
      case '1' : return "tank1"                 ; break;
      case '2' : return "tank2"                 ; break;
+     case 'A' : return "bullet1"               ; break;
+     case 'B' : return "bullet2"               ; break;
      case 'D' : return "dead"                  ; break;
      case 'G' : return "gold"                  ; break;
      default  : return "Some thing went wrong" ;
@@ -50,8 +52,8 @@ string insert_css ()
              << "    float                 :	 left;                               " << endl
              << "   }                                                                " << endl
              << ".tank1 {                                                            " << endl
-             << "    -moz-border-radius    :	3px;                                 " << endl
-             << "    -webkit-border-radius :	3px;                                 " << endl
+             << "    -moz-border-radius    :	0px;                                 " << endl
+             << "    -webkit-border-radius :	0px;                                 " << endl
              << "    width                 :	 10px;                               " << endl
              << "    height                :	 10px;                               " << endl
              << "    background            :	 none repeat scroll 0% 0% green;     " << endl
@@ -60,8 +62,8 @@ string insert_css ()
              << "    float                 :	 left;                               " << endl
              << "   }                                                                " << endl
              << ".tank2 {                                                            " << endl
-             << "    -moz-border-radius    :	3px;                                 " << endl
-             << "    -webkit-border-radius :	3px;                                 " << endl
+             << "    -moz-border-radius    :	0px;                                 " << endl
+             << "    -webkit-border-radius :	0px;                                 " << endl
              << "    width                 :	 10px;                               " << endl
              << "    height                :	 10px;                               " << endl
              << "    background            :	 none repeat scroll 0% 0% blue;      " << endl
@@ -69,7 +71,17 @@ string insert_css ()
              << "    padding               :	 0pt;                                " << endl
              << "    float                 :	 left;                               " << endl
              << "   }                                                                " << endl
-             << ".bullet {                                                           " << endl
+             << ".bullet1 {                                                          " << endl
+             << "    -moz-border-radius    :	5px;                                 " << endl
+             << "    -webkit-border-radius :	5px;                                 " << endl
+             << "    width                 :	  5px;                               " << endl
+             << "    height                :	  5px;                               " << endl
+             << "    background            :	 none repeat scroll 0% 0% red;       " << endl
+             << "    margin                :	 2.5px;                              " << endl
+             << "    padding               :	 0pt;                                " << endl
+             << "    float                 :	 left;                               " << endl
+             << "   }                                                                " << endl
+             << ".bullet2 {                                                          " << endl
              << "    -moz-border-radius    :	5px;                                 " << endl
              << "    -webkit-border-radius :	5px;                                 " << endl
              << "    width                 :	  5px;                               " << endl

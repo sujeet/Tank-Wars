@@ -31,7 +31,7 @@ void Tank::get_next_move (Info& info, int choice)
 {
 
      // CHANGE THIS
-     // this->next_move = info.strategic_moves_array[choice];
+     this->next_move = info.strategic_moves_array[choice];
      // cerr << "shoot : " << boolalpha << this->next_move.shoot << endl;
      // cerr << "dirn  : " << this->next_move.dirn.xdir << " " << this->next_move.dirn.ydir << endl;
      
@@ -45,7 +45,7 @@ void Tank::get_next_move (Info& info, int choice)
 #ifndef MOVE_DEBUG
      temp = rand () % 8;	
 #endif
-     this->next_move.interpret_move (temp);
+     // this->next_move.interpret_move (temp);
 }
 
 void Tank::execute_next_move()

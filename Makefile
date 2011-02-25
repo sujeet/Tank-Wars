@@ -29,7 +29,7 @@ Info.o: Info.cpp Info.h Misc_Classes.h Map.h
 log_to_html.exe: log_to_html.cpp
 	g++ -o $@ $< $(CFLAGS) $(MACROS)
 
-play:
+play: all
 	./TankWars.exe
 	./log_to_html.exe
 
@@ -37,7 +37,7 @@ display:
 	firefox tank_video_player.html
 
 clean:
-	rm TankWars.exe *.o *~ -f
+	rm *.o *~ -f
 
 run_and_display : 
 	make
