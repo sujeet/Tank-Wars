@@ -13,6 +13,18 @@ using namespace std;
 #define MAX_DELAY 1000
 #define END_SCORE_CHAR 'F'
 
+// Colour variables
+#define TANK1_COLOUR   "green"
+#define TANK2_COLOUR   "blue"
+#define BULLET1_COLOUR "black"
+#define BULLET2_COLOUR "black"
+#define BKG_COLOUR     "#E7ECD6"
+#define GOLD_COLOUR    "goldenRod"
+#define WALL_COLOUR    "#282B1F"
+#define DEAD_COLOUR    "red"
+#define FALCON1_COLOUR "maroon"
+#define FALCON2_COLOUR "orange"
+
 string symbol_to_html_class (char symbol) 
 {
      switch (symbol){
@@ -21,8 +33,12 @@ string symbol_to_html_class (char symbol)
      case '.' : return "empty"                 ; break;
      case '1' : return "tank1"                 ; break;
      case '2' : return "tank2"                 ; break;
+     case 'A' : return "bullet1"               ; break;
+     case 'B' : return "bullet2"               ; break;
      case 'D' : return "dead"                  ; break;
      case 'G' : return "gold"                  ; break;
+     case 'E' : return "falcon1"               ; break;
+     case 'F' : return "falcon2"               ; break;
      default  : return "Some thing went wrong" ;
      }
 }
@@ -30,85 +46,115 @@ string symbol_to_html_class (char symbol)
 string insert_css ()
 {
      ostringstream str_out;
-     str_out << "<style type = text/css>                                             " << endl;
-     str_out << ".wall {                                                             " << endl
-             << "    width                 :	 10px;                               " << endl
-             << "    height                :	 10px;                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% #282B1F;   " << endl
-             << "    margin                :	 0pt;                                " << endl
-             << "    padding               :	 0pt;                                " << endl
-             << "    float                 :	 left;                               " << endl
-             << "}                                                                   " << endl
-             << ".empty {                                                            " << endl
-             << "    -moz-border-radius    :	5px;                                 " << endl
-             << "    -webkit-border-radius :	5px;                                 " << endl
-             << "    width                 :	 10px;                               " << endl
-             << "    height                :	 10px;                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% none;      " << endl
-             << "    margin                :	 0pt;                                " << endl
-             << "    padding               :	 0pt;                                " << endl
-             << "    float                 :	 left;                               " << endl
-             << "   }                                                                " << endl
-             << ".tank1 {                                                            " << endl
-             << "    -moz-border-radius    :	3px;                                 " << endl
-             << "    -webkit-border-radius :	3px;                                 " << endl
-             << "    width                 :	 10px;                               " << endl
-             << "    height                :	 10px;                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% green;     " << endl
-             << "    margin                :	 0pt;                                " << endl
-             << "    padding               :	 0pt;                                " << endl
-             << "    float                 :	 left;                               " << endl
-             << "   }                                                                " << endl
-             << ".tank2 {                                                            " << endl
-             << "    -moz-border-radius    :	3px;                                 " << endl
-             << "    -webkit-border-radius :	3px;                                 " << endl
-             << "    width                 :	 10px;                               " << endl
-             << "    height                :	 10px;                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% blue;      " << endl
-             << "    margin                :	 0pt;                                " << endl
-             << "    padding               :	 0pt;                                " << endl
-             << "    float                 :	 left;                               " << endl
-             << "   }                                                                " << endl
-             << ".bullet {                                                           " << endl
-             << "    -moz-border-radius    :	5px;                                 " << endl
-             << "    -webkit-border-radius :	5px;                                 " << endl
-             << "    width                 :	  5px;                               " << endl
-             << "    height                :	  5px;                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% black;     " << endl
-             << "    margin                :	 2.5px;                              " << endl
-             << "    padding               :	 0pt;                                " << endl
-             << "    float                 :	 left;                               " << endl
-             << "   }                                                                " << endl
-             << ".gold {                                                             " << endl
-             << "    -moz-border-radius    :	5px;                                 " << endl
-             << "    -webkit-border-radius :	5px;                                 " << endl
-             << "    width                 :	 8px;                                " << endl
-             << "    height                :	 8px;                                " << endl
-             << "    background            :	 none repeat scroll 0% 0% goldenRod; " << endl
-             << "    margin                :	 0pt;                                " << endl
-             << "    padding               :	 0pt;                                " << endl
-             << "    float                 :	 left;                               " << endl
-             << "       border-style       :	 solid;                              " << endl
-             << "    border-width          :	1px;                                 " << endl
-             << "}                                                                   " << endl
-             << ".dead {                                                             " << endl
-             << "    -moz-border-radius    :	5px;                                 " << endl
-             << "    -webkit-border-radius :	5px;                                 " << endl
-             << "    width                 :	 10px;                               " << endl
-             << "    height                :	 10px;                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% red;       " << endl
-             << "    margin                :	 0pt;                                " << endl
-             << "    padding               :	 0pt;                                " << endl
-             << "    float                 :	 left;                               " << endl
-             << "}                                                                   " << endl
-             << ".container{                                                         " << endl
-             << "    width                 :	 500px;                              " << endl
-             << "    height                :	 500px;                              " << endl
-             << "    margin                :	 0pt;                                " << endl
-             << "    padding               :	 0pt;                                " << endl
-             << "    border                :	 0pt none;                           " << endl
-             << "    background            :	 none repeat scroll 0% 0% #E7ECD6;   " << endl
-             << "}                                                                   " << endl;
+     str_out << "<style type = text/css>                                                            " << endl;
+     str_out << ".wall {                                                                            " << endl
+             << "    width                 :	 10px;                                              " << endl
+             << "    height                :	 10px;                                              " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << WALL_COLOUR << ";    " << endl
+             << "    margin                :	 0pt;                                               " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "}                                                                                  " << endl
+             << ".empty {                                                                           " << endl
+             << "    -moz-border-radius    :	5px;                                                " << endl
+             << "    -webkit-border-radius :	5px;                                                " << endl
+             << "    width                 :	 10px;                                              " << endl
+             << "    height                :	 10px;                                              " << endl
+             << "    background            :	 none repeat scroll 0% 0% none;                     " << endl
+             << "    margin                :	 0pt;                                               " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "   }                                                                               " << endl
+             << ".falcon1 {                                                                         " << endl
+             << "    -moz-border-radius    :	5px;                                                " << endl
+             << "    -webkit-border-radius :	5px;                                                " << endl
+             << "    width                 :	 10px;                                              " << endl
+             << "    height                :	 10px;                                              " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << FALCON1_COLOUR << "; " << endl
+             << "    margin                :	 0pt;                                               " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "   }                                                                               " << endl
+             << ".falcon2 {                                                                         " << endl
+             << "    -moz-border-radius    :	5px;                                                " << endl
+             << "    -webkit-border-radius :	5px;                                                " << endl
+             << "    width                 :	 10px;                                              " << endl
+             << "    height                :	 10px;                                              " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << FALCON2_COLOUR << "; " << endl
+             << "    margin                :	 0pt;                                               " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "   }                                                                               " << endl
+             << ".tank1 {                                                                           " << endl
+             << "    -moz-border-radius    :	3px;                                                " << endl
+             << "    -webkit-border-radius :	3px;                                                " << endl
+             << "    width                 :	 10px;                                              " << endl
+             << "    height                :	 10px;                                              " << endl
+             << "    background            :	 none repeat scroll 0% 0%  " << TANK1_COLOUR << ";  " << endl
+             << "    margin                :	 0pt;                                               " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "   }                                                                               " << endl
+             << ".tank2 {                                                                           " << endl
+             << "    -moz-border-radius    :	3px;                                                " << endl
+             << "    -webkit-border-radius :	3px;                                                " << endl
+             << "    width                 :	 10px;                                              " << endl
+             << "    height                :	 10px;                                              " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << TANK2_COLOUR << ";   " << endl
+             << "    margin                :	 0pt;                                               " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "   }                                                                               " << endl
+             << ".bullet1 {                                                                         " << endl
+             << "    -moz-border-radius    :	5px;                                                " << endl
+             << "    -webkit-border-radius :	5px;                                                " << endl
+             << "    width                 :	  5px;                                              " << endl
+             << "    height                :	  5px;                                              " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BULLET1_COLOUR << "; " << endl
+             << "    margin                :	 2.5px;                                             " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "   }                                                                               " << endl
+             << ".bullet2 {                                                                         " << endl
+             << "    -moz-border-radius    :	5px;                                                " << endl
+             << "    -webkit-border-radius :	5px;                                                " << endl
+             << "    width                 :	  5px;                                              " << endl
+             << "    height                :	  5px;                                              " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BULLET2_COLOUR << "; " << endl
+             << "    margin                :	 2.5px;                                             " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "   }                                                                               " << endl
+             << ".gold {                                                                            " << endl
+             << "    -moz-border-radius    :	5px;                                                " << endl
+             << "    -webkit-border-radius :	5px;                                                " << endl
+             << "    width                 :	 8px;                                               " << endl
+             << "    height                :	 8px;                                               " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << GOLD_COLOUR << ";    " << endl
+             << "    margin                :	 0pt;                                               " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "       border-style       :	 solid;                                             " << endl
+             << "    border-width          :	1px;                                                " << endl
+             << "}                                                                                  " << endl
+             << ".dead {                                                                            " << endl
+             << "    -moz-border-radius    :	5px;                                                " << endl
+             << "    -webkit-border-radius :	5px;                                                " << endl
+             << "    width                 :	 10px;                                              " << endl
+             << "    height                :	 10px;                                              " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << DEAD_COLOUR << ";    " << endl
+             << "    margin                :	 0pt;                                               " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "}                                                                                  " << endl
+             << ".container{                                                                        " << endl
+             << "    width                 :	 500px;                                             " << endl
+             << "    height                :	 500px;                                             " << endl
+             << "    margin                :	 0pt;                                               " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    border                :	 0pt none;                                          " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";     " << endl
+             << "}                                                                                  " << endl;
      str_out << "</style>" << endl;
      return str_out.str();
 }
@@ -200,7 +246,10 @@ string insert_js()
              << "char_to_color_table['D'] = 'dead';   " << endl 
              << "char_to_color_table['2'] = 'tank2';  " << endl  
              << "char_to_color_table['1'] = 'tank1';  " << endl
-             << "char_to_color_table['*'] = 'bullet'; " << endl;
+             << "char_to_color_table['A'] = 'bullet1';" << endl
+             << "char_to_color_table['B'] = 'bullet2';" << endl
+             << "char_to_color_table['E'] = 'falcon1';" << endl
+             << "char_to_color_table['F'] = 'falcon2';" << endl;
 
      // Function for sleeping
      str_out << "function pausecomp(millis)        " << endl
