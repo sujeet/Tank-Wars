@@ -209,10 +209,11 @@ void Arena::update_map ()
      }
 
      // Note that machine guns need not be updated on the map
-     tank1.update_on_map (Map);
-     tank2.update_on_map (Map);
      for (unsigned int i = 0; i < this->machine_gun_list.size(); i++) {
           this->machine_gun_list[i].update_on_map (Map);
      }
+
+     tank1.update_on_map (Map);
+     tank2.update_on_map (Map);
 }
 

@@ -1,21 +1,17 @@
 To-do List:
-#+SEQ_TODO: BUG TODO
+#+SEQ_TODO: BUG TODO TEST
 
 * Sujeet Gholap
 * Devesh Y
 * Guru P
 * S. Pradeep Kumar
 ** Function initialize_from in Tank.h should take an ID preferably
-** Tank crossing, Bullet crossing condition
-** Change order of updation of map (Bullets and Tanks)
-   As in, first update all bullets of all tanks. Then, update the tanks on the map
-** Bullets vanish when they collide
+** TEST Tank crossing, Bullet crossing condition
 ** Use Tank's ID everywhere
-** Change bullet colours
-** Initialize positions, etc. from the Map...
 ** Do stuff when the game gets over
 *** Increment the score of the surviving players, etc.
 ** Random SegFault occurring from time to time
 ** Consider increasing the speed of bullets
 ** Display a blast when bullets collide
 ** BUG Tank crashing into Machine Gun doesn't show Dead Tank
+** Note : Since, we're calling the same functions for Machine Gun as for Tank, all sorts of stuff is done for Machine Guns. eg. Its score gets updated. Just fyi

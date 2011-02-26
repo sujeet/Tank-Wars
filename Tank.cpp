@@ -205,6 +205,8 @@ void Tank::die_by_wall_crash ()
 void Tank::check_bullet_interactions (Tank t)
 {
      // Check if any of Tank's bullets are colliding with t's bullets
+     // If so, just make its own bullet disappear
+     // The other tank will take care of its own bullet
 
      Bullet my_b, enemy_b;
      unsigned int i, j;
