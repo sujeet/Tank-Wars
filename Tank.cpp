@@ -206,11 +206,13 @@ void Tank::check_bullet_interactions (Tank t)
 {
      // Check if any of Tank's bullets are colliding with t's bullets
 
+     Bullet my_b, enemy_b;
      unsigned int i, j;
      for (i = 0; i < this->bullet_list.size (); i++) {
           for (j = 0; j < t.bullet_list.size (); j++) {
-               if (this->bullet_list[i].curr_posn
-                   == t.bullet_list[j].curr_posn){
+	       my_b = this->bullet_list[i]; 
+	       enemy_b = t.bullet_list[j];
+               if (my_b.curr_posn == enemy_b.curr_posn || (my_b.prev_posn == enemy_b.curr_posn && my_b.curr_posn == enemy_b.prev_posn)){
                     this->bullet_list[i].set_disappear_flag ();
                }
           }
