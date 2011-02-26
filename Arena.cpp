@@ -39,18 +39,14 @@ Arena::Arena ()
      
      tank1.initialize_from (1,
                             '1',
-                            this->Map.tank1_init_posn.x,
-                            this->Map.tank1_init_posn.y,
+                            this->Map.tank1_init_posn,
                             'F',
-                            MAP_SIZE/2,
-                            MAP_SIZE - 2);
+                            this->Map.falcon1_posn);
      tank2.initialize_from (2,
                             '2',
-                            this->Map.tank2_init_posn.x,
-                            this->Map.tank2_init_posn.y,
+                            this->Map.tank2_init_posn,
                             'E',
-                            MAP_SIZE/2,
-                            1);
+                            this->Map.falcon2_posn);
 
      DM1.DMinitializer (tank1.id, tank2.id);
      DM2.DMinitializer (tank2.id, tank1.id);

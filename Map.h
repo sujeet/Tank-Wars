@@ -18,6 +18,10 @@ public :
      Position tank1_init_posn;
      Position tank2_init_posn;
 
+     /* Variables indicating falcon 1 nd 2 init_posns */
+     Position falcon1_posn;
+     Position falcon2_posn;
+
      /* Variables indicating machineguns' positions */
      std::vector <Position> machine_guns_posns;
      

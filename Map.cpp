@@ -30,6 +30,12 @@ void MapClass::create_from_file (string filename)
                if (letter == MACHINE_GUN) {
                     this->machine_guns_posns.push_back ( Position(i,j) );
                }
+               if (letter == 'F') {
+                    this->falcon1_posn = Position (i, j);
+               }
+               if (letter == 'E') {
+                    this->falcon2_posn = Position (i, j);
+               }
                this->set_element (i, j, letter, false);
           }
      }
