@@ -113,11 +113,13 @@ Move DecisionMaker::attack_enemy_falcon_move()
 	  info.opp_falcon.initial_move.shoot = true;
 	  return info.opp_falcon.initial_move;
      }
+     // Else, just move closer to it
      return info.opp_falcon.initial_move;
 }
 
 Move DecisionMaker::attack_enemy_tank_move()
 {
+
      return info.opp_tank.initial_move;
 }
 
