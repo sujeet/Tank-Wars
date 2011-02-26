@@ -86,14 +86,14 @@ void Info::update_distances(MapClass &map,Position source)
 
      // While queue is not empty bft proceeds
      // This is the key bft algo
-    
+
      while(q.empty()==false)         
      {
 	  temp=q.front();     //temp is the first element in the queue
 	  q.pop();
 
 
-	  x = temp.x;
+	  x = tempx;
 	  y = temp.y;
 	  char_buffer = map.get_element(temp);        //get element returns the symbol of the given position
 
