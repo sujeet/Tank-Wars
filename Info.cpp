@@ -15,6 +15,8 @@ object_info::object_info ()
 
 void object_info::print ()
 {
+    //this function just prints the details of the object
+
     cout << "Shortest_Distance : " << shortest_distance << endl;
     cout << "INITIAL_MOVE : " ;
     initial_move.dirn.print();
@@ -23,142 +25,103 @@ void object_info::print ()
 
 void Info::initializer(const ID mine, const ID enemy)
 {
-     // Just use assignment operators
-    my_ID.tank_symbol = mine.tank_symbol;
-    my_ID.falcon_symbol = mine.falcon_symbol;
-    enemy_ID.tank_symbol = enemy.tank_symbol;
-    enemy_ID.falcon_symbol = enemy.falcon_symbol;
-            
-    // Have set_weightage (CHOICE, Row_values) function ?
-    weightage_table[0][0] = 5; 
-    weightage_table[0][1] = 5; 
-    weightage_table[0][2] = 5; 
-    weightage_table[0][3] = 5; 
-    weightage_table[1][0] = 5; 
-    weightage_table[1][1] = 5; 
-    weightage_table[1][2] = 5; 
-    weightage_table[1][3] = 5; 
-    weightage_table[2][0] = 5; 
-    weightage_table[2][1] = 5; 
-    weightage_table[2][2] = 5; 
-    weightage_table[2][3] = 5; 
-    weightage_table[3][0] = 5; 
-    weightage_table[3][1] = 5; 
-    weightage_table[3][2] = 5; 
-    weightage_table[3][3] = 5; 
+    my_ID = mine;
+    enemy_ID = enemy;
 }
-
-int Info::find_the_maximum( float real_weightage[4] )
-{
-    int max_value,i,max_posn;
-    max_value=0;
-    for( i=0;i<4;i++ )
-    {
-        if( real_weightage[i] > max_value )
-        {
-            max_value = real_weightage[i];
-            max_posn=i;
-        }
-    }
-    return max_posn;
-}
-
-Move Info::calculate_best_move( int mode )
-{
-    //a call to  am i in danger to be included.
-
-     float real_weightage[4];	// Other name?
-    Move moves[4];
-    int maximum;
-
-
-    real_weightage[GO_TO_GOLD] = 
-        float ( weightage_table[mode][GO_TO_GOLD]) / float( nearest_gold.shortest_distance );
-
-    real_weightage[ATTACK_ENEMY_FALCON] = 
-        float ( weightage_table[mode][ATTACK_ENEMY_FALCON]) / float( opp_falcon.shortest_distance );
-
-    real_weightage[ATTACK_ENEMY_TANK] = 
-        float ( weightage_table[mode][ATTACK_ENEMY_TANK]) / float( opp_tank.shortest_distance );
-
-    real_weightage[DEFEND_MY_FALCON] = 
-        float ( weightage_table[mode][DEFEND_MY_FALCON]) / float( my_falcon.shortest_distance );
-
-    moves[GO_TO_GOLD] = nearest_gold.initial_move;
-    moves[ATTACK_ENEMY_FALCON] = opp_falcon.initial_move;
-    moves[ATTACK_ENEMY_TANK] = opp_tank.initial_move;
-    moves[DEFEND_MY_FALCON] = my_falcon.initial_move;
-    
-    maximum = find_the_maximum ( real_weightage );
-    return moves[maximum];
-
-}
-
-/*This funtion does a breadth first traversal to find out the distances from the source to 
- * all important objects in the map.
- */
 
 void Info::update_distances(MapClass &map,Position source)
 {
+   //this function does BREATH FRIST TRAVERSAL and stores the distances in the appropiate objects. The logic 
+   //is explained and you can change/add stuff to it if you want
+   
+
+
     queue <Position> q;
+
+    // visited is a 2D array which is used as a colour attribute in the BFT part
     vector< vector <int> > visited(MAP_SIZE - 1,vector <int>(MAP_SIZE - 1,0));
+
+    //initial_move is a 2D array which stores the first moves to be made from the source to reach that 
+    //position in BFT time
     vector< vector <Move> > initial_move(MAP_SIZE - 1,vector <Move>(MAP_SIZE - 1));
+
+    //distance is a 2D vector which stores the BFT distances of various position 
     vector< vector <int> > distance(MAP_SIZE - 1,vector <int>(MAP_SIZE - 1));
-    Position temp, temp3;
+
+    
+    Position temp, temp1;
+
     Direction d;
     char char_buffer;
     int x, y;
 
     x=source.x;
     y=source.y;
-    visited[source.x][source.y] = 1;
-    distance[source.x][source.y] = 0;
+    visited[x][y] = 1;
+    distance[x][y] = 0;
     
-    gold.clear ();
+    gold.clear ();      //cleares the gold vector. Its necessary because the same code is called multiple 
+                        //times.
 
     // Initially pushing all the valid neighbors into the queue
+    // the initial_move must be appropiately assigned values
+    
     for(int i = 0; i<4; i++)
     {
         d.get_from_integer (i);
         temp = source;
         temp.go_in_direction (d);
 
-        if(map.is_symbol (temp, GOLD) || map.is_symbol (temp, EMPTY))
+        if(map.is_symbol (temp, GOLD) || map.is_symbol (temp, EMPTY))   //unless the posn is empty or gold 
+                                                                        //dont enqueue the position.
         {
             q.push(temp);
-            initial_move[temp.x][temp.y].dirn = d;
-            visited[temp.x][temp.y] = 1;
-            distance[temp.x][temp.y] = 1;
+            initial_move[temp.x][temp.y].dirn = d;  
+            visited[temp.x][temp.y] = 1;            //set the colour
+            distance[temp.x][temp.y] = 1;           //distance of the neighbours of source is 1.
         }
     }
-    // While queue is not empty we are doing the bft part
+
+    // While queue is not empty bft proceeds
     // This is the key bft algo
-    while(q.empty()==false)
+    
+    while(q.empty()==false)         
     {
-        temp=q.front();
+        temp=q.front();     //temp is the first element in the queue
         q.pop();
+
+
         x = temp.x;
         y = temp.y;
-        char_buffer = map.get_element(temp);
-        object_info temp2;
-        temp2.shortest_distance = distance[temp.x][temp.y];
-        temp2.initial_move = initial_move[temp.x][temp.y];
-        temp2.posn = temp;
-        if(char_buffer == GOLD)
-            gold.push_back(temp2);
-        else if (char_buffer == enemy_ID.tank_symbol)
+        char_buffer = map.get_element(temp);        //get element returns the symbol of the given position
+
+        object_info temp_info_object;                
+
+        temp_info_object.shortest_distance = distance[temp.x][temp.y];     //this part is self explanatory
+        temp_info_object.initial_move = initial_move[temp.x][temp.y];
+        temp_info_object.posn = temp;
+
+
+        if(char_buffer == GOLD)                 // if the current position is gold push it into the gold
+                                                // gold vector        
+            gold.push_back(temp_info_object);
+
+        //if the position is a tank or a falcon update the corresponding objects. But the neighbours shouldnt 
+      // be pushed. so continue the process
+
+        else if (char_buffer == enemy_ID.tank_symbol)       
         {
-            opp_tank = temp2;
+            opp_tank = temp_info_object;
             continue;
         }
         else if (char_buffer == enemy_ID.falcon_symbol)
         {
-            opp_falcon = temp2;
+            opp_falcon = temp_info_object;
             continue;
         }
         else if( char_buffer ==  my_ID.falcon_symbol)
         {
-            my_falcon = temp2;
+            my_falcon = temp_info_object;
             continue;
         }
         else if( char_buffer ==  WALL)
@@ -169,16 +132,20 @@ void Info::update_distances(MapClass &map,Position source)
 
         for(int i = 0; i<4; i++) // Going through current node's neighbours
         {
-            d.get_from_integer (i);
-            temp3 = temp;
-            temp3.go_in_direction (d);
+            d.get_from_integer (i);     
+            temp1 = temp;
+            temp1.go_in_direction (d);
 
-            if(visited[temp3.x][temp3.y] == 0)
+            if(visited[temp1.x][temp1.y] == 0)
+                //push the neighbours if they are not already visited
             {
-                q.push(temp3);
-                initial_move[temp3.x][temp3.y].dirn = d;
-                visited[temp3.x][temp3.y] = 1;
-                distance[temp3.x][temp3.y] = 1 + distance[x][y];
+                q.push(temp1);
+                initial_move[temp1.x][temp1.y].dirn = d;
+                //the initial move is the same as its parents
+                                                                //initial move 
+                visited[temp1.x][temp1.y] = 1;
+                distance[temp1.x][temp1.y] = 1 + distance[x][y];
+                //distance is one more than its parent
             }
         }
     }
@@ -202,21 +169,19 @@ void Info::update_distances(MapClass &map,Position source)
     }
 }
 
+
+/*This funtion does a breadth first traversal to find out the distances from the source to 
+ * all important objects in the map.
+ */
+
+
 void Info::update_info (MapClass &map,Position source)
 {
     update_distances(map,source);
-    strategic_moves_array[AGGRESSIVE] = calculate_best_move(AGGRESSIVE);
-    strategic_moves_array[DEFENSIVE] = calculate_best_move(DEFENSIVE);
-    strategic_moves_array[GREEDY] = calculate_best_move(GREEDY);
-    strategic_moves_array[CUSTOMISED] = calculate_best_move(CUSTOMISED);
-//     cout << "Aggressive : \n";
-//     strategic_moves_array[AGGRESSIVE].print ();
-//     cout << "Defensive : \n";
-//     strategic_moves_array[DEFENSIVE].print ();
-//     cout << "Greedy : \n";
-//     strategic_moves_array[GREEDY].print ();
-//     cout << "Customised : \n";
-//     strategic_moves_array[CUSTOMISED].print ();
+    //strategic_moves_array[AGGRESSIVE] = calculate_best_move(AGGRESSIVE);
+    //strategic_moves_array[DEFENSIVE] = calculate_best_move(DEFENSIVE);
+    //strategic_moves_array[GREEDY] = calculate_best_move(GREEDY);
+    //strategic_moves_array[CUSTOMISED] = calculate_best_move(CUSTOMISED);
     
 }
 
@@ -233,30 +198,3 @@ void Info::print_info()
     cout << "Nearest_Gold : " << endl;
     nearest_gold.print ();
 }
-
-
-
-// int main()
-// {
-//     MapClass test_map;
-//     test_map.create_from_file("log_file");
-//     int i, j;
-//     char a;
-//     Position check;
-//     check.x=4;
-//     check.y=10;
-//     ID mine, enemy;
-//     mine.player_no = 1;
-//     mine.tank_symbol = '1';
-//     mine.falcon_symbol = 'M';
-
-//     enemy.player_no = 2;
-//     enemy.tank_symbol = '2';
-//     enemy.falcon_symbol = 'E';
-//     Info player1(mine, enemy);
-//     player1.update_info(test_map, check);
-//     player1.print_info();
-//     return 0;
-// }
-
-

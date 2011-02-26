@@ -127,6 +127,8 @@ public:
      // tanks' evaluations are done, die
      void update_bullets_on_map (MapClass & Map); // Call bullet_list[i].update_map ()
      void update_on_map (MapClass & Map); // Change own position on map, erase old position
+
+//     ~Tank();
 };
 
 #endif

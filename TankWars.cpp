@@ -36,7 +36,7 @@ int main()
           arena.print_scores ();
           if (arena.game_over_flag){
                // cout << "Bye Bye!" << endl;
-               arena.machine_gun_list.clear();
+//               arena.machine_gun_list.clear();
                break;
           }
      }

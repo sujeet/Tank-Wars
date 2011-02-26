@@ -346,3 +346,9 @@ bool Tank::Falcon::is_killed_by (Tank t)
      return flag;
 }
 
+//Tank::~Tank()
+//{
+//    this->bullet_list.clear();
+//}
+
+
