@@ -182,8 +182,15 @@ void Info::update_distances(MapClass &map,Position source)
             }
         }
     }
-    struct object_info null_gold;
-    null_gold.shortest_distance = -1;
+    object_info null_gold;
+    // This null_gold object has been created to 
+    // equate nearest gold to null gold when 
+    // there is no gold in map
+    null_gold.initial_move.dirn = Direction(0, 1);
+    null_gold.shortest_distance = 10000;
+    null_gold.initial_move.shoot = false;
+    gold_available = true;
+
     if(gold.size())
     {
         nearest_gold = gold[0];
@@ -191,6 +198,7 @@ void Info::update_distances(MapClass &map,Position source)
     else
     {
         nearest_gold = null_gold;
+        gold_available = false;
     }
 }
 

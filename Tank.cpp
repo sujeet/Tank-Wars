@@ -6,6 +6,19 @@
 
 using namespace std;
 
+Tank::Tank (char symbol,
+            char bullet_symbol,
+            Position curr_posn,
+            Position prev_posn,
+            bool dead_flag)
+{
+     this->symbol = symbol;
+     this->bullet_symbol = bullet_symbol;
+     this->curr_posn = curr_posn;
+     this->prev_posn = prev_posn;
+     this->dead_flag = dead_flag;
+}
+
 void Tank::initialize_from (int given_player_no, char symbol, int init_x, int init_y, char falcon_symbol, int falcon_init_x, int falcon_init_y)
 {
      // Initialize a tank's symbol and initial position
@@ -47,13 +60,15 @@ void Tank::get_next_move (DecisionMaker& DM, int choice)
      // Call player function and get response
      // Just a random move returned as of now
      int temp;
-#ifdef MOVE_DEBUG
-     temp = MOVE_DEBUG;
-#endif
-#ifndef MOVE_DEBUG
      temp = rand () % 8;	
-#endif
-     //this->next_move.interpret_move (temp);
+    // this->next_move.interpret_move (temp);
+}
+
+void Tank::get_machine_random_move () 
+{
+     int temp;
+     temp = rand() % 8;
+     this->next_move.interpret_move (temp, true);
 }
 
 void Tank::move_bullets ()
@@ -266,6 +281,7 @@ void Tank::Bullet::check_for_crashes (MapClass & Map)
      // or its own falcon (to do)
 
      if ( Map.is_symbol(this->curr_posn, GOLD) 
+          || Map.is_symbol(this->curr_posn, MACHINE_GUN) 
           || Map.is_symbol(this->curr_posn, WALL) ){
 
           this->set_disappear_flag ();

@@ -86,8 +86,15 @@ Move DecisionMaker::go_to_gold_move()
 {
     // Description of the function that calculates  
     // the move to 'go to gold'
-    
-    return info.nearest_gold.initial_move;
+    if(info.gold_available)
+    {
+        return info.nearest_gold.initial_move;
+    }
+    else
+    {
+        cerr << "Gold finished";
+        return info.opp_falcon.initial_move;
+    }
 }
 
 Move DecisionMaker::attack_enemy_falcon_move()

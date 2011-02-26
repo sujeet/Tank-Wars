@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <vector>
+
 #include "Map.h"
 
 using namespace std;
@@ -24,6 +26,9 @@ void MapClass::create_from_file (string filename)
                }
                if (letter == '2') {
                     this->tank2_init_posn = Position (i, j);
+               }
+               if (letter == MACHINE_GUN) {
+                    this->machine_guns_posns.push_back ( Position(i,j) );
                }
                this->set_element (i, j, letter, false);
           }

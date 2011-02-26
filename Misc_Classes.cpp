@@ -1,5 +1,10 @@
 #include <iostream>
+#include <cstdlib>
+
 #include "Misc_Classes.h"
+
+#define DO_NOT_MOVE 10
+#define MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY 5
 
 using namespace std;
 
@@ -7,6 +12,12 @@ Direction::Direction()
 {
      // By default goes up
      this->get_from_integer (0);
+}
+
+Direction::Direction(int xdir, int ydir)
+{
+    this->xdir = xdir;
+    this->ydir = ydir;
 }
 
 void Direction::print ()
@@ -33,8 +44,13 @@ void Direction::get_from_integer (int inp)
           this->xdir = 0;
           this->ydir = -1;
           break;
+          // The following is used for unmovables
+          // eg machine guns ect. (?)
+     case DO_NOT_MOVE:
+          this->xdir = 0;
+          this->ydir = 0;
+          break;
      }
-     
 }
 
 Move::Move() 
@@ -42,13 +58,27 @@ Move::Move()
      this->shoot = false;
 }
 
-void Move::interpret_move (int user_move)
+void Move::interpret_move (int user_move, bool is_machine_gun_move)
 {
-     if (user_move / 4 == 1)
+     if ( (not is_machine_gun_move) and (user_move / 4 == 1) ) {
           this->shoot = true;
-     else
+     }
+     else if ( (is_machine_gun_move) and (user_move / 4 == 1) ) {
+          // Machine guns have 25% chance of shoooting
+          int temp = rand() % MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY;
+          if (temp == 1) {
+               this->shoot = true;
+          }
+     }
+     else {
           this->shoot = false;
-     this->dirn.get_from_integer (user_move % 4);
+     }
+     if ( (is_machine_gun_move) and (this->shoot == false) ) {
+          this->dirn.get_from_integer (DO_NOT_MOVE);
+     }
+     else {
+          this->dirn.get_from_integer (user_move % 4);
+     }
 }
 
 void Move::print() 

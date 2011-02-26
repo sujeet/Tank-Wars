@@ -19,7 +19,7 @@ public:
      {
      public:
           // Variables
-	  char symbol;
+          char symbol;
           Direction curr_dirn;
           Position curr_posn, prev_posn;
           bool disappear_flag;
@@ -52,20 +52,20 @@ public:
      class Falcon
      {
      public:
-	  // Variables
-	  bool dead_flag;
-	  char symbol;
-	  Position posn;
+          // Variables
+          bool dead_flag;
+          char symbol;
+          Position posn;
 
-	  // Methods
-	  Falcon (){
-	       dead_flag = false;
-	  }
+          // Methods
+          Falcon (){
+               dead_flag = false;
+          }
 	
-	  bool is_killed_by (Tank t);
-	  bool crashed_tank (Tank t); // TODO
-	  void set_dead_flag ();
-	  void update_on_map (MapClass & Map);
+          bool is_killed_by (Tank t);
+          bool crashed_tank (Tank t); // TODO
+          void set_dead_flag ();
+          void update_on_map (MapClass & Map);
      };
      
      // Variables
@@ -82,6 +82,14 @@ public:
      
      // Methods
      Tank () { };
+
+     /* The following constructor is mainly used for machine guns */
+     Tank (char symbol,
+           char bullet_symbol,
+           Position curr_posn,
+           Position prev_posn,
+           bool dead_flag = false);
+
      void initialize_from (int given_player_no, char symbol, int init_x, int init_y, char falcon_symbol, int falcon_init_x, int falcon_init_y);
      void print_bullets ()
      {
@@ -92,6 +100,7 @@ public:
 	  
      void move_bullets ();
      void get_next_move (DecisionMaker& DM, int choice);
+     void get_machine_random_move ();
      void execute_next_move ();
      void move ();			// Change Tank's position
      void shoot_bullet ();
@@ -108,6 +117,8 @@ public:
      // check if two tanks are crashing in
      // any manner
      void pick_up_gold_if_possible (MapClass & Map);
+
+     //      void evaluate_dangers ();
      void evaluate_dangers ();
      void die_by_wall_crash ();
      void die_by_tank (Tank t);

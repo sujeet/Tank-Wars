@@ -56,6 +56,7 @@ public:
      object_info opp_falcon;
      object_info opp_tank; 
      object_info nearest_gold;
+     bool gold_available;
      int weightage_table[4][4] ;
 
      void update_info (MapClass &, Position );
