@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include<iomanip>
 
 #include "Misc_Classes.h"
 
@@ -20,7 +21,21 @@ Direction::Direction(int xdir, int ydir)
 
 void Direction::print ()
 {
-     cout << "Direction : " << xdir << " " << ydir << endl;
+     switch((xdir + 4*ydir))
+     {
+         case -1:
+             cout << setw (2) << 0;
+             break;
+         case 1:
+             cout << setw (2) << 1;
+             break;
+         case -4:
+             cout << setw (2) << 3;
+             break;
+         case 4:
+             cout << setw (2) << 2;
+             break;
+     }
 }
 
 void Direction::get_from_integer (int inp)
