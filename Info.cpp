@@ -177,12 +177,12 @@ void Info::update_distances(MapClass &map,Position source)
  */
 
 
-void Info::update_info (MapClass &map, Position source) //, vector <Bullet> given_my_bullet_list, vector <Bullet> given_enemy_bullet_list, vector <Tank> given_machine_gun_list)
+void Info::update_info (MapClass &map, Position source, vector <Bullet> given_my_bullet_list, vector <Bullet> given_enemy_bullet_list, vector <Tank> given_machine_gun_list)
 {
      update_distances(map,source);
-//      this->my_bullet_list = given_my_bullet_list;
-//      this->enemy_bullet_list = given_enemy_bullet_list;
-//      this->machine_gun_list = given_machine_gun_ist;
+     this->my_bullet_list = given_my_bullet_list;
+     this->enemy_bullet_list = given_enemy_bullet_list;
+     this->machine_gun_list = given_machine_gun_list;
     
      //strategic_moves_array[AGGRESSIVE] = calculate_best_move(AGGRESSIVE);
      //strategic_moves_array[DEFENSIVE] = calculate_best_move(DEFENSIVE);

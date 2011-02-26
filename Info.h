@@ -47,7 +47,7 @@ public:
      object_info nearest_gold;
      bool gold_available;
 
-     void update_info (MapClass &, Position); // , vector <Bullet>, vector <Bullet>, vector <Tank>);
+     void update_info (MapClass &, Position, vector <Bullet>, vector <Bullet>, vector <Tank>);
      void update_distances(MapClass &, Position);
      void print_info ();
 /*      ~Info (){ */

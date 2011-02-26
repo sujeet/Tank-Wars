@@ -88,8 +88,8 @@ void Arena::get_player_moves ()
 {
      // Get each tank's next moves
 
-     DM1.info.update_info (this->Map, tank1.curr_posn); //, tank1.bullet_list, tank2.bullet_list, machine_gun_list);
-     DM2.info.update_info (this->Map, tank2.curr_posn); //, tank2.bullet_list, tank1.bullet_list, machine_gun_list);
+     DM1.info.update_info (this->Map, tank1.curr_posn, tank1.bullet_list, tank2.bullet_list, machine_gun_list);
+     DM2.info.update_info (this->Map, tank2.curr_posn, tank2.bullet_list, tank1.bullet_list, machine_gun_list);
      
      // 0 : Choice - Say, Aggressive
      // 2 : Greedy
@@ -208,7 +208,6 @@ void Arena::update_map ()
           this->machine_gun_list[i].update_bullets_on_map (Map);
      }
 
-     // Note that machine guns need not be updated on the map
      for (unsigned int i = 0; i < this->machine_gun_list.size(); i++) {
           this->machine_gun_list[i].update_on_map (Map);
      }
