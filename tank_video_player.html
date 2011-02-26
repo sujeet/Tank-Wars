@@ -268,7 +268,7 @@
     <div id = '3q2' class = 'empty'></div>
     <div id = '3q3' class = 'empty'></div>
     <div id = '3q4' class = 'empty'></div>
-    <div id = '3q5' class = 'empty'></div>
+    <div id = '3q5' class = 'tank2'></div>
     <div id = '3q6' class = 'empty'></div>
     <div id = '3q7' class = 'empty'></div>
     <div id = '3q8' class = 'empty'></div>
@@ -569,7 +569,7 @@
     <div id = '9q3' class = 'empty'></div>
     <div id = '9q4' class = 'empty'></div>
     <div id = '9q5' class = 'empty'></div>
-    <div id = '9q6' class = 'empty'></div>
+    <div id = '9q6' class = 'gold'></div>
     <div id = '9q7' class = 'empty'></div>
     <div id = '9q8' class = 'empty'></div>
     <div id = '9q9' class = 'empty'></div>
@@ -637,7 +637,7 @@
     <div id = '10q21' class = 'empty'></div>
     <div id = '10q22' class = 'empty'></div>
     <div id = '10q23' class = 'empty'></div>
-    <div id = '10q24' class = 'tank1'></div>
+    <div id = '10q24' class = 'empty'></div>
     <div id = '10q25' class = 'empty'></div>
     <div id = '10q26' class = 'empty'></div>
     <div id = '10q27' class = 'empty'></div>
@@ -1099,7 +1099,7 @@
     <div id = '19q33' class = 'empty'></div>
     <div id = '19q34' class = 'empty'></div>
     <div id = '19q35' class = 'empty'></div>
-    <div id = '19q36' class = 'empty'></div>
+    <div id = '19q36' class = 'tank1'></div>
     <div id = '19q37' class = 'empty'></div>
     <div id = '19q38' class = 'empty'></div>
     <div id = '19q39' class = 'empty'></div>
@@ -1527,7 +1527,7 @@
     <div id = '28q11' class = 'empty'></div>
     <div id = '28q12' class = 'empty'></div>
     <div id = '28q13' class = 'empty'></div>
-    <div id = '28q14' class = 'empty'></div>
+    <div id = '28q14' class = 'tank1'></div>
     <div id = '28q15' class = 'empty'></div>
     <div id = '28q16' class = 'empty'></div>
     <div id = '28q17' class = 'empty'></div>
@@ -2003,7 +2003,7 @@
     <div id = '37q37' class = 'empty'></div>
     <div id = '37q38' class = 'empty'></div>
     <div id = '37q39' class = 'empty'></div>
-    <div id = '37q40' class = 'empty'></div>
+    <div id = '37q40' class = 'tank2'></div>
     <div id = '37q41' class = 'empty'></div>
     <div id = '37q42' class = 'empty'></div>
     <div id = '37q43' class = 'empty'></div>
@@ -2087,7 +2087,7 @@
     <div id = '39q21' class = 'empty'></div>
     <div id = '39q22' class = 'empty'></div>
     <div id = '39q23' class = 'empty'></div>
-    <div id = '39q24' class = 'tank1'></div>
+    <div id = '39q24' class = 'empty'></div>
     <div id = '39q25' class = 'empty'></div>
     <div id = '39q26' class = 'empty'></div>
     <div id = '39q27' class = 'empty'></div>
@@ -2638,1221 +2638,470 @@ char_to_color_table['F'] = 'falcon2';
 char_to_color_table['M'] = 'tank2';  
 char_to_color_table['K'] = 'bullet2';
 function update_map_0() {
-    document.getElementById('39q24').className = char_to_color_table['.'];
-    document.getElementById('40q24').className = char_to_color_table['1'];
-    document.getElementById('10q24').className = char_to_color_table['.'];
-    document.getElementById('9q24').className = char_to_color_table['2'];
+    document.getElementById('28q14').className = char_to_color_table['.'];
+    document.getElementById('27q14').className = char_to_color_table['1'];
+    document.getElementById('19q36').className = char_to_color_table['.'];
+    document.getElementById('18q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
     document.getElementById('player1_score').innerHTML = '0';
     document.getElementById('player2_score').innerHTML = '0';
 }
 function update_map_1() {
-    document.getElementById('40q24').className = char_to_color_table['.'];
-    document.getElementById('41q24').className = char_to_color_table['1'];
-    document.getElementById('9q24').className = char_to_color_table['.'];
-    document.getElementById('8q24').className = char_to_color_table['2'];
+    document.getElementById('24q45').className = char_to_color_table['.'];
+    document.getElementById('23q45').className = char_to_color_table['K'];
+    document.getElementById('27q14').className = char_to_color_table['.'];
+    document.getElementById('26q14').className = char_to_color_table['1'];
+    document.getElementById('18q36').className = char_to_color_table['.'];
+    document.getElementById('17q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
     document.getElementById('player1_score').innerHTML = '0';
     document.getElementById('player2_score').innerHTML = '0';
 }
 function update_map_2() {
-    document.getElementById('41q24').className = char_to_color_table['.'];
-    document.getElementById('42q24').className = char_to_color_table['1'];
-    document.getElementById('8q24').className = char_to_color_table['.'];
-    document.getElementById('7q24').className = char_to_color_table['2'];
+    document.getElementById('23q45').className = char_to_color_table['.'];
+    document.getElementById('22q45').className = char_to_color_table['K'];
+    document.getElementById('26q14').className = char_to_color_table['.'];
+    document.getElementById('25q14').className = char_to_color_table['1'];
+    document.getElementById('17q36').className = char_to_color_table['.'];
+    document.getElementById('16q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '40';
-    document.getElementById('player2_score').innerHTML = '40';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
 function update_map_3() {
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q5').className = char_to_color_table['K'];
-    document.getElementById('42q24').className = char_to_color_table['.'];
-    document.getElementById('41q24').className = char_to_color_table['1'];
-    document.getElementById('7q24').className = char_to_color_table['.'];
-    document.getElementById('8q24').className = char_to_color_table['2'];
+    document.getElementById('22q45').className = char_to_color_table['.'];
+    document.getElementById('21q45').className = char_to_color_table['K'];
+    document.getElementById('25q14').className = char_to_color_table['.'];
+    document.getElementById('24q14').className = char_to_color_table['1'];
+    document.getElementById('16q36').className = char_to_color_table['.'];
+    document.getElementById('15q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '40';
-    document.getElementById('player2_score').innerHTML = '40';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
 function update_map_4() {
-    document.getElementById('24q5').className = char_to_color_table['.'];
-    document.getElementById('24q6').className = char_to_color_table['K'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('23q4').className = char_to_color_table['K'];
-    document.getElementById('41q24').className = char_to_color_table['.'];
-    document.getElementById('40q24').className = char_to_color_table['1'];
-    document.getElementById('8q24').className = char_to_color_table['.'];
-    document.getElementById('9q24').className = char_to_color_table['2'];
+    document.getElementById('21q45').className = char_to_color_table['.'];
+    document.getElementById('20q45').className = char_to_color_table['K'];
+    document.getElementById('24q14').className = char_to_color_table['.'];
+    document.getElementById('23q14').className = char_to_color_table['1'];
+    document.getElementById('15q36').className = char_to_color_table['.'];
+    document.getElementById('14q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '40';
-    document.getElementById('player2_score').innerHTML = '40';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
 function update_map_5() {
-    document.getElementById('24q6').className = char_to_color_table['.'];
-    document.getElementById('24q7').className = char_to_color_table['K'];
-    document.getElementById('23q4').className = char_to_color_table['.'];
-    document.getElementById('22q4').className = char_to_color_table['K'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('23q4').className = char_to_color_table['K'];
-    document.getElementById('40q24').className = char_to_color_table['.'];
-    document.getElementById('39q24').className = char_to_color_table['1'];
-    document.getElementById('9q24').className = char_to_color_table['.'];
-    document.getElementById('10q24').className = char_to_color_table['2'];
+    document.getElementById('20q45').className = char_to_color_table['.'];
+    document.getElementById('19q45').className = char_to_color_table['K'];
+    document.getElementById('23q14').className = char_to_color_table['.'];
+    document.getElementById('22q14').className = char_to_color_table['1'];
+    document.getElementById('14q36').className = char_to_color_table['.'];
+    document.getElementById('13q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '40';
-    document.getElementById('player2_score').innerHTML = '40';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
 function update_map_6() {
-    document.getElementById('24q7').className = char_to_color_table['.'];
-    document.getElementById('22q4').className = char_to_color_table['.'];
-    document.getElementById('21q4').className = char_to_color_table['K'];
-    document.getElementById('23q4').className = char_to_color_table['.'];
-    document.getElementById('22q4').className = char_to_color_table['K'];
-    document.getElementById('39q24').className = char_to_color_table['.'];
-    document.getElementById('38q24').className = char_to_color_table['1'];
-    document.getElementById('10q24').className = char_to_color_table['.'];
-    document.getElementById('11q24').className = char_to_color_table['2'];
+    document.getElementById('24q4').className = char_to_color_table['.'];
+    document.getElementById('23q4').className = char_to_color_table['K'];
+    document.getElementById('19q45').className = char_to_color_table['.'];
+    document.getElementById('18q45').className = char_to_color_table['K'];
+    document.getElementById('22q14').className = char_to_color_table['.'];
+    document.getElementById('21q14').className = char_to_color_table['1'];
+    document.getElementById('13q36').className = char_to_color_table['.'];
+    document.getElementById('12q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '40';
-    document.getElementById('player2_score').innerHTML = '40';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
 function update_map_7() {
-    document.getElementById('21q4').className = char_to_color_table['.'];
-    document.getElementById('20q4').className = char_to_color_table['K'];
-    document.getElementById('22q4').className = char_to_color_table['.'];
-    document.getElementById('21q4').className = char_to_color_table['K'];
-    document.getElementById('38q24').className = char_to_color_table['.'];
-    document.getElementById('37q24').className = char_to_color_table['1'];
-    document.getElementById('11q24').className = char_to_color_table['.'];
-    document.getElementById('12q24').className = char_to_color_table['2'];
+    document.getElementById('23q4').className = char_to_color_table['.'];
+    document.getElementById('22q4').className = char_to_color_table['K'];
+    document.getElementById('24q4').className = char_to_color_table['.'];
+    document.getElementById('24q3').className = char_to_color_table['K'];
+    document.getElementById('18q45').className = char_to_color_table['.'];
+    document.getElementById('17q45').className = char_to_color_table['K'];
+    document.getElementById('21q14').className = char_to_color_table['.'];
+    document.getElementById('20q14').className = char_to_color_table['1'];
+    document.getElementById('12q36').className = char_to_color_table['.'];
+    document.getElementById('11q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '40';
-    document.getElementById('player2_score').innerHTML = '40';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
 function update_map_8() {
-    document.getElementById('20q4').className = char_to_color_table['.'];
-    document.getElementById('19q4').className = char_to_color_table['K'];
-    document.getElementById('21q4').className = char_to_color_table['.'];
-    document.getElementById('20q4').className = char_to_color_table['K'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q3').className = char_to_color_table['K'];
-    document.getElementById('37q24').className = char_to_color_table['.'];
-    document.getElementById('36q24').className = char_to_color_table['1'];
-    document.getElementById('12q24').className = char_to_color_table['.'];
-    document.getElementById('13q24').className = char_to_color_table['2'];
+    document.getElementById('22q4').className = char_to_color_table['.'];
+    document.getElementById('21q4').className = char_to_color_table['K'];
+    document.getElementById('24q3').className = char_to_color_table['.'];
+    document.getElementById('24q2').className = char_to_color_table['K'];
+    document.getElementById('17q45').className = char_to_color_table['.'];
+    document.getElementById('16q45').className = char_to_color_table['K'];
+    document.getElementById('20q14').className = char_to_color_table['.'];
+    document.getElementById('19q14').className = char_to_color_table['1'];
+    document.getElementById('11q36').className = char_to_color_table['.'];
+    document.getElementById('10q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '40';
-    document.getElementById('player2_score').innerHTML = '40';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
 function update_map_9() {
-    document.getElementById('19q4').className = char_to_color_table['.'];
-    document.getElementById('18q4').className = char_to_color_table['K'];
-    document.getElementById('20q4').className = char_to_color_table['.'];
-    document.getElementById('19q4').className = char_to_color_table['K'];
-    document.getElementById('24q3').className = char_to_color_table['.'];
-    document.getElementById('24q2').className = char_to_color_table['K'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q5').className = char_to_color_table['K'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q46').className = char_to_color_table['K'];
-    document.getElementById('36q24').className = char_to_color_table['.'];
-    document.getElementById('35q24').className = char_to_color_table['1'];
-    document.getElementById('13q24').className = char_to_color_table['.'];
-    document.getElementById('14q24').className = char_to_color_table['2'];
+    document.getElementById('21q4').className = char_to_color_table['.'];
+    document.getElementById('20q4').className = char_to_color_table['K'];
+    document.getElementById('24q2').className = char_to_color_table['.'];
+    document.getElementById('24q1').className = char_to_color_table['K'];
+    document.getElementById('16q45').className = char_to_color_table['.'];
+    document.getElementById('15q45').className = char_to_color_table['K'];
+    document.getElementById('19q14').className = char_to_color_table['.'];
+    document.getElementById('18q14').className = char_to_color_table['1'];
+    document.getElementById('10q36').className = char_to_color_table['.'];
+    document.getElementById('9q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '80';
-    document.getElementById('player2_score').innerHTML = '80';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
 function update_map_10() {
-    document.getElementById('18q4').className = char_to_color_table['.'];
-    document.getElementById('17q4').className = char_to_color_table['K'];
-    document.getElementById('19q4').className = char_to_color_table['.'];
-    document.getElementById('18q4').className = char_to_color_table['K'];
-    document.getElementById('24q2').className = char_to_color_table['.'];
-    document.getElementById('24q1').className = char_to_color_table['K'];
-    document.getElementById('24q5').className = char_to_color_table['.'];
-    document.getElementById('24q6').className = char_to_color_table['K'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('25q4').className = char_to_color_table['K'];
-    document.getElementById('24q46').className = char_to_color_table['.'];
-    document.getElementById('24q47').className = char_to_color_table['K'];
-    document.getElementById('35q24').className = char_to_color_table['.'];
-    document.getElementById('35q25').className = char_to_color_table['1'];
-    document.getElementById('14q24').className = char_to_color_table['.'];
-    document.getElementById('14q25').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('2q5').className = char_to_color_table['K'];
+    document.getElementById('20q4').className = char_to_color_table['.'];
+    document.getElementById('19q4').className = char_to_color_table['K'];
+    document.getElementById('24q1').className = char_to_color_table['.'];
+    document.getElementById('15q45').className = char_to_color_table['.'];
+    document.getElementById('14q45').className = char_to_color_table['K'];
+    document.getElementById('18q14').className = char_to_color_table['.'];
+    document.getElementById('17q14').className = char_to_color_table['1'];
+    document.getElementById('9q36').className = char_to_color_table['.'];
+    document.getElementById('8q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '80';
-    document.getElementById('player2_score').innerHTML = '80';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
 function update_map_11() {
-    document.getElementById('17q4').className = char_to_color_table['.'];
-    document.getElementById('16q4').className = char_to_color_table['K'];
-    document.getElementById('18q4').className = char_to_color_table['.'];
-    document.getElementById('17q4').className = char_to_color_table['K'];
-    document.getElementById('24q1').className = char_to_color_table['.'];
-    document.getElementById('24q6').className = char_to_color_table['.'];
-    document.getElementById('24q7').className = char_to_color_table['K'];
-    document.getElementById('25q4').className = char_to_color_table['.'];
-    document.getElementById('26q4').className = char_to_color_table['K'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q5').className = char_to_color_table['K'];
-    document.getElementById('24q47').className = char_to_color_table['.'];
-    document.getElementById('24q48').className = char_to_color_table['K'];
-    document.getElementById('35q25').className = char_to_color_table['.'];
-    document.getElementById('35q26').className = char_to_color_table['1'];
-    document.getElementById('14q25').className = char_to_color_table['.'];
-    document.getElementById('14q26').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '80';
-    document.getElementById('player2_score').innerHTML = '80';
-}
-function update_map_12() {
-    document.getElementById('16q4').className = char_to_color_table['.'];
-    document.getElementById('15q4').className = char_to_color_table['K'];
-    document.getElementById('17q4').className = char_to_color_table['.'];
-    document.getElementById('16q4').className = char_to_color_table['K'];
-    document.getElementById('24q7').className = char_to_color_table['.'];
-    document.getElementById('26q4').className = char_to_color_table['.'];
-    document.getElementById('27q4').className = char_to_color_table['K'];
-    document.getElementById('24q5').className = char_to_color_table['.'];
-    document.getElementById('24q6').className = char_to_color_table['K'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('25q4').className = char_to_color_table['K'];
-    document.getElementById('24q48').className = char_to_color_table['.'];
-    document.getElementById('35q26').className = char_to_color_table['.'];
-    document.getElementById('35q27').className = char_to_color_table['1'];
-    document.getElementById('14q26').className = char_to_color_table['.'];
-    document.getElementById('14q27').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '80';
-    document.getElementById('player2_score').innerHTML = '80';
-}
-function update_map_13() {
-    document.getElementById('15q4').className = char_to_color_table['.'];
-    document.getElementById('14q4').className = char_to_color_table['K'];
-    document.getElementById('16q4').className = char_to_color_table['.'];
-    document.getElementById('15q4').className = char_to_color_table['K'];
-    document.getElementById('27q4').className = char_to_color_table['.'];
-    document.getElementById('28q4').className = char_to_color_table['K'];
-    document.getElementById('24q6').className = char_to_color_table['.'];
-    document.getElementById('24q7').className = char_to_color_table['K'];
-    document.getElementById('25q4').className = char_to_color_table['.'];
-    document.getElementById('26q4').className = char_to_color_table['K'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q5').className = char_to_color_table['K'];
-    document.getElementById('35q27').className = char_to_color_table['.'];
-    document.getElementById('35q28').className = char_to_color_table['1'];
-    document.getElementById('14q27').className = char_to_color_table['.'];
-    document.getElementById('14q28').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '80';
-    document.getElementById('player2_score').innerHTML = '80';
-}
-function update_map_14() {
-    document.getElementById('14q4').className = char_to_color_table['.'];
-    document.getElementById('13q4').className = char_to_color_table['K'];
-    document.getElementById('15q4').className = char_to_color_table['.'];
-    document.getElementById('14q4').className = char_to_color_table['K'];
-    document.getElementById('28q4').className = char_to_color_table['.'];
-    document.getElementById('29q4').className = char_to_color_table['K'];
-    document.getElementById('24q7').className = char_to_color_table['.'];
-    document.getElementById('26q4').className = char_to_color_table['.'];
-    document.getElementById('27q4').className = char_to_color_table['K'];
-    document.getElementById('24q5').className = char_to_color_table['.'];
-    document.getElementById('24q6').className = char_to_color_table['K'];
-    document.getElementById('35q28').className = char_to_color_table['.'];
-    document.getElementById('35q29').className = char_to_color_table['1'];
-    document.getElementById('14q28').className = char_to_color_table['.'];
-    document.getElementById('14q29').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '80';
-    document.getElementById('player2_score').innerHTML = '80';
-}
-function update_map_15() {
-    document.getElementById('13q4').className = char_to_color_table['.'];
-    document.getElementById('12q4').className = char_to_color_table['K'];
-    document.getElementById('14q4').className = char_to_color_table['.'];
-    document.getElementById('13q4').className = char_to_color_table['K'];
-    document.getElementById('29q4').className = char_to_color_table['.'];
-    document.getElementById('30q4').className = char_to_color_table['K'];
-    document.getElementById('27q4').className = char_to_color_table['.'];
-    document.getElementById('28q4').className = char_to_color_table['K'];
-    document.getElementById('24q6').className = char_to_color_table['.'];
-    document.getElementById('24q7').className = char_to_color_table['K'];
-    document.getElementById('35q29').className = char_to_color_table['.'];
-    document.getElementById('35q30').className = char_to_color_table['1'];
-    document.getElementById('14q29').className = char_to_color_table['.'];
-    document.getElementById('14q30').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '80';
-    document.getElementById('player2_score').innerHTML = '80';
-}
-function update_map_16() {
-    document.getElementById('12q4').className = char_to_color_table['.'];
-    document.getElementById('11q4').className = char_to_color_table['K'];
-    document.getElementById('13q4').className = char_to_color_table['.'];
-    document.getElementById('12q4').className = char_to_color_table['K'];
-    document.getElementById('30q4').className = char_to_color_table['.'];
-    document.getElementById('31q4').className = char_to_color_table['K'];
-    document.getElementById('28q4').className = char_to_color_table['.'];
-    document.getElementById('29q4').className = char_to_color_table['K'];
-    document.getElementById('24q7').className = char_to_color_table['.'];
-    document.getElementById('35q30').className = char_to_color_table['.'];
-    document.getElementById('35q31').className = char_to_color_table['1'];
-    document.getElementById('14q30').className = char_to_color_table['.'];
-    document.getElementById('14q31').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '80';
-    document.getElementById('player2_score').innerHTML = '80';
-}
-function update_map_17() {
-    document.getElementById('11q4').className = char_to_color_table['.'];
-    document.getElementById('10q4').className = char_to_color_table['K'];
-    document.getElementById('12q4').className = char_to_color_table['.'];
-    document.getElementById('11q4').className = char_to_color_table['K'];
-    document.getElementById('31q4').className = char_to_color_table['.'];
-    document.getElementById('32q4').className = char_to_color_table['K'];
-    document.getElementById('29q4').className = char_to_color_table['.'];
-    document.getElementById('30q4').className = char_to_color_table['K'];
-    document.getElementById('35q31').className = char_to_color_table['.'];
-    document.getElementById('35q32').className = char_to_color_table['1'];
-    document.getElementById('14q31').className = char_to_color_table['.'];
-    document.getElementById('14q32').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '120';
-    document.getElementById('player2_score').innerHTML = '120';
-}
-function update_map_18() {
-    document.getElementById('10q4').className = char_to_color_table['.'];
-    document.getElementById('9q4').className = char_to_color_table['K'];
-    document.getElementById('11q4').className = char_to_color_table['.'];
-    document.getElementById('10q4').className = char_to_color_table['K'];
-    document.getElementById('32q4').className = char_to_color_table['.'];
-    document.getElementById('33q4').className = char_to_color_table['K'];
-    document.getElementById('30q4').className = char_to_color_table['.'];
-    document.getElementById('31q4').className = char_to_color_table['K'];
-    document.getElementById('35q32').className = char_to_color_table['.'];
-    document.getElementById('36q32').className = char_to_color_table['1'];
-    document.getElementById('14q32').className = char_to_color_table['.'];
-    document.getElementById('13q32').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '120';
-    document.getElementById('player2_score').innerHTML = '120';
-}
-function update_map_19() {
-    document.getElementById('9q4').className = char_to_color_table['.'];
-    document.getElementById('8q4').className = char_to_color_table['K'];
-    document.getElementById('10q4').className = char_to_color_table['.'];
-    document.getElementById('9q4').className = char_to_color_table['K'];
-    document.getElementById('33q4').className = char_to_color_table['.'];
-    document.getElementById('34q4').className = char_to_color_table['K'];
-    document.getElementById('31q4').className = char_to_color_table['.'];
-    document.getElementById('32q4').className = char_to_color_table['K'];
-    document.getElementById('36q32').className = char_to_color_table['.'];
-    document.getElementById('37q32').className = char_to_color_table['1'];
-    document.getElementById('13q32').className = char_to_color_table['.'];
-    document.getElementById('12q32').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '120';
-    document.getElementById('player2_score').innerHTML = '120';
-}
-function update_map_20() {
-    document.getElementById('8q4').className = char_to_color_table['.'];
-    document.getElementById('7q4').className = char_to_color_table['K'];
-    document.getElementById('9q4').className = char_to_color_table['.'];
-    document.getElementById('8q4').className = char_to_color_table['K'];
-    document.getElementById('34q4').className = char_to_color_table['.'];
-    document.getElementById('35q4').className = char_to_color_table['K'];
-    document.getElementById('32q4').className = char_to_color_table['.'];
-    document.getElementById('33q4').className = char_to_color_table['K'];
-    document.getElementById('37q32').className = char_to_color_table['.'];
-    document.getElementById('38q32').className = char_to_color_table['1'];
-    document.getElementById('12q32').className = char_to_color_table['.'];
-    document.getElementById('11q32').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '120';
-    document.getElementById('player2_score').innerHTML = '120';
-}
-function update_map_21() {
-    document.getElementById('7q4').className = char_to_color_table['.'];
-    document.getElementById('6q4').className = char_to_color_table['K'];
-    document.getElementById('8q4').className = char_to_color_table['.'];
-    document.getElementById('7q4').className = char_to_color_table['K'];
-    document.getElementById('35q4').className = char_to_color_table['.'];
-    document.getElementById('36q4').className = char_to_color_table['K'];
-    document.getElementById('33q4').className = char_to_color_table['.'];
-    document.getElementById('34q4').className = char_to_color_table['K'];
-    document.getElementById('38q32').className = char_to_color_table['.'];
-    document.getElementById('39q32').className = char_to_color_table['1'];
-    document.getElementById('11q32').className = char_to_color_table['.'];
-    document.getElementById('10q32').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '120';
-    document.getElementById('player2_score').innerHTML = '120';
-}
-function update_map_22() {
-    document.getElementById('6q4').className = char_to_color_table['.'];
-    document.getElementById('5q4').className = char_to_color_table['K'];
-    document.getElementById('7q4').className = char_to_color_table['.'];
-    document.getElementById('6q4').className = char_to_color_table['K'];
-    document.getElementById('36q4').className = char_to_color_table['.'];
-    document.getElementById('37q4').className = char_to_color_table['K'];
-    document.getElementById('34q4').className = char_to_color_table['.'];
-    document.getElementById('35q4').className = char_to_color_table['K'];
-    document.getElementById('39q32').className = char_to_color_table['.'];
-    document.getElementById('40q32').className = char_to_color_table['1'];
-    document.getElementById('10q32').className = char_to_color_table['.'];
-    document.getElementById('9q32').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '120';
-    document.getElementById('player2_score').innerHTML = '120';
-}
-function update_map_23() {
-    document.getElementById('5q4').className = char_to_color_table['.'];
-    document.getElementById('4q4').className = char_to_color_table['K'];
-    document.getElementById('6q4').className = char_to_color_table['.'];
-    document.getElementById('5q4').className = char_to_color_table['K'];
-    document.getElementById('37q4').className = char_to_color_table['.'];
-    document.getElementById('38q4').className = char_to_color_table['K'];
-    document.getElementById('35q4').className = char_to_color_table['.'];
-    document.getElementById('36q4').className = char_to_color_table['K'];
-    document.getElementById('40q32').className = char_to_color_table['.'];
-    document.getElementById('41q32').className = char_to_color_table['1'];
-    document.getElementById('9q32').className = char_to_color_table['.'];
-    document.getElementById('8q32').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '120';
-    document.getElementById('player2_score').innerHTML = '120';
-}
-function update_map_24() {
-    document.getElementById('4q4').className = char_to_color_table['.'];
-    document.getElementById('3q4').className = char_to_color_table['K'];
-    document.getElementById('5q4').className = char_to_color_table['.'];
-    document.getElementById('4q4').className = char_to_color_table['K'];
-    document.getElementById('38q4').className = char_to_color_table['.'];
-    document.getElementById('39q4').className = char_to_color_table['K'];
-    document.getElementById('36q4').className = char_to_color_table['.'];
-    document.getElementById('37q4').className = char_to_color_table['K'];
-    document.getElementById('41q32').className = char_to_color_table['.'];
-    document.getElementById('42q32').className = char_to_color_table['1'];
-    document.getElementById('8q32').className = char_to_color_table['.'];
-    document.getElementById('7q32').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_25() {
-    document.getElementById('3q4').className = char_to_color_table['.'];
-    document.getElementById('2q4').className = char_to_color_table['K'];
-    document.getElementById('4q4').className = char_to_color_table['.'];
-    document.getElementById('3q4').className = char_to_color_table['K'];
-    document.getElementById('39q4').className = char_to_color_table['.'];
-    document.getElementById('40q4').className = char_to_color_table['K'];
-    document.getElementById('37q4').className = char_to_color_table['.'];
-    document.getElementById('38q4').className = char_to_color_table['K'];
-    document.getElementById('42q32').className = char_to_color_table['.'];
-    document.getElementById('42q31').className = char_to_color_table['1'];
-    document.getElementById('7q32').className = char_to_color_table['.'];
-    document.getElementById('7q31').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_26() {
-    document.getElementById('2q4').className = char_to_color_table['.'];
-    document.getElementById('1q4').className = char_to_color_table['K'];
-    document.getElementById('3q4').className = char_to_color_table['.'];
-    document.getElementById('2q4').className = char_to_color_table['K'];
-    document.getElementById('40q4').className = char_to_color_table['.'];
-    document.getElementById('41q4').className = char_to_color_table['K'];
-    document.getElementById('38q4').className = char_to_color_table['.'];
-    document.getElementById('39q4').className = char_to_color_table['K'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q5').className = char_to_color_table['K'];
-    document.getElementById('42q31').className = char_to_color_table['.'];
-    document.getElementById('42q30').className = char_to_color_table['1'];
-    document.getElementById('7q31').className = char_to_color_table['.'];
-    document.getElementById('7q30').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_27() {
-    document.getElementById('1q4').className = char_to_color_table['.'];
-    document.getElementById('2q4').className = char_to_color_table['.'];
-    document.getElementById('1q4').className = char_to_color_table['K'];
-    document.getElementById('41q4').className = char_to_color_table['.'];
-    document.getElementById('42q4').className = char_to_color_table['K'];
-    document.getElementById('39q4').className = char_to_color_table['.'];
-    document.getElementById('40q4').className = char_to_color_table['K'];
-    document.getElementById('24q5').className = char_to_color_table['.'];
-    document.getElementById('24q6').className = char_to_color_table['K'];
-    document.getElementById('42q30').className = char_to_color_table['.'];
-    document.getElementById('42q29').className = char_to_color_table['1'];
-    document.getElementById('7q30').className = char_to_color_table['.'];
-    document.getElementById('7q29').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_28() {
-    document.getElementById('1q4').className = char_to_color_table['.'];
-    document.getElementById('42q4').className = char_to_color_table['.'];
-    document.getElementById('43q4').className = char_to_color_table['K'];
-    document.getElementById('40q4').className = char_to_color_table['.'];
-    document.getElementById('41q4').className = char_to_color_table['K'];
-    document.getElementById('24q6').className = char_to_color_table['.'];
-    document.getElementById('24q7').className = char_to_color_table['K'];
-    document.getElementById('42q29').className = char_to_color_table['.'];
-    document.getElementById('42q28').className = char_to_color_table['1'];
-    document.getElementById('7q29').className = char_to_color_table['.'];
-    document.getElementById('7q28').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_29() {
-    document.getElementById('43q4').className = char_to_color_table['.'];
-    document.getElementById('44q4').className = char_to_color_table['K'];
-    document.getElementById('41q4').className = char_to_color_table['.'];
-    document.getElementById('42q4').className = char_to_color_table['K'];
-    document.getElementById('24q7').className = char_to_color_table['.'];
-    document.getElementById('42q28').className = char_to_color_table['.'];
-    document.getElementById('42q27').className = char_to_color_table['1'];
-    document.getElementById('7q28').className = char_to_color_table['.'];
-    document.getElementById('7q27').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_30() {
-    document.getElementById('44q4').className = char_to_color_table['.'];
-    document.getElementById('45q4').className = char_to_color_table['K'];
-    document.getElementById('42q4').className = char_to_color_table['.'];
-    document.getElementById('43q4').className = char_to_color_table['K'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('23q45').className = char_to_color_table['K'];
-    document.getElementById('42q27').className = char_to_color_table['.'];
-    document.getElementById('42q26').className = char_to_color_table['1'];
-    document.getElementById('7q27').className = char_to_color_table['.'];
-    document.getElementById('7q26').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_31() {
-    document.getElementById('45q4').className = char_to_color_table['.'];
-    document.getElementById('46q4').className = char_to_color_table['K'];
-    document.getElementById('43q4').className = char_to_color_table['.'];
-    document.getElementById('44q4').className = char_to_color_table['K'];
-    document.getElementById('23q45').className = char_to_color_table['.'];
-    document.getElementById('22q45').className = char_to_color_table['K'];
-    document.getElementById('42q26').className = char_to_color_table['.'];
-    document.getElementById('42q25').className = char_to_color_table['1'];
-    document.getElementById('7q26').className = char_to_color_table['.'];
-    document.getElementById('7q25').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_32() {
-    document.getElementById('46q4').className = char_to_color_table['.'];
-    document.getElementById('47q4').className = char_to_color_table['K'];
-    document.getElementById('44q4').className = char_to_color_table['.'];
-    document.getElementById('45q4').className = char_to_color_table['K'];
-    document.getElementById('22q45').className = char_to_color_table['.'];
-    document.getElementById('21q45').className = char_to_color_table['K'];
-    document.getElementById('42q25').className = char_to_color_table['.'];
-    document.getElementById('42q24').className = char_to_color_table['1'];
-    document.getElementById('7q25').className = char_to_color_table['.'];
-    document.getElementById('7q24').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_33() {
-    document.getElementById('47q4').className = char_to_color_table['.'];
-    document.getElementById('48q4').className = char_to_color_table['K'];
-    document.getElementById('45q4').className = char_to_color_table['.'];
-    document.getElementById('46q4').className = char_to_color_table['K'];
-    document.getElementById('21q45').className = char_to_color_table['.'];
-    document.getElementById('20q45').className = char_to_color_table['K'];
-    document.getElementById('42q24').className = char_to_color_table['.'];
-    document.getElementById('42q23').className = char_to_color_table['1'];
-    document.getElementById('7q24').className = char_to_color_table['.'];
-    document.getElementById('7q23').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_34() {
-    document.getElementById('48q4').className = char_to_color_table['.'];
-    document.getElementById('46q4').className = char_to_color_table['.'];
-    document.getElementById('47q4').className = char_to_color_table['K'];
-    document.getElementById('20q45').className = char_to_color_table['.'];
-    document.getElementById('19q45').className = char_to_color_table['K'];
-    document.getElementById('42q23').className = char_to_color_table['.'];
-    document.getElementById('42q22').className = char_to_color_table['1'];
-    document.getElementById('7q23').className = char_to_color_table['.'];
-    document.getElementById('7q22').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_35() {
-    document.getElementById('47q4').className = char_to_color_table['.'];
-    document.getElementById('48q4').className = char_to_color_table['K'];
-    document.getElementById('19q45').className = char_to_color_table['.'];
-    document.getElementById('18q45').className = char_to_color_table['K'];
-    document.getElementById('42q22').className = char_to_color_table['.'];
-    document.getElementById('42q21').className = char_to_color_table['1'];
-    document.getElementById('7q22').className = char_to_color_table['.'];
-    document.getElementById('7q21').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_36() {
-    document.getElementById('48q4').className = char_to_color_table['.'];
-    document.getElementById('18q45').className = char_to_color_table['.'];
-    document.getElementById('17q45').className = char_to_color_table['K'];
-    document.getElementById('42q21').className = char_to_color_table['.'];
-    document.getElementById('42q20').className = char_to_color_table['1'];
-    document.getElementById('7q21').className = char_to_color_table['.'];
-    document.getElementById('7q20').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_37() {
-    document.getElementById('17q45').className = char_to_color_table['.'];
-    document.getElementById('16q45').className = char_to_color_table['K'];
-    document.getElementById('42q20').className = char_to_color_table['.'];
-    document.getElementById('42q19').className = char_to_color_table['1'];
-    document.getElementById('7q20').className = char_to_color_table['.'];
-    document.getElementById('7q19').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_38() {
-    document.getElementById('16q45').className = char_to_color_table['.'];
-    document.getElementById('15q45').className = char_to_color_table['K'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q46').className = char_to_color_table['K'];
-    document.getElementById('42q19').className = char_to_color_table['.'];
-    document.getElementById('42q18').className = char_to_color_table['1'];
-    document.getElementById('7q19').className = char_to_color_table['.'];
-    document.getElementById('7q18').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_39() {
-    document.getElementById('15q45').className = char_to_color_table['.'];
-    document.getElementById('14q45').className = char_to_color_table['K'];
-    document.getElementById('24q46').className = char_to_color_table['.'];
-    document.getElementById('24q47').className = char_to_color_table['K'];
-    document.getElementById('42q18').className = char_to_color_table['.'];
-    document.getElementById('42q17').className = char_to_color_table['1'];
-    document.getElementById('7q18').className = char_to_color_table['.'];
-    document.getElementById('7q17').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '160';
-    document.getElementById('player2_score').innerHTML = '160';
-}
-function update_map_40() {
-    document.getElementById('14q45').className = char_to_color_table['.'];
-    document.getElementById('13q45').className = char_to_color_table['K'];
-    document.getElementById('24q47').className = char_to_color_table['.'];
-    document.getElementById('24q48').className = char_to_color_table['K'];
-    document.getElementById('42q17').className = char_to_color_table['.'];
-    document.getElementById('42q16').className = char_to_color_table['1'];
-    document.getElementById('7q17').className = char_to_color_table['.'];
-    document.getElementById('7q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '200';
-    document.getElementById('player2_score').innerHTML = '200';
-}
-function update_map_41() {
-    document.getElementById('13q45').className = char_to_color_table['.'];
-    document.getElementById('12q45').className = char_to_color_table['K'];
-    document.getElementById('24q48').className = char_to_color_table['.'];
-    document.getElementById('42q16').className = char_to_color_table['.'];
-    document.getElementById('41q16').className = char_to_color_table['1'];
-    document.getElementById('7q16').className = char_to_color_table['.'];
-    document.getElementById('8q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '200';
-    document.getElementById('player2_score').innerHTML = '200';
-}
-function update_map_42() {
-    document.getElementById('12q45').className = char_to_color_table['.'];
-    document.getElementById('11q45').className = char_to_color_table['K'];
-    document.getElementById('41q16').className = char_to_color_table['.'];
-    document.getElementById('40q16').className = char_to_color_table['1'];
-    document.getElementById('8q16').className = char_to_color_table['.'];
-    document.getElementById('9q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '200';
-    document.getElementById('player2_score').innerHTML = '200';
-}
-function update_map_43() {
-    document.getElementById('11q45').className = char_to_color_table['.'];
-    document.getElementById('10q45').className = char_to_color_table['K'];
-    document.getElementById('40q16').className = char_to_color_table['.'];
-    document.getElementById('39q16').className = char_to_color_table['1'];
-    document.getElementById('9q16').className = char_to_color_table['.'];
-    document.getElementById('10q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '200';
-    document.getElementById('player2_score').innerHTML = '200';
-}
-function update_map_44() {
-    document.getElementById('10q45').className = char_to_color_table['.'];
-    document.getElementById('9q45').className = char_to_color_table['K'];
-    document.getElementById('39q16').className = char_to_color_table['.'];
-    document.getElementById('38q16').className = char_to_color_table['1'];
-    document.getElementById('10q16').className = char_to_color_table['.'];
-    document.getElementById('11q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '200';
-    document.getElementById('player2_score').innerHTML = '200';
-}
-function update_map_45() {
-    document.getElementById('9q45').className = char_to_color_table['.'];
-    document.getElementById('8q45').className = char_to_color_table['K'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('25q45').className = char_to_color_table['K'];
-    document.getElementById('38q16').className = char_to_color_table['.'];
-    document.getElementById('37q16').className = char_to_color_table['1'];
-    document.getElementById('11q16').className = char_to_color_table['.'];
-    document.getElementById('12q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '200';
-    document.getElementById('player2_score').innerHTML = '200';
-}
-function update_map_46() {
-    document.getElementById('8q45').className = char_to_color_table['.'];
-    document.getElementById('7q45').className = char_to_color_table['K'];
-    document.getElementById('25q45').className = char_to_color_table['.'];
-    document.getElementById('26q45').className = char_to_color_table['K'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('23q45').className = char_to_color_table['K'];
-    document.getElementById('37q16').className = char_to_color_table['.'];
-    document.getElementById('36q16').className = char_to_color_table['1'];
-    document.getElementById('12q16').className = char_to_color_table['.'];
-    document.getElementById('13q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '200';
-    document.getElementById('player2_score').innerHTML = '200';
-}
-function update_map_47() {
-    document.getElementById('7q45').className = char_to_color_table['.'];
-    document.getElementById('6q45').className = char_to_color_table['K'];
-    document.getElementById('26q45').className = char_to_color_table['.'];
-    document.getElementById('27q45').className = char_to_color_table['K'];
-    document.getElementById('23q45').className = char_to_color_table['.'];
-    document.getElementById('22q45').className = char_to_color_table['K'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('23q45').className = char_to_color_table['K'];
-    document.getElementById('36q16').className = char_to_color_table['.'];
-    document.getElementById('35q16').className = char_to_color_table['1'];
-    document.getElementById('13q16').className = char_to_color_table['.'];
-    document.getElementById('14q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
-}
-function update_map_48() {
-    document.getElementById('6q45').className = char_to_color_table['.'];
-    document.getElementById('5q45').className = char_to_color_table['K'];
-    document.getElementById('27q45').className = char_to_color_table['.'];
-    document.getElementById('28q45').className = char_to_color_table['K'];
-    document.getElementById('22q45').className = char_to_color_table['.'];
-    document.getElementById('21q45').className = char_to_color_table['K'];
-    document.getElementById('23q45').className = char_to_color_table['.'];
-    document.getElementById('22q45').className = char_to_color_table['K'];
-    document.getElementById('35q16').className = char_to_color_table['.'];
-    document.getElementById('34q16').className = char_to_color_table['1'];
-    document.getElementById('14q16').className = char_to_color_table['.'];
-    document.getElementById('13q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
-}
-function update_map_49() {
-    document.getElementById('5q45').className = char_to_color_table['.'];
-    document.getElementById('4q45').className = char_to_color_table['K'];
-    document.getElementById('28q45').className = char_to_color_table['.'];
-    document.getElementById('29q45').className = char_to_color_table['K'];
-    document.getElementById('21q45').className = char_to_color_table['.'];
-    document.getElementById('20q45').className = char_to_color_table['K'];
-    document.getElementById('22q45').className = char_to_color_table['.'];
-    document.getElementById('21q45').className = char_to_color_table['K'];
-    document.getElementById('34q16').className = char_to_color_table['.'];
-    document.getElementById('33q16').className = char_to_color_table['1'];
-    document.getElementById('13q16').className = char_to_color_table['.'];
-    document.getElementById('12q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
-}
-function update_map_50() {
-    document.getElementById('4q45').className = char_to_color_table['.'];
-    document.getElementById('3q45').className = char_to_color_table['K'];
-    document.getElementById('29q45').className = char_to_color_table['.'];
-    document.getElementById('30q45').className = char_to_color_table['K'];
-    document.getElementById('20q45').className = char_to_color_table['.'];
-    document.getElementById('19q45').className = char_to_color_table['K'];
-    document.getElementById('21q45').className = char_to_color_table['.'];
-    document.getElementById('20q45').className = char_to_color_table['K'];
-    document.getElementById('33q16').className = char_to_color_table['.'];
-    document.getElementById('32q16').className = char_to_color_table['1'];
-    document.getElementById('12q16').className = char_to_color_table['.'];
-    document.getElementById('11q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
-}
-function update_map_51() {
-    document.getElementById('3q45').className = char_to_color_table['.'];
-    document.getElementById('2q45').className = char_to_color_table['K'];
-    document.getElementById('30q45').className = char_to_color_table['.'];
-    document.getElementById('31q45').className = char_to_color_table['K'];
-    document.getElementById('19q45').className = char_to_color_table['.'];
-    document.getElementById('18q45').className = char_to_color_table['K'];
-    document.getElementById('20q45').className = char_to_color_table['.'];
-    document.getElementById('19q45').className = char_to_color_table['K'];
-    document.getElementById('32q16').className = char_to_color_table['.'];
-    document.getElementById('31q16').className = char_to_color_table['1'];
-    document.getElementById('11q16').className = char_to_color_table['.'];
-    document.getElementById('10q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
-}
-function update_map_52() {
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q5').className = char_to_color_table['K'];
-    document.getElementById('2q45').className = char_to_color_table['.'];
-    document.getElementById('1q45').className = char_to_color_table['K'];
-    document.getElementById('31q45').className = char_to_color_table['.'];
-    document.getElementById('32q45').className = char_to_color_table['K'];
-    document.getElementById('18q45').className = char_to_color_table['.'];
-    document.getElementById('17q45').className = char_to_color_table['K'];
-    document.getElementById('19q45').className = char_to_color_table['.'];
-    document.getElementById('18q45').className = char_to_color_table['K'];
-    document.getElementById('31q16').className = char_to_color_table['.'];
-    document.getElementById('30q16').className = char_to_color_table['1'];
-    document.getElementById('10q16').className = char_to_color_table['.'];
-    document.getElementById('9q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
-}
-function update_map_53() {
-    document.getElementById('24q5').className = char_to_color_table['.'];
-    document.getElementById('24q6').className = char_to_color_table['K'];
+    document.getElementById('2q5').className = char_to_color_table['.'];
+    document.getElementById('1q5').className = char_to_color_table['K'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('2q5').className = char_to_color_table['K'];
+    document.getElementById('19q4').className = char_to_color_table['.'];
+    document.getElementById('18q4').className = char_to_color_table['K'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q3').className = char_to_color_table['K'];
-    document.getElementById('1q45').className = char_to_color_table['.'];
-    document.getElementById('32q45').className = char_to_color_table['.'];
-    document.getElementById('33q45').className = char_to_color_table['K'];
-    document.getElementById('17q45').className = char_to_color_table['.'];
-    document.getElementById('16q45').className = char_to_color_table['K'];
-    document.getElementById('18q45').className = char_to_color_table['.'];
-    document.getElementById('17q45').className = char_to_color_table['K'];
-    document.getElementById('30q16').className = char_to_color_table['.'];
-    document.getElementById('29q16').className = char_to_color_table['1'];
-    document.getElementById('9q16').className = char_to_color_table['.'];
-    document.getElementById('8q16').className = char_to_color_table['2'];
+    document.getElementById('14q45').className = char_to_color_table['.'];
+    document.getElementById('13q45').className = char_to_color_table['K'];
+    document.getElementById('17q14').className = char_to_color_table['.'];
+    document.getElementById('16q14').className = char_to_color_table['1'];
+    document.getElementById('8q36').className = char_to_color_table['.'];
+    document.getElementById('7q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
-function update_map_54() {
-    document.getElementById('24q6').className = char_to_color_table['.'];
-    document.getElementById('24q7').className = char_to_color_table['K'];
+function update_map_12() {
+    document.getElementById('1q5').className = char_to_color_table['.'];
+    document.getElementById('2q5').className = char_to_color_table['.'];
+    document.getElementById('1q5').className = char_to_color_table['K'];
+    document.getElementById('18q4').className = char_to_color_table['.'];
+    document.getElementById('17q4').className = char_to_color_table['K'];
     document.getElementById('24q3').className = char_to_color_table['.'];
     document.getElementById('24q2').className = char_to_color_table['K'];
-    document.getElementById('33q45').className = char_to_color_table['.'];
-    document.getElementById('34q45').className = char_to_color_table['K'];
-    document.getElementById('16q45').className = char_to_color_table['.'];
-    document.getElementById('15q45').className = char_to_color_table['K'];
-    document.getElementById('17q45').className = char_to_color_table['.'];
-    document.getElementById('16q45').className = char_to_color_table['K'];
-    document.getElementById('29q16').className = char_to_color_table['.'];
-    document.getElementById('28q16').className = char_to_color_table['1'];
-    document.getElementById('8q16').className = char_to_color_table['.'];
-    document.getElementById('7q16').className = char_to_color_table['2'];
+    document.getElementById('24q4').className = char_to_color_table['.'];
+    document.getElementById('24q3').className = char_to_color_table['K'];
+    document.getElementById('13q45').className = char_to_color_table['.'];
+    document.getElementById('12q45').className = char_to_color_table['K'];
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q39').className = char_to_color_table['K'];
+    document.getElementById('16q14').className = char_to_color_table['.'];
+    document.getElementById('15q14').className = char_to_color_table['1'];
+    document.getElementById('7q36').className = char_to_color_table['.'];
+    document.getElementById('6q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
-function update_map_55() {
-    document.getElementById('24q7').className = char_to_color_table['.'];
+function update_map_13() {
+    document.getElementById('1q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('2q5').className = char_to_color_table['K'];
+    document.getElementById('17q4').className = char_to_color_table['.'];
+    document.getElementById('16q4').className = char_to_color_table['K'];
     document.getElementById('24q2').className = char_to_color_table['.'];
     document.getElementById('24q1').className = char_to_color_table['K'];
-    document.getElementById('34q45').className = char_to_color_table['.'];
-    document.getElementById('35q45').className = char_to_color_table['K'];
-    document.getElementById('15q45').className = char_to_color_table['.'];
-    document.getElementById('14q45').className = char_to_color_table['K'];
-    document.getElementById('16q45').className = char_to_color_table['.'];
-    document.getElementById('15q45').className = char_to_color_table['K'];
-    document.getElementById('28q16').className = char_to_color_table['.'];
-    document.getElementById('27q16').className = char_to_color_table['1'];
-    document.getElementById('7q16').className = char_to_color_table['.'];
-    document.getElementById('6q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
-}
-function update_map_56() {
-    document.getElementById('24q1').className = char_to_color_table['.'];
-    document.getElementById('35q45').className = char_to_color_table['.'];
-    document.getElementById('36q45').className = char_to_color_table['K'];
-    document.getElementById('14q45').className = char_to_color_table['.'];
-    document.getElementById('13q45').className = char_to_color_table['K'];
-    document.getElementById('15q45').className = char_to_color_table['.'];
-    document.getElementById('14q45').className = char_to_color_table['K'];
-    document.getElementById('27q16').className = char_to_color_table['.'];
-    document.getElementById('26q16').className = char_to_color_table['1'];
-    document.getElementById('6q16').className = char_to_color_table['.'];
-    document.getElementById('5q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
-}
-function update_map_57() {
-    document.getElementById('36q45').className = char_to_color_table['.'];
-    document.getElementById('37q45').className = char_to_color_table['K'];
-    document.getElementById('13q45').className = char_to_color_table['.'];
-    document.getElementById('12q45').className = char_to_color_table['K'];
-    document.getElementById('14q45').className = char_to_color_table['.'];
-    document.getElementById('13q45').className = char_to_color_table['K'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('23q45').className = char_to_color_table['K'];
-    document.getElementById('26q16').className = char_to_color_table['.'];
-    document.getElementById('25q16').className = char_to_color_table['1'];
-    document.getElementById('5q16').className = char_to_color_table['.'];
-    document.getElementById('4q16').className = char_to_color_table['2'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
-}
-function update_map_58() {
-    document.getElementById('37q45').className = char_to_color_table['.'];
-    document.getElementById('38q45').className = char_to_color_table['K'];
+    document.getElementById('24q3').className = char_to_color_table['.'];
+    document.getElementById('24q2').className = char_to_color_table['K'];
     document.getElementById('12q45').className = char_to_color_table['.'];
     document.getElementById('11q45').className = char_to_color_table['K'];
-    document.getElementById('13q45').className = char_to_color_table['.'];
-    document.getElementById('12q45').className = char_to_color_table['K'];
+    document.getElementById('37q39').className = char_to_color_table['.'];
+    document.getElementById('37q38').className = char_to_color_table['K'];
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q41').className = char_to_color_table['K'];
+    document.getElementById('15q14').className = char_to_color_table['.'];
+    document.getElementById('14q14').className = char_to_color_table['1'];
+    document.getElementById('6q36').className = char_to_color_table['.'];
+    document.getElementById('5q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
+    document.getElementById('24q4').className = char_to_color_table['.'];
+    document.getElementById('24q4').className = char_to_color_table['M'];
+    document.getElementById('24q45').className = char_to_color_table['.'];
+    document.getElementById('24q45').className = char_to_color_table['M'];
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
+}
+function update_map_14() {
+    document.getElementById('2q5').className = char_to_color_table['.'];
+    document.getElementById('1q5').className = char_to_color_table['K'];
+    document.getElementById('16q4').className = char_to_color_table['.'];
+    document.getElementById('15q4').className = char_to_color_table['K'];
+    document.getElementById('24q1').className = char_to_color_table['.'];
+    document.getElementById('24q2').className = char_to_color_table['.'];
+    document.getElementById('24q1').className = char_to_color_table['K'];
+    document.getElementById('11q45').className = char_to_color_table['.'];
+    document.getElementById('10q45').className = char_to_color_table['K'];
+    document.getElementById('37q38').className = char_to_color_table['.'];
+    document.getElementById('37q37').className = char_to_color_table['K'];
+    document.getElementById('37q41').className = char_to_color_table['.'];
+    document.getElementById('37q42').className = char_to_color_table['K'];
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q39').className = char_to_color_table['K'];
+    document.getElementById('14q14').className = char_to_color_table['.'];
+    document.getElementById('13q14').className = char_to_color_table['1'];
+    document.getElementById('5q36').className = char_to_color_table['.'];
+    document.getElementById('4q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
+    document.getElementById('24q4').className = char_to_color_table['.'];
+    document.getElementById('24q4').className = char_to_color_table['M'];
+    document.getElementById('24q45').className = char_to_color_table['.'];
+    document.getElementById('24q45').className = char_to_color_table['M'];
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
+}
+function update_map_15() {
+    document.getElementById('1q5').className = char_to_color_table['.'];
+    document.getElementById('15q4').className = char_to_color_table['.'];
+    document.getElementById('14q4').className = char_to_color_table['K'];
+    document.getElementById('24q1').className = char_to_color_table['.'];
+    document.getElementById('10q45').className = char_to_color_table['.'];
+    document.getElementById('9q45').className = char_to_color_table['K'];
+    document.getElementById('24q45').className = char_to_color_table['.'];
+    document.getElementById('23q45').className = char_to_color_table['K'];
+    document.getElementById('37q37').className = char_to_color_table['.'];
+    document.getElementById('37q36').className = char_to_color_table['K'];
+    document.getElementById('37q42').className = char_to_color_table['.'];
+    document.getElementById('37q43').className = char_to_color_table['K'];
+    document.getElementById('37q39').className = char_to_color_table['.'];
+    document.getElementById('37q38').className = char_to_color_table['K'];
+    document.getElementById('13q14').className = char_to_color_table['.'];
+    document.getElementById('12q14').className = char_to_color_table['1'];
+    document.getElementById('4q36').className = char_to_color_table['.'];
+    document.getElementById('3q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
+    document.getElementById('24q4').className = char_to_color_table['.'];
+    document.getElementById('24q4').className = char_to_color_table['M'];
+    document.getElementById('24q45').className = char_to_color_table['.'];
+    document.getElementById('24q45').className = char_to_color_table['M'];
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
+}
+function update_map_16() {
+    document.getElementById('14q4').className = char_to_color_table['.'];
+    document.getElementById('13q4').className = char_to_color_table['K'];
+    document.getElementById('9q45').className = char_to_color_table['.'];
+    document.getElementById('8q45').className = char_to_color_table['K'];
     document.getElementById('23q45').className = char_to_color_table['.'];
     document.getElementById('22q45').className = char_to_color_table['K'];
     document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q44').className = char_to_color_table['K'];
-    document.getElementById('25q16').className = char_to_color_table['.'];
-    document.getElementById('24q16').className = char_to_color_table['1'];
-    document.getElementById('4q16').className = char_to_color_table['.'];
-    document.getElementById('3q16').className = char_to_color_table['2'];
+    document.getElementById('25q45').className = char_to_color_table['K'];
+    document.getElementById('37q36').className = char_to_color_table['.'];
+    document.getElementById('37q35').className = char_to_color_table['K'];
+    document.getElementById('37q43').className = char_to_color_table['.'];
+    document.getElementById('37q44').className = char_to_color_table['K'];
+    document.getElementById('37q38').className = char_to_color_table['.'];
+    document.getElementById('37q37').className = char_to_color_table['K'];
+    document.getElementById('12q14').className = char_to_color_table['.'];
+    document.getElementById('11q14').className = char_to_color_table['1'];
+    document.getElementById('3q36').className = char_to_color_table['.'];
+    document.getElementById('2q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
-function update_map_59() {
-    document.getElementById('38q45').className = char_to_color_table['.'];
-    document.getElementById('39q45').className = char_to_color_table['K'];
-    document.getElementById('11q45').className = char_to_color_table['.'];
-    document.getElementById('10q45').className = char_to_color_table['K'];
-    document.getElementById('12q45').className = char_to_color_table['.'];
-    document.getElementById('11q45').className = char_to_color_table['K'];
+function update_map_17() {
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q4').className = char_to_color_table['K'];
+    document.getElementById('13q4').className = char_to_color_table['.'];
+    document.getElementById('12q4').className = char_to_color_table['K'];
+    document.getElementById('8q45').className = char_to_color_table['.'];
+    document.getElementById('7q45').className = char_to_color_table['K'];
     document.getElementById('22q45').className = char_to_color_table['.'];
     document.getElementById('21q45').className = char_to_color_table['K'];
-    document.getElementById('24q44').className = char_to_color_table['.'];
-    document.getElementById('24q43').className = char_to_color_table['K'];
-    document.getElementById('24q16').className = char_to_color_table['.'];
-    document.getElementById('23q16').className = char_to_color_table['1'];
-    document.getElementById('3q16').className = char_to_color_table['.'];
-    document.getElementById('2q16').className = char_to_color_table['2'];
+    document.getElementById('25q45').className = char_to_color_table['.'];
+    document.getElementById('26q45').className = char_to_color_table['K'];
+    document.getElementById('37q35').className = char_to_color_table['.'];
+    document.getElementById('37q34').className = char_to_color_table['K'];
+    document.getElementById('37q44').className = char_to_color_table['.'];
+    document.getElementById('37q45').className = char_to_color_table['K'];
+    document.getElementById('37q37').className = char_to_color_table['.'];
+    document.getElementById('37q36').className = char_to_color_table['K'];
+    document.getElementById('11q14').className = char_to_color_table['.'];
+    document.getElementById('10q14').className = char_to_color_table['1'];
+    document.getElementById('2q36').className = char_to_color_table['.'];
+    document.getElementById('1q36').className = char_to_color_table['2'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
-function update_map_60() {
-    document.getElementById('39q45').className = char_to_color_table['.'];
-    document.getElementById('40q45').className = char_to_color_table['K'];
-    document.getElementById('10q45').className = char_to_color_table['.'];
-    document.getElementById('9q45').className = char_to_color_table['K'];
-    document.getElementById('11q45').className = char_to_color_table['.'];
-    document.getElementById('10q45').className = char_to_color_table['K'];
+function update_map_18() {
+    document.getElementById('3q4').className = char_to_color_table['.'];
+    document.getElementById('3q3').className = char_to_color_table['K'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('4q5').className = char_to_color_table['K'];
+    document.getElementById('12q4').className = char_to_color_table['.'];
+    document.getElementById('11q4').className = char_to_color_table['K'];
+    document.getElementById('7q45').className = char_to_color_table['.'];
+    document.getElementById('6q45').className = char_to_color_table['K'];
     document.getElementById('21q45').className = char_to_color_table['.'];
     document.getElementById('20q45').className = char_to_color_table['K'];
-    document.getElementById('24q43').className = char_to_color_table['.'];
-    document.getElementById('24q42').className = char_to_color_table['K'];
-    document.getElementById('23q16').className = char_to_color_table['.'];
-    document.getElementById('22q16').className = char_to_color_table['1'];
-    document.getElementById('2q16').className = char_to_color_table['.'];
-    document.getElementById('1q16').className = char_to_color_table['2'];
+    document.getElementById('26q45').className = char_to_color_table['.'];
+    document.getElementById('27q45').className = char_to_color_table['K'];
+    document.getElementById('37q34').className = char_to_color_table['.'];
+    document.getElementById('37q33').className = char_to_color_table['K'];
+    document.getElementById('37q45').className = char_to_color_table['.'];
+    document.getElementById('37q46').className = char_to_color_table['K'];
+    document.getElementById('37q36').className = char_to_color_table['.'];
+    document.getElementById('37q35').className = char_to_color_table['K'];
+    document.getElementById('10q14').className = char_to_color_table['.'];
+    document.getElementById('9q14').className = char_to_color_table['1'];
+    document.getElementById('1q36').className = char_to_color_table['.'];
+    document.getElementById('0q36').className = char_to_color_table['D'];
+    document.getElementById('3q5').className = char_to_color_table['.'];
+    document.getElementById('3q5').className = char_to_color_table['M'];
     document.getElementById('24q4').className = char_to_color_table['.'];
     document.getElementById('24q4').className = char_to_color_table['M'];
     document.getElementById('24q45').className = char_to_color_table['.'];
     document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
+    document.getElementById('37q40').className = char_to_color_table['.'];
+    document.getElementById('37q40').className = char_to_color_table['M'];
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
-function update_map_61() {
-    document.getElementById('40q45').className = char_to_color_table['.'];
-    document.getElementById('41q45').className = char_to_color_table['K'];
-    document.getElementById('9q45').className = char_to_color_table['.'];
-    document.getElementById('8q45').className = char_to_color_table['K'];
-    document.getElementById('10q45').className = char_to_color_table['.'];
-    document.getElementById('9q45').className = char_to_color_table['K'];
-    document.getElementById('20q45').className = char_to_color_table['.'];
-    document.getElementById('19q45').className = char_to_color_table['K'];
-    document.getElementById('24q42').className = char_to_color_table['.'];
-    document.getElementById('22q16').className = char_to_color_table['.'];
-    document.getElementById('21q16').className = char_to_color_table['1'];
-    document.getElementById('1q16').className = char_to_color_table['.'];
-    document.getElementById('0q16').className = char_to_color_table['D'];
-    document.getElementById('24q4').className = char_to_color_table['.'];
-    document.getElementById('24q4').className = char_to_color_table['M'];
-    document.getElementById('24q45').className = char_to_color_table['.'];
-    document.getElementById('24q45').className = char_to_color_table['M'];
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
+function update_map_19() {
+    document.getElementById('player1_score').innerHTML = '0';
+    document.getElementById('player2_score').innerHTML = '0';
 }
-function update_map_62() {
-    document.getElementById('player1_score').innerHTML = '240';
-    document.getElementById('player2_score').innerHTML = '240';
+function update_map_20() {
 }
-function update_map_63() {
-}
-var max_number_of_funcs = 63;
-func_array[63] = update_map_63;
-func_array[62] = update_map_62;
-func_array[61] = update_map_61;
-func_array[60] = update_map_60;
-func_array[59] = update_map_59;
-func_array[58] = update_map_58;
-func_array[57] = update_map_57;
-func_array[56] = update_map_56;
-func_array[55] = update_map_55;
-func_array[54] = update_map_54;
-func_array[53] = update_map_53;
-func_array[52] = update_map_52;
-func_array[51] = update_map_51;
-func_array[50] = update_map_50;
-func_array[49] = update_map_49;
-func_array[48] = update_map_48;
-func_array[47] = update_map_47;
-func_array[46] = update_map_46;
-func_array[45] = update_map_45;
-func_array[44] = update_map_44;
-func_array[43] = update_map_43;
-func_array[42] = update_map_42;
-func_array[41] = update_map_41;
-func_array[40] = update_map_40;
-func_array[39] = update_map_39;
-func_array[38] = update_map_38;
-func_array[37] = update_map_37;
-func_array[36] = update_map_36;
-func_array[35] = update_map_35;
-func_array[34] = update_map_34;
-func_array[33] = update_map_33;
-func_array[32] = update_map_32;
-func_array[31] = update_map_31;
-func_array[30] = update_map_30;
-func_array[29] = update_map_29;
-func_array[28] = update_map_28;
-func_array[27] = update_map_27;
-func_array[26] = update_map_26;
-func_array[25] = update_map_25;
-func_array[24] = update_map_24;
-func_array[23] = update_map_23;
-func_array[22] = update_map_22;
-func_array[21] = update_map_21;
+var max_number_of_funcs = 20;
 func_array[20] = update_map_20;
 func_array[19] = update_map_19;
 func_array[18] = update_map_18;

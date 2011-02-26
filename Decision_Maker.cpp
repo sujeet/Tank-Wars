@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cstdlib>
 #include"Decision_Maker.h"
 
 void DecisionMaker::set_weightage_table(int strategy, int go_to_gold_weight, int attack_enemy_falcon_weight, int attack_enemy_tank_weight, int defend_your_falcon_weight)
@@ -79,6 +80,9 @@ Move DecisionMaker::return_best_move(int best_action_plan)
     case DEFEND_MY_FALCON:
         return defend_my_falcon_move();
         break;
+    default:
+        cerr << " Error: Function return_best_move in DecisionMaker class got invalid argument = " << best_action_plan << endl;
+        exit(-1);
     }
 }
 
@@ -88,12 +92,11 @@ Move DecisionMaker::go_to_gold_move()
     // the move to 'go to gold'
     if(info.gold_available)
     {
-        return info.nearest_gold.initial_move;
+        return info.opp_tank.initial_move;
     }
     else
     {
-        cerr << "Gold finished";
-        return info.opp_falcon.initial_move;
+        return info.opp_tank.initial_move;
     }
 }
 
