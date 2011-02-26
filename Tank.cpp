@@ -19,17 +19,19 @@ Tank::Tank (char symbol,
      this->dead_flag = dead_flag;
 }
 
-void Tank::initialize_from (int given_player_no, char symbol, int init_x, int init_y, char falcon_symbol, int falcon_init_x, int falcon_init_y)
+void Tank::initialize_from (int given_player_no,
+                            char symbol,
+                            Position init_posn,
+                            char falcon_symbol,
+                            Position falcon_posn)
 {
      // Initialize a tank's symbol and initial position
      this->symbol = symbol;
-     this->curr_posn.x = init_x;
-     this->curr_posn.y = init_y;
+     this->curr_posn = init_posn;
      this->prev_posn = this->curr_posn;
 
      this->falcon.symbol = falcon_symbol;
-     this->falcon.posn.x = falcon_init_x;
-     this->falcon.posn.y = falcon_init_y;
+     this->falcon.posn = falcon_posn;
      
 
      this->id.player_no = given_player_no;

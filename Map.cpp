@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Map.h"
+#include "Misc_Classes.h"
 
 using namespace std;
 
@@ -21,14 +22,20 @@ void MapClass::create_from_file (string filename)
      for (int i = 0; i < MAP_SIZE - 1; i++){
           for (int j = 0; j < MAP_SIZE - 1; j++){
                infile >> letter;
-               if (letter == '1') {
+               if (letter == TANK1) {
                     this->tank1_init_posn = Position (i, j);
                }
-               if (letter == '2') {
+               if (letter == TANK2) {
                     this->tank2_init_posn = Position (i, j);
                }
                if (letter == MACHINE_GUN) {
                     this->machine_guns_posns.push_back ( Position(i,j) );
+               }
+               if (letter == FALCON1) {
+                    this->falcon1_posn = Position (i, j);
+               }
+               if (letter == FALCON2) {
+                    this->falcon2_posn = Position (i, j);
                }
                this->set_element (i, j, letter, false);
           }

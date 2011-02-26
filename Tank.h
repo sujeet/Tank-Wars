@@ -90,7 +90,11 @@ public:
            Position prev_posn,
            bool dead_flag = false);
 
-     void initialize_from (int given_player_no, char symbol, int init_x, int init_y, char falcon_symbol, int falcon_init_x, int falcon_init_y);
+     void initialize_from (int given_player_no,
+                           char symbol,
+                           Position init_posn,
+                           char falcon_symbol,
+                           Position falcon_posn);
      void print_bullets ()
      {
           for (unsigned int i = 0; i < bullet_list.size (); i++){

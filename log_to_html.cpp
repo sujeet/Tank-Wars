@@ -3,6 +3,8 @@
 #include <fstream>
 #include <sstream>
 
+#include "Misc_Classes.h"
+
 using namespace std;
 #define MAP_SIZE 51
 #define ASCII_CHARS 128
@@ -33,22 +35,22 @@ using namespace std;
 string symbol_to_html_class (char symbol) 
 {
      switch (symbol){
-     case '#' : return "wall"                  ; break;
-     case '.' : return "empty"                 ; break;
-     case 'G' : return "gold"                  ; break;
+     case WALL               : return "wall"                  ; break;
+     case EMPTY              : return "empty"                 ; break;
+     case GOLD               : return "gold"                  ; break;
 
-     case '1' : return "tank1"                 ; break;
-     case '2' : return "tank2"                 ; break;
-     case 'M' : return "machine_gun"           ; break;
+     case TANK1              : return "tank1"                 ; break;
+     case TANK2              : return "tank2"                 ; break;
+     case MACHINE_GUN        : return "machine_gun"           ; break;
 
-     case 'A' : return "bullet1"               ; break;
-     case 'B' : return "bullet2"               ; break;
-     case 'K' : return "bullet3"               ; break;
+     case BULLET1            : return "bullet1"               ; break;
+     case BULLET2            : return "bullet2"               ; break;
+     case MACHINE_GUN_BULLET : return "bullet3"               ; break;
 
-     case 'D' : return "dead"                  ; break;
-     case 'F' : return "falcon1"               ; break;
-     case 'E' : return "falcon2"               ; break;
-     default  : return "Some thing went wrong" ;
+     case DEAD               : return "dead"                  ; break;
+     case FALCON1            : return "falcon1"               ; break;
+     case FALCON2            : return "falcon2"               ; break;
+     default                 : return "Some thing went wrong" ;
      }
 }
 
@@ -420,21 +422,21 @@ string insert_js()
              << "var max_delay = " << MAX_DELAY << ";   " << endl
              << "var char_to_color_table = {};          " << endl
 
-             << "char_to_color_table['.'] = 'empty';       " << endl
-             << "char_to_color_table['#'] = 'wall';        " << endl 
-             << "char_to_color_table['G'] = 'gold';        " << endl 
-             << "char_to_color_table['D'] = 'dead';        " << endl 
+             << "char_to_color_table['" << EMPTY              << "'] = 'empty';       " << endl
+             << "char_to_color_table['" << WALL               << "'] = 'wall';        " << endl 
+             << "char_to_color_table['" << GOLD               << "'] = 'gold';        " << endl 
+             << "char_to_color_table['" << DEAD               << "'] = 'dead';        " << endl 
 
-             << "char_to_color_table['1'] = 'tank1';       " << endl  
-             << "char_to_color_table['2'] = 'tank2';       " << endl
-             << "char_to_color_table['M'] = 'machine_gun'; " << endl
+             << "char_to_color_table['" << TANK1              << "'] = 'tank1';       " << endl  
+             << "char_to_color_table['" << TANK2              << "'] = 'tank2';       " << endl
+             << "char_to_color_table['" << MACHINE_GUN        << "'] = 'machine_gun'; " << endl
 
-             << "char_to_color_table['A'] = 'bullet1';     " << endl
-             << "char_to_color_table['B'] = 'bullet2';     " << endl
-             << "char_to_color_table['K'] = 'bullet3';     " << endl
+             << "char_to_color_table['" << BULLET1            << "'] = 'bullet1';     " << endl
+             << "char_to_color_table['" << BULLET2            << "'] = 'bullet2';     " << endl
+             << "char_to_color_table['" << MACHINE_GUN_BULLET << "'] = 'bullet3';     " << endl
 
-             << "char_to_color_table['F'] = 'falcon1';     " << endl
-             << "char_to_color_table['E'] = 'falcon2';     " << endl;
+             << "char_to_color_table['" << FALCON1            << "'] = 'falcon1';     " << endl
+             << "char_to_color_table['" << FALCON2            << "'] = 'falcon2';     " << endl;
 
      // Now insert the function list
      str_out << insert_func_list();
@@ -496,7 +498,7 @@ int main()
      html_file << "</head>" << endl;
      html_file << "<body>" << endl;
      html_file << "<div class = 'metacontainer'>" << endl;
-     html_file << make_divs (MAP_FILE);
+     html_file << make_divs ( (char*) MAP_FILE );
      html_file << insert_status_notifier();
      html_file << insert_controls();
      html_file << "</div>" << endl;
