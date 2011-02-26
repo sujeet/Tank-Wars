@@ -5,6 +5,7 @@
 #include "Tank.h"
 #include "Arena.h"
 #include "Map.h"
+#include "Misc_Classes.h"
 
 using namespace std;
 
@@ -38,14 +39,14 @@ Arena::Arena ()
      // Assuming 2 has its falcon in the lower half
      
      tank1.initialize_from (1,
-                            '1',
+                            TANK1,
                             this->Map.tank1_init_posn,
-                            'F',
+                            FALCON1,
                             this->Map.falcon1_posn);
      tank2.initialize_from (2,
-                            '2',
+                            TANK2,
                             this->Map.tank2_init_posn,
-                            'E',
+                            FALCON2,
                             this->Map.falcon2_posn);
 
      DM1.DMinitializer (tank1.id, tank2.id);

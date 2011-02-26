@@ -8,7 +8,7 @@ all: TankWars.exe log_to_html.exe
 TankWars.exe: Arena.o Tank.o TankWars.o Map.o Misc_Classes.o Info.o Decision_Maker.o
 	g++ -o $@ $^ $(CFLAGS) $(MACROS)
 
-Arena.o: Arena.cpp Arena.h Tank.h Map.h Info.h Decision_Maker.h
+Arena.o: Arena.cpp Arena.h Tank.h Map.h Info.h Decision_Maker.h Misc_Classes.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
 Tank.o: Tank.cpp Tank.h Map.h Info.h Decision_Maker.h
@@ -29,8 +29,8 @@ Misc_Classes.o: Misc_Classes.cpp Misc_Classes.h
 Info.o: Info.cpp Info.h Misc_Classes.h Map.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
-log_to_html.exe: log_to_html.cpp
-	g++ -o $@ $< $(CFLAGS) $(MACROS)
+log_to_html.exe: log_to_html.cpp Misc_Classes.h Misc_Classes.o
+	g++ -o $@ $< Misc_Classes.o $(CFLAGS) $(MACROS)
 
 play: all
 	./TankWars.exe
