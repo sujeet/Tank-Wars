@@ -14,27 +14,30 @@
  */
 class DecisionMaker
 {
-    public:
-    void DMinitializer(ID, ID);
-    int weightage_table[4][4];
-    int difficulty_table[4];
-    Info info;
+public:
+     void DMinitializer(ID, ID);
+     int weightage_table[4][4];
+     int difficulty_table[4];
+     Info info;
 
-    void set_weightage_table(int, int, int, int, int );
-    void set_diffculty_table(int, int, int, int);
-    void fill_difficulty_table();
+     void set_weightage_table(int, int, int, int, int );
+     void set_difficulty_table(int, int, int, int);
+     void fill_difficulty_table();
 
-    int calculate_best_action_plan(int );
-    int find_the_maximum(float*);
+     int calculate_best_action_plan(int );
+     int find_the_maximum(float*);
 
-    Move go_to_gold_move();
-    Move attack_enemy_falcon_move();
-    Move attack_enemy_tank_move();
-    Move defend_my_falcon_move();
+     Move go_to_nearest_gold_move();
+     Move attack_enemy_falcon_move();
+     Move attack_enemy_tank_move();
+     Move defend_my_falcon_move();
 
-    Move return_best_move(int );
+     // Make it just a one-step call for the user instead of him
+     // having to say
+     // return_best_move (calculate_best_action_plan (his_choice_of_strategy))?
+     Move return_best_move(int );
 
-    Move get_player_move(int);
+     Move get_player_move(int);
 };
 
 

@@ -6,7 +6,7 @@
 
 
 // For Info.h
-#define GO_TO_GOLD 0
+#define GO_TO_NEAREST_GOLD 0
 #define ATTACK_ENEMY_FALCON 1
 #define ATTACK_ENEMY_TANK 2
 #define DEFEND_MY_FALCON 3

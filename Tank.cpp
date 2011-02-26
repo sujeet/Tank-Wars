@@ -157,10 +157,11 @@ bool Tank::is_killed_by (Tank t)
           }
      }
 
-     if (flag)
+     if (flag){
           t.bullet_list[i].set_disappear_flag ();
+     }
 
-     // Check for tank crossing later
+     // Check for Tank-Tank crossing 
      if (this->curr_posn == t.curr_posn || (this->curr_posn == t.prev_posn && this->prev_posn == t.curr_posn)){
           flag = true;
      }
@@ -268,7 +269,8 @@ void Tank::update_on_map (MapClass & Map)
 #endif
 
      // Blank previous position on map
-     Map.set_element (this->prev_posn, EMPTY);
+     if (Map.get_element (this->prev_posn) == this->symbol)
+	  Map.set_element (this->prev_posn, EMPTY);
 
      // Set current position on map
      if (this->dead_flag){
@@ -309,8 +311,10 @@ void Bullet::update_on_map (MapClass & Map)
 #endif
      
      // Blank previous position
-     Map.set_element (this->prev_posn, EMPTY);
+     if (Map.get_element (this->prev_posn) == this->symbol)
+	  Map.set_element (this->prev_posn, EMPTY);
      if (this->disappear_flag){
+	  cerr << "Hi" << endl;
           // Map[curr_x][curr_y] = EMPTY;
           // the bullet died because it hit
           // something hence setting curr_coords

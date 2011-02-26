@@ -234,7 +234,7 @@ int main(490,41655
 
 Decision_Maker.cpp,587
 void DecisionMaker::set_weightage_table(5,65
-void DecisionMaker::set_diffculty_table(27,995
+void DecisionMaker::set_difficulty_table(27,995
 void DecisionMaker::DMinitializer(36,1490
 void DecisionMaker::fill_difficulty_table(53,2105
 Move DecisionMaker::return_best_move(63,2515

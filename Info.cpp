@@ -183,12 +183,6 @@ void Info::update_info (MapClass &map, Position source, vector <Bullet> given_my
      this->my_bullet_list = given_my_bullet_list;
      this->enemy_bullet_list = given_enemy_bullet_list;
      this->machine_gun_list = given_machine_gun_list;
-    
-     //strategic_moves_array[AGGRESSIVE] = calculate_best_move(AGGRESSIVE);
-     //strategic_moves_array[DEFENSIVE] = calculate_best_move(DEFENSIVE);
-     //strategic_moves_array[GREEDY] = calculate_best_move(GREEDY);
-     //strategic_moves_array[CUSTOMISED] = calculate_best_move(CUSTOMISED);
-    
 }
 
 void Info::print_info()
