@@ -92,7 +92,7 @@ Move DecisionMaker::go_to_gold_move()
     // the move to 'go to gold'
     if(info.gold_available)
     {
-        return info.opp_tank.initial_move;
+        return info.nearest_gold.initial_move;
     }
     else
     {

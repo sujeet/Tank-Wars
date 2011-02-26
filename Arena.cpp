@@ -35,8 +35,6 @@ Arena::Arena ()
      // Assuming 1 has its falcon in the upper half
      // Assuming 2 has its falcon in the lower half
      
-     DM1.DMinitializer (tank1.id, tank2.id);
-     DM2.DMinitializer (tank2.id, tank1.id);
      tank1.initialize_from (1,
                             '1',
                             this->Map.tank1_init_posn.x,
@@ -51,6 +49,9 @@ Arena::Arena ()
                             'E',
                             MAP_SIZE/2,
                             1);
+
+     DM1.DMinitializer (tank1.id, tank2.id);
+     DM2.DMinitializer (tank2.id, tank1.id);
 
      this->initialize_machine_guns();
 
