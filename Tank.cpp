@@ -73,7 +73,7 @@ void Tank::get_next_move (Info& info, int choice)
 void Tank::get_machine_random_move () 
 {
      int temp;
-     temp = rand() % 8 + 4;
+     temp = rand() % 8;
      this->next_move.interpret_move (temp, true);
 }
 

@@ -86,6 +86,9 @@ void Arena::move_bullets ()
 {
      tank1.move_bullets ();
      tank2.move_bullets ();
+     for (unsigned int i = 0; i < this->machine_gun_list.size(); i++) {
+          this->machine_gun_list[i].move_bullets();
+     }
 }
 
 void Arena::get_player_moves ()

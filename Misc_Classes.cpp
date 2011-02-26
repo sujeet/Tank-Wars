@@ -1,7 +1,10 @@
 #include <iostream>
+#include <cstdlib>
+
 #include "Misc_Classes.h"
 
 #define DO_NOT_MOVE 10
+#define MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY 5
 
 using namespace std;
 
@@ -54,17 +57,22 @@ void Move::interpret_move (int user_move, bool is_machine_gun_move)
      if ( (not is_machine_gun_move) and (user_move / 4 == 1) ) {
           this->shoot = true;
      }
-     // else if ( (is_machine_gun_move) and (user_move / 4 == 1) ) {
-     else if (is_machine_gun_move) {
-          this->shoot = true;
+     else if ( (is_machine_gun_move) and (user_move / 4 == 1) ) {
+          // Machine guns have 25% chance of shoooting
+          int temp = rand() % MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY;
+          if (temp == 1) {
+               this->shoot = true;
+          }
      }
      else {
           this->shoot = false;
      }
-     if ( (is_machine_gun_move) and (this->shoot != true) ) {
+     if ( (is_machine_gun_move) and (this->shoot == false) ) {
           this->dirn.get_from_integer (DO_NOT_MOVE);
      }
-     this->dirn.get_from_integer (user_move % 4);
+     else {
+          this->dirn.get_from_integer (user_move % 4);
+     }
 }
 
 void Move::print() 
