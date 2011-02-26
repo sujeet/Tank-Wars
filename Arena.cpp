@@ -93,8 +93,8 @@ void Arena::get_player_moves ()
      
      // 0 : Choice - Say, Aggressive
      // 2 : Greedy
-     tank1.get_next_move (DM1.get_player_move(AGGRESSIVE));
-     tank2.get_next_move (DM2.get_player_move(CUSTOMISED));
+     tank1.get_next_move (DM1.get_player_move(GREEDY));
+     tank2.get_next_move (DM2.get_player_move(DEFENSIVE));
 }
 
 void Arena::execute_tank_moves ()

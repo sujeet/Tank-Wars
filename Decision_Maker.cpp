@@ -41,7 +41,7 @@ void DecisionMaker::DMinitializer(ID my_id, ID enemy_id)
      // go_to_nearest_gold_weight | attack_enemy_falcon_weight | attack_enemy_tank_weight | defend_your_falcon_weight
      set_weightage_table(AGGRESSIVE, 0, 100, 50, 0);
      set_weightage_table(DEFENSIVE, 20, 1, 5, 50);
-     set_weightage_table(GREEDY, 100, 15, 50, 0);
+     set_weightage_table(GREEDY, 100, 15, 10, 0);
      set_weightage_table(CUSTOMISED, 0, 0, 100, 0);
 
      // These are just dummy values 
@@ -119,12 +119,21 @@ Move DecisionMaker::attack_enemy_falcon_move()
 
 Move DecisionMaker::attack_enemy_tank_move()
 {
+//      // If you're able to shoot at falcon + if he's at distance X, do so
+//      if(info.opp_falcon.shortest_distance == 2)
+//      {
+// 	  info.opp_falcon.initial_move.shoot = true;
+// 	  return info.opp_falcon.initial_move;
+//      }
+//      // Else, just move closer to it
+//      return info.opp_falcon.initial_move;
 
      return info.opp_tank.initial_move;
 }
 
 Move DecisionMaker::defend_my_falcon_move()
 {
+     // If I'm in the vicinity of my falcon, and so is he, then call attack_enemy_tank_move
      return info.my_falcon.initial_move;
 }
 

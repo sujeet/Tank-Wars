@@ -180,19 +180,19 @@ void Info::update_distances(MapClass &map,Position source)
         gold_available = false;
     }
 
-     int i = 0, j = 0;
-     for(i = 0; i < MAP_SIZE - 1; i++)
-     {
-         for(j = 0; j < MAP_SIZE - 1; j++)
-         {
-             if(i != source.x || (j != source.y))
-		  initial_move[i][j].dirn.print();
-             else 
-		  cout << setw (2) << '9';//distance[i][j];
-         }
+//      int i = 0, j = 0;
+//      for(i = 0; i < MAP_SIZE - 1; i++)
+//      {
+//          for(j = 0; j < MAP_SIZE - 1; j++)
+//          {
+//              if(i != source.x || (j != source.y))
+// 		  initial_move[i][j].dirn.print();
+//              else 
+// 		  cout << setw (2) << '9';//distance[i][j];
+//          }
 
-         cout << endl << endl;
-     }
+//          cout << endl << endl;
+//      }
 
 //          exit(0);
 
