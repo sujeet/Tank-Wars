@@ -14,6 +14,12 @@ Direction::Direction()
      this->get_from_integer (0);
 }
 
+Direction::Direction(int xdir, int ydir)
+{
+    this->xdir = xdir;
+    this->ydir = ydir;
+}
+
 void Direction::print ()
 {
      cout << "Direction : " << xdir << " " << ydir << endl;

@@ -49,11 +49,10 @@ void Tank::initialize_from (int given_player_no, char symbol, int init_x, int in
      score = 0;
 }
 
-void Tank::get_next_move (Info& info, int choice)
+void Tank::get_next_move (DecisionMaker& DM, int choice)
 {
 
-     // CHANGE THIS
-     // this->next_move = info.strategic_moves_array[choice];
+     this->next_move = DM.get_player_move(choice);
      // cerr << "shoot : " << boolalpha << this->next_move.shoot << endl;
      // cerr << "dirn  : " << this->next_move.dirn.xdir << " " << this->next_move.dirn.ydir << endl;
      
@@ -61,13 +60,8 @@ void Tank::get_next_move (Info& info, int choice)
      // Call player function and get response
      // Just a random move returned as of now
      int temp;
-// #ifdef MOVE_DEBUG
-//      temp = MOVE_DEBUG;
-// #endif
-// #ifndef MOVE_DEBUG
      temp = rand () % 8;	
-// #endif
-     this->next_move.interpret_move (temp);
+    // this->next_move.interpret_move (temp);
 }
 
 void Tank::get_machine_random_move () 

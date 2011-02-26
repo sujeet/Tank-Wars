@@ -4,5 +4,7 @@
 *.o
 *.exe
 *.out
+*.html
+log.txt
 
 

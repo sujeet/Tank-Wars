@@ -36,6 +36,7 @@ Arena::Arena ()
 
      // Assuming 1 has its falcon in the upper half
      // Assuming 2 has its falcon in the lower half
+     
      tank1.initialize_from (1,
                             '1',
                             this->Map.tank1_init_posn.x,
@@ -51,11 +52,11 @@ Arena::Arena ()
                             MAP_SIZE/2,
                             1);
 
+     DM1.DMinitializer (tank1.id, tank2.id);
+     DM2.DMinitializer (tank2.id, tank1.id);
+
      this->initialize_machine_guns();
 
-     info1.initializer (tank1.id, tank2.id);
-     info2.initializer (tank2.id, tank1.id);
-     
 }
 
 void Arena::print_scores ()
@@ -97,12 +98,12 @@ void Arena::get_player_moves ()
 {
      // Get each tank's next moves
 
-     info1.update_info (this->Map, tank1.curr_posn);
-     info2.update_info (this->Map, tank2.curr_posn);
+     DM1.info.update_info (this->Map, tank1.curr_posn);
+     DM2.info.update_info (this->Map, tank2.curr_posn);
      
      // 1 : Choice - Say, Aggressive
-     tank1.get_next_move (info1, 2);
-     tank2.get_next_move (info2, 2);
+     tank1.get_next_move (DM1, 2);
+     tank2.get_next_move (DM2, 2);
 }
 
 void Arena::execute_tank_moves ()

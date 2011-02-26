@@ -30,6 +30,7 @@ public:
      
      // Methods
      Direction ();
+     Direction (int xdir, int ydir);
      void get_from_integer (int inp);
      Direction operator = (Direction dir);
      void print ();

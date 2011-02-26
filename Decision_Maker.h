@@ -14,12 +14,14 @@
 class DecisionMaker
 {
     public:
+    void DMinitializer(ID, ID);
     int weightage_table[4][4];
     int difficulty_table[4];
-    Info my_info;
+    Info info;
 
     void set_weightage_table(int, int, int, int, int );
     void set_diffculty_table(int, int, int, int);
+    void fill_difficulty_table();
 
     int calculate_best_action_plan(int );
     int find_the_maximum(float*);
@@ -32,7 +34,7 @@ class DecisionMaker
     Move return_best_move(int );
 
     Move get_player_move(int);
-}
+};
 
 
 #endif
