@@ -8,6 +8,8 @@
 
 using namespace std;
 
+#define END_SCORE_CHAR '$'
+
 void Arena::initialize_machine_guns()
 {
      vector <Position>::iterator iter;
@@ -61,7 +63,7 @@ void Arena::print_scores ()
      // Print scores
      // The rest of the map is being displayed by Map
 
-     this->Map.print_log(tank1.score, tank2.score, 'F');
+     this->Map.print_log(tank1.score, tank2.score, END_SCORE_CHAR);
 
 #ifdef COUT_DEBUG
      cout << " Tank 1 : " << tank1.score << endl;

@@ -11,36 +11,43 @@ using namespace std;
 #define DELAY_STEP 50 
 #define MIN_DELAY 50
 #define MAX_DELAY 1000
-#define END_SCORE_CHAR 'F'
+#define END_SCORE_CHAR '$'
 
 // Colour variables
-#define TANK1_COLOUR   "green"
-#define TANK2_COLOUR   "blue"
-#define BULLET1_COLOUR "black"
-#define BULLET2_COLOUR "black"
-#define BKG_COLOUR     "#E7ECD6"
-#define GOLD_COLOUR    "goldenRod"
-#define WALL_COLOUR    "#282B1F"
-#define DEAD_COLOUR    "red"
-#define FALCON1_COLOUR "maroon"
-#define FALCON2_COLOUR "orange"
+#define TANK1_COLOUR       "#008000"
+#define TANK2_COLOUR       "#0000ff"
+#define MACHINE_GUN_COLOUR "maroon"
+
+#define BULLET1_COLOUR     "black"
+#define BULLET2_COLOUR     "black"
+#define BULLET3_COLOUR     "black"
+
+#define BKG_COLOUR         "#E7ECD6"
+#define GOLD_COLOUR        "goldenRod"
+#define WALL_COLOUR        "#282B1F"
+
+#define DEAD_COLOUR        "red"
+#define FALCON1_COLOUR     "#55ee55"
+#define FALCON2_COLOUR     "#7777ff"
 
 string symbol_to_html_class (char symbol) 
 {
      switch (symbol){
-     case '*' : return "bullet"                ; break;
      case '#' : return "wall"                  ; break;
      case '.' : return "empty"                 ; break;
-     case '1' : return "tank1"                 ; break;
-     case '2' : return "tank1"                 ; break;
-     case 'A' : return "bullet1"               ; break;
-     case 'B' : return "bullet1"               ; break;
-     case 'D' : return "dead"                  ; break;
      case 'G' : return "gold"                  ; break;
-     case 'E' : return "falcon1"               ; break;
-     case 'F' : return "falcon2"               ; break;
-     case 'M' : return "tank2"                 ; break;
-     case 'K' : return "bullet2"               ; break;
+
+     case '1' : return "tank1"                 ; break;
+     case '2' : return "tank2"                 ; break;
+     case 'M' : return "machine_gun"           ; break;
+
+     case 'A' : return "bullet1"               ; break;
+     case 'B' : return "bullet2"               ; break;
+     case 'K' : return "bullet3"               ; break;
+
+     case 'D' : return "dead"                  ; break;
+     case 'F' : return "falcon1"               ; break;
+     case 'E' : return "falcon2"               ; break;
      default  : return "Some thing went wrong" ;
      }
 }
@@ -68,23 +75,25 @@ string insert_css ()
              << "    float                 :	 left;                                              " << endl
              << "   }                                                                               " << endl
              << ".falcon1 {                                                                         " << endl
-             << "    -moz-border-radius    :	5px;                                                " << endl
-             << "    -webkit-border-radius :	5px;                                                " << endl
-             << "    width                 :	 10px;                                              " << endl
-             << "    height                :	 10px;                                              " << endl
+             << "    width                 :	 6px;                                               " << endl
+             << "    height                :	 6px;                                               " << endl
              << "    background            :	 none repeat scroll 0% 0% " << FALCON1_COLOUR << "; " << endl
              << "    margin                :	 0pt;                                               " << endl
              << "    padding               :	 0pt;                                               " << endl
+             << "    border-style          :	 solid;                                             " << endl
+             << "    border-color          :	 black;                                             " << endl
+             << "    border-width          :	 2px;                                               " << endl
              << "    float                 :	 left;                                              " << endl
              << "   }                                                                               " << endl
              << ".falcon2 {                                                                         " << endl
-             << "    -moz-border-radius    :	5px;                                                " << endl
-             << "    -webkit-border-radius :	5px;                                                " << endl
-             << "    width                 :	 10px;                                              " << endl
-             << "    height                :	 10px;                                              " << endl
+             << "    width                 :	 6px;                                               " << endl
+             << "    height                :	 6px;                                               " << endl
              << "    background            :	 none repeat scroll 0% 0% " << FALCON2_COLOUR << "; " << endl
              << "    margin                :	 0pt;                                               " << endl
              << "    padding               :	 0pt;                                               " << endl
+             << "    border-style          :	 solid;                                             " << endl
+             << "    border-color          :	 black;                                             " << endl
+             << "    border-width          :	 2px;                                               " << endl
              << "    float                 :	 left;                                              " << endl
              << "   }                                                                               " << endl
              << ".tank1 {                                                                           " << endl
@@ -107,23 +116,43 @@ string insert_css ()
              << "    padding               :	 0pt;                                               " << endl
              << "    float                 :	 left;                                              " << endl
              << "   }                                                                               " << endl
+             << ".machine_gun {                                                                     " << endl
+             << "    -moz-border-radius    :	3px;                                                " << endl
+             << "    -webkit-border-radius :	3px;                                                " << endl
+             << "    width                 :	 10px;                                              " << endl
+             << "    height                :	 10px;                                              " << endl
+             << "    background            :	 none repeat scroll 0% 0% "<< MACHINE_GUN_COLOUR<<";" << endl
+             << "    margin                :	 0pt;                                               " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "   }                                                                               " << endl
              << ".bullet1 {                                                                         " << endl
              << "    -moz-border-radius    :	5px;                                                " << endl
              << "    -webkit-border-radius :	5px;                                                " << endl
-             << "    width                 :	  5px;                                              " << endl
-             << "    height                :	  5px;                                              " << endl
+             << "    width                 :	  4px;                                              " << endl
+             << "    height                :	  4px;                                              " << endl
              << "    background            :	 none repeat scroll 0% 0% " << BULLET1_COLOUR << "; " << endl
-             << "    margin                :	 2.5px;                                             " << endl
+             << "    margin                :	 3px;                                               " << endl
              << "    padding               :	 0pt;                                               " << endl
              << "    float                 :	 left;                                              " << endl
              << "   }                                                                               " << endl
              << ".bullet2 {                                                                         " << endl
              << "    -moz-border-radius    :	5px;                                                " << endl
              << "    -webkit-border-radius :	5px;                                                " << endl
-             << "    width                 :	  5px;                                              " << endl
-             << "    height                :	  5px;                                              " << endl
+             << "    width                 :	  4px;                                              " << endl
+             << "    height                :	  4px;                                              " << endl
              << "    background            :	 none repeat scroll 0% 0% " << BULLET2_COLOUR << "; " << endl
-             << "    margin                :	 2.5px;                                             " << endl
+             << "    margin                :	 3px;                                               " << endl
+             << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
+             << "   }                                                                               " << endl
+             << ".bullet3 {                                                                         " << endl
+             << "    -moz-border-radius    :	5px;                                                " << endl
+             << "    -webkit-border-radius :	5px;                                                " << endl
+             << "    width                 :	  4px;                                              " << endl
+             << "    height                :	  4px;                                              " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BULLET3_COLOUR << "; " << endl
+             << "    margin                :	 3px;                                               " << endl
              << "    padding               :	 0pt;                                               " << endl
              << "    float                 :	 left;                                              " << endl
              << "   }                                                                               " << endl
@@ -149,14 +178,101 @@ string insert_css ()
              << "    padding               :	 0pt;                                               " << endl
              << "    float                 :	 left;                                              " << endl
              << "}                                                                                  " << endl
+             << ".metacontainer {                                                                   " << endl
+             << "    -moz-border-radius    :	10px;                                               " << endl
+             << "    -webkit-border-radius :	10px;                                               " << endl
+             << "    -moz-box-shadow       :	5px 5px 7px #555555;                                " << endl
+             << "    -webkit-box-shadow    :	5px 5px 7px #555555;                                " << endl
+             << "    width                 :	 720px;                                             " << endl
+             << "    height                :	 500px;                                             " << endl
+             << "    margin                :	 0pt auto;                                          " << endl
+             << "    padding               :	 20px;                                              " << endl
+             << "    border                :	 0pt none;                                          " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << WALL_COLOUR << ";    " << endl
+             << "}                                                                                  " << endl
+             << ".status {                                                                          " << endl
+             << "    width                 :	 200px;                                             " << endl
+             << "    -moz-border-radius    :	10px;                                               " << endl
+             << "    -webkit-border-radius :	10px;                                               " << endl
+             << "    float                 :	 right;                                             " << endl
+             << "    margin                :	 10px 0 0;                                          " << endl
+             // << "    padding               :	 0pt;                                               " << endl
+             // << "    border                :	 0pt none;                                          " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";     " << endl
+             << "}                                                                                  " << endl
+             << ".control {                                                                         " << endl
+             << "    width                 :	 200px;                                             " << endl
+             << "    -moz-border-radius    :	10px;                                               " << endl
+             << "    -webkit-border-radius :	10px;                                               " << endl
+             << "    float                 :	 right;                                             " << endl
+             << "    margin                :	 20px 0 0;                                          " << endl
+             // << "    padding               :	 0pt;                                               " << endl
+             // << "    border                :	 0pt none;                                          " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";     " << endl
+             << "}                                                                                  " << endl
+             << "button {                                                                           " << endl
+             << "    width                 :	 100%;                                              " << endl
+             << "}                                                                                  " << endl
              << ".container{                                                                        " << endl
              << "    width                 :	 500px;                                             " << endl
              << "    height                :	 500px;                                             " << endl
              << "    margin                :	 0pt;                                               " << endl
              << "    padding               :	 0pt;                                               " << endl
+             << "    float                 :	 left;                                              " << endl
              << "    border                :	 0pt none;                                          " << endl
              << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";     " << endl
              << "}                                                                                  " << endl;
+
+     // The following is the css for buttons.
+     str_out << ".black {                                                                                                                " << endl
+             << "	color                 : #d7d7d7;                                                                                     " << endl
+             << "	border                : solid 1px #333;                                                                              " << endl
+             << "	background            : #333;                                                                                        " << endl
+             << "	background            : -webkit-gradient(linear, left top, left bottom, from(#666), to(#000));                       " << endl
+             << "	background            : -moz-linear-gradient(top,  #666,  #000);                                                     " << endl
+             << "	filter                :  progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#000000'); " << endl
+             << "}                                                                                                                       " << endl
+             << ".black:hover {                                                                                       " << endl
+             << "	background            : #000;                                                                                        " << endl
+             << "	background            : -webkit-gradient(linear, left top, left bottom, from(#444), to(#000));                       " << endl
+             << "	background            : -moz-linear-gradient(top,  #444,  #000);                                                     " << endl
+             << "	filter                :  progid:DXImageTransform.Microsoft.gradient(startColorstr='#444444', endColorstr='#000000'); " << endl
+             << "}                                                                                                                       " << endl
+             << ".black:active {                                                                                      " << endl
+             << "	color                 : #666;                                                                                        " << endl
+             << "	background            : -webkit-gradient(linear, left top, left bottom, from(#000), to(#444));                       " << endl
+             << "	background            : -moz-linear-gradient(top,  #000,  #444);                                                     " << endl
+             << "	filter                :  progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#666666'); " << endl
+             << "}                                                                                                                       " << endl
+             << "                                                                                                                        " << endl
+             << ".button {                                                                                                               " << endl
+             << "	display               : inline-block;                                                                                " << endl
+             << "	zoom                  : 1; /* zoom and *display = ie7 hack for display:inline-block */                               " << endl
+             << "	*display              : inline;                                                                                      " << endl
+             << "	vertical-align        : baseline;                                                                                    " << endl
+             << "	margin                : 0 2px;                                                                                       " << endl
+             << "	outline               : none;                                                                                        " << endl
+             << "	cursor                : pointer;                                                                                     " << endl
+             << "	text-align            : center;                                                                                      " << endl
+             << "	text-decoration       : none;                                                                                        " << endl
+             << "	font                  : 14px/100% Arial, Helvetica, sans-serif;                                                      " << endl
+             << "	padding               : 5px;                                                                                         " << endl
+             << "	text-shadow           : 0 1px 1px rgba(0,0,0,.3);                                                                    " << endl
+             << "	-webkit-border-radius : .5em;                                                                                        " << endl
+             << "	-moz-border-radius    : .5em;                                                                                        " << endl
+             << "	border-radius         : .5em;                                                                                        " << endl
+             << "	-webkit-box-shadow    : 0 1px 2px rgba(0,0,0,.2);                                                                    " << endl
+             << "	-moz-box-shadow       : 0 1px 2px rgba(0,0,0,.2);                                                                    " << endl
+             << "	box-shadow            : 0 1px 2px rgba(0,0,0,.2);                                                                    " << endl
+             << "}                                                                                                                       " << endl
+             << ".button:hover {                                                                                       " << endl
+             << "	text-decoration       : none;                                                                                        " << endl
+             << "}                                                                                                                       " << endl
+             << ".button:active {                                                                                      " << endl
+             << "	position              : relative;                                                                                    " << endl
+             << "	top                   : 1px;                                                                                         " << endl
+             << "}                                                                                                                       " << endl;
+
      str_out << "</style>" << endl;
      return str_out.str();
 }
@@ -181,13 +297,76 @@ string make_divs (char * filename)
      map.close();
      return str_out.str();
 }
-     
-string status_notifier()
+
+string insert_controls ()
 {
-     ostringstream str_out;
-     str_out << "<span> Player one (green) score : <div id = 'player1_score'>foo</div> </span>" << endl;
-     str_out << "<span> Player two (blue) score : <div id = 'player2_score'>foo</div> </span>" << endl;
-     return str_out.str();
+      ostringstream str_out;
+      str_out << "<div class ='control'>                                                                           " << endl
+              << "<table style = 'width: 200px; border-spacing : 10px'>                                            " << endl
+              << "    <tr>                                                                                         " << endl
+              << "        <th colspan='2'> Controls </th>                                                          " << endl
+              << "    </tr>                                                                                        " << endl
+              << "    <tr>                                                                                         " << endl
+              << "        <td>                                                                                     " << endl
+              << "            <button id='pause_button' class='button black' onclick='pause_game()'>               " << endl
+              << "                Play                                                                             " << endl
+              << "            </button>                                                                            " << endl
+              << "        </td>                                                                                    " << endl
+              << "    </tr>                                                                                        " << endl
+              << "    <tr>                                                                                         " << endl
+              << "        <td>                                                                                     " << endl
+              << "            <button id='slow_button' class='button black' onclick='slow()'>                      " << endl
+              << "                Slower                                                                           " << endl
+              << "            </button>                                                                            " << endl
+              << "        </td>                                                                                    " << endl
+              << "    </tr>                                                                                        " << endl
+              << "    <tr>                                                                                         " << endl
+              << "        <td>                                                                                     " << endl
+              << "            <button id='fast_button' class='button black' onclick='fast()'>                      " << endl
+              << "                Faster                                                                           " << endl
+              << "            </button>                                                                            " << endl
+              << "        </td>                                                                                    " << endl
+              << "    </tr>                                                                                        " << endl
+              << "    <tr>                                                                                         " << endl
+              << "        <td>                                                                                     " << endl
+              << "            <button id='restart_button' class='button black' onclick='window.location.reload()'> " << endl
+              << "                Restart                                                                          " << endl
+              << "            </button>                                                                            " << endl
+              << "        </td>                                                                                    " << endl
+              << "    </tr>                                                                                        " << endl
+              << "</table>                                                                                         " << endl
+              << "</div>                                                                                           " << endl;
+
+      return str_out.str();
+}
+     
+
+string insert_status_notifier ()
+{
+      ostringstream str_out;
+      str_out << "<div class ='status'>                                                                                            " << endl
+              << "<table style = 'width : 200px'>                                                                                  " << endl
+              << "    <tr>                                                                                                         " << endl
+              << "        <th colspan='2'> Scores </th>                                                                            " << endl
+              << "    </tr>                                                                                                        " << endl
+              << "    <tr>                                                                                                         " << endl
+              << "        <td> Player one : </td>                                                                                  " << endl
+              << "        <td> <div id='player1_score' style = 'color : " << TANK1_COLOUR << "; font-weight: bold'> 0 </div> </td> " << endl
+              << "    </tr>                                                                                                        " << endl
+              << "    <tr>                                                                                                         " << endl
+              << "        <td> Player two : </td>                                                                                  " << endl
+              << "        <td> <div id='player2_score' style = 'color : " << TANK2_COLOUR << "; font-weight: bold'> 0 </div> </td> " << endl
+              << "    </tr>                                                                                                        " << endl
+              << "    <tr>                                                                                                         " << endl
+              << "        <td>                                                                                                     " << endl
+              << "           <span style = 'font-weight : bold'> Moves :</span>                                                    " << endl
+              << "        </td>                                                                                                    " << endl
+              << "        <td> <div id='number_of_moves'> 0 </div> </td>                                                           " << endl
+              << "    </tr>                                                                                                        " << endl
+              << "</table>                                                                                                         " << endl
+              << "</div>                                                                                                           " << endl;
+
+      return str_out.str();
 }
 
 string insert_func_list()
@@ -209,7 +388,6 @@ string insert_func_list()
                str_out << "    document.getElementById('player1_score').innerHTML = '" << x << "';" << endl;
                str_out << "    document.getElementById('player2_score').innerHTML = '" << y << "';" << endl;
                i++;
-               // str_out << "    var t= setTimeout('update_map_" << i << "()', 1);" << endl;
                str_out << "}" << endl;
                str_out << "function update_map_" << i << "() {" << endl;
           }
@@ -242,37 +420,41 @@ string insert_js()
              << "var max_delay = " << MAX_DELAY << ";   " << endl
              << "var char_to_color_table = {};          " << endl
 
-             << "char_to_color_table['.'] = 'empty';  " << endl
-             << "char_to_color_table['#'] = 'wall';   " << endl 
-             << "char_to_color_table['G'] = 'gold';   " << endl 
-             << "char_to_color_table['D'] = 'dead';   " << endl 
-             << "char_to_color_table['2'] = 'tank1';  " << endl  
-             << "char_to_color_table['1'] = 'tank1';  " << endl
-             << "char_to_color_table['A'] = 'bullet1';" << endl
-             << "char_to_color_table['B'] = 'bullet1';" << endl
-             << "char_to_color_table['E'] = 'falcon1';" << endl
-             << "char_to_color_table['F'] = 'falcon2';" << endl
-             << "char_to_color_table['M'] = 'tank2';  " << endl
-             << "char_to_color_table['K'] = 'bullet2';" << endl;
+             << "char_to_color_table['.'] = 'empty';       " << endl
+             << "char_to_color_table['#'] = 'wall';        " << endl 
+             << "char_to_color_table['G'] = 'gold';        " << endl 
+             << "char_to_color_table['D'] = 'dead';        " << endl 
+
+             << "char_to_color_table['1'] = 'tank1';       " << endl  
+             << "char_to_color_table['2'] = 'tank2';       " << endl
+             << "char_to_color_table['M'] = 'machine_gun'; " << endl
+
+             << "char_to_color_table['A'] = 'bullet1';     " << endl
+             << "char_to_color_table['B'] = 'bullet2';     " << endl
+             << "char_to_color_table['K'] = 'bullet3';     " << endl
+
+             << "char_to_color_table['F'] = 'falcon1';     " << endl
+             << "char_to_color_table['E'] = 'falcon2';     " << endl;
 
      // Now insert the function list
      str_out << insert_func_list();
      
      // Now the play function
-     str_out << "function play()                                                 " << endl
-             << "{                                                               " << endl
-             << "   if (function_counter > max_number_of_funcs) {                " << endl
-             << "       return;                                                  " << endl
-             << "   }                                                            " << endl
-             << "   if (! pause) {                                               " << endl
-             << "       func_array[function_counter]();                          " << endl
-             << "       function_counter = function_counter + 1;                 " << endl
-             << "       var t = setTimeout ('play()', delay);                    " << endl
-             << "   }                                                            " << endl
-             << "   else {                                                       " << endl
-             << "       return;                                                  " << endl
-             << "   }                                                            " << endl
-             << "}                                                               " << endl;
+     str_out << "function play()                                                                 " << endl
+             << "{                                                                               " << endl
+             << "   if (function_counter > max_number_of_funcs) {                                " << endl
+             << "       return;                                                                  " << endl
+             << "   }                                                                            " << endl
+             << "   if (! pause) {                                                               " << endl
+             << "       func_array[function_counter]();                                          " << endl
+             << "       document.getElementById('number_of_moves').innerHTML = function_counter; " << endl
+             << "       function_counter = function_counter + 1;                                 " << endl
+             << "       var t = setTimeout ('play()', delay);                                    " << endl
+             << "   }                                                                            " << endl
+             << "   else {                                                                       " << endl
+             << "       return;                                                                  " << endl
+             << "   }                                                                            " << endl
+             << "}                                                                               " << endl;
 
      str_out << "function pause_game()                                                " << endl
              << "{                                                                    " << endl
@@ -303,21 +485,6 @@ string insert_js()
      return str_out.str();
 }
 
-string insert_control()
-{
-     ostringstream str_out;
-     str_out << "<button id = 'pause_button' onclick = 'pause_game()'> " << endl
-             << "  Play                                                " << endl
-             << "</button>                                             " << endl
-             << "<button id = 'slow_button' onclick = 'slow()'>        " << endl
-             << "  Slower                                              " << endl
-             << "</button>                                             " << endl
-             << "<button id = 'fast_button' onclick = 'fast()'>        " << endl
-             << "  Faster                                              " << endl
-             << "</button>                                             " << endl;
-     return str_out.str();
-}
-
 int main() 
 {
      ofstream html_file;
@@ -328,10 +495,12 @@ int main()
      html_file << insert_css();
      html_file << "</head>" << endl;
      html_file << "<body>" << endl;
+     html_file << "<div class = 'metacontainer'>" << endl;
      html_file << make_divs (MAP_FILE);
-     html_file << status_notifier();
+     html_file << insert_status_notifier();
+     html_file << insert_controls();
+     html_file << "</div>" << endl;
      html_file << insert_js();
-     html_file << insert_control();
 
      html_file.close();
      return 0;
