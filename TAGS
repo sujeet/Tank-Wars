@@ -1,70 +1,97 @@
 
-Misc_Classes.h,520
+Decision_Maker.h,227
+#define DECISION_MAKER_H2,25
+class DecisionMaker14,338
+    int weightage_table[DecisionMaker::weightage_table18,404
+    int difficulty_table[DecisionMaker::difficulty_table19,435
+    Info info;DecisionMaker::info20,464
+
+Misc_Classes.h,844
 #define MISC_CLASSES_H2,23
-enum event5,48
-     ENEMY_KILLED 7,61
-     ENEMY_KILLED = 100, PICKED_UP_GOLD 7,61
-     GOLD 12,117
-     WALL 13,134
-     EMPTY 14,151
-     EMPTY_DISPLAY 15,169
-     DEAD 16,195
-     BULLET 17,212
-class Direction 20,234
-     int xdir,Direction::xdir27,328
-     int xdir, ydir;Direction::ydir27,328
-class Move33,454
-     bool shoot;Move::shoot36,475
-     Direction dirn;Move::dirn37,492
-class Position44,626
-     int x,Position::x47,651
-     int x, y;Position::y47,651
+#define GOLD 5,48
+#define WALL 6,80
+#define EMPTY 7,112
+#define DEAD 8,144
+#define TANK1 10,177
+#define FALCON1 11,209
+#define BULLET1 12,241
+#define TANK2 14,274
+#define FALCON2 15,306
+#define BULLET2 16,338
+#define MACHINE_GUN 18,371
+#define MACHINE_GUN_BULLET 19,403
+enum event21,436
+     ENEMY_KILLED 23,449
+     ENEMY_KILLED = 100, PICKED_UP_GOLD 23,449
+class ID26,498
+     int player_no;ID::player_no29,517
+     char tank_symbol;ID::tank_symbol30,537
+     char falcon_symbol;ID::falcon_symbol31,560
+class Direction 34,589
+     int xdir,Direction::xdir41,683
+     int xdir, ydir;Direction::ydir41,683
+class Move51,887
+     bool shoot;Move::shoot54,908
+     Direction dirn;Move::dirn55,925
+class Position62,1093
+     int x,Position::x65,1118
+     int x, y;Position::y65,1118
 
-Tank.h,1242
+Tank.h,1263
 #define TANK_H3,16
-using namespace std;11,107
-class Tank14,130
-     class BulletTank::Bullet17,151
-          Direction curr_dirn;Tank::Bullet::curr_dirn21,212
-          Position curr_posn,Tank::Bullet::curr_posn22,243
-          Position curr_posn, prev_posn;Tank::Bullet::prev_posn22,243
-          bool disappear_flag;Tank::Bullet::disappear_flag23,284
-          Bullet Tank::Bullet::Bullet26,340
-          void set_disappear_flag Tank::Bullet::set_disappear_flag32,543
-          void print Tank::Bullet::print38,752
-     class FalconTank::Falcon50,1052
-	  bool dead_flag;Tank::Falcon::dead_flag54,1106
-	  char symbol;Tank::Falcon::symbol55,1125
-	  Position posn;Tank::Falcon::posn56,1141
-	  Falcon Tank::Falcon::Falcon59,1174
-     char symbol;Tank::symbol70,1382
-     ID id;Tank::id71,1400
-     Falcon falcon;Tank::falcon72,1412
-     vector<Bullet> bullet_list;Tank::bullet_list73,1432
-     Move next_move;Tank::next_move74,1465
-     Position curr_posn,Tank::curr_posn75,1486
-     Position curr_posn, prev_posn;Tank::prev_posn75,1486
-     bool dead_flag;Tank::dead_flag76,1522
-     int score;Tank::score77,1543
-     Tank Tank::Tank81,1587
-     void print_bullets Tank::print_bullets83,1749
+using namespace std;10,89
+class Bullet13,112
+     char symbol;Bullet::symbol17,153
+     Direction curr_dirn;Bullet::curr_dirn18,171
+     Position curr_posn,Bullet::curr_posn19,197
+     Position curr_posn, prev_posn;Bullet::prev_posn19,197
+     bool disappear_flag;Bullet::disappear_flag20,233
+     Bullet Bullet::Bullet23,279
+     void set_disappear_flag Bullet::set_disappear_flag29,445
+     void print Bullet::print35,617
+class Tank47,825
+     class FalconTank::Falcon51,847
+          bool dead_flag;Tank::Falcon::dead_flag55,908
+          char symbol;Tank::Falcon::symbol56,934
+          Position posn;Tank::Falcon::posn57,957
+          Falcon Tank::Falcon::Falcon60,1004
+     char symbol;Tank::symbol71,1269
+     ID id;Tank::id72,1287
+     Falcon falcon;Tank::falcon73,1299
+     char bullet_symbol;Tank::bullet_symbol74,1319
+     vector<Bullet> bullet_list;Tank::bullet_list75,1344
+     Move next_move;Tank::next_move76,1377
+     Position curr_posn,Tank::curr_posn77,1398
+     Position curr_posn, prev_posn;Tank::prev_posn77,1398
+     bool dead_flag;Tank::dead_flag78,1434
+     int score;Tank::score79,1455
+     Tank Tank::Tank83,1499
+     void print_bullets Tank::print_bullets97,1973
 
-Arena.h,364
+Arena.h,479
 #define ARENA_H3,17
-using namespace std;9,108
-class Arena11,130
-     MapClass Map;Arena::Map15,171
-     bool game_over_flag;Arena::game_over_flag16,190
-     Tank tank1,Arena::tank117,216
-     Tank tank1, tank2;Arena::tank217,216
-     Info info1,Arena::info118,240
-     Info info1, info2;Arena::info218,240
-     ifstream infile;Arena::infile19,264
+using namespace std;15,200
+class Arena17,222
+     MapClass Map;Arena::Map24,310
+     bool game_over_flag;Arena::game_over_flag25,329
+     Tank tank1,Arena::tank126,355
+     Tank tank1, tank2;Arena::tank226,355
+     Info info1,Arena::info127,379
+     Info info1, info2;Arena::info227,379
+     DecisionMaker DM1,Arena::DM128,443
+     DecisionMaker DM1, DM2;Arena::DM228,443
+     vector <Tank> machine_gun_list;Arena::machine_gun_list29,472
 
-Map.h,74
+Map.h,459
 #define MAP_H3,15
-class MapClass7,57
-     char map[MapClass::map10,84
+class MapClass10,95
+     char map[MapClass::map13,122
+     std::ofstream log_file;MapClass::log_file14,157
+     Position tank1_init_posn;MapClass::tank1_init_posn18,255
+     Position tank2_init_posn;MapClass::tank2_init_posn19,286
+     Position falcon1_posn;MapClass::falcon1_posn22,375
+     Position falcon2_posn;MapClass::falcon2_posn23,403
+     std::vector <Position> machine_guns_posns;MapClass::machine_guns_posns26,487
 
 TankWars.h,937
 class Direction 1,0
@@ -91,118 +118,156 @@ class Tank27,351
      bool dead_flag;Tank::dead_flag52,772
      int score;Tank::score53,793
 
-Info.h,1211
+Info.h,1037
 #define INFO_H2,15
-#define GO_TO_GOLD 12,146
-#define ATTACK_ENEMY_FALCON 13,167
-#define ATTACK_ENEMY_TANK 14,197
-#define DEFEND_MY_FALCON 15,225
-#define AGGRESSIVE 17,253
-#define DEFENSIVE 18,274
-#define GREEDY 19,295
-#define CUSTOMISED 20,312
-using namespace std;22,334
-class ID25,357
-        int player_no;ID::player_no28,380
-        char tank_symbol;ID::tank_symbol29,403
-        char falcon_symbol;ID::falcon_symbol30,429
-class object_info41,614
-        int shortest_distance;object_info::shortest_distance44,646
-        Move initial_move;object_info::initial_move45,677
-        Position posn;object_info::posn46,704
-class Info50,754
-        Position curr_posn;Info::curr_posn55,838
-        ID my_ID,Info::my_ID57,931
-        ID my_ID, enemy_ID;Info::enemy_ID57,931
-        Move strategic_moves_array[Info::strategic_moves_array58,959
-        vector <object_info> gold;Info::gold61,1037
-        object_info my_falcon;Info::my_falcon62,1072
-        object_info opp_falcon;Info::opp_falcon63,1103
-        object_info opp_tank;Info::opp_tank64,1135
-        object_info nearest_gold;Info::nearest_gold65,1166
-        int weightage_table[Info::weightage_table66,1200
+#define GO_TO_GOLD 13,164
+#define ATTACK_ENEMY_FALCON 14,185
+#define ATTACK_ENEMY_TANK 15,215
+#define DEFEND_MY_FALCON 16,243
+#define AGGRESSIVE 18,271
+#define DEFENSIVE 19,292
+#define GREEDY 20,313
+#define CUSTOMISED 21,330
+using namespace std;23,352
+class object_info28,381
+     int shortest_distance;object_info::shortest_distance32,430
+     Move initial_move;object_info::initial_move33,458
+     Position posn;object_info::posn34,482
+class Info38,526
+     Position curr_posn;Info::curr_posn43,607
+     ID my_ID,Info::my_ID45,694
+     ID my_ID, enemy_ID;Info::enemy_ID45,694
+     Move strategic_moves_array[Info::strategic_moves_array46,719
+     vector <object_info> gold;Info::gold49,791
+     object_info my_falcon;Info::my_falcon52,928
+     object_info opp_falcon;Info::opp_falcon53,956
+     object_info opp_tank;Info::opp_tank54,985
+     object_info nearest_gold;Info::nearest_gold55,1013
+     bool gold_available;Info::gold_available56,1044
+     ~Info Info::~Info61,1247
 
-Misc_Classes.cpp,443
-void Direction::print 6,69
-void Direction::get_from_integer 11,159
-Move::Move(34,569
-void Move::interpret_move 39,614
-void Move::print(48,811
-void Position::go_in_direction 54,914
-bool Position::operator== Position::operator==60,1000
-void Position::print 65,1096
-Position Position::operator = Position::operator =70,1178
-Move Move::operator = Move::operator =77,1291
-Direction Direction::operator = Direction::operator =84,1406
+Misc_Classes.cpp,645
+#define DO_NOT_MOVE 6,67
+#define MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY 7,90
+Direction::Direction(11,159
+Direction::Direction(17,247
+void Direction::print 23,339
+void Direction::get_from_integer 28,429
+Move::Move(56,1013
+void Move::interpret_move 61,1058
+void Move::print(84,1749
+Position::Position 90,1852
+Position::Position 95,1895
+void Position::go_in_direction 101,1970
+bool Position::operator== Position::operator==107,2056
+void Position::print 112,2152
+Position Position::operator = Position::operator =117,2234
+Move Move::operator = Move::operator =124,2347
+Direction Direction::operator = Direction::operator =131,2462
 
 TankWars.cpp,38
 #define TIMES 8,113
 int main(13,156
 
-Tank.cpp,725
-void Tank::initialize_from 9,95
-void Tank::get_next_move 30,738
-void Tank::execute_next_move(51,1307
-void Tank::move 69,1767
-void Tank::shoot_bullet 78,1994
-void Tank::evaluate_static_interactions 89,2239
-bool Tank::is_killed_by 107,2723
-void Tank::die_by_tank 133,3283
-void Tank::pick_up_gold_if_possible 140,3441
-bool Tank::crashed_into_wall 148,3660
-void Tank::die_by_wall_crash 157,3879
-void Tank::check_bullet_interactions 163,3951
-void Tank::incr_score 178,4409
-void Tank::update_on_map 185,4504
-void Tank::Bullet::move 233,5749
-void Tank::Bullet::check_for_crashes 242,5912
-void Tank::Bullet::update_on_map 253,6185
-void Tank::Falcon::set_dead_flag 280,6977
-bool Tank::Falcon::is_killed_by 286,7042
+Tank.cpp,849
+Tank::Tank 8,78
+void Tank::initialize_from 21,404
+void Tank::get_next_move 53,1212
+void Tank::get_machine_random_move 68,1645
+void Tank::move_bullets 75,1778
+void Tank::execute_next_move(85,2060
+void Tank::move 97,2299
+void Tank::shoot_bullet 106,2526
+void Tank::evaluate_static_interactions 120,2864
+bool Tank::is_killed_by 138,3348
+void Tank::die_by_tank 164,3908
+void Tank::pick_up_gold_if_possible 171,4066
+bool Tank::crashed_into_wall 179,4285
+void Tank::die_by_wall_crash 192,4553
+void Tank::check_bullet_interactions 198,4625
+void Tank::incr_score 213,5083
+void Tank::update_bullets_on_map 220,5178
+void Tank::update_on_map 251,5934
+void Bullet::move 270,6471
+void Bullet::check_for_crashes 279,6628
+void Bullet::update_on_map 292,6988
+void Tank::Falcon::set_dead_flag 319,7780
+bool Tank::Falcon::is_killed_by 325,7845
 
-Info.cpp,241
-void object_info::print 11,129
-void Info::initializer(20,309
-int Info::find_the_maximum(45,1077
-Move Info::calculate_best_move(60,1370
-void Info::update_distances(94,2519
-void Info::update_info 188,5107
-void Info::print_info(206,5794
+Info.cpp,197
+object_info::object_info 11,129
+void object_info::print 16,191
+void Info::initializer(26,434
+void Info::update_distances(32,535
+void Info::update_info 180,4832
+void Info::print_info(194,5521
 
-log_to_html.cpp,506
-#define MAP_SIZE 7,98
-#define ASCII_CHARS 8,118
-#define MAX_CLASS_NAME_LENGTH 9,142
-#define MAP_FILE 10,175
-#define LOG_FILE 11,209
-#define DELAY 12,235
-#define DELAY_STEP 13,253
-#define MIN_DELAY 14,276
-#define MAX_DELAY 15,297
-#define END_SCORE_CHAR 16,320
-string symbol_to_html_class 18,348
-string insert_css 32,866
-string make_divs 118,8304
-string status_notifier(139,8853
-string insert_func_list(147,9147
-string insert_js(184,10379
-string insert_control(264,15418
-int main(279,16232
+log_to_html.cpp,830
+#define MAP_SIZE 9,125
+#define ASCII_CHARS 10,145
+#define MAX_CLASS_NAME_LENGTH 11,169
+#define DELAY 12,202
+#define DELAY_STEP 13,220
+#define MIN_DELAY 14,243
+#define MAX_DELAY 15,264
+#define END_SCORE_CHAR 16,287
+#define TANK1_COLOUR 19,335
+#define TANK2_COLOUR 20,372
+#define MACHINE_GUN_COLOUR 21,409
+#define BULLET1_COLOUR 23,446
+#define BULLET2_COLOUR 24,481
+#define BULLET3_COLOUR 25,516
+#define BKG_COLOUR 27,552
+#define GOLD_COLOUR 28,589
+#define WALL_COLOUR 29,628
+#define DEAD_COLOUR 31,666
+#define FALCON1_COLOUR 32,699
+#define FALCON2_COLOUR 33,736
+string symbol_to_html_class 35,774
+string insert_css 57,1770
+string make_divs 282,26836
+string insert_controls 303,27380
+string insert_status_notifier 346,31851
+string insert_func_list(374,34909
+string insert_js(410,36047
+int main(490,41655
 
-Arena.cpp,261
-Arena::Arena 11,117
-void Arena::print_scores 28,578
-void Arena::get_player_moves 59,1473
-void Arena::execute_moves 71,1769
-void Arena::evaluate_static_interactions 80,1905
-void Arena::evaluate_dynamic_interactions 90,2195
-void Arena::update_map 119,2964
+Decision_Maker.cpp,587
+void DecisionMaker::set_weightage_table(5,65
+void DecisionMaker::set_diffculty_table(27,995
+void DecisionMaker::DMinitializer(36,1490
+void DecisionMaker::fill_difficulty_table(53,2105
+Move DecisionMaker::return_best_move(63,2515
+Move DecisionMaker::go_to_gold_move(89,3225
+Move DecisionMaker::attack_enemy_falcon_move(103,3504
+Move DecisionMaker::attack_enemy_tank_move(116,3851
+Move DecisionMaker::defend_my_falcon_move(121,3940
+int DecisionMaker::calculate_best_action_plan(126,4029
+int DecisionMaker::find_the_maximum(149,4824
+Move DecisionMaker::get_player_move(166,5225
 
-Map.cpp,248
-void MapClass::create_from_file 8,98
-char MapClass::get_element 22,456
-char MapClass::get_element 39,926
-bool MapClass::is_symbol 44,1028
-bool MapClass::is_symbol 49,1163
-void MapClass::set_element 54,1275
-void MapClass::set_element 73,1906
+Arena.cpp,446
+#define END_SCORE_CHAR 7,80
+void Arena::initialize_machine_guns(9,108
+Arena::Arena 26,538
+void Arena::print_scores 54,1307
+void Arena::get_moves 68,1616
+void Arena::get_machine_moves 73,1678
+void Arena::move_bullets 79,1857
+void Arena::get_player_moves 88,2077
+void Arena::execute_tank_moves 101,2548
+void Arena::evaluate_static_interactions 115,2872
+void Arena::evaluate_dynamic_interactions 131,3364
+void Arena::update_map 201,5653
+
+Map.cpp,344
+MapClass::MapClass 11,143
+void MapClass::create_from_file 16,206
+char MapClass::get_element 46,1162
+char MapClass::get_element 63,1632
+bool MapClass::is_symbol 68,1734
+bool MapClass::is_symbol 73,1869
+void MapClass::set_element 78,1981
+void MapClass::set_element 97,2595
+MapClass::~MapClass 102,2728
+void MapClass::print_log(107,2785

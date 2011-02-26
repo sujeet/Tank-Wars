@@ -39,7 +39,7 @@ void DecisionMaker::DMinitializer(ID my_id, ID enemy_id)
     // Here default weightage values are set which can be changed for better strategies
     set_weightage_table(AGGRESSIVE, 20, 50, 50, 1);
     set_weightage_table(DEFENSIVE, 20, 5, 5, 50);
-    set_weightage_table(GREEDY, 15, 15, 15, 0);
+    set_weightage_table(GREEDY, 100, 15, 15, 0);
     set_weightage_table(CUSTOMISED, 40, 100, 75, 40);
 
     // These are just dummy values 

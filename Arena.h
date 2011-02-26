@@ -6,9 +6,12 @@
 #include <iostream>
 #include <vector>
 
+#include "Decision_Maker.h"
+#include "Info.h"
 #include "Tank.h"
 #include "Map.h"
-#include "Decision_Maker.h"
+#include "Misc_Classes.h"
+#include "Constants.h"
 
 using namespace std;
 

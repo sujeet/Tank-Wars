@@ -2,35 +2,12 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <cstdlib>
 
 #include "Misc_Classes.h"
+#include "Constants.h"
 
 using namespace std;
-#define MAP_SIZE 51
-#define ASCII_CHARS 128
-#define MAX_CLASS_NAME_LENGTH 10
-#define DELAY 200
-#define DELAY_STEP 50 
-#define MIN_DELAY 50
-#define MAX_DELAY 1000
-#define END_SCORE_CHAR '$'
-
-// Colour variables
-#define TANK1_COLOUR       "#008000"
-#define TANK2_COLOUR       "#0000ff"
-#define MACHINE_GUN_COLOUR "maroon"
-
-#define BULLET1_COLOUR     "black"
-#define BULLET2_COLOUR     "black"
-#define BULLET3_COLOUR     "black"
-
-#define BKG_COLOUR         "#E7ECD6"
-#define GOLD_COLOUR        "goldenRod"
-#define WALL_COLOUR        "#282B1F"
-
-#define DEAD_COLOUR        "red"
-#define FALCON1_COLOUR     "#55ee55"
-#define FALCON2_COLOUR     "#7777ff"
 
 string symbol_to_html_class (char symbol) 
 {
@@ -50,7 +27,11 @@ string symbol_to_html_class (char symbol)
      case DEAD               : return "dead"                  ; break;
      case FALCON1            : return "falcon1"               ; break;
      case FALCON2            : return "falcon2"               ; break;
-     default                 : return "Some thing went wrong" ;
+     default                 :
+// 	  cerr << symbol << endl;
+// 	  exit (-1);
+	  return "Some thing went wrong" ; 
+	  
      }
 }
 

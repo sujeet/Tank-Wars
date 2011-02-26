@@ -5,49 +5,49 @@
 #include <iostream>
 #include <vector>
 
-#include "Info.h"       //Have to see if this is needed
-#include "Decision_Maker.h"
 #include "Map.h"
+#include "Constants.h"
 
 using namespace std;
 
 
+class Bullet
+{
+public:
+     // Variables
+     char symbol;
+     Direction curr_dirn;
+     Position curr_posn, prev_posn;
+     bool disappear_flag;
+	  
+     // Methods
+     Bullet ()
+     {
+	  disappear_flag = false;
+     }
+     void move ();		// Change Bullet's position
+     void check_for_crashes (MapClass & Map); 
+     void set_disappear_flag ()
+     {
+	  disappear_flag = true;
+     }
+     void update_on_map (MapClass & Map);
+     /* void mark_danger_zones (char Map[][MAP_SIZE]); */
+     void print ()
+     {
+	  curr_dirn.print ();
+	  cout << "Curr ";
+	  curr_posn.print ();
+	  cout << "Prev ";
+	  prev_posn.print ();
+	  cout << "Disappear_flag : " << disappear_flag << endl;
+     }
+	  
+};
+
 class Tank
 {
 public:
-     class Bullet
-     {
-     public:
-          // Variables
-          char symbol;
-          Direction curr_dirn;
-          Position curr_posn, prev_posn;
-          bool disappear_flag;
-	  
-          // Methods
-          Bullet ()
-          {
-               disappear_flag = false;
-          }
-          void move ();		// Change Bullet's position
-          void check_for_crashes (MapClass & Map);  // Variables);
-          void set_disappear_flag ()
-          {
-               disappear_flag = true;
-          }
-          void update_on_map (MapClass & Map);
-          /* void mark_danger_zones (char Map[][MAP_SIZE]); */
-          void print ()
-          {
-               curr_dirn.print ();
-               cout << "Curr ";
-               curr_posn.print ();
-               cout << "Prev ";
-               prev_posn.print ();
-               cout << "Disappear_flag : " << disappear_flag << endl;
-          }
-	  
-     };
 
      class Falcon
      {
@@ -103,7 +103,7 @@ public:
      }
 	  
      void move_bullets ();
-     void get_next_move (DecisionMaker& DM, int choice);
+     void get_next_move (Move);
      void get_machine_random_move ();
      void execute_next_move ();
      void move ();			// Change Tank's position

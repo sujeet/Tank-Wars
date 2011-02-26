@@ -1,16 +1,21 @@
 To-do List:
+#+SEQ_TODO: BUG TODO
 
 * Sujeet Gholap
 * Devesh Y
 * Guru P
 * S. Pradeep Kumar
-** TODO Function initialize_from in Tank.h should take an ID preferably
-** TODO Tank crossing, Bullet crossing condition
-** TODO Change order of updation of map (Bullets and Tanks)
+** Function initialize_from in Tank.h should take an ID preferably
+** Tank crossing, Bullet crossing condition
+** Change order of updation of map (Bullets and Tanks)
    As in, first update all bullets of all tanks. Then, update the tanks on the map
-** TODO Bullets vanish when they collide
-** TODO Use Tank's ID everywhere
-** TODO Change bullet colours
-** TODO Initialize positions, etc. from the Map...
-** TODO Do stuff when the game gets over
+** Bullets vanish when they collide
+** Use Tank's ID everywhere
+** Change bullet colours
+** Initialize positions, etc. from the Map...
+** Do stuff when the game gets over
 *** Increment the score of the surviving players, etc.
+** Random SegFault occurring from time to time
+** Consider increasing the speed of bullets
+** Display a blast when bullets collide
+** BUG Tank crashing into Machine Gun doesn't show Dead Tank

@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Misc_Classes.h"
+#include "Constants.h"
 
 class MapClass
 {

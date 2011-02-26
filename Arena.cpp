@@ -1,15 +1,9 @@
 #include <iostream>
 #include <vector>
 
-#include "Info.h"
-#include "Tank.h"
 #include "Arena.h"
-#include "Map.h"
-#include "Misc_Classes.h"
-
 using namespace std;
 
-#define END_SCORE_CHAR '$'
 
 void Arena::initialize_machine_guns()
 {
@@ -73,7 +67,6 @@ void Arena::print_scores ()
 void Arena::get_moves ()
 {
      this->get_machine_moves();
-     this->get_player_moves();
 }
 
 void Arena::get_machine_moves ()
@@ -95,12 +88,13 @@ void Arena::get_player_moves ()
 {
      // Get each tank's next moves
 
-     DM1.info.update_info (this->Map, tank1.curr_posn);
-     DM2.info.update_info (this->Map, tank2.curr_posn);
+     DM1.info.update_info (this->Map, tank1.curr_posn); //, tank1.bullet_list, tank2.bullet_list, machine_gun_list);
+     DM2.info.update_info (this->Map, tank2.curr_posn); //, tank2.bullet_list, tank1.bullet_list, machine_gun_list);
      
-     // 1 : Choice - Say, Aggressive
-     tank1.get_next_move (DM1, 2);
-     tank2.get_next_move (DM2, 2);
+     // 0 : Choice - Say, Aggressive
+     // 2 : Greedy
+     tank1.get_next_move (DM1.get_player_move(AGGRESSIVE));
+     tank2.get_next_move (DM2.get_player_move(GREEDY));
 }
 
 void Arena::execute_tank_moves ()

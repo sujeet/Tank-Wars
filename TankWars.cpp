@@ -4,8 +4,7 @@
 #include <ctime>
 #include "Arena.h"
 #include "Tank.h"
-
-#define TIMES 5000
+#include "Constants.h"
 
 using namespace std;
 
@@ -35,8 +34,8 @@ int main()
           arena.update_map ();
           arena.print_scores ();
           if (arena.game_over_flag){
-               // cout << "Bye Bye!" << endl;
-//               arena.machine_gun_list.clear();
+               cout << "Bye Bye!" << endl;
+	       arena.machine_gun_list.clear();
                break;
           }
      }

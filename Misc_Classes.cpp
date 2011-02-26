@@ -3,8 +3,6 @@
 
 #include "Misc_Classes.h"
 
-#define DO_NOT_MOVE 10
-#define MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY 5
 
 using namespace std;
 

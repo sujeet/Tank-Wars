@@ -2,7 +2,6 @@
 #include <cstdlib>
 
 #include "Tank.h"
-#include "Map.h"
 
 using namespace std;
 
@@ -51,18 +50,19 @@ void Tank::initialize_from (int given_player_no,
      score = 0;
 }
 
-void Tank::get_next_move (DecisionMaker& DM, int choice)
+void Tank::get_next_move (Move move)
 {
 
-     this->next_move = DM.get_player_move(choice);
+     this->next_move = move;
+//      this->next_move.interpret_move (LEFT + rand () % 2 * 4);
      // cerr << "shoot : " << boolalpha << this->next_move.shoot << endl;
      // cerr << "dirn  : " << this->next_move.dirn.xdir << " " << this->next_move.dirn.ydir << endl;
      
 
      // Call player function and get response
      // Just a random move returned as of now
-     int temp;
-     temp = rand () % 8;	
+//      int temp;
+//      temp = rand () % 8;	
     // this->next_move.interpret_move (temp);
 }
 
@@ -70,6 +70,10 @@ void Tank::get_machine_random_move ()
 {
      int temp;
      temp = rand() % 8;
+
+//      // Testing code
+//      temp = 4 + RIGHT;
+
      this->next_move.interpret_move (temp, true);
 }
 
@@ -143,9 +147,11 @@ bool Tank::is_killed_by (Tank t)
 
      bool flag = false;
      unsigned int i;
+     Bullet b;
 
      for (i = 0; i < t.bullet_list.size (); i++) {
-          if (t.bullet_list[i].curr_posn == this->curr_posn) {
+	  b = t.bullet_list[i];
+          if (b.curr_posn == this->curr_posn || (b.prev_posn == this->curr_posn && b.curr_posn == this->prev_posn)) {
                flag = true;
                break;
           }
@@ -154,8 +160,8 @@ bool Tank::is_killed_by (Tank t)
      if (flag)
           t.bullet_list[i].set_disappear_flag ();
 
-     // TODO : Check for tank crossing later
-     if (this->curr_posn == t.curr_posn){
+     // Check for tank crossing later
+     if (this->curr_posn == t.curr_posn || (this->curr_posn == t.prev_posn && this->prev_posn == t.curr_posn)){
           flag = true;
      }
 
@@ -268,7 +274,7 @@ void Tank::update_on_map (MapClass & Map)
           Map.set_element (this->curr_posn, this->symbol);
 }
 
-void Tank::Bullet::move ()
+void Bullet::move ()
 {
      // Move Bullet forward
 
@@ -277,10 +283,9 @@ void Tank::Bullet::move ()
      
 }
 
-void Tank::Bullet::check_for_crashes (MapClass & Map)
+void Bullet::check_for_crashes (MapClass & Map)
 {
      // Check if Bullet has collided with a GOLD piece or a WALL 
-     // or its own falcon (to do)
 
      if ( Map.is_symbol(this->curr_posn, GOLD) 
           || Map.is_symbol(this->curr_posn, MACHINE_GUN) 
@@ -290,7 +295,7 @@ void Tank::Bullet::check_for_crashes (MapClass & Map)
      }
 }
 
-void Tank::Bullet::update_on_map (MapClass & Map)
+void Bullet::update_on_map (MapClass & Map)
 {
      // Update Bullet on map
 

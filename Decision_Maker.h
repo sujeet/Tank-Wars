@@ -6,6 +6,7 @@
 #include "Info.h"
 #include "Map.h"
 #include "Misc_Classes.h"
+#include "Constants.h"
 /*
  * Various Strategies    -  Aggressive, Defensive, Greedy, Customised
  * Various Action plans  -  Pick up gold, attack enemy tank,
