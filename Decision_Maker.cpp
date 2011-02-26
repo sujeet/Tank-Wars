@@ -32,6 +32,33 @@ void DecisionMaker::set_diffculty_table(int go_to_gold_difficulty, int attack_en
     difficulty_table[DEFEND_MY_FALCON] = defend_your_falcon_difficulty;
 }
 
+void DecisionMaker::DMinitializer(ID my_id, ID enemy_id)
+{
+    // Constructor for Decision maker.
+    // Here default weightage values are set which can be changed for better strategies
+    set_weightage_table(AGGRESSIVE, 20, 50, 50, 1);
+    set_weightage_table(DEFENSIVE, 20, 5, 5, 50);
+    set_weightage_table(GREEDY, 15, 15, 15, 0);
+    set_weightage_table(CUSTOMISED, 40, 100, 75, 40);
+
+    // These are just dummy values 
+    set_diffculty_table(1, 1, 1, 1);
+
+    // Initialize the info object so that it knows what is your character symbol,
+    // player number etc
+    info.initializer(my_id, enemy_id);
+}
+
+void DecisionMaker::fill_difficulty_table()
+{
+    // Here you can write the function which calculates the difficulty measure 
+    // so as to fill in the difficulty table
+    set_diffculty_table(info.nearest_gold.shortest_distance,
+                        info.opp_falcon.shortest_distance,
+                        info.opp_tank.shortest_distance,
+                        info.my_falcon.shortest_distance);
+}
+
 Move DecisionMaker::return_best_move(int best_action_plan)
 {
     // Returns a 'Move' object by calling appropriate move
@@ -60,7 +87,7 @@ Move DecisionMaker::go_to_gold_move()
     // Description of the function that calculates  
     // the move to 'go to gold'
     
-    return my_info.nearest_gold.initial_move;
+    return info.nearest_gold.initial_move;
 }
 
 Move DecisionMaker::attack_enemy_falcon_move()
@@ -68,22 +95,22 @@ Move DecisionMaker::attack_enemy_falcon_move()
     // Description of the function that calculates  
     // the move to 'attack enemy falcon'
     
-    if(my_info.opp_falcon.shortest_distance == 2)
+    if(info.opp_falcon.shortest_distance == 2)
     {
-        my_info.opp_falcon.initial_move.shoot = true;
-        return my_info.opp_falcon.initial_move;
+        info.opp_falcon.initial_move.shoot = true;
+        return info.opp_falcon.initial_move;
     }
-    return my_info.opp_falcon.initial_move;
+    return info.opp_falcon.initial_move;
 }
 
 Move DecisionMaker::attack_enemy_tank_move()
 {
-    return my_info.opp_tank.initial_move;
+    return info.opp_tank.initial_move;
 }
 
 Move DecisionMaker::defend_my_falcon_move()
 {
-    return my_info.my_falcon.initial_move;
+    return info.my_falcon.initial_move;
 }
 
 int DecisionMaker::calculate_best_action_plan(int strategy)
@@ -91,9 +118,6 @@ int DecisionMaker::calculate_best_action_plan(int strategy)
 //!!!!!!!!!!!!a call to  am i in danger to be included.
 
     float action_score[4];	// Other name?
-    Move moves[4];
-    int maximum;
-
 
     action_score[GO_TO_GOLD] = 
         float ( weightage_table[strategy][GO_TO_GOLD]) / float( difficulty_table[GO_TO_GOLD] );
@@ -106,8 +130,6 @@ int DecisionMaker::calculate_best_action_plan(int strategy)
 
     action_score[DEFEND_MY_FALCON] = 
         float ( weightage_table[strategy][DEFEND_MY_FALCON]) / float( difficulty_table[DEFEND_MY_FALCON] );
-
-
 
     return find_the_maximum ( action_score );
 
@@ -134,5 +156,8 @@ int DecisionMaker::find_the_maximum( float* action_score )
 Move DecisionMaker::get_player_move(int choice)
 {
     // Here you can fill your code
+    // Make sure your difficulty table is filled each time if you are using
+    // it.
+    fill_difficulty_table();
     return return_best_move(calculate_best_action_plan(choice));
 }

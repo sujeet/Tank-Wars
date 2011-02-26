@@ -5,16 +5,19 @@ MACROS = -DMAP_FILE=\"map.txt\" -DLOG_FILE=\"log.txt\" -DMAP_SIZE=51 -DHTML_FILE
 all: TankWars.exe log_to_html.exe
 	echo "Done!"
 
-TankWars.exe: Arena.o Tank.o TankWars.o Map.o Misc_Classes.o Info.o
+TankWars.exe: Arena.o Tank.o TankWars.o Map.o Misc_Classes.o Info.o Decision_Maker.o
 	g++ -o $@ $^ $(CFLAGS) $(MACROS)
 
-Arena.o: Arena.cpp Arena.h Tank.h Map.h Info.h
+Arena.o: Arena.cpp Arena.h Tank.h Map.h Info.h Decision_Maker.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
-Tank.o: Tank.cpp Tank.h Map.h Info.h
+Tank.o: Tank.cpp Tank.h Map.h Info.h Decision_Maker.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
 TankWars.o: TankWars.cpp Arena.h Tank.h
+	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
+
+Decision_Maker.o: Decision_Maker.cpp Info.h Map.h Misc_Classes.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
 Map.o: Map.cpp Map.h Misc_Classes.h

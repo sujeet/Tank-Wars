@@ -5,7 +5,8 @@
 #include <iostream>
 #include <vector>
 
-#include "Info.h"
+#include "Info.h"       //Have to see if this is needed
+#include "Decision_Maker.h"
 #include "Map.h"
 
 using namespace std;
@@ -90,7 +91,7 @@ public:
      }
 	  
      void move_bullets ();
-     void get_next_move (Info& info, int choice);
+     void get_next_move (DecisionMaker& DM, int choice);
      void execute_next_move ();
      void move ();			// Change Tank's position
      void shoot_bullet ();
