@@ -40,14 +40,14 @@ obj/Tank.o: src/Tank.cpp \
             include/Constants.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
-obj/DecisionMaker1.o: DecisionMaker.cpp \
+obj/DecisionMaker1.o: DecisionMaker1.cpp \
                       include/DecisionMaker.h \
                       include/Info.h \
                       include/Constants.h \
                       include/Misc_Classes.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS) -DDECISION_MAKER=DecisionMaker1
 
-obj/DecisionMaker2.o: DecisionMaker.cpp \
+obj/DecisionMaker2.o: DecisionMaker2.cpp \
                       include/DecisionMaker.h \
                       include/Info.h \
                       include/Constants.h \
@@ -80,8 +80,8 @@ bot1:
 bot2:
 	make obj/DecisionMaker2.o
 
-play: 
-	g++ -o bin/TankWars.exe obj/Arena.o obj/Tank.o obj/TankWars.o obj/Map.o obj/Misc_Classes.o obj/Info.o obj/DecisionMaker1.o obj/DecisionMaker2.o
+play: all
+	# g++ -o bin/TankWars.exe obj/Arena.o obj/Tank.o obj/TankWars.o obj/Map.o obj/Misc_Classes.o obj/Info.o obj/DecisionMaker1.o obj/DecisionMaker2.o
 	./bin/TankWars.exe
 	./bin/log_to_html.exe
 	mv log.txt ./output/log.txt
