@@ -6,7 +6,6 @@
 #include <vector>
 
 #include "Map.h"
-#include "Constants.h"
 
 using namespace std;
 
@@ -23,24 +22,24 @@ public:
      // Methods
      Bullet ()
      {
-	  disappear_flag = false;
+          disappear_flag = false;
      }
      void move ();		// Change Bullet's position
      void check_for_crashes (MapClass & Map); 
      void set_disappear_flag ()
      {
-	  disappear_flag = true;
+          disappear_flag = true;
      }
      void update_on_map (MapClass & Map);
      /* void mark_danger_zones (char Map[][MAP_SIZE]); */
      void print ()
      {
-	  curr_dirn.print ();
-	  cout << "Curr ";
-	  curr_posn.print ();
-	  cout << "Prev ";
-	  prev_posn.print ();
-	  cout << "Disappear_flag : " << disappear_flag << endl;
+          curr_dirn.print ();
+          cout << "Curr ";
+          curr_posn.print ();
+          cout << "Prev ";
+          prev_posn.print ();
+          cout << "Disappear_flag : " << disappear_flag << endl;
      }
 	  
 };

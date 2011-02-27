@@ -9,13 +9,8 @@
 #include "Tank.h"
 #include "Misc_Classes.h"
 #include "Map.h"
-#include "Constants.h"
-
 
 using namespace std;
-
-
-		  
 
 class object_info
 {

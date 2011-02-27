@@ -1,8 +1,6 @@
 #ifndef MISC_CLASSES_H
 #define MISC_CLASSES_H
 
-#include "Constants.h"
-
 enum event
 {
      ENEMY_KILLED = 100, PICKED_UP_GOLD = 40

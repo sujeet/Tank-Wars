@@ -2,8 +2,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+
 #include "Arena.h"
-#include "Tank.h"
 #include "Constants.h"
 
 using namespace std;
@@ -15,7 +15,7 @@ int main()
      Arena arena;
      srand(time(NULL));
      for (i = 0; i < TIMES; i++){
-          arena.get_moves ();
+          arena.get_machine_moves ();
           arena.move_bullets ();
           arena.get_player_moves ();
 
@@ -35,10 +35,9 @@ int main()
           arena.print_scores ();
           if (arena.game_over_flag){
                cout << "Bye Bye!" << endl;
-	       arena.machine_gun_list.clear();
+               arena.machine_gun_list.clear();
                break;
           }
      }
-
      return 0;
 }

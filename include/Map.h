@@ -28,6 +28,7 @@ public :
      
      /* Constructor */
      MapClass();
+     /* MapClass(MapClass map); */
      
      /* Method to initiate from a file */
      void create_from_file (std::string filename);

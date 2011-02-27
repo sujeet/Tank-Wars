@@ -4,7 +4,6 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "Misc_Classes.h"
 #include "Constants.h"
 
 using namespace std;
@@ -28,10 +27,8 @@ string symbol_to_html_class (char symbol)
      case FALCON1            : return "falcon1"               ; break;
      case FALCON2            : return "falcon2"               ; break;
      default                 :
-// 	  cerr << symbol << endl;
-// 	  exit (-1);
-	  return "Some thing went wrong" ; 
-	  
+          cerr << symbol << endl;
+          exit (-1);
      }
 }
 

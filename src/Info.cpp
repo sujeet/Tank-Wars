@@ -6,7 +6,7 @@
 #include<fstream>
 
 #include "Info.h"
-#include "Map.h"
+#include "Constants.h"
 
 using namespace std;
 
