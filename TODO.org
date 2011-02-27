@@ -22,3 +22,5 @@ To-do List:
 ** Documentation
 ** Create folders obj/ and output/ by default. make play gives an error otherwise
 ** Have a lookup table below or next to the display of the map, so that we can easily identify which coloured square corresponds to which object, eg. Tank, Machine Gun, etc.
+** TODO Dammit! Have a space before and after every paren [, (, ), ], and all the usual operators
+** There is a bit of an ambiguity when two tanks are very close to each other. If one shoots the other at point-blank range, the other tank dies, but it isn't obvious why.

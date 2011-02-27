@@ -188,7 +188,7 @@ int DECISION_MAKER::find_the_maximum( float* action_score )
 
 Move DECISION_MAKER::get_player_move(int choice)
 {
-     // Here you can fill your code
+     // FILL YOUR CODE HERE
      // Make sure your difficulty table is filled each time if you are using
      // it.
      fill_difficulty_table();

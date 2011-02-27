@@ -223,3 +223,8 @@ void Arena::update_map ()
      tank2.update_on_map (Map);
 }
 
+void Arena::end_game ()
+{
+     // Add stuff later
+}
+
