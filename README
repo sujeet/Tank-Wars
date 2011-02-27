@@ -30,21 +30,21 @@ How to Get Started:
 
     To get started with coding:
     The two important files from the player's perspective are the 
-    * DecisionMaker.cpp
+    * DecisionMaker1.cpp
     * Info.h
 
     The participants(players) are required only to modify DecisionMaker.cpp
     while Info.h can be looked at to understand the various readymade
     information available for handy use by the participants.
     It is strongly discouraged to modify any other file apart from
-    DecisionMaker.cpp and participants shall be disqualified if they 
+    DecisionMaker1.cpp and participants shall be disqualified if they 
     are found to have done so.
     
     You can start by understanding the various information objects in
     the Info Class so that you can use them to make your implementation
     fast.
     Then you can start coding by writing the appropriate logic of your 
-    implementation in the get_player_move function of the DecisionMaker 
+    implementation in the get_player_move function of the DECISIONMAKER 
     Class.You can proceed in two ways
         * You can directly just look at the various possibilities and 
         code for them so that you take appropriate action
@@ -55,6 +55,17 @@ How to Get Started:
 
         Best Mathematical models may be award special prizes.
         
+
+How to test your bots:
+---------------------
+After you fill in DecisionMaker1.cpp with your code go to the main
+directory in which all these folders and mainly the Makefile is 
+there.
+Execute the following command
+
+make play
+
+
 
                             ALL THE BEST!!
 
