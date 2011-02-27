@@ -6,9 +6,9 @@ To-do List:
 * Guru P
 * S. Pradeep Kumar
 ** Function initialize_from in Tank.h should take an ID preferably
-** TEST Tank crossing, Bullet crossing condition
 ** Use Tank's ID everywhere
-** Do stuff when the game gets over
+** TEST Tank crossing, Bullet crossing condition
+** TODO Do stuff when the game gets over
 *** Increment the score of the surviving players, etc.
 ** Random SegFault occurring from time to time
 ** Consider increasing the speed of bullets
@@ -17,3 +17,8 @@ To-do List:
 ** TODO Decide upon the Points Allocation
 ** BUG Tank Bullet cross kills the tank, but the bullet is shown in the new position
 ** TODO Have function to see if you can shoot E.Falcon/E.Tank
+** Testing
+** Server
+** Documentation
+** Create folders obj/ and output/ by default. make play gives an error otherwise
+** Have a lookup table below or next to the display of the map, so that we can easily identify which coloured square corresponds to which object, eg. Tank, Machine Gun, etc.

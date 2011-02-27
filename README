@@ -3,7 +3,7 @@ TANK WARS v1.0
 
 Intro:
 -----
-This game is insipired from the evergreen classic Battle City.
+This game is inspired from the evergreen classic Battle City.
 *   There are two Tanks which can move around the arena, collect
     items and shoot at other destructable objects.
 *   There is a Command Base for each Tank.
@@ -15,13 +15,13 @@ Aim:
  game. Points can be earned by collecting gold or by killing
  enemy base of enemy tank.
 *Game ends when one of the tanks or the bases is shot down or when
- the time(or maximim moves) ends.
+ the time (or maximum moves) ends.
 
 How to Get Started:
 ------------------
-    We have done most of the hard work :P. All you guys need to do
-    is just write one function, the brain (or the decision maker
-    of tank as we see it :).
+    We have done most of the hard work for you guys :P. All you guys need to do
+    is just write one function, the brain (or the Decision Maker
+    of the Tank as we see it :).
 
     To enable you to get a feel for the game very early we have a 
     pre-played game stored in this folder. Just double click on the
@@ -53,7 +53,7 @@ How to Get Started:
         basic idea where you can set value in a  weightage table and 
         dificulty table and choose your actions upon those calculations.
 
-        Best Mathematical models may be award special prizes.
+        Best Mathematical models may be awarded special prizes.
         
 
 How to test your bots:
