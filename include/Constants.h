@@ -29,8 +29,8 @@
 
 // Colour variables
 #define TANK1_COLOUR       "#008000"
-#define TANK2_COLOUR       "#0000ff"
-#define MACHINE_GUN_COLOUR "maroon"
+#define TANK2_COLOUR       "#ff00aa"
+#define MACHINE_GUN_COLOUR "blue"
 
 #define BULLET1_COLOUR     "black"
 #define BULLET2_COLOUR     "black"
@@ -42,7 +42,7 @@
 
 #define DEAD_COLOUR        "red"
 #define FALCON1_COLOUR     "#55ee55"
-#define FALCON2_COLOUR     "#7777ff"
+#define FALCON2_COLOUR     "#ff0044"
 
 // For Misc_Classes.h
 #define MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY 5

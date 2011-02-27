@@ -1,51 +1,94 @@
 # CFLAGS = -D N=50
-CFLAGS = -Wall -pedantic -g
-MACROS = -DMAP_FILE=\"map.txt\" -DLOG_FILE=\"log.txt\" -DMAP_SIZE=51 -DHTML_FILE=\"tank_video_player.html\"
+CFLAGS = -Wall -pedantic -g -I./include/
+MACROS = -DMAP_FILE=\"map.txt\" -DLOG_FILE=\"log.txt\" -DMAP_SIZE=51 -DHTML_FILE=\"game_display.html\"
 
-all: TankWars.exe log_to_html.exe
+all: bin/TankWars.exe bin/log_to_html.exe
 	echo "Done!"
 
-TankWars.exe: Arena.o Tank.o TankWars.o Map.o Misc_Classes.o Info.o Decision_Maker.o
+bin/TankWars.exe: obj/Arena.o \
+                  obj/Tank.o \
+                  obj/TankWars.o \
+                  obj/Map.o \
+                  obj/Misc_Classes.o \
+                  obj/Info.o \
+                  obj/DecisionMaker1.o \
+                  obj/DecisionMaker2.o
 	g++ -o $@ $^ $(CFLAGS) $(MACROS)
 
-Arena.o: Arena.cpp Arena.h Tank.h Map.h Info.h Decision_Maker.h Misc_Classes.h
+bin/log_to_html.exe: src/log_to_html.cpp \
+                     include/Constants.h 
+	g++ -o $@ $< $(CFLAGS) $(MACROS)
+
+obj/TankWars.o: src/TankWars.cpp \
+                include/Arena.h \
+                include/Constants.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
-Tank.o: Tank.cpp Tank.h Map.h Info.h Decision_Maker.h
+obj/Arena.o: src/Arena.cpp \
+             include/Arena.h \
+             include/Tank.h \
+             include/Map.h \
+             include/Constants.h \
+             include/DecisionMaker1.h \
+             include/DecisionMaker2.h \
+             include/Misc_Classes.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
-TankWars.o: TankWars.cpp Arena.h Tank.h
+obj/Tank.o: src/Tank.cpp \
+            include/Tank.h \
+            include/Map.h \
+            include/Constants.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
-Decision_Maker.o: Decision_Maker.cpp Info.h Map.h Misc_Classes.h
+obj/DecisionMaker1.o: DecisionMaker.cpp \
+                      include/DecisionMaker.h \
+                      include/Info.h \
+                      include/Constants.h \
+                      include/Misc_Classes.h
+	g++ -o $@ -c $< $(CFLAGS) $(MACROS) -DDECISION_MAKER=DecisionMaker1
+
+obj/DecisionMaker2.o: DecisionMaker.cpp \
+                      include/DecisionMaker.h \
+                      include/Info.h \
+                      include/Constants.h \
+                      include/Misc_Classes.h
+	g++ -o $@ -c $< $(CFLAGS) $(MACROS) -DDECISION_MAKER=DecisionMaker2
+
+obj/Map.o: src/Map.cpp \
+	       include/Map.h \
+           include/Misc_Classes.h \
+           include/Constants.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
-Map.o: Map.cpp Map.h Misc_Classes.h
+obj/Misc_Classes.o: src/Misc_Classes.cpp \
+                    include/Misc_Classes.h \
+                    include/Constants.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
-Misc_Classes.o: Misc_Classes.cpp Misc_Classes.h
+obj/Info.o: src/Info.cpp \
+            include/Info.h \
+            include/Misc_Classes.h \
+            include/Map.h \
+            include/Tank.h \
+            include/Constants.h
 	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
 
-Info.o: Info.cpp Info.h Misc_Classes.h Map.h
-	g++ -o $@ -c $< $(CFLAGS) $(MACROS)
+# Now the phony targets.-------------------------------------------------
+bot1:
+	make obj/DecisionMaker1.o
 
-log_to_html.exe: log_to_html.cpp Misc_Classes.h Misc_Classes.o
-	g++ -o $@ $< Misc_Classes.o $(CFLAGS) $(MACROS)
+bot2:
+	make obj/DecisionMaker2.o
 
-play: all
-	./TankWars.exe
-	./log_to_html.exe
+play: 
+	g++ -o bin/TankWars.exe obj/Arena.o obj/Tank.o obj/TankWars.o obj/Map.o obj/Misc_Classes.o obj/Info.o obj/DecisionMaker1.o obj/DecisionMaker2.o
+	./bin/TankWars.exe
+	./bin/log_to_html.exe
+	mv log.txt ./output/log.txt
+	mv game_display.html ./output/game_display.html
 
 display:
-	firefox tank_video_player.html
+	firefox ./output/game_display.html
 
 clean:
-	rm *.o *~ -f
-
-run_and_display : 
-	make
-	./TankWars.exe 
-	python log-file-reader.py
-
-zip-file:
-	tar zcvf TankWars.tar.gz *
+	rm ./obj/*.o ./src/*~ ./include/*~ -f

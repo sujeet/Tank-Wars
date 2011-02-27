@@ -16,3 +16,4 @@ To-do List:
 ** Note : Since, we're calling the same functions for Machine Gun as for Tank, all sorts of stuff is done for Machine Guns. eg. Its score gets updated. Just fyi
 ** TODO Decide upon the Points Allocation
 ** BUG Tank Bullet cross kills the tank, but the bullet is shown in the new position
+** TODO Have function to see if you can shoot E.Falcon/E.Tank

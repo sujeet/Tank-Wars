@@ -2,6 +2,7 @@
 #include <cstdlib>
 
 #include "Tank.h"
+#include "Constants.h"
 
 using namespace std;
 
@@ -38,11 +39,11 @@ void Tank::initialize_from (int given_player_no,
      this->id.falcon_symbol = falcon_symbol;
 
      // Initialize Bullet Symbol
-     if (symbol == '1'){
-          bullet_symbol = 'A';
+     if (symbol == TANK1){
+          bullet_symbol = BULLET1;
      }
      else{
-          bullet_symbol = 'B';
+          bullet_symbol = BULLET2;
      }
     
      

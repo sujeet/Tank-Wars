@@ -6,5 +6,6 @@
 *.out
 *.html
 log.txt
+*nfs*
 
 

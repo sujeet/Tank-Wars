@@ -6,7 +6,7 @@
 #include<fstream>
 
 #include "Info.h"
-#include "Map.h"
+#include "Constants.h"
 
 using namespace std;
 
@@ -101,7 +101,8 @@ void Info::update_distances(MapClass &map,Position source)
 
         object_info temp_info_object;                
 
-        temp_info_object.shortest_distance = distance[temp.x][temp.y];     //this part is self explanatory
+	// Contains the info of the current node to be dequeued
+        temp_info_object.shortest_distance = distance[temp.x][temp.y];
         temp_info_object.initial_move = initial_move[temp.x][temp.y];
         temp_info_object.posn = temp;
 
@@ -116,13 +117,13 @@ void Info::update_distances(MapClass &map,Position source)
         else if (char_buffer == enemy_ID.tank_symbol)       
         {
             opp_tank = temp_info_object;
-            continue;
+//             continue;
         }
         else if (char_buffer == enemy_ID.falcon_symbol)
         {
             distance[x][y] = -1;
             opp_falcon = temp_info_object;
-            continue;
+            continue;		// We say continue because you can never reach that place and go to a neighbour
         }
         else if( char_buffer ==  my_ID.falcon_symbol)
         {
@@ -135,7 +136,7 @@ void Info::update_distances(MapClass &map,Position source)
             distance[x][y] = -1;
             continue;
         }
-        else if( char_buffer == 'M')
+        else if( char_buffer == MACHINE_GUN)
         {
             distance[x][y] = -1;
             continue;
@@ -145,15 +146,15 @@ void Info::update_distances(MapClass &map,Position source)
         {
             d.get_from_integer (i);     
             temp1 = temp;
-            temp1.go_in_direction (d);
+            temp1.go_in_direction (d); // temp1 is the neighbour
 
-            if(visited[temp1.x][temp1.y] == 0)
+            if( visited[temp1.x][temp1.y] == 0 && !map.is_symbol (temp1, WALL) && !map.is_symbol (temp1, MACHINE_GUN))
                 //push the neighbours if they are not already visited
             {
                 q.push(temp1);
-                initial_move[temp1.x][temp1.y].dirn = d;
                 //the initial move is the same as its parents
                 //initial move 
+                initial_move[temp1.x][temp1.y] = initial_move[temp.x][temp.y];
                 visited[temp1.x][temp1.y] = 1;
                 distance[temp1.x][temp1.y] = 1 + distance[x][y];
                 //distance is one more than its parent
@@ -179,21 +180,21 @@ void Info::update_distances(MapClass &map,Position source)
         gold_available = false;
     }
 
-     int i = 0, j = 0;
-     for(i = 0; i < MAP_SIZE - 1; i++)
-     {
-         for(j = 0; j < MAP_SIZE - 1; j++)
-         {
-             if(i != source.x || (j != source.y))
-             initial_move[i][j].dirn.print();
-             else 
-                 cout << setw (2) << -9;
-         }
+//      int i = 0, j = 0;
+//      for(i = 0; i < MAP_SIZE - 1; i++)
+//      {
+//          for(j = 0; j < MAP_SIZE - 1; j++)
+//          {
+//              if(i != source.x || (j != source.y))
+// 		  initial_move[i][j].dirn.print();
+//              else 
+// 		  cout << setw (2) << '9';//distance[i][j];
+//          }
 
-         cout << endl << endl;
-     }
+//          cout << endl << endl;
+//      }
 
-         exit(0);
+//          exit(0);
 
 }
 

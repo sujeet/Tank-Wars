@@ -2,6 +2,9 @@
 #include <vector>
 
 #include "Arena.h"
+#include "Misc_Classes.h"
+#include "Constants.h"
+
 using namespace std;
 
 
@@ -64,11 +67,6 @@ void Arena::print_scores ()
      
 }
 
-void Arena::get_moves ()
-{
-     this->get_machine_moves();
-}
-
 void Arena::get_machine_moves ()
 {
      for (unsigned int i = 0; i < this->machine_gun_list.size(); i++) {
@@ -88,13 +86,22 @@ void Arena::get_player_moves ()
 {
      // Get each tank's next moves
 
-     DM1.info.update_info (this->Map, tank1.curr_posn, tank1.bullet_list, tank2.bullet_list, machine_gun_list);
-     DM2.info.update_info (this->Map, tank2.curr_posn, tank2.bullet_list, tank1.bullet_list, machine_gun_list);
-     
-     // 0 : Choice - Say, Aggressive
-     // 2 : Greedy
-     tank1.get_next_move (DM1.get_player_move(AGGRESSIVE));
-     tank2.get_next_move (DM2.get_player_move(CUSTOMISED));
+     // DM1 and DM2 is the interface between the 
+     // game engine and the bots.
+     DM1.info.update_info (this->Map,
+                           tank1.curr_posn,
+                           tank1.bullet_list,
+                           tank2.bullet_list,
+                           machine_gun_list);
+
+     DM2.info.update_info (this->Map,
+                           tank2.curr_posn,
+                           tank2.bullet_list,
+                           tank1.bullet_list,
+                           machine_gun_list);
+
+     tank1.get_next_move (DM1.get_player_move(GREEDY));
+     tank2.get_next_move (DM2.get_player_move(AGGRESSIVE));
 }
 
 void Arena::execute_tank_moves ()

@@ -4,15 +4,15 @@
 #include<iostream>
 
 #include "Info.h"
-#include "Map.h"
 #include "Misc_Classes.h"
-#include "Constants.h"
+#include "Map.h"
+
 /*
  * Various Strategies    -  Aggressive, Defensive, Greedy, Customised
  * Various Action plans  -  Pick up gold, attack enemy tank,
  *                          attack enemy falcon, defend your falcon
  */
-class DecisionMaker
+class DECISION_MAKER
 {
 public:
      void DMinitializer(ID, ID);
@@ -37,7 +37,7 @@ public:
      // return_best_move (calculate_best_action_plan (his_choice_of_strategy))?
      Move return_best_move(int );
 
-     Move get_player_move(int);
+     Move get_player_move(int choice);
 };
 
 
