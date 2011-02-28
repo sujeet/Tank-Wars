@@ -8,6 +8,25 @@
 
 using namespace std;
 
+void print_scores(const Arena & arena)
+{
+     cout << arena.tank1.score << " " << arena.tank2.score << endl;
+     cout << endl << endl;
+     cout << "##########[ Result ]#############" << endl;
+     cout << "Tank 1 score : " << arena.tank1.score << endl;
+     cout << "Tank 2 score : " << arena.tank2.score << endl;
+     if (arena.tank2.score < arena.tank1.score) {
+          cout << "          Tank 1 won." << endl;
+     }
+     else if (arena.tank1.score < arena.tank2.score) {
+          cout << "          Tank 2 won." << endl;
+     }
+     else {
+          cout << "The match was a tie." << endl;
+     }
+     cout << "#################################" << endl;
+     cout << endl;
+}
 
 int main()
 {
@@ -15,13 +34,13 @@ int main()
      Arena arena;
      srand(time(NULL));
      for (i = 0; i < TIMES; i++){
-	  // Get the moves for the Machine guns
+          // Get the moves for the Machine guns
           arena.get_machine_moves ();
 
-	  // Move the bullets one step in their current direction
+          // Move the bullets one step in their current direction
           arena.move_bullets ();
 
-	  // Get player moves - ie. Call DecisionMaker
+          // Get player moves - ie. Call DecisionMaker
           arena.get_player_moves ();
 
           // For each Tank, first, either shoot or move tank
@@ -37,20 +56,19 @@ int main()
           // Machine gun. Check if bullets collide with each other
           arena.evaluate_dynamic_interactions ();
 
-	  // Update the MapClass with the current positions of all
-	  // objects
+          // Update the MapClass with the current positions of all
+          // objects
           arena.update_map ();
 
-	  // Print scores into the log file
+          // Print scores into the log file
           arena.print_scores ();
 
-	  // If the game is over
+          // If the game is over
           if (arena.game_over_flag){
-	       arena.end_game ();
-               cout << "Bye Bye!" << endl;
                arena.machine_gun_list.clear();
                break;
           }
      }
+     print_scores(arena);
      return 0;
 }
