@@ -170,7 +170,7 @@ bool Tank::is_killed_by (Tank t)
      return flag;
 }
 
-void Tank::die_by_tank (Tank t)
+void Tank::die_by_tank (Tank &t)
 {
      // Tank is dead; Will end the game after updating map
      this->dead_flag = true;
@@ -336,7 +336,7 @@ void Tank::Falcon::set_dead_flag ()
 }
 
 
-bool Tank::Falcon::is_killed_by (Tank t)
+bool Tank::Falcon::is_killed_by (Tank &t)
 {
      // Check if Falcon is killed by enemy tank t's bullets or has
      // been crashed into
@@ -358,7 +358,10 @@ bool Tank::Falcon::is_killed_by (Tank t)
           flag = true;
      }
 
-     t.incr_score (ENEMY_FALCON_KILLED);
+     if (flag){
+	  t.incr_score (ENEMY_FALCON_KILLED);
+     }
+     
      return flag;
 }
 
