@@ -91,10 +91,9 @@ bot2:
 	make obj/DecisionMaker2.o
 
 play: all
-	# g++ -o bin/TankWars.exe obj/Arena.o obj/Tank.o obj/TankWars.o obj/Map.o obj/Misc_Classes.o obj/Info.o obj/DecisionMaker1.o obj/DecisionMaker2.o
 	./bin/TankWars.exe
 	./bin/log_to_html.exe
-	if [ ! -e output]; then mkdir output; fi;
+	if [ ! -e output ]; then mkdir output; fi;
 	mv log.txt ./output/log.txt
 	mv game_display.html ./output/game_display.html
 

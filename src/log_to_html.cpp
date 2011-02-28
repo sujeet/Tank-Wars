@@ -35,174 +35,179 @@ string symbol_to_html_class (char symbol)
 string insert_css ()
 {
      ostringstream str_out;
-     str_out << "<style type = text/css>                                                            " << endl;
-     str_out << ".wall {                                                                            " << endl
-             << "    width                 :	 10px;                                              " << endl
-             << "    height                :	 10px;                                              " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << WALL_COLOUR << ";    " << endl
-             << "    margin                :	 0pt;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "}                                                                                  " << endl
-             << ".empty {                                                                           " << endl
-             << "    -moz-border-radius    :	5px;                                                " << endl
-             << "    -webkit-border-radius :	5px;                                                " << endl
-             << "    width                 :	 10px;                                              " << endl
-             << "    height                :	 10px;                                              " << endl
-             << "    background            :	 none repeat scroll 0% 0% none;                     " << endl
-             << "    margin                :	 0pt;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "   }                                                                               " << endl
-             << ".falcon1 {                                                                         " << endl
-             << "    width                 :	 6px;                                               " << endl
-             << "    height                :	 6px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << FALCON1_COLOUR << "; " << endl
-             << "    margin                :	 0pt;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    border-style          :	 solid;                                             " << endl
-             << "    border-color          :	 black;                                             " << endl
-             << "    border-width          :	 2px;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "   }                                                                               " << endl
-             << ".falcon2 {                                                                         " << endl
-             << "    width                 :	 6px;                                               " << endl
-             << "    height                :	 6px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << FALCON2_COLOUR << "; " << endl
-             << "    margin                :	 0pt;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    border-style          :	 solid;                                             " << endl
-             << "    border-color          :	 black;                                             " << endl
-             << "    border-width          :	 2px;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "   }                                                                               " << endl
-             << ".tank1 {                                                                           " << endl
-             << "    -moz-border-radius    :	3px;                                                " << endl
-             << "    -webkit-border-radius :	3px;                                                " << endl
-             << "    width                 :	 10px;                                              " << endl
-             << "    height                :	 10px;                                              " << endl
-             << "    background            :	 none repeat scroll 0% 0%  " << TANK1_COLOUR << ";  " << endl
-             << "    margin                :	 0pt;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "   }                                                                               " << endl
-             << ".tank2 {                                                                           " << endl
-             << "    -moz-border-radius    :	3px;                                                " << endl
-             << "    -webkit-border-radius :	3px;                                                " << endl
-             << "    width                 :	 10px;                                              " << endl
-             << "    height                :	 10px;                                              " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << TANK2_COLOUR << ";   " << endl
-             << "    margin                :	 0pt;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "   }                                                                               " << endl
-             << ".machine_gun {                                                                     " << endl
-             << "    -moz-border-radius    :	3px;                                                " << endl
-             << "    -webkit-border-radius :	3px;                                                " << endl
-             << "    width                 :	 10px;                                              " << endl
-             << "    height                :	 10px;                                              " << endl
-             << "    background            :	 none repeat scroll 0% 0% "<< MACHINE_GUN_COLOUR<<";" << endl
-             << "    margin                :	 0pt;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "   }                                                                               " << endl
-             << ".bullet1 {                                                                         " << endl
-             << "    -moz-border-radius    :	5px;                                                " << endl
-             << "    -webkit-border-radius :	5px;                                                " << endl
-             << "    width                 :	  4px;                                              " << endl
-             << "    height                :	  4px;                                              " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << BULLET1_COLOUR << "; " << endl
-             << "    margin                :	 3px;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "   }                                                                               " << endl
-             << ".bullet2 {                                                                         " << endl
-             << "    -moz-border-radius    :	5px;                                                " << endl
-             << "    -webkit-border-radius :	5px;                                                " << endl
-             << "    width                 :	  4px;                                              " << endl
-             << "    height                :	  4px;                                              " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << BULLET2_COLOUR << "; " << endl
-             << "    margin                :	 3px;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "   }                                                                               " << endl
-             << ".bullet3 {                                                                         " << endl
-             << "    -moz-border-radius    :	5px;                                                " << endl
-             << "    -webkit-border-radius :	5px;                                                " << endl
-             << "    width                 :	  4px;                                              " << endl
-             << "    height                :	  4px;                                              " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << BULLET3_COLOUR << "; " << endl
-             << "    margin                :	 3px;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "   }                                                                               " << endl
-             << ".gold {                                                                            " << endl
-             << "    -moz-border-radius    :	3px;                                                " << endl
-             << "    -webkit-border-radius :	3px;                                                " << endl
-             << "    width                 :	 8px;                                               " << endl
-             << "    height                :	 8px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << GOLD_COLOUR << ";    " << endl
-             << "    margin                :	 0pt;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "       border-style       :	 solid;                                             " << endl
-             << "       border-color       :	 gold;                                              " << endl
-             << "    border-width          :	1px;                                                " << endl
-             << "}                                                                                  " << endl
-             << ".dead {                                                                            " << endl
-             << "    -moz-border-radius    :	5px;                                                " << endl
-             << "    -webkit-border-radius :	5px;                                                " << endl
-             << "    width                 :	 10px;                                              " << endl
-             << "    height                :	 10px;                                              " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << DEAD_COLOUR << ";    " << endl
-             << "    margin                :	 0pt;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "}                                                                                  " << endl
-             << ".metacontainer {                                                                   " << endl
-             << "    -moz-border-radius    :	10px;                                               " << endl
-             << "    -webkit-border-radius :	10px;                                               " << endl
-             << "    -moz-box-shadow       :	5px 5px 7px #555555;                                " << endl
-             << "    -webkit-box-shadow    :	5px 5px 7px #555555;                                " << endl
-             << "    width                 :	 720px;                                             " << endl
-             << "    height                :	 500px;                                             " << endl
-             << "    margin                :	 0pt auto;                                          " << endl
-             << "    padding               :	 20px;                                              " << endl
-             << "    border                :	 0pt none;                                          " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << WALL_COLOUR << ";    " << endl
-             << "}                                                                                  " << endl
-             << ".status {                                                                          " << endl
-             << "    width                 :	 200px;                                             " << endl
-             << "    -moz-border-radius    :	10px;                                               " << endl
-             << "    -webkit-border-radius :	10px;                                               " << endl
-             << "    float                 :	 right;                                             " << endl
-             << "    margin                :	 10px 0 0;                                          " << endl
-             // << "    padding               :	 0pt;                                               " << endl
-             // << "    border                :	 0pt none;                                          " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";     " << endl
-             << "}                                                                                  " << endl
-             << ".control {                                                                         " << endl
-             << "    width                 :	 200px;                                             " << endl
-             << "    -moz-border-radius    :	10px;                                               " << endl
-             << "    -webkit-border-radius :	10px;                                               " << endl
-             << "    float                 :	 right;                                             " << endl
-             << "    margin                :	 20px 0 0;                                          " << endl
-             // << "    padding               :	 0pt;                                               " << endl
-             // << "    border                :	 0pt none;                                          " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";     " << endl
-             << "}                                                                                  " << endl
-             << "button {                                                                           " << endl
-             << "    width                 :	 100%;                                              " << endl
-             << "}                                                                                  " << endl
-             << ".container{                                                                        " << endl
-             << "    width                 :	 500px;                                             " << endl
-             << "    height                :	 500px;                                             " << endl
-             << "    margin                :	 0pt;                                               " << endl
-             << "    padding               :	 0pt;                                               " << endl
-             << "    float                 :	 left;                                              " << endl
-             << "    border                :	 0pt none;                                          " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";     " << endl
-             << "}                                                                                  " << endl;
+     str_out << "<style type = text/css>                                                             " << endl;
+     str_out << ".wall {                                                                             " << endl
+             << "    width                 :	 10px;                                               " << endl
+             << "    height                :	 10px;                                               " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << WALL_COLOUR << ";     " << endl
+             << "    margin                :	 0pt;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "}                                                                                   " << endl
+             << ".empty {                                                                            " << endl
+             << "    -moz-border-radius    :	5px;                                                 " << endl
+             << "    -webkit-border-radius :	5px;                                                 " << endl
+             << "    width                 :	 10px;                                               " << endl
+             << "    height                :	 10px;                                               " << endl
+             << "    background            :	 none repeat scroll 0% 0% none;                      " << endl
+             << "    margin                :	 0pt;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "   }                                                                                " << endl
+             << ".falcon1 {                                                                          " << endl
+             << "    width                 :	 6px;                                                " << endl
+             << "    height                :	 6px;                                                " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << FALCON1_COLOUR << ";  " << endl
+             << "    margin                :	 0pt;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    border-style          :	 solid;                                              " << endl
+             << "    border-color          :	 black;                                              " << endl
+             << "    border-width          :	 2px;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "   }                                                                                " << endl
+             << ".falcon2 {                                                                          " << endl
+             << "    width                 :	 6px;                                                " << endl
+             << "    height                :	 6px;                                                " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << FALCON2_COLOUR << ";  " << endl
+             << "    margin                :	 0pt;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    border-style          :	 solid;                                              " << endl
+             << "    border-color          :	 black;                                              " << endl
+             << "    border-width          :	 2px;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "   }                                                                                " << endl
+             << ".tank1 {                                                                            " << endl
+             << "    -moz-border-radius    :	3px;                                                 " << endl
+             << "    -webkit-border-radius :	3px;                                                 " << endl
+             << "    width                 :	 10px;                                               " << endl
+             << "    height                :	 10px;                                               " << endl
+             << "    background            :	 none repeat scroll 0% 0%  " << TANK1_COLOUR << ";   " << endl
+             << "    margin                :	 0pt;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "   }                                                                                " << endl
+             << ".tank2 {                                                                            " << endl
+             << "    -moz-border-radius    :	3px;                                                 " << endl
+             << "    -webkit-border-radius :	3px;                                                 " << endl
+             << "    width                 :	 10px;                                               " << endl
+             << "    height                :	 10px;                                               " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << TANK2_COLOUR << ";    " << endl
+             << "    margin                :	 0pt;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "   }                                                                                " << endl
+             << ".machine_gun {                                                                      " << endl
+             << "    -moz-border-radius    :	3px;                                                 " << endl
+             << "    -webkit-border-radius :	3px;                                                 " << endl
+             << "    width                 :	 10px;                                               " << endl
+             << "    height                :	 10px;                                               " << endl
+             << "    background            :	 none repeat scroll 0% 0% "<< MACHINE_GUN_COLOUR<<"; " << endl
+             << "    margin                :	 0pt;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "   }                                                                                " << endl
+             << ".bullet1 {                                                                          " << endl
+             << "    -moz-border-radius    :	5px;                                                 " << endl
+             << "    -webkit-border-radius :	5px;                                                 " << endl
+             << "    width                 :	  4px;                                               " << endl
+             << "    height                :	  4px;                                               " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BULLET1_COLOUR << ";  " << endl
+             << "    margin                :	 3px;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "   }                                                                                " << endl
+             << ".bullet2 {                                                                          " << endl
+             << "    -moz-border-radius    :	5px;                                                 " << endl
+             << "    -webkit-border-radius :	5px;                                                 " << endl
+             << "    width                 :	  4px;                                               " << endl
+             << "    height                :	  4px;                                               " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BULLET2_COLOUR << ";  " << endl
+             << "    margin                :	 3px;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "   }                                                                                " << endl
+             << ".bullet3 {                                                                          " << endl
+             << "    -moz-border-radius    :	5px;                                                 " << endl
+             << "    -webkit-border-radius :	5px;                                                 " << endl
+             << "    width                 :	  4px;                                               " << endl
+             << "    height                :	  4px;                                               " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BULLET3_COLOUR << ";  " << endl
+             << "    margin                :	 3px;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "   }                                                                                " << endl
+             << ".gold {                                                                             " << endl
+             << "    -moz-border-radius    :	3px;                                                 " << endl
+             << "    -webkit-border-radius :	3px;                                                 " << endl
+             << "    width                 :	 8px;                                                " << endl
+             << "    height                :	 8px;                                                " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << GOLD_COLOUR << ";     " << endl
+             << "    margin                :	 0pt;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "       border-style       :	 solid;                                              " << endl
+             << "       border-color       :	 gold;                                               " << endl
+             << "    border-width          :	1px;                                                 " << endl
+             << "}                                                                                   " << endl
+             << ".dead {                                                                             " << endl
+             << "    -moz-border-radius    :	5px;                                                 " << endl
+             << "    -webkit-border-radius :	5px;                                                 " << endl
+             << "    width                 :	 10px;                                               " << endl
+             << "    height                :	 10px;                                               " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << DEAD_COLOUR << ";     " << endl
+             << "    margin                :	 0pt;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "}                                                                                   " << endl
+             << ".metacontainer {                                                                    " << endl
+             << "    -moz-border-radius    :	10px;                                                " << endl
+             << "    -webkit-border-radius :	10px;                                                " << endl
+             << "    -moz-box-shadow       :	5px 5px 7px #555555;                                 " << endl
+             << "    -webkit-box-shadow    :	5px 5px 7px #555555;                                 " << endl
+             << "    width                 :	 920px;                                              " << endl
+             << "    height                :	 490px;                                              " << endl
+             << "    margin                :	 0pt auto;                                           " << endl
+             << "    padding               :	 20px;                                               " << endl
+             << "    border                :	 0pt none;                                           " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << WALL_COLOUR << ";     " << endl
+             << "}                                                                                   " << endl
+             << ".legend {                                                                           " << endl
+             << "    width                 :	 200px;                                              " << endl
+             << "    height                :	 470px;                                              " << endl
+             << "    -moz-border-radius    :	10px;                                                " << endl
+             << "    -webkit-border-radius :	10px;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "    margin                :	 10px 10px 10px 0px;                                 " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";      " << endl
+             << "}                                                                                   " << endl
+             << ".status {                                                                           " << endl
+             << "    width                 :	 200px;                                              " << endl
+             << "    -moz-border-radius    :	10px;                                                " << endl
+             << "    -webkit-border-radius :	10px;                                                " << endl
+             << "    float                 :	 right;                                              " << endl
+             << "    margin                :	 10px 0 0;                                           " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";      " << endl
+             << "}                                                                                   " << endl
+             << ".control {                                                                          " << endl
+             << "    width                 :	 200px;                                              " << endl
+             << "    -moz-border-radius    :	10px;                                                " << endl
+             << "    -webkit-border-radius :	10px;                                                " << endl
+             << "    float                 :	 right;                                              " << endl
+             << "    margin                :	 20px 0 0;                                           " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";      " << endl
+             << "}                                                                                   " << endl
+             << "button {                                                                            " << endl
+             << "    width                 :	 100%;                                               " << endl
+             << "}                                                                                   " << endl
+             << ".container{                                                                         " << endl
+             << "    width                 :	 500px;                                              " << endl
+             << "    height                :	 500px;                                              " << endl
+             << "    margin                :	 0pt;                                                " << endl
+             << "    padding               :	 0pt;                                                " << endl
+             << "    float                 :	 left;                                               " << endl
+             << "    border                :	 0pt none;                                           " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";      " << endl
+             << "}                                                                                   " << endl;
 
      // The following is the css for buttons.
      str_out << ".black {                                                                                                                " << endl
@@ -278,6 +283,103 @@ string make_divs (char * filename)
      map.close();
      return str_out.str();
 }
+
+string insert_legend ()
+{
+      ostringstream str_out;
+      str_out << "<div class='legend'>                                " << endl
+              << "<table style='width: 200px; border-spacing: 10px;'> " << endl
+              << "    <tbody><tr>                                     " << endl
+              << "        <th colspan='2'> Legend </th>               " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "        <td>                                        " << endl
+              << "            <div class='gold'></div>                " << endl
+              << "        </td>                                       " << endl
+              << "        <td> Gold                                   " << endl
+              << "        </td>                                       " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "        <td>                                        " << endl
+              << "            <div class='falcon1'></div>             " << endl
+              << "        </td>                                       " << endl
+              << "        <td> Player one falcon                      " << endl
+              << "        </td>                                       " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "        <td>                                        " << endl
+              << "            <div class='tank1'></div>               " << endl
+              << "        </td>                                       " << endl
+              << "        <td> Player one tank                        " << endl
+              << "        </td>                                       " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "        <td>                                        " << endl
+              << "            <div class='bullet1'></div>             " << endl
+              << "        </td>                                       " << endl
+              << "        <td> Player one bullet                      " << endl
+              << "        </td>                                       " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "    </tr>                                           " << endl
+              << "        <tr><td>                                    " << endl
+              << "            <div class='falcon2'></div>             " << endl
+              << "        </td>                                       " << endl
+              << "        <td> Player two falcon                      " << endl
+              << "        </td>                                       " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "        <td>                                        " << endl
+              << "            <div class='tank2'></div>               " << endl
+              << "        </td>                                       " << endl
+              << "        <td> Player two tank                        " << endl
+              << "        </td>                                       " << endl
+              << "    </tr>                                           " << endl
+              << "                                                    " << endl
+              << "    <tr>                                            " << endl
+              << "        <td>                                        " << endl
+              << "            <div class='bullet2'></div>             " << endl
+              << "        </td>                                       " << endl
+              << "        <td> Player two bullet                      " << endl
+              << "        </td>                                       " << endl
+              << "    </tr>   <tr> </tr><tr></tr><tr>                 " << endl
+              << "        <td>                                        " << endl
+              << "            <div class='machine_gun'></div>         " << endl
+              << "        </td>                                       " << endl
+              << "        <td> Machine Gun                            " << endl
+              << "        </td>                                       " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "        <td>                                        " << endl
+              << "            <div class='bullet3'></div>             " << endl
+              << "        </td>                                       " << endl
+              << "        <td> Machine gun bullet                     " << endl
+              << "        </td>                                       " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "    </tr>                                           " << endl
+              << "    <tr>                                            " << endl
+              << "        <td>                                        " << endl
+              << "            <div class='wall'></div>                " << endl
+              << "        </td>                                       " << endl
+              << "        <td> Wall                                   " << endl
+              << "        </td>                                       " << endl
+              << "    </tr>                                           " << endl
+              << "</tbody></table>                                    " << endl
+              << "</div>                                              " << endl;
+      return str_out.str();
+}
+     
 
 string insert_controls ()
 {
@@ -477,6 +579,7 @@ int main()
      html_file << "</head>" << endl;
      html_file << "<body>" << endl;
      html_file << "<div class = 'metacontainer'>" << endl;
+     html_file << insert_legend ();
      html_file << make_divs ( (char*) MAP_FILE );
      html_file << insert_status_notifier();
      html_file << insert_controls();
