@@ -36,6 +36,7 @@ public:
      void evaluate_static_interactions ();
      void evaluate_dynamic_interactions ();
      void update_map ();
+     void end_game ();
 };
 
      

@@ -358,6 +358,7 @@ bool Tank::Falcon::is_killed_by (Tank t)
           flag = true;
      }
 
+     t.incr_score (ENEMY_FALCON_KILLED);
      return flag;
 }
 
