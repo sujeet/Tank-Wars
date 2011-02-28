@@ -3,7 +3,9 @@
 
 enum event
 {
-     ENEMY_KILLED = 100, PICKED_UP_GOLD = 40, ENEMY_FALCON_KILLED = 200
+     ENEMY_KILLED = 500,
+     PICKED_UP_GOLD = 40,
+     ENEMY_FALCON_KILLED = 1000
 };
 
 class ID
