@@ -50,7 +50,7 @@ void DECISION_MAKER::DMinitializer(ID my_id, ID enemy_id)
      // go_to_nearest_gold_weight | attack_enemy_falcon_weight | attack_enemy_tank_weight | defend_your_falcon_weight
      set_weightage_table(AGGRESSIVE, 0, 100, 50, 0);
      set_weightage_table(DEFENSIVE, 20, 1, 5, 50);
-     set_weightage_table(GREEDY, 1000, 15, 10, 0);
+     set_weightage_table(GREEDY, 100, 15, 10, 0);
      set_weightage_table(CUSTOMISED, 0, 0, 100, 0);
 
      // These are just dummy values 
