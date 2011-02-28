@@ -192,5 +192,5 @@ Move DECISION_MAKER::get_player_move(int choice)
      // Make sure your difficulty table is filled each time if you are using
      // it.
      fill_difficulty_table();
-     return return_best_move(calculate_best_action_plan(AGGRESSIVE));
+     return return_best_move(calculate_best_action_plan(GREEDY));
 }

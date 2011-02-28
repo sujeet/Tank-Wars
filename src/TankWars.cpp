@@ -34,10 +34,26 @@ int main()
           arena.update_map ();
           arena.print_scores ();
           if (arena.game_over_flag){
-               cout << "Bye Bye!" << endl;
                arena.machine_gun_list.clear();
                break;
           }
      }
+     cout << arena.tank1.score << " " << arena.tank2.score << endl;
+     cout << endl << endl;
+     cout << "##########[ Result ]#############" << endl;
+     cout << "Tank 1 score : " << arena.tank1.score << endl;
+     cout << "Tank 2 score : " << arena.tank2.score << endl;
+     if (arena.tank2.score < arena.tank1.score) {
+          cout << "          Tank 1 won." << endl;
+     }
+     else if (arena.tank1.score < arena.tank2.score) {
+          cout << "          Tank 2 won." << endl;
+     }
+     else {
+          cout << "The match was a tie." << endl;
+     }
+     cout << "#################################" << endl;
+     cout << endl;
+     
      return 0;
 }

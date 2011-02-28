@@ -315,7 +315,6 @@ void Bullet::update_on_map (MapClass & Map)
      if (Map.get_element (this->prev_posn) == this->symbol)
 	  Map.set_element (this->prev_posn, EMPTY);
      if (this->disappear_flag){
-	  cerr << "Hi" << endl;
           // Map[curr_x][curr_y] = EMPTY;
           // the bullet died because it hit
           // something hence setting curr_coords
