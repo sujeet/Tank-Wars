@@ -101,6 +101,21 @@ public:
           }
      }
 	  
+     Tank operator=(const Tank copyate)
+     {
+         this->symbol = copyate.symbol;
+         this->bullet_symbol = copyate.bullet_symbol;
+         this->curr_posn = copyate.curr_posn;
+         this->prev_posn = copyate.prev_posn;
+         this->dead_flag = copyate.dead_flag;
+         this->bullet_list = copyate.bullet_list;
+         this->score = copyate.score;
+         this->falcon = copyate.falcon;
+         this->id = copyate.id;
+         this->next_move = copyate.next_move;
+         return *this;
+     }
+
      void move_bullets ();
      void get_next_move (Move);
      void get_machine_random_move ();
@@ -131,7 +146,10 @@ public:
      void update_bullets_on_map (MapClass & Map); // Call bullet_list[i].update_map ()
      void update_on_map (MapClass & Map); // Change own position on map, erase old position
 
-//     ~Tank();
+     ~Tank()
+     {
+         bullet_list.clear();
+     }
 };
 
 #endif

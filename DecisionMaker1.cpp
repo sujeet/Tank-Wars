@@ -48,9 +48,9 @@ void DECISION_MAKER::DMinitializer(ID my_id, ID enemy_id)
      // Here default weightage values are set which can be changed for better strategies
      // As of now, assume that the weightages are from 0 to 100.
      // go_to_nearest_gold_weight | attack_enemy_falcon_weight | attack_enemy_tank_weight | defend_your_falcon_weight
-     set_weightage_table(AGGRESSIVE, 0, 100, 50, 0);
+     set_weightage_table(AGGRESSIVE, 0, 50, 50, 0);
      set_weightage_table(DEFENSIVE, 20, 1, 5, 50);
-     set_weightage_table(GREEDY, 100, 15, 10, 0);
+     set_weightage_table(GREEDY, 1000, 15, 10, 0);
      set_weightage_table(CUSTOMISED, 0, 0, 100, 0);
 
      // These are just dummy values 
@@ -116,33 +116,34 @@ Move DECISION_MAKER::attack_enemy_falcon_move()
      // Description of the function that calculates  
      // the move to 'attack enemy falcon'
     
-     // If you're able to shoot at falcon, do so
-//      if (info.can_shoot_at (info.curr_posn, info.opp_falcon.posn, info.map)){
-//           info.opp_falcon.initial_move.shoot = true;
-//           return info.opp_falcon.initial_move;
-//      }
-     
-     if(info.opp_falcon.shortest_distance == 2)
-     {
-          info.opp_falcon.initial_move.shoot = true;
-          return info.opp_falcon.initial_move;
+     Move return_move;
+     return_move.shoot = info.can_shoot_at_enemy_falcon;
+
+     if (info.can_shoot_at_enemy_falcon){
+         return_move.dirn = info.shoot_falcon_dirn;
      }
-     // Else, just move closer to it
-     return info.opp_falcon.initial_move;
+     else
+     {
+         return_move.dirn = info.opp_falcon.initial_move.dirn;
+     }
+     
+     return return_move;
 }
 
 Move DECISION_MAKER::attack_enemy_tank_move()
 {
-//      // If you're able to shoot at falcon + if he's at distance X, do so
-//      if(info.opp_falcon.shortest_distance == 2)
-//      {
-// 	  info.opp_falcon.initial_move.shoot = true;
-// 	  return info.opp_falcon.initial_move;
-//      }
-//      // Else, just move closer to it
-//      return info.opp_falcon.initial_move;
+    Move return_move;
+    return_move.shoot = info.can_shoot_at_enemy_tank;
 
-     return info.opp_tank.initial_move;
+     if (info.can_shoot_at_enemy_tank){
+         return_move.dirn = info.shoot_enemy_tank_dirn;
+     }
+     else
+     {
+         return_move.dirn = info.opp_tank.initial_move.dirn;
+     }
+     
+     return return_move;
 }
 
 Move DECISION_MAKER::defend_my_falcon_move()

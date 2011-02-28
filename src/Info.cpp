@@ -29,51 +29,10 @@ void Info::initializer(const ID mine, const ID enemy)
 {
      my_ID = mine;
      enemy_ID = enemy;
-}
-
-bool Info::can_shoot_at (Position posn1, Position posn2, MapClass & Map)
-{
-     // Check if a Tank at posn1 can shoot at any object at posn2
-     int xdiff = 0, ydiff = 0;
-     Direction d;
-     char map_element;
-     
-     xdiff = posn2.x - posn1.x;
-     if (xdiff < 0)
-	  xdiff = -xdiff;
-     
-     ydiff = posn2.y - posn1.y;
-     
-     if (xdiff == 0){
-	  if (ydiff < 0){
-	       d.get_from_integer (DOWN);
-	  }
-	  else
-	       d.get_from_integer (UP);
-     }
-     else if (ydiff == 0){
-	  if (xdiff < 0){
-	       d.get_from_integer (LEFT);
-	  }
-	  else
-	       d.get_from_integer (RIGHT);  
-     }
-     
-     d.print ();
-     
-     curr_posn = posn1;
-     while (! (curr_posn == posn2)){
-	  curr_posn.go_in_direction (d);
-	  cout << "Hi : ";
-	  map_element = Map.get_element (curr_posn);
-	  switch (map_element){
-	  case WALL:
-	  case MACHINE_GUN:
-	  case GOLD:
-	       return false;
-	  }
-     }
-     return true;
+     shoot_enemy_tank_dirn.get_from_integer(0);
+     shoot_falcon_dirn.get_from_integer(0);
+     can_shoot_at_enemy_tank = false;
+     can_shoot_at_enemy_falcon = false;
 }
 
 void Info::update_distances(MapClass &map,Position source)
@@ -101,7 +60,7 @@ void Info::update_distances(MapClass &map,Position source)
     Position temp, temp1;
 
     Direction d;
-    char char_buffer, map_symbol;
+    char char_buffer;
     int x, y;
 
     x=source.x;
@@ -121,13 +80,7 @@ void Info::update_distances(MapClass &map,Position source)
         temp = source;
         temp.go_in_direction (d);
 
-	map_symbol = map.get_element (temp);
-	
-        if(map_symbol == GOLD ||
-	   map_symbol == EMPTY ||
-	   map_symbol == BULLET1 ||
-	   map_symbol == BULLET2 ||
-	   map_symbol == MACHINE_GUN_BULLET)   //unless the posn is empty or gold 
+        if(map.is_symbol (temp, GOLD) || map.is_symbol (temp, EMPTY))   //unless the posn is empty or gold 
             //dont enqueue the position.
         {
             q.push(temp);
@@ -255,20 +208,108 @@ void Info::update_distances(MapClass &map,Position source)
  */
 
 
-void Info::update_info (MapClass & map, Position source, vector <Bullet> given_my_bullet_list, vector <Bullet> given_enemy_bullet_list, vector <Tank> given_machine_gun_list)
+void Info::update_info (MapClass &map, Position source, vector <Bullet> given_my_bullet_list, vector <Bullet> given_enemy_bullet_list, vector <Tank> given_machine_gun_list)
 {
-//      int i, j;
-//      for (i = 0; i < MAP_SIZE - 1; i++){
-// 	  for (j = 0; j < MAP_SIZE - 1; j++){
-// 	       this->map[i][j] = map.map[i][j];
-// 	  }
-//      }
-
-     update_distances(map, source);
+     curr_posn = source;
+     update_distances(map,source);
+      update_shoot_variables (map);
+     
      this->my_bullet_list = given_my_bullet_list;
      this->enemy_bullet_list = given_enemy_bullet_list;
      this->machine_gun_list = given_machine_gun_list;
 }
+
+bool Info::update_shoot_variables (MapClass &Map)
+{
+    int xdiff, ydiff;
+    char m_symbol;
+    Direction d;
+    can_shoot_at_enemy_falcon = false;
+    can_shoot_at_enemy_tank = false;
+    Position my_posn, f_posn, e_posn;
+    f_posn = this->opp_falcon.posn;
+    e_posn = this->opp_tank.posn;
+
+    xdiff = f_posn.x - curr_posn.x;
+    ydiff = f_posn.y - curr_posn.y;
+
+    if ((xdiff == 0) || (ydiff == 0))
+    {
+        if (xdiff == 0){
+            if (ydiff < 0){
+                d.get_from_integer (LEFT);
+            }
+            else
+                d.get_from_integer (RIGHT);
+        }
+        else if (ydiff == 0) {
+            if (xdiff < 0){
+                d.get_from_integer (UP);
+            }
+            else
+                d.get_from_integer (DOWN);
+        } 
+        my_posn = curr_posn;
+        my_posn.go_in_direction (d);
+
+        while (!(my_posn == f_posn)){
+            m_symbol = Map.get_element (my_posn);
+
+            if (m_symbol == WALL || m_symbol == GOLD || m_symbol == MACHINE_GUN){
+                can_shoot_at_enemy_falcon = false;
+                break;
+            }
+            my_posn.go_in_direction (d);
+        }
+        if (my_posn == f_posn){
+            shoot_falcon_dirn = d;
+            can_shoot_at_enemy_falcon = true;
+        }
+    }
+
+    xdiff = e_posn.x - curr_posn.x;
+    ydiff = e_posn.y - curr_posn.y;
+
+    if (xdiff != 0 && ydiff != 0){
+        return 1;
+    }
+    if (xdiff == 0){
+        if (ydiff < 0){
+            d.get_from_integer (LEFT);
+        }
+        else
+            d.get_from_integer (RIGHT);
+    }
+    else if (ydiff == 0) {
+        if (xdiff < 0){
+            d.get_from_integer (UP);
+        }
+        else
+        {
+            d.get_from_integer (DOWN);
+        }
+    } 
+
+    my_posn = curr_posn;
+    my_posn.go_in_direction (d);
+
+    while (!(my_posn == e_posn)){
+        m_symbol = Map.get_element (my_posn);
+
+        if (m_symbol == WALL || m_symbol == GOLD || m_symbol == MACHINE_GUN){
+            can_shoot_at_enemy_tank = false;
+            break;
+        }
+        my_posn.go_in_direction (d);
+    }
+    if (my_posn == e_posn){
+        shoot_enemy_tank_dirn = d;
+        can_shoot_at_enemy_tank = true;
+    }
+
+    return 1;
+}
+
 
 void Info::print_info()
 {

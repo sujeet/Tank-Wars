@@ -9,7 +9,6 @@
 #include "Tank.h"
 #include "Misc_Classes.h"
 #include "Map.h"
-#include "Constants.h"
 
 using namespace std;
 
@@ -29,10 +28,10 @@ class Info
 
 public:
      Position curr_posn;
-     char map[MAP_SIZE][MAP_SIZE];
      void initializer (const ID , const ID);			// Constructor
      ID my_ID, enemy_ID;
-/*      Move strategic_moves_array[4]; */
+     bool can_shoot_at_enemy_tank, can_shoot_at_enemy_falcon;
+      Direction shoot_falcon_dirn, shoot_enemy_tank_dirn; 
 
      // Sets player info initially
      vector <object_info> gold;
@@ -44,8 +43,8 @@ public:
      object_info nearest_gold;
      bool gold_available;
 
-     bool can_shoot_at (Position posn1, Position posn2, MapClass & Map);
-     void update_info (MapClass &, Position, vector <Bullet>, vector <Bullet>, vector <Tank>);
+      bool update_shoot_variables (MapClass &); 
+     void update_info (MapClass &, Position, vector <Bullet> , vector <Bullet> , vector <Tank> );
      void update_distances(MapClass &, Position);
      void print_info ();
 /*      ~Info (){ */
