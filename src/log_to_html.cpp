@@ -137,8 +137,8 @@ string insert_css ()
              << "    float                 :	 left;                                              " << endl
              << "   }                                                                               " << endl
              << ".gold {                                                                            " << endl
-             << "    -moz-border-radius    :	5px;                                                " << endl
-             << "    -webkit-border-radius :	5px;                                                " << endl
+             << "    -moz-border-radius    :	3px;                                                " << endl
+             << "    -webkit-border-radius :	3px;                                                " << endl
              << "    width                 :	 8px;                                               " << endl
              << "    height                :	 8px;                                               " << endl
              << "    background            :	 none repeat scroll 0% 0% " << GOLD_COLOUR << ";    " << endl
@@ -146,6 +146,7 @@ string insert_css ()
              << "    padding               :	 0pt;                                               " << endl
              << "    float                 :	 left;                                              " << endl
              << "       border-style       :	 solid;                                             " << endl
+             << "       border-color       :	 gold;                                              " << endl
              << "    border-width          :	1px;                                                " << endl
              << "}                                                                                  " << endl
              << ".dead {                                                                            " << endl
