@@ -79,8 +79,8 @@ bool Info::can_shoot_at (Position posn1, Position posn2, MapClass & Map)
 void Info::update_distances(MapClass &map,Position source)
 {
     //< 8-) ??? >
-    //this function does BREATH FRIST TRAVERSAL
-    //and stores the distances in the appropiate objects. The logic 
+    //this function does BREADTH FIRST TRAVERSAL
+    //and stores the distances in the appropriate objects. The logic 
     //is explained and you can change/add stuff to it if you want
 
 

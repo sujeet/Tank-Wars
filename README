@@ -29,9 +29,10 @@ How to Get Started:
     sample match being played there.
 
     To get started with coding:
-    The two important files from the player's perspective are the 
+    The three important files from the player's perspective are the 
     * DecisionMaker1.cpp
-    * Info.h
+    * Info.h (in the include folder)
+    * Info.cpp (in the src folder)
 
     The participants(players) are required only to modify DecisionMaker.cpp
     while Info.h can be looked at to understand the various readymade
@@ -53,19 +54,29 @@ How to Get Started:
         basic idea where you can set value in a  weightage table and 
         dificulty table and choose your actions upon those calculations.
 
-        Best Mathematical models may be awarded special prizes.
+        Best Mathematical models  will be awarded special prizes.
         
 
 How to test your bots:
 ---------------------
-After you fill in DecisionMaker1.cpp with your code go to the main
-directory in which all these folders and mainly the Makefile is 
-there.
-Execute the following command
+
+After you fill in DecisionMaker1.cpp with your code just go to the main
+directory which contains all these folders (especially the Makefile)
+using the terminal and execute the following commands in order
 
 make play
+make display
 
+The match will open in your browser.
+Just click on Play to see the match.
 
+How to submit your bot:
+-----------------------
+
+All you need to do is submit the DecisionMaker.cpp to our online judge.
+The initial 10 days are only for testing and feedback for participants.
+At the end of this period you will be asked to submit your final bot.
+Our online judge can be found at exibit.org or www.cse.iitm.ac.in/exebit/site
 
                             ALL THE BEST!!
 
