@@ -12,6 +12,18 @@ MapClass::MapClass ()
      this->log_file.open(LOG_FILE);
 }
 
+// MapClass& MapClass::operator= (const MapClass & given_map)
+// {
+//      int i, j;
+//      for (i = 0; i < MAP_SIZE - 1; i++){
+// 	  for (j = 0; j < MAP_SIZE - 1; j++){
+// 	       this->map[i][j] = given_map.map[i][j];
+// 	  }
+//      }
+//      return *this;
+// }
+
+
 void MapClass::create_from_file (string filename) 
 {
      ifstream infile;
@@ -81,7 +93,7 @@ void MapClass::set_element (int x_coord, int y_coord, char data, bool print_log)
           || (x_coord < 0)
           || (y_coord < 0)
           ) {
-          cerr << "ERROR : Tried to access map element out of bound." << endl;
+          cerr << "ERROR : Tried to modify map element out of bound." << endl;
           cerr << "    x : " << x_coord << endl;
           cerr << "    y : " << y_coord << endl;
           exit(-1);

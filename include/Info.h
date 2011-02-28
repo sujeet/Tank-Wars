@@ -9,6 +9,7 @@
 #include "Tank.h"
 #include "Misc_Classes.h"
 #include "Map.h"
+#include "Constants.h"
 
 using namespace std;
 
@@ -28,6 +29,7 @@ class Info
 
 public:
      Position curr_posn;
+     char map[MAP_SIZE][MAP_SIZE];
      void initializer (const ID , const ID);			// Constructor
      ID my_ID, enemy_ID;
 /*      Move strategic_moves_array[4]; */
@@ -42,6 +44,7 @@ public:
      object_info nearest_gold;
      bool gold_available;
 
+     bool can_shoot_at (Position posn1, Position posn2, MapClass & Map);
      void update_info (MapClass &, Position, vector <Bullet>, vector <Bullet>, vector <Tank>);
      void update_distances(MapClass &, Position);
      void print_info ();

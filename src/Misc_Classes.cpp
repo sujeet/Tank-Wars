@@ -59,7 +59,7 @@ void Direction::get_from_integer (int inp)
           this->ydir = -1;
           break;
           // The following is used for unmovables
-          // eg machine guns ect. (?)
+          // eg machine guns etc. (?)
      case DO_NOT_MOVE:
           this->xdir = 0;
           this->ydir = 0;

@@ -117,6 +117,11 @@ Move DECISION_MAKER::attack_enemy_falcon_move()
      // the move to 'attack enemy falcon'
     
      // If you're able to shoot at falcon, do so
+//      if (info.can_shoot_at (info.curr_posn, info.opp_falcon.posn, info.map)){
+//           info.opp_falcon.initial_move.shoot = true;
+//           return info.opp_falcon.initial_move;
+//      }
+     
      if(info.opp_falcon.shortest_distance == 2)
      {
           info.opp_falcon.initial_move.shoot = true;

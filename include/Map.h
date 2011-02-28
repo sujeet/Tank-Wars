@@ -11,10 +11,10 @@
 class MapClass
 {
 private :
-     char map[MAP_SIZE][MAP_SIZE];
      std::ofstream log_file;
 
 public :
+     char map[MAP_SIZE][MAP_SIZE];
      /* Variables indicating tank1 and tank2 init_posns */
      Position tank1_init_posn;
      Position tank2_init_posn;
@@ -29,6 +29,8 @@ public :
      /* Constructor */
      MapClass();
      /* MapClass(MapClass map); */
+     
+/*      MapClass& operator= (const MapClass &); */
      
      /* Method to initiate from a file */
      void create_from_file (std::string filename);

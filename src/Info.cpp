@@ -31,6 +31,51 @@ void Info::initializer(const ID mine, const ID enemy)
      enemy_ID = enemy;
 }
 
+bool Info::can_shoot_at (Position posn1, Position posn2, MapClass & Map)
+{
+     // Check if a Tank at posn1 can shoot at any object at posn2
+     int xdiff = 0, ydiff = 0;
+     Direction d;
+     char map_element;
+     
+     xdiff = posn2.x - posn1.x;
+     if (xdiff < 0)
+	  xdiff = -xdiff;
+     
+     ydiff = posn2.y - posn1.y;
+     
+     if (xdiff == 0){
+	  if (ydiff < 0){
+	       d.get_from_integer (DOWN);
+	  }
+	  else
+	       d.get_from_integer (UP);
+     }
+     else if (ydiff == 0){
+	  if (xdiff < 0){
+	       d.get_from_integer (LEFT);
+	  }
+	  else
+	       d.get_from_integer (RIGHT);  
+     }
+     
+     d.print ();
+     
+     curr_posn = posn1;
+     while (! (curr_posn == posn2)){
+	  curr_posn.go_in_direction (d);
+	  cout << "Hi : ";
+	  map_element = Map.get_element (curr_posn);
+	  switch (map_element){
+	  case WALL:
+	  case MACHINE_GUN:
+	  case GOLD:
+	       return false;
+	  }
+     }
+     return true;
+}
+
 void Info::update_distances(MapClass &map,Position source)
 {
     //< 8-) ??? >
@@ -56,7 +101,7 @@ void Info::update_distances(MapClass &map,Position source)
     Position temp, temp1;
 
     Direction d;
-    char char_buffer;
+    char char_buffer, map_symbol;
     int x, y;
 
     x=source.x;
@@ -76,7 +121,13 @@ void Info::update_distances(MapClass &map,Position source)
         temp = source;
         temp.go_in_direction (d);
 
-        if(map.is_symbol (temp, GOLD) || map.is_symbol (temp, EMPTY))   //unless the posn is empty or gold 
+	map_symbol = map.get_element (temp);
+	
+        if(map_symbol == GOLD ||
+	   map_symbol == EMPTY ||
+	   map_symbol == BULLET1 ||
+	   map_symbol == BULLET2 ||
+	   map_symbol == MACHINE_GUN_BULLET)   //unless the posn is empty or gold 
             //dont enqueue the position.
         {
             q.push(temp);
@@ -204,9 +255,16 @@ void Info::update_distances(MapClass &map,Position source)
  */
 
 
-void Info::update_info (MapClass &map, Position source, vector <Bullet> given_my_bullet_list, vector <Bullet> given_enemy_bullet_list, vector <Tank> given_machine_gun_list)
+void Info::update_info (MapClass & map, Position source, vector <Bullet> given_my_bullet_list, vector <Bullet> given_enemy_bullet_list, vector <Tank> given_machine_gun_list)
 {
-     update_distances(map,source);
+//      int i, j;
+//      for (i = 0; i < MAP_SIZE - 1; i++){
+// 	  for (j = 0; j < MAP_SIZE - 1; j++){
+// 	       this->map[i][j] = map.map[i][j];
+// 	  }
+//      }
+
+     update_distances(map, source);
      this->my_bullet_list = given_my_bullet_list;
      this->enemy_bullet_list = given_enemy_bullet_list;
      this->machine_gun_list = given_machine_gun_list;

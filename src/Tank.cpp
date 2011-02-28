@@ -269,6 +269,10 @@ void Tank::update_on_map (MapClass & Map)
      cout << "Tank - Curr posn : " << this->curr_posn.x << " " << this->curr_posn.y << endl;
 #endif
 
+     if (this->falcon.dead_flag){
+	  Map.set_element (this->falcon.posn, DEAD);
+     }
+     
      // Blank previous position on map
      if (Map.get_element (this->prev_posn) == this->symbol)
 	  Map.set_element (this->prev_posn, EMPTY);
