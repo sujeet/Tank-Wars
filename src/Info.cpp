@@ -88,6 +88,14 @@ void Info::update_distances(MapClass &map,Position source)
             visited[temp.x][temp.y] = 1;            //set the colour
             distance[temp.x][temp.y] = 1;           //distance of the neighbours of source is 1.
         }
+        else if (map.is_symbol (temp, enemy_ID.falcon_symbol))
+        {
+            opp_falcon.initial_move.dirn = d;
+            opp_falcon.initial_move.shoot = true;
+            opp_falcon.shortest_distance = 1;
+
+        }
+
     }
 
     // While queue is not empty bft proceeds
