@@ -23,3 +23,4 @@ To-do List:
 ** Have a lookup table below or next to the display of the map, so that we can easily identify which coloured square corresponds to which object, eg. Tank, Machine Gun, etc.
 ** TODO Dammit! Have a space before and after every paren [, (, ), ], and all the usual operators
 ** There is a bit of an ambiguity when two tanks are very close to each other. If one shoots the other at point-blank range, the other tank dies, but it isn't obvious why.
+** In a long game, if I press Faster twice or thrice, the game hangs. If I press Slower 10 seconds later, the game resumes but from a state which is that many moves ahead. As in, it skips moves. 

@@ -19,7 +19,7 @@ void Arena::initialize_machine_guns()
                     MACHINE_GUN,
                     MACHINE_GUN_BULLET,
                     *iter,
-                    *iter) 
+                    *iter, false) 
                );
           iter++;
      }

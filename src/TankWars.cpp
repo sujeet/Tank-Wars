@@ -65,7 +65,7 @@ int main()
 
           // If the game is over
           if (arena.game_over_flag){
-               arena.machine_gun_list.clear();
+//               arena.machine_gun_list.clear();
                break;
           }
      }

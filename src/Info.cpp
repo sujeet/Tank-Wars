@@ -29,13 +29,17 @@ void Info::initializer(const ID mine, const ID enemy)
 {
      my_ID = mine;
      enemy_ID = enemy;
+     shoot_enemy_tank_dirn.get_from_integer(0);
+     shoot_falcon_dirn.get_from_integer(0);
+     can_shoot_at_enemy_tank = false;
+     can_shoot_at_enemy_falcon = false;
 }
 
 void Info::update_distances(MapClass &map,Position source)
 {
     //< 8-) ??? >
-    //this function does BREATH FRIST TRAVERSAL
-    //and stores the distances in the appropiate objects. The logic 
+    //this function does BREADTH FIRST TRAVERSAL
+    //and stores the distances in the appropriate objects. The logic 
     //is explained and you can change/add stuff to it if you want
 
 
@@ -206,11 +210,106 @@ void Info::update_distances(MapClass &map,Position source)
 
 void Info::update_info (MapClass &map, Position source, vector <Bullet> given_my_bullet_list, vector <Bullet> given_enemy_bullet_list, vector <Tank> given_machine_gun_list)
 {
+     curr_posn = source;
      update_distances(map,source);
+      update_shoot_variables (map);
+     
      this->my_bullet_list = given_my_bullet_list;
      this->enemy_bullet_list = given_enemy_bullet_list;
      this->machine_gun_list = given_machine_gun_list;
 }
+
+bool Info::update_shoot_variables (MapClass &Map)
+{
+    int xdiff, ydiff;
+    char m_symbol;
+    Direction d;
+    can_shoot_at_enemy_falcon = false;
+    can_shoot_at_enemy_tank = false;
+    Position my_posn, f_posn, e_posn;
+    f_posn = this->opp_falcon.posn;
+    e_posn = this->opp_tank.posn;
+
+    xdiff = f_posn.x - curr_posn.x;
+    ydiff = f_posn.y - curr_posn.y;
+
+    if ((xdiff == 0) || (ydiff == 0))
+    {
+        if (xdiff == 0){
+            if (ydiff < 0){
+                d.get_from_integer (LEFT);
+            }
+            else
+                d.get_from_integer (RIGHT);
+        }
+        else if (ydiff == 0) {
+            if (xdiff < 0){
+                d.get_from_integer (UP);
+            }
+            else
+                d.get_from_integer (DOWN);
+        } 
+        my_posn = curr_posn;
+        my_posn.go_in_direction (d);
+
+        while (!(my_posn == f_posn)){
+            m_symbol = Map.get_element (my_posn);
+
+            if (m_symbol == WALL || m_symbol == GOLD || m_symbol == MACHINE_GUN){
+                can_shoot_at_enemy_falcon = false;
+                break;
+            }
+            my_posn.go_in_direction (d);
+        }
+        if (my_posn == f_posn){
+            shoot_falcon_dirn = d;
+            can_shoot_at_enemy_falcon = true;
+        }
+    }
+
+    xdiff = e_posn.x - curr_posn.x;
+    ydiff = e_posn.y - curr_posn.y;
+
+    if (xdiff != 0 && ydiff != 0){
+        return 1;
+    }
+    if (xdiff == 0){
+        if (ydiff < 0){
+            d.get_from_integer (LEFT);
+        }
+        else
+            d.get_from_integer (RIGHT);
+    }
+    else if (ydiff == 0) {
+        if (xdiff < 0){
+            d.get_from_integer (UP);
+        }
+        else
+        {
+            d.get_from_integer (DOWN);
+        }
+    } 
+
+    my_posn = curr_posn;
+    my_posn.go_in_direction (d);
+
+    while (!(my_posn == e_posn)){
+        m_symbol = Map.get_element (my_posn);
+
+        if (m_symbol == WALL || m_symbol == GOLD || m_symbol == MACHINE_GUN){
+            can_shoot_at_enemy_tank = false;
+            break;
+        }
+        my_posn.go_in_direction (d);
+    }
+    if (my_posn == e_posn){
+        shoot_enemy_tank_dirn = d;
+        can_shoot_at_enemy_tank = true;
+    }
+
+    return 1;
+}
+
 
 void Info::print_info()
 {
