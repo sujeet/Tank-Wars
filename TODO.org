@@ -25,3 +25,5 @@ To-do List:
 ** There is a bit of an ambiguity when two tanks are very close to each other. If one shoots the other at point-blank range, the other tank dies, but it isn't obvious why.
 ** In a long game, if I press Faster twice or thrice, the game hangs. If I press Slower 10 seconds later, the game resumes but from a state which is that many moves ahead. As in, it skips moves. 
 ** BUG (?) Setting both players to AGGRESSIVE makes the game run really really long, which means, of course, that the game can't be displayed, etc.
+** TODO Check whether submission takes too long to compute stuff
+** TODO Check validity of submission

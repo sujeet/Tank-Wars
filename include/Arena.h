@@ -26,6 +26,7 @@ public:
      DecisionMaker1 DM1;
      DecisionMaker2 DM2;
      vector <Tank> machine_gun_list;
+     int move_no;
      // Methods
      Arena ();
      void print_scores ();

@@ -48,6 +48,7 @@ Arena::Arena ()
 
      DM1.DMinitializer (tank1.id, tank2.id);
      DM2.DMinitializer (tank2.id, tank1.id);
+     move_no = 0;
 
      this->initialize_machine_guns();
 
@@ -225,6 +226,7 @@ void Arena::update_map ()
 
 void Arena::end_game ()
 {
+     if ()
      // Add stuff later
 }
 

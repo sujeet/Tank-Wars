@@ -18,6 +18,7 @@
 
 // For log_to_html.cpp
 #define MAP_SIZE 51
+/* #define MAP_SIZE 51 */
 
 #define ASCII_CHARS 128
 #define MAX_CLASS_NAME_LENGTH 10

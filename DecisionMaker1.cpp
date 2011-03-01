@@ -18,7 +18,7 @@ Move DECISION_MAKER::get_player_move(Info my_info, Info enemy_info, const MapCla
      // it.
      fill_difficulty_table();
 
-     return return_best_move(calculate_best_action_plan(AGGRESSIVE));
+     return return_best_move(calculate_best_action_plan(GREEDY));
 }
 
 void DECISION_MAKER::set_weightage_table(int strategy,

@@ -33,7 +33,7 @@ int main()
      int i;
      Arena arena;
      srand(time(NULL));
-     for (i = 0; i < TIMES; i++){
+     for (arena.move_no = 0; arena.move_no < TIMES; arena.move_no++){
           // Get the moves for the Machine guns
           arena.get_machine_moves ();
 
