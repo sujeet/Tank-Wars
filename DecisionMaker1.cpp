@@ -6,19 +6,36 @@
 
 Move DECISION_MAKER::get_player_move(Info my_info, Info enemy_info, const MapClass &map)
 {
-     // Returns a Move
-     
-      
-      /*************************************/
-      /*   PUT YOUR CODE IN THIS FUNCTION  */
-      /*************************************/
-      
-	   
-     // Make sure your difficulty table is filled each time if you are using
-     // it.
-     fill_difficulty_table();
+    // Returns a Move
 
-     return return_best_move(calculate_best_action_plan(AGGRESSIVE));
+
+    /*************************************/
+    /*   PUT YOUR CODE IN THIS FUNCTION  */
+    /*************************************/
+
+
+    // Make sure your difficulty table is filled each time if you are using
+    // it.
+
+    // Some Sample code is written here explaining the various 
+    // handy tools which we are providing to make your life simple.
+    // You can use the idea or the functions themselves or just
+    // write your own code.
+    //
+    // IMPORTANT:
+    // First thing you need to do is understand the various 
+    // infomation you get from the Info object. Things like 'your 
+    // closest distance from the enemy tank' can be just got from the
+    // Info object.
+    //
+    // OPTIONAL:(but may be VERY helpful)
+    // After looking at all the various information you can get from
+    // the Info class you can just try to build on our model.
+
+
+    fill_difficulty_table();
+
+    return return_best_move(calculate_best_action_plan(AGGRESSIVE));
 }
 
 void DECISION_MAKER::set_weightage_table(int strategy,
