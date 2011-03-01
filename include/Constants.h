@@ -1,5 +1,5 @@
-#ifndef constants_h
-#define constants_h
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
 
 // For Arena.cpp
 #define DO_NOT_MOVE 10

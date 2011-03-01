@@ -6,7 +6,7 @@
 
    // IMPORTANT:
    //   First thing you need to do is understand the various 
-   // infomation you get from the Info object. Things like 'your 
+   // information you get from the Info object. Things like 'your 
    // closest distance from the enemy tank' can be obtained from the
    // Info object.
    //
@@ -42,9 +42,13 @@ Move DECISION_MAKER::get_player_move(Info my_info,
 
      // Simply say,
      // 
-     // return Move (X)
+     // return Move (my_move)
      // 
-     // where X : LEFT, RIGHT, UP, DOWN, SHOOT_UP, SHOOT_DOWN, SHOOT_LEFT, SHOOT_RIGHT
+     // where
+     // |--------------+------+-------+----+------+----------+------------+------------+-------------|
+     // | my_move      | LEFT | RIGHT | UP | DOWN | SHOOT_UP | SHOOT_DOWN | SHOOT_LEFT | SHOOT_RIGHT |
+     // | Actual value |    0 |     1 |  2 |    3 |        4 |          5 |          6 |           7 |
+     // |--------------+------+-------+----+------+----------+------------+------------+-------------|
 
      // Make sure your difficulty table is filled each time if you are using
      // it.
@@ -54,8 +58,22 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      /*   PUT YOUR CODE IN THIS FUNCTION  */
      /*************************************/
 
+     // Position my_curr_posn;
+     // Direction d;
+     
+     // my_curr_posn = info.curr_posn;
 
-     return return_best_move(calculate_best_action_plan(AGGRESSIVE));
+     // d.get_from_integer (RIGHT);
+     // right_posn = my_curr_posn;
+     // right_posn.go_in_direction (d);
+
+     // if (map.get_element (right_posn) != WALL)
+     // 	  return Move (RIGHT);
+     // left_posn = my_curr_posn;
+     
+     // int my_move = rand () % 4;
+     // return Move (my_move);
+     return return_best_move(calculate_best_action_plan(GREEDY));
 }
 
 

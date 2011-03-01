@@ -23,7 +23,16 @@ To-do List:
 ** Testing
 ** There is a bit of an ambiguity when two tanks are very close to each other. If one shoots the other at point-blank range, the other tank dies, but it isn't obvious why.
 ** Machine guns shoot unidirectionally
-** Moving machine guns (?)
+** TODO Moving machine guns
+*** Make dead machine guns disappear
+*** Bundle DecisionMaker along with each Machine gun, so that they can make their own decisions
+*** Take care that they don't eat up the Gold, hit the falcon or do anything like that
+*** Dashing against each other - ok?
+*** Make an update_machine_guns_on_map function as part of Arena, which will update machine guns and kill dead ones
+*** Have some MGs defend a particular area - call them D
+*** Have some MGs go and pursue Tanks - call them P
+*** Have some MGs try to intercept Tanks - call them I
+*** Have some MGs just stay in one position and shoot unidirectionally to trap some Tank
 ** Wall around falcon
 ** Some simple maps for the finals (?)
 ** Maps

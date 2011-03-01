@@ -234,6 +234,29 @@ void Arena::update_map ()
           this->machine_gun_list[i].update_on_map (Map);
      }
 
+     // Check if any machine gun has died
+     vector<Tank>::iterator iter;
+
+     bool flag = false;
+     // Delete Bullets that have crashed
+     while (1){
+          iter = machine_gun_list.begin ();
+          while (iter != machine_gun_list.end ()){
+               if ((*iter).dead_flag) {
+                    flag = true;
+                    break;
+               }
+               iter++;
+          }
+          if (flag){
+               flag = false;
+               machine_gun_list.erase(iter);
+          }
+          else{
+               break;
+          }
+     }
+
      tank1.update_on_map (Map);
      tank2.update_on_map (Map);
 }

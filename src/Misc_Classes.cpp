@@ -93,8 +93,10 @@ void Move::interpret_move (int user_move, bool is_machine_gun_move)
      else {
           this->shoot = false;
      }
+
      if ( (is_machine_gun_move) and (this->shoot == false) ) {
-          this->dirn.get_from_integer (DO_NOT_MOVE);
+	  this->dirn.get_from_integer (user_move % 4);
+          // this->dirn.get_from_integer (DO_NOT_MOVE);
      }
      else {
           this->dirn.get_from_integer (user_move % 4);
