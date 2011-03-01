@@ -4,51 +4,64 @@
 #include "DecisionMaker.h"
 #include "Constants.h"
 
-Move DECISION_MAKER::get_player_move(Info my_info, Info enemy_info, const MapClass &map, int my_score, int enemy_score, int total_moves_done)
+   // IMPORTANT:
+   //   First thing you need to do is understand the various 
+   // infomation you get from the Info object. Things like 'your 
+   // closest distance from the enemy tank' can be obtained from the
+   // Info object.
+   //
+   // OPTIONAL: ( But may be VERY helpful)
+   //   After looking at all the information you can get from
+   // the Info class, you can try to use and build on our mathematical 
+   // model.
+   //
+   //   Our idea is to calculate the best move for a particular
+   // strategy (offensive or defensive etc.) by having some weightages
+   // for some predefined possible actions ( like collect gold, attack
+   // enemy etc ) and then decide which move will give you the best
+   // result.
+   //
+   //   You may want to play in different strategies at different
+   // times of the game, so set different weightages based on the
+   // circumstances if you want. So you can build upon this
+   // mathematical model if you want.
+   //
+   // CAUTION :
+   //
+   //   Do not change the prototypes of any of the functions we have
+   // provided in the header file.
+
+Move DECISION_MAKER::get_player_move(Info my_info,
+				     Info enemy_info,
+				     const MapClass &map,
+				     int my_score,
+				     int enemy_score,
+				     int total_moves_done)
 {
-    // Returns a Move
+     // Returns a Move
+
+     // Simply say,
+     // 
+     // return Move (X)
+     // 
+     // where X : LEFT, RIGHT, UP, DOWN, SHOOT_UP, SHOOT_DOWN, SHOOT_LEFT, SHOOT_RIGHT
+
+     // Make sure your difficulty table is filled each time if you are using
+     // it.
+     fill_difficulty_table();
+
+     /*************************************/
+     /*   PUT YOUR CODE IN THIS FUNCTION  */
+     /*************************************/
 
 
-    /*************************************/
-    /*   PUT YOUR CODE IN THIS FUNCTION  */
-    /*************************************/
-
-    // Some Sample code is written here explaining the various 
-    // handy tools which we are providing to make your life simple.
-    // You can use the idea or the functions themselves or just
-    // write your own code.
-    //
-    // IMPORTANT:
-    // First thing you need to do is understand the various 
-    // infomation you get from the Info object. Things like 'your 
-    // closest distance from the enemy tank' can be just got from the
-    // Info object.
-    //
-    // OPTIONAL:(but may be VERY helpful)
-    // After looking at all the various information you can get from
-    // the Info class, you can try to use and build on our mathematical 
-    // model some of the function for which is what you'll find below.
-    // Our idea is to calculate 
-    // the best move for a particular strategy (offensive or defensive etc)
-    // by having some weightages for some predefined possible actions( like
-    // collect gold, attack enemy etc ) and then decide which move will 
-    // give you the best result. You may want to play in different 
-    // strategies at different times of the game, set different weightages
-    // at different times of the game. So you can build upon this mathematical
-    // model if you want.
-
-
-    // Make sure your difficulty table is filled each time if you are using
-    // it.
-    fill_difficulty_table();
-
-    return return_best_move(calculate_best_action_plan(AGGRESSIVE));
+     return return_best_move(calculate_best_action_plan(AGGRESSIVE));
 }
 
 
-    /*************************************/
-    /*   PUT YOUR FUNCTIONS BELOW        */
-    /*************************************/
+/*************************************/
+/*   PUT YOUR FUNCTIONS BELOW        */
+/*************************************/
 
 // You can change the below functions to your needs.
  
@@ -98,9 +111,9 @@ void DECISION_MAKER::set_weightage_table(int strategy,
 }
 
 void DECISION_MAKER::set_difficulty_table(int go_to_nearest_gold_difficulty,
-                                         int attack_enemy_falcon_difficulty,
-                                         int attack_enemy_tank_difficulty,
-                                         int defend_your_falcon_difficulty)
+					  int attack_enemy_falcon_difficulty,
+					  int attack_enemy_tank_difficulty,
+					  int defend_your_falcon_difficulty)
 {
      // Sets the difficulty table values
      difficulty_table[GO_TO_NEAREST_GOLD] = go_to_nearest_gold_difficulty;
@@ -195,11 +208,11 @@ Move DECISION_MAKER::attack_enemy_falcon_move()
      return_move.shoot = info.can_shoot_at_enemy_falcon;
 
      if (info.can_shoot_at_enemy_falcon){
-         return_move.dirn = info.shoot_falcon_dirn;
+	  return_move.dirn = info.shoot_falcon_dirn;
      }
      else
      {
-         return_move.dirn = info.opp_falcon.initial_move.dirn;
+	  return_move.dirn = info.opp_falcon.initial_move.dirn;
      }
      
      return return_move;
@@ -207,15 +220,15 @@ Move DECISION_MAKER::attack_enemy_falcon_move()
 
 Move DECISION_MAKER::attack_enemy_tank_move()
 {
-    Move return_move;
-    return_move.shoot = info.can_shoot_at_enemy_tank;
+     Move return_move;
+     return_move.shoot = info.can_shoot_at_enemy_tank;
 
      if (info.can_shoot_at_enemy_tank){
-         return_move.dirn = info.shoot_enemy_tank_dirn;
+	  return_move.dirn = info.shoot_enemy_tank_dirn;
      }
      else
      {
-         return_move.dirn = info.opp_tank.initial_move.dirn;
+	  return_move.dirn = info.opp_tank.initial_move.dirn;
      }
      
      return return_move;

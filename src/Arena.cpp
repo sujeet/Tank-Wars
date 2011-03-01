@@ -240,11 +240,6 @@ void Arena::update_map ()
 
 void Arena::end_game ()
 {
-<<<<<<< HEAD:src/Arena.cpp
-//      if ()
-=======
-//     if ()
->>>>>>> 10b0c968ef2c8b6d3ee2cf4b7a3e1963290de2a5:src/Arena.cpp
      // Add stuff later
 }
 

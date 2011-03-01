@@ -81,5 +81,9 @@ enum event
 #define  DOWN  1
 #define  RIGHT 2
 #define  LEFT  3
+#define  SHOOT_UP  4
+#define  SHOOT_DOWN  5
+#define  SHOOT_RIGHT G
+#define  SHOOT_LEFT  7
 
 #endif

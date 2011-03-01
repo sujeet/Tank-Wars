@@ -31,7 +31,7 @@ public:
      void initializer (const ID , const ID);			// Constructor
      ID my_ID, enemy_ID;
      bool can_shoot_at_enemy_tank, can_shoot_at_enemy_falcon;
-      Direction shoot_falcon_dirn, shoot_enemy_tank_dirn; 
+     Direction shoot_falcon_dirn, shoot_enemy_tank_dirn; 
 
      // Sets player info initially
      vector <object_info> gold;
@@ -43,7 +43,7 @@ public:
      object_info nearest_gold;
      bool gold_available;
 
-      bool update_shoot_variables (MapClass &); 
+     bool update_shoot_variables (MapClass &); 
      void update_info (MapClass &, Position, vector <Bullet> , vector <Bullet> , vector <Tank> );
      void update_distances(MapClass &, Position);
      void print_info ();

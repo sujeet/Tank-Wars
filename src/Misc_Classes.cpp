@@ -72,6 +72,12 @@ Move::Move()
      this->shoot = false;
 }
 
+Move::Move (int given_move)
+{
+     this->interpret_move (given_move);
+}
+
+
 void Move::interpret_move (int user_move, bool is_machine_gun_move)
 {
      if ( (not is_machine_gun_move) and (user_move / 4 == 1) ) {

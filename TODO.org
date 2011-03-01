@@ -24,3 +24,11 @@ To-do List:
 ** There is a bit of an ambiguity when two tanks are very close to each other. If one shoots the other at point-blank range, the other tank dies, but it isn't obvious why.
 ** Machine guns shoot unidirectionally
 ** Moving machine guns (?)
+** Wall around falcon
+** Some simple maps for the finals (?)
+** Maps
+*** Gold rush
+*** Rush to the top
+*** Cities (?)
+*** Traps
+*** Gold-less map
