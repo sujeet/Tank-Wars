@@ -61,7 +61,7 @@ public:
                dead_flag = false;
           }
 	
-          bool is_killed_by (Tank t);
+          bool is_killed_by (Tank &t);
           bool crashed_tank (Tank t); // TODO
           void set_dead_flag ();
           void update_on_map (MapClass & Map);
@@ -139,7 +139,7 @@ public:
      //      void evaluate_dangers ();
      void evaluate_dangers ();
      void die_by_wall_crash ();
-     void die_by_tank (Tank t);
+     void die_by_tank (Tank &t);
      void do_nothing ();		// Comment out if not necessary. There just in case.
      void set_dead_flag ();		// Flag to denote that when all the
      // tanks' evaluations are done, die
