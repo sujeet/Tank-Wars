@@ -37,7 +37,7 @@ public:
      // return_best_move (calculate_best_action_plan (his_choice_of_strategy))?
      Move return_best_move(int );
 
-     Move get_player_move(const Info my_info, const Info enemy_info, const MapClass &map);
+     Move get_player_move(const Info my_info, const Info enemy_info, const MapClass &map, int my_score, int enemy_score, int total_moves_done);
 };
 
 

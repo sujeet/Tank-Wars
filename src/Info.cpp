@@ -206,7 +206,11 @@ void Info::update_distances(MapClass &map,Position source)
 
 
 
-void Info::update_info (MapClass &map, Position source, vector <Bullet> given_my_bullet_list, vector <Bullet> given_enemy_bullet_list, vector <Tank> given_machine_gun_list)
+void Info::update_info (MapClass &map, 
+            Position source, 
+            vector <Bullet> given_my_bullet_list, 
+            vector <Bullet> given_enemy_bullet_list, 
+            vector <Tank> given_machine_gun_list)
 {
      curr_posn = source;
      update_distances(map,source);

@@ -4,22 +4,57 @@
 #include "DecisionMaker.h"
 #include "Constants.h"
 
-Move DECISION_MAKER::get_player_move(Info my_info, Info enemy_info, const MapClass &map)
+Move DECISION_MAKER::get_player_move(Info my_info, Info enemy_info, const MapClass &map, int my_score, int enemy_score, int total_moves_done)
 {
-     // Returns a Move
-     
-      
-      /*************************************/
-      /*   PUT YOUR CODE IN THIS FUNCTION  */
-      /*************************************/
-      
-	   
-     // Make sure your difficulty table is filled each time if you are using
-     // it.
-     fill_difficulty_table();
+    // Returns a Move
 
-     return return_best_move(calculate_best_action_plan(GREEDY));
+
+    /*************************************/
+    /*   PUT YOUR CODE IN THIS FUNCTION  */
+    /*************************************/
+
+    // Some Sample code is written here explaining the various 
+    // handy tools which we are providing to make your life simple.
+    // You can use the idea or the functions themselves or just
+    // write your own code.
+    //
+    // IMPORTANT:
+    // First thing you need to do is understand the various 
+    // infomation you get from the Info object. Things like 'your 
+    // closest distance from the enemy tank' can be just got from the
+    // Info object.
+    //
+    // OPTIONAL:(but may be VERY helpful)
+    // After looking at all the various information you can get from
+    // the Info class, you can try to use and build on our mathematical 
+    // model some of the function for which is what you'll find below.
+    // Our idea is to calculate 
+    // the best move for a particular strategy (offensive or defensive etc)
+    // by having some weightages for some predefined possible actions( like
+    // collect gold, attack enemy etc ) and then decide which move will 
+    // give you the best result. You may want to play in different 
+    // strategies at different times of the game, set different weightages
+    // at different times of the game. So you can build upon this mathematical
+    // model if you want.
+
+
+    // Make sure your difficulty table is filled each time if you are using
+    // it.
+    fill_difficulty_table();
+
+    return return_best_move(calculate_best_action_plan(AGGRESSIVE));
 }
+
+
+    /*************************************/
+    /*   PUT YOUR FUNCTIONS BELOW        */
+    /*************************************/
+
+// You can change the below functions to your needs.
+ 
+// The procedural flow of the below functions is 
+// calculate_best_action_plan -> finds the most suitable action plan (attack enemy, pick up gold, etc)
+// return_best_move() then calls the appropriate function which returns a move for the given action.
 
 void DECISION_MAKER::set_weightage_table(int strategy,
 					 int go_to_nearest_gold_weight,
