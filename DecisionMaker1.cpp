@@ -4,7 +4,7 @@
 #include "DecisionMaker.h"
 #include "Constants.h"
 
-Move DECISION_MAKER::get_player_move(int choice)
+Move DECISION_MAKER::get_player_move(Info my_info, Info enemy_info, const MapClass &map)
 {
      // Returns a Move
      
