@@ -201,6 +201,14 @@ void Arena::evaluate_dynamic_interactions ()
          || tank2.falcon.dead_flag) 
      {
           this->game_over_flag = true;
+	  // Final update of score for all surviving tanks
+	  if (!tank1.dead_flag){
+	       tank1.incr_score (ALIVE_AT_THE_END);
+	  }
+	  else if (!tank2.dead_flag){
+	       tank2.incr_score (ALIVE_AT_THE_END);
+	  }
+	  
      }
      
 }
@@ -226,7 +234,7 @@ void Arena::update_map ()
 
 void Arena::end_game ()
 {
-     if ()
+//      if ()
      // Add stuff later
 }
 

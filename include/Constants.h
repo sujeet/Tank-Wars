@@ -4,6 +4,14 @@
 // For Arena.cpp
 #define DO_NOT_MOVE 10
 
+// For Tank.cpp
+enum event
+{
+     ENEMY_KILLED = 500,
+     PICKED_UP_GOLD = 40,
+     ENEMY_FALCON_KILLED = 1000,
+     ALIVE_AT_THE_END = 400
+};
 
 // For Info.h
 #define GO_TO_NEAREST_GOLD 0

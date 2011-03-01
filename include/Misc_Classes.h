@@ -1,12 +1,6 @@
 #ifndef MISC_CLASSES_H
 #define MISC_CLASSES_H
 
-enum event
-{
-     ENEMY_KILLED = 500,
-     PICKED_UP_GOLD = 40,
-     ENEMY_FALCON_KILLED = 1000
-};
 
 class ID
 {
