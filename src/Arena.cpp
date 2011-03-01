@@ -48,6 +48,7 @@ Arena::Arena ()
 
      DM1.DMinitializer (tank1.id, tank2.id);
      DM2.DMinitializer (tank2.id, tank1.id);
+     move_no = 0;
 
      this->initialize_machine_guns();
 
@@ -100,8 +101,8 @@ void Arena::get_player_moves ()
                            tank1.bullet_list,
                            machine_gun_list);
 
-     tank1.get_next_move (DM1.get_player_move(GREEDY));
-     tank2.get_next_move (DM2.get_player_move(AGGRESSIVE));
+     tank1.get_next_move (DM1.get_player_move(DM1.info, DM2.info, Map));
+     tank2.get_next_move (DM2.get_player_move(DM2.info, DM1.info, Map));
 }
 
 void Arena::execute_tank_moves ()
@@ -225,6 +226,7 @@ void Arena::update_map ()
 
 void Arena::end_game ()
 {
+     if ()
      // Add stuff later
 }
 

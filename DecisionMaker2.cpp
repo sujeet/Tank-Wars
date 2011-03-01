@@ -4,7 +4,7 @@
 #include "DecisionMaker.h"
 #include "Constants.h"
 
-Move DECISION_MAKER::get_player_move(int choice)
+Move DECISION_MAKER::get_player_move(const Info my_info, const Info enemy_info, const MapClass &map)
 {
      // Returns a Move
      
@@ -173,7 +173,8 @@ Move DECISION_MAKER::attack_enemy_falcon_move()
 Move DECISION_MAKER::attack_enemy_tank_move()
 {
     Move return_move;
-    return_move.shoot = info.can_shoot_at_enemy_tank;
+    return_move.shoot = info.can_shoot_at_enemy_tank;;
+
 
      if (info.can_shoot_at_enemy_tank){
          return_move.dirn = info.shoot_enemy_tank_dirn;
