@@ -164,8 +164,8 @@ string insert_css ()
              << "    -webkit-border-radius :	10px;                                                " << endl
              << "    -moz-box-shadow       :	5px 5px 7px #555555;                                 " << endl
              << "    -webkit-box-shadow    :	5px 5px 7px #555555;                                 " << endl
-             << "    width                 :	 920px;                                              " << endl
-             << "    height                :	 490px;                                              " << endl
+             << "    width                 :	 " << (MAP_SIZE - 1)*10 + 420 << "px;                " << endl
+             << "    height                :	 " << (MAP_SIZE - 1)*10 << "px;                      " << endl
              << "    margin                :	 0pt auto;                                           " << endl
              << "    padding               :	 20px;                                               " << endl
              << "    border                :	 0pt none;                                           " << endl
@@ -200,8 +200,8 @@ string insert_css ()
              << "    width                 :	 100%;                                               " << endl
              << "}                                                                                   " << endl
              << ".container{                                                                         " << endl
-             << "    width                 :	 500px;                                              " << endl
-             << "    height                :	 500px;                                              " << endl
+             << "    width                 :	 " << (MAP_SIZE-1)*10 << "px;                        " << endl
+             << "    height                :	 " << (MAP_SIZE-1)*10 << "px;                        " << endl
              << "    margin                :	 0pt;                                                " << endl
              << "    padding               :	 0pt;                                                " << endl
              << "    float                 :	 left;                                               " << endl
