@@ -37,21 +37,21 @@ enum event
 #define END_SCORE_CHAR '$'
 
 // Colour variables
-#define TANK1_COLOUR       "#008000"
-#define TANK2_COLOUR       "#ff00aa"
-#define MACHINE_GUN_COLOUR "blue"
+#define GOLD_COLOUR               "goldenRod"
+#define WALL_COLOUR               "#6464C8"
+#define EMPTY_COLOUR              "#111122"
+#define DEAD_COLOUR               "red"
 
-#define BULLET1_COLOUR     "black"
-#define BULLET2_COLOUR     "black"
-#define BULLET3_COLOUR     "black"
+#define TANK1_COLOUR              "#008000"
+#define FALCON1_COLOUR            "#55ee55"
+#define BULLET1_COLOUR            "black"
 
-#define BKG_COLOUR         "#E7ECD6"
-#define GOLD_COLOUR        "goldenRod"
-#define WALL_COLOUR        "#282B1F"
+#define TANK2_COLOUR              "#ff00aa"
+#define FALCON2_COLOUR            "#ff0044"
+#define BULLET2_COLOUR            "black"
 
-#define DEAD_COLOUR        "red"
-#define FALCON1_COLOUR     "#55ee55"
-#define FALCON2_COLOUR     "#ff0044"
+#define MACHINE_GUN_COLOUR        "blue"
+#define MACHINE_GUN_BULLET_COLOUR "black"
 
 // For Misc_Classes.h
 #define MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY 5

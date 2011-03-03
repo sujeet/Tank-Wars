@@ -36,7 +36,8 @@ void MapClass::create_from_file (string filename)
                if (letter == FALCON2) {
                     this->falcon2_posn = Position (i, j);
                }
-               this->set_element (i, j, letter, false);
+               // this->set_element (i, j, letter, false);
+               this->set_element (i, j, letter);
           }
      }
      infile.close ();
