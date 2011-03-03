@@ -30,7 +30,6 @@ void print_scores(const Arena & arena)
 
 int main()
 {
-     int i;
      Arena arena;
      srand(time(NULL));
      for (arena.move_no = 0; arena.move_no < TIMES; arena.move_no++){

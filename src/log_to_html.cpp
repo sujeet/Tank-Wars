@@ -465,7 +465,7 @@ string insert_func_list()
      do {
           logfile >> x >> y >> k;
           if (k != END_SCORE_CHAR) {
-               str_out << "    document.getElementById('" << x << "q" << y << "').className = char_to_color_table['" << k << "'];" << endl;
+               str_out << "    document.getElementById('" << x << "q" << y << "').className = '" << symbol_to_html_class(k) << "'; " << endl;
           }
           else {
                str_out << "    document.getElementById('player1_score').innerHTML = '" << x << "';" << endl;
@@ -501,23 +501,6 @@ string insert_js()
              << "var delay_step = " << DELAY_STEP << "; " << endl
              << "var min_delay = " << MIN_DELAY << ";   " << endl
              << "var max_delay = " << MAX_DELAY << ";   " << endl
-             << "var char_to_color_table = {};          " << endl
-
-             << "char_to_color_table['" << EMPTY              << "'] = 'empty';       " << endl
-             << "char_to_color_table['" << WALL               << "'] = 'wall';        " << endl 
-             << "char_to_color_table['" << GOLD               << "'] = 'gold';        " << endl 
-             << "char_to_color_table['" << DEAD               << "'] = 'dead';        " << endl 
-
-             << "char_to_color_table['" << TANK1              << "'] = 'tank1';       " << endl  
-             << "char_to_color_table['" << TANK2              << "'] = 'tank2';       " << endl
-             << "char_to_color_table['" << MACHINE_GUN        << "'] = 'machine_gun'; " << endl
-
-             << "char_to_color_table['" << BULLET1            << "'] = 'bullet1';     " << endl
-             << "char_to_color_table['" << BULLET2            << "'] = 'bullet2';     " << endl
-             << "char_to_color_table['" << MACHINE_GUN_BULLET << "'] = 'bullet3';     " << endl
-
-             << "char_to_color_table['" << FALCON1            << "'] = 'falcon1';     " << endl
-             << "char_to_color_table['" << FALCON2            << "'] = 'falcon2';     " << endl;
 
      // Now insert the function list
      str_out << insert_func_list();
