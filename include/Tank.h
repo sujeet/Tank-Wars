@@ -26,6 +26,7 @@ public:
      }
      void move ();		// Change Bullet's position
      void check_for_crashes (MapClass & Map); 
+     bool destroyed_enemy_bunker (MapClass & Map); 
      void set_disappear_flag ()
      {
           disappear_flag = true;
@@ -132,6 +133,8 @@ public:
 
 //      bool on_gold ();
      bool crashed_into_wall (MapClass & Map);	// Just set_dead_flag () as of now
+     bool crashed_into_bunker (MapClass & Map);
+     
      bool is_killed_by (Tank t);
      bool crashed_tank (Tank t); // Can be skipped as of now. Should
      // check if two tanks are crashing in
@@ -141,6 +144,7 @@ public:
      //      void evaluate_dangers ();
      void evaluate_dangers ();
      void die_by_wall_crash ();
+     void die_by_bunker_crash ();
      void die_by_tank (Tank &t);
      void do_nothing ();		// Comment out if not necessary. There just in case.
      void set_dead_flag ();		// Flag to denote that when all the

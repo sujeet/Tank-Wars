@@ -10,7 +10,8 @@ enum event
      ENEMY_KILLED = 500,
      PICKED_UP_GOLD = 40,
      ENEMY_FALCON_KILLED = 1000,
-     ALIVE_AT_THE_END = 400
+     ALIVE_AT_THE_END = 400,
+     DESTROYED_ENEMY_BUNKER = 65
 };
 
 // For Info.h
@@ -62,10 +63,12 @@ enum event
 #define DEAD                'D'
 
 #define TANK1               '1'
+#define BUNKER1             'X'
 #define FALCON1             'F'
 #define BULLET1             'A'
 
 #define TANK2               '2'
+#define BUNKER2             'Y'
 #define FALCON2             'E'
 #define BULLET2             'B'
 

@@ -474,85 +474,99 @@ string insert_js()
              << "var y;                                             " << endl;
      
      // Function to fill out the canvas at appropriate places.
-     str_out << "function fill_the_canvas (x, y, name)                             " << endl
-             << "{                                                                 " << endl
-             << "   switch (name)                                                  " << endl
-             << "   {                                                              " << endl
-             << "       case '" << WALL << "' :                                    " << endl
-             << "           ctx.fillStyle = '" << WALL_COLOUR << "';               " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                           " << endl
-             << "           break;                                                 " << endl
-             << "                                                                  " << endl
-             << "       case '" << EMPTY << "' :                                   " << endl
-             << "           ctx.fillStyle = '" << EMPTY_COLOUR << "';              " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                           " << endl
-             << "           break;                                                 " << endl
-             << "                                                                  " << endl
-             << "       case '" << GOLD << "' :                                    " << endl
-             << "           ctx.fillStyle = 'rgba(256, 220, 0, 0.5)';              " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                           " << endl
-             << "           ctx.fillStyle = 'rgba(256, 220, 0, 1)';              " << endl
-             << "           ctx.fillRect (x+2, y+2, 6, 6);                           " << endl
-             << "           break;                                                 " << endl
-             << "                                                                  " << endl
-             << "       case '" << TANK1 << "' :                                   " << endl
-             << "           ctx.fillStyle = 'rgba(0, 256, 0, 0.5)';              " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                           " << endl
-             << "           ctx.fillStyle = 'rgba(0, 256, 0, 1)';              " << endl
-             << "           ctx.fillRect (x+2, y+2, 6, 6);                           " << endl
-             << "           break;                                                 " << endl
-             << "                                                                  " << endl
-             << "       case '" << TANK2 << "' :                                   " << endl
-             << "           ctx.fillStyle = 'rgba(256, 0, 0, 0.5)';              " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                           " << endl
-             << "           ctx.fillStyle = 'rgba(256, 0, 0, 1)';              " << endl
-             << "           ctx.fillRect (x+2, y+2, 6, 6);                           " << endl
-             << "           break;                                                 " << endl
-             << "                                                                  " << endl
-             << "       case '" << MACHINE_GUN << "' :                             " << endl
-             << "           ctx.fillStyle = 'rgba(180, 180, 256, 0.5)';              " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                           " << endl
-             << "           ctx.fillStyle = 'rgba(180, 180, 256, 1)';              " << endl
-             << "           ctx.fillRect (x+2, y+2, 6, 6);                           " << endl
-             << "           break;                                                 " << endl
-             << "                                                                  " << endl
-             << "       case '" << BULLET1 << "' :                                 " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)';              " << endl
-             << "           ctx.fillRect (x+3, y+3, 4, 4);                           " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';              " << endl
-             << "           ctx.fillRect (x+4, y+4, 2, 2);                           " << endl
-             << "           break;                                                 " << endl
-             << "                                                                  " << endl
-             << "       case '" << BULLET2 << "' :                                 " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)';              " << endl
-             << "           ctx.fillRect (x+3, y+3, 4, 4);                           " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';              " << endl
-             << "           ctx.fillRect (x+4, y+4, 2, 2);                           " << endl
-             << "           break;                                                 " << endl
-             << "                                                                  " << endl
-             << "       case '" << MACHINE_GUN_BULLET << "' :                      " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)';              " << endl
-             << "           ctx.fillRect (x+3, y+3, 4, 4);                           " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';              " << endl
-             << "           ctx.fillRect (x+4, y+4, 2, 2);                           " << endl
-             << "           break;                                                 " << endl
-             << "                                                                  " << endl
-             << "       case '" << DEAD << "' :                                    " << endl
-             << "           ctx.fillStyle = '" << DEAD_COLOUR << "';               " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                           " << endl
-             << "           break;                                                 " << endl
-             << "                                                                  " << endl
-             << "       case '" << FALCON1 << "' :                                 " << endl
-             << "           ctx.fillStyle = '" << FALCON1_COLOUR << "';            " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                           " << endl
-             << "           break;                                                 " << endl
-             << "                                                                  " << endl
-             << "       case '" << FALCON2 << "' :                                 " << endl
-             << "           ctx.fillStyle = '" << FALCON2_COLOUR << "';            " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                           " << endl
-             << "           break;                                                 " << endl
-             << "   }                                                              " << endl
-             << "}                                                                 " << endl;
+     str_out << "function fill_the_canvas (x, y, name)                  " << endl
+             << "{                                                      " << endl
+             << "   switch (name)                                       " << endl
+             << "   {                                                   " << endl
+             << "       case '" << WALL << "' :                         " << endl
+             << "           ctx.fillStyle = '" << WALL_COLOUR << "';    " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << EMPTY << "' :                        " << endl
+             << "           ctx.fillStyle = '" << EMPTY_COLOUR << "';   " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << GOLD << "' :                         " << endl
+             << "           ctx.fillStyle = 'rgba(256, 220, 0, 0.5)';   " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           ctx.fillStyle = 'rgba(256, 220, 0, 1)';     " << endl
+             << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << BUNKER1 << "' :                      " << endl
+             << "           ctx.fillStyle = 'rgba(0, 256, 0, 0.5)';     " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           ctx.fillStyle = 'rgba(0, 256, 0, 1)';       " << endl
+             << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << BUNKER2 << "' :                      " << endl
+             << "           ctx.fillStyle = 'rgba(256, 0, 0, 0.5)';     " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           ctx.fillStyle = 'rgba(256, 0, 0, 1)';       " << endl
+             << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << TANK1 << "' :                        " << endl
+             << "           ctx.fillStyle = 'rgba(0, 256, 0, 0.5)';     " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           ctx.fillStyle = 'rgba(0, 256, 0, 1)';       " << endl
+             << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << TANK2 << "' :                        " << endl
+             << "           ctx.fillStyle = 'rgba(256, 0, 0, 0.5)';     " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           ctx.fillStyle = 'rgba(256, 0, 0, 1)';       " << endl
+             << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << MACHINE_GUN << "' :                  " << endl
+             << "           ctx.fillStyle = 'rgba(180, 180, 256, 0.5)'; " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           ctx.fillStyle = 'rgba(180, 180, 256, 1)';   " << endl
+             << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << BULLET1 << "' :                      " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)'; " << endl
+             << "           ctx.fillRect (x+3, y+3, 4, 4);              " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';   " << endl
+             << "           ctx.fillRect (x+4, y+4, 2, 2);              " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << BULLET2 << "' :                      " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)'; " << endl
+             << "           ctx.fillRect (x+3, y+3, 4, 4);              " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';   " << endl
+             << "           ctx.fillRect (x+4, y+4, 2, 2);              " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << MACHINE_GUN_BULLET << "' :           " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)'; " << endl
+             << "           ctx.fillRect (x+3, y+3, 4, 4);              " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';   " << endl
+             << "           ctx.fillRect (x+4, y+4, 2, 2);              " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << DEAD << "' :                         " << endl
+             << "           ctx.fillStyle = '" << DEAD_COLOUR << "';    " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << FALCON1 << "' :                      " << endl
+             << "           ctx.fillStyle = '" << FALCON1_COLOUR << "'; " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           break;                                      " << endl
+             << "                                                       " << endl
+             << "       case '" << FALCON2 << "' :                      " << endl
+             << "           ctx.fillStyle = '" << FALCON2_COLOUR << "'; " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           break;                                      " << endl
+             << "   }                                                   " << endl
+             << "}                                                      " << endl;
 
 
      // Now insert the function list

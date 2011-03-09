@@ -64,7 +64,7 @@ void Tank::get_next_move (Move move)
      // Just a random move returned as of now
 //      int temp;
 //      temp = rand () % 8;	
-    // this->next_move.interpret_move (temp);
+     // this->next_move.interpret_move (temp);
 }
 
 void Tank::get_dummy_move ()
@@ -138,12 +138,17 @@ void Tank::evaluate_static_interactions (MapClass & Map)
      if (crashed_into_wall (Map)){
           die_by_wall_crash ();
      }
+     if (crashed_into_bunker (Map)){
+          die_by_bunker_crash ();
+     }
 
      // Check for bullet crashes
      for (i = 0; i < this->bullet_list.size (); i++){
           this->bullet_list[i].check_for_crashes (Map);
+          if (this->bullet_list[i].destroyed_enemy_bunker (Map) ) {
+               incr_score (DESTROYED_ENEMY_BUNKER);
+          }
      }
-     
 }
 
 bool Tank::is_killed_by (Tank t)
@@ -156,7 +161,7 @@ bool Tank::is_killed_by (Tank t)
      Bullet b;
 
      for (i = 0; i < t.bullet_list.size (); i++) {
-	  b = t.bullet_list[i];
+          b = t.bullet_list[i];
           if (b.curr_posn == this->curr_posn || (b.prev_posn == this->curr_posn && b.curr_posn == this->prev_posn)) {
                flag = true;
                break;
@@ -198,12 +203,29 @@ bool Tank::crashed_into_wall (MapClass & Map)
      return false;
 }
 
+bool Tank::crashed_into_bunker (MapClass & Map)
+{
+     if ( Map.is_symbol(curr_posn, BUNKER1) ){
+          return true;
+     }    
+     else if ( Map.is_symbol(curr_posn, BUNKER2) ){
+          return true;
+     }    
+     return false;
+}
+
 // void Tank::evaluate_dangers (Tank t)
 // {
 //      if (crashed_into_wall (Map, true) || is_killed_by (t, true))
 // }
 
 void Tank::die_by_wall_crash ()
+{
+     // Die
+     dead_flag = true;
+}
+
+void Tank::die_by_bunker_crash ()
 {
      // Die
      dead_flag = true;
@@ -219,8 +241,8 @@ void Tank::check_bullet_interactions (Tank t)
      unsigned int i, j;
      for (i = 0; i < this->bullet_list.size (); i++) {
           for (j = 0; j < t.bullet_list.size (); j++) {
-	       my_b = this->bullet_list[i]; 
-	       enemy_b = t.bullet_list[j];
+               my_b = this->bullet_list[i]; 
+               enemy_b = t.bullet_list[j];
                if (my_b.curr_posn == enemy_b.curr_posn || (my_b.prev_posn == enemy_b.curr_posn && my_b.curr_posn == enemy_b.prev_posn)){
                     this->bullet_list[i].set_disappear_flag ();
                }
@@ -231,7 +253,6 @@ void Tank::check_bullet_interactions (Tank t)
 void Tank::incr_score (event e)
 {
      // Update score based on the event
-
      score += e;
 }
 
@@ -275,12 +296,22 @@ void Tank::update_on_map (MapClass & Map)
 #endif
 
      // Blank previous position on map
-     if (Map.get_element (this->prev_posn) == this->symbol)
-	  Map.set_element (this->prev_posn, EMPTY);
+     if (Map.is_symbol(this->prev_posn, this->symbol))
+          Map.set_element (this->prev_posn, EMPTY);
 
      // Set current position on map
      if (this->dead_flag){
-          Map.set_element (this->curr_posn, DEAD);
+          if (this->symbol == MACHINE_GUN) {
+               switch (Map.get_element (this->curr_posn)) {
+               case BULLET1 :
+               case BULLET2 :
+               case MACHINE_GUN_BULLET : Map.set_element (this->curr_posn, EMPTY); break;
+               default : break;
+               }
+          }
+          else {
+               Map.set_element (this->curr_posn, DEAD);
+          }
      }
      else
           Map.set_element (this->curr_posn, this->symbol);
@@ -305,6 +336,40 @@ void Bullet::check_for_crashes (MapClass & Map)
 
           this->set_disappear_flag ();
      }
+     
+     // If own bunker is hit, simply treat it as wall,
+     // that is, simply make the bullet vanish.
+     if ( Map.is_symbol(this->curr_posn, BUNKER1)
+          and (this->symbol == BULLET1) ) {
+          this->set_disappear_flag ();
+     }
+     if ( Map.is_symbol(this->curr_posn, BUNKER2)
+          and (this->symbol == BULLET2) ) {
+          this->set_disappear_flag ();
+     }
+     if ( Map.is_symbol(this->curr_posn, BUNKER1)
+          and (this->symbol == MACHINE_GUN_BULLET) ) {
+          this->set_disappear_flag ();
+     }
+     if ( Map.is_symbol(this->curr_posn, BUNKER2)
+          and (this->symbol == MACHINE_GUN_BULLET) ) {
+          this->set_disappear_flag ();
+     }
+}
+
+bool Bullet::destroyed_enemy_bunker (MapClass & Map) 
+{
+     if ( Map.is_symbol(this->curr_posn, BUNKER1)
+          and (this->symbol == BULLET2) ) {
+          this->set_disappear_flag ();
+          return true;
+     }
+     if ( Map.is_symbol(this->curr_posn, BUNKER2)
+          and (this->symbol == BULLET1) ) {
+          this->set_disappear_flag ();
+          return true;
+     }
+     return false;
 }
 
 void Bullet::update_on_map (MapClass & Map)
@@ -318,8 +383,17 @@ void Bullet::update_on_map (MapClass & Map)
      
      // Blank previous position
      if (Map.get_element (this->prev_posn) == this->symbol)
-	  Map.set_element (this->prev_posn, EMPTY);
+          Map.set_element (this->prev_posn, EMPTY);
      if (this->disappear_flag){
+          if ( Map.is_symbol (this->curr_posn, BUNKER1)
+               and (this->symbol == BULLET2) ) {
+               Map.set_element (this->curr_posn, EMPTY);
+          }
+          if ( Map.is_symbol (this->curr_posn, BUNKER2)
+               and (this->symbol == BULLET1) ) {
+               Map.set_element (this->curr_posn, EMPTY);
+          }
+          
           // Map[curr_x][curr_y] = EMPTY;
           // the bullet died because it hit
           // something hence setting curr_coords
@@ -364,7 +438,7 @@ bool Tank::Falcon::is_killed_by (Tank &t)
      }
 
      if (flag){
-	  t.incr_score (ENEMY_FALCON_KILLED);
+          t.incr_score (ENEMY_FALCON_KILLED);
      }
      
      return flag;
