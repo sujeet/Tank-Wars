@@ -30,9 +30,9 @@ public:
      // Methods
      Arena ();
      void print_scores ();
-     void get_machine_moves ();
+     void get_machine_moves (bool bullets_only = false);
      void move_bullets ();
-     void get_player_moves ();
+     void get_player_moves (bool bullets_only = false);
      void execute_tank_moves ();
      void evaluate_static_interactions ();
      void evaluate_dynamic_interactions ();

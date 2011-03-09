@@ -68,10 +68,16 @@ void Arena::print_scores ()
      
 }
 
-void Arena::get_machine_moves ()
+void Arena::get_machine_moves (bool bullets_only)
 {
      for (unsigned int i = 0; i < this->machine_gun_list.size(); i++) {
-          this->machine_gun_list[i].get_machine_random_move();
+          if (bullets_only) {
+               // Return a move which neither moves nor shoots.
+               this->machine_gun_list[i].get_dummy_move ();
+          }
+          else {
+               this->machine_gun_list[i].get_machine_random_move();
+          }
      }
 }
 void Arena::move_bullets ()
@@ -83,7 +89,7 @@ void Arena::move_bullets ()
      }
 }
 
-void Arena::get_player_moves ()
+void Arena::get_player_moves (bool bullets_only)
 {
      // Get each tank's next moves
 
@@ -101,14 +107,21 @@ void Arena::get_player_moves ()
                            tank1.bullet_list,
                            machine_gun_list);
 
-     tank1.get_next_move (DM1.get_player_move(DM1.info, DM2.info, Map,
-                                                tank1.score, 
-                                                tank2.score, 
-                                                this->move_no));
-     tank2.get_next_move (DM2.get_player_move(DM2.info, DM1.info, Map,
-                                                tank2.score, 
-                                                tank1.score, 
-                                                this->move_no));
+     if (bullets_only) {
+          // Return a move which neither moves nor shoots.
+          this->tank1.get_dummy_move ();
+          this->tank2.get_dummy_move ();
+     }
+     else {
+          tank1.get_next_move (DM1.get_player_move(DM1.info, DM2.info, Map,
+                                                   tank1.score, 
+                                                   tank2.score, 
+                                                   this->move_no));
+          tank2.get_next_move (DM2.get_player_move(DM2.info, DM1.info, Map,
+                                                   tank2.score, 
+                                                   tank1.score, 
+                                                   this->move_no));
+     }
 }
 
 void Arena::execute_tank_moves ()

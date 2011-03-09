@@ -26,7 +26,6 @@ enum event
 
 // For log_to_html.cpp
 #define MAP_SIZE 51
-/* #define MAP_SIZE 51 */
 
 #define ASCII_CHARS 128
 #define MAX_CLASS_NAME_LENGTH 10
@@ -75,6 +74,7 @@ enum event
 
 // For TankWars.cpp
 #define TIMES 5000
+#define BULLET_SPEED 3
 
 // For Everybody
 #define  UP  0

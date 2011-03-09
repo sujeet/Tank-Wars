@@ -67,6 +67,11 @@ void Tank::get_next_move (Move move)
     // this->next_move.interpret_move (temp);
 }
 
+void Tank::get_dummy_move ()
+{
+     this->next_move = Move (false, 0, 0);
+}
+
 void Tank::get_machine_random_move () 
 {
      int temp;

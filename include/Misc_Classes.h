@@ -30,6 +30,7 @@ public:
      Direction dirn;
      Move ();
      Move (int);
+     Move (bool shoot, int xdir, int ydir);
      Move operator = (Move mov);
      void interpret_move (int user_move, bool is_machine_gun_move = false);
      void print ();

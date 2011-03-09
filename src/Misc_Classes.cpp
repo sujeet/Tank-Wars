@@ -58,12 +58,6 @@ void Direction::get_from_integer (int inp)
           this->xdir = 0;
           this->ydir = -1;
           break;
-          // The following is used for unmovables
-          // eg machine guns ect. (?)
-     case DO_NOT_MOVE:
-          this->xdir = 0;
-          this->ydir = 0;
-          break;
      }
 }
 
@@ -77,6 +71,11 @@ Move::Move (int given_move)
      this->interpret_move (given_move);
 }
 
+Move::Move (bool shoot, int xdir, int ydir)
+{
+     this->shoot = shoot;
+     this->dirn = Direction (xdir, ydir);
+}
 
 void Move::interpret_move (int user_move, bool is_machine_gun_move)
 {

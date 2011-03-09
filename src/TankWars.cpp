@@ -31,16 +31,26 @@ void print_scores(const Arena & arena)
 int main()
 {
      Arena arena;
+     bool bullets_only;
      srand(time(NULL));
      for (arena.move_no = 0; arena.move_no < TIMES; arena.move_no++){
+          // Set the flag which indicates whether everything should move
+          // or only bullets should move.
+          if (arena.move_no % BULLET_SPEED != 0) {
+               bullets_only = true;
+          }
+          else {
+               bullets_only = false;
+          }
+          
           // Get the moves for the Machine guns
-          arena.get_machine_moves ();
+          arena.get_machine_moves (bullets_only);
 
           // Move the bullets one step in their current direction
           arena.move_bullets ();
 
           // Get player moves - ie. Call DecisionMaker
-          arena.get_player_moves ();
+          arena.get_player_moves (bullets_only);
 
           // For each Tank, first, either shoot or move tank
           // (ie. update its curr_posn)
@@ -64,7 +74,7 @@ int main()
 
           // If the game is over
           if (arena.game_over_flag){
-//               arena.machine_gun_list.clear();
+               // arena.machine_gun_list.clear();
                break;
           }
      }

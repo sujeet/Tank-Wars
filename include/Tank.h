@@ -119,6 +119,8 @@ public:
      void move_bullets ();
      void get_next_move (Move);
      void get_machine_random_move ();
+     // get_dummy_move gets a move which neither shoots nor moves
+     void get_dummy_move ();
      void execute_next_move ();
      void move ();			// Change Tank's position
      void shoot_bullet ();
