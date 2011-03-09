@@ -33,4 +33,11 @@
 ** Note : If your Tank dies, the opponent gains 400 points, so that is another incentive to stay alive
 
 * Step 2 - A Tank that keeps moving between the two end walls
-** 
+* Step x - Each of the 8 moves possible
+* Step 3 - Carries out each of the four actions
+* Step 4 - Introduce return best move
+* Step 5 - Introduce calculate_best_action_plan
+* Step 6 - Changing Decision Table weightage
+* Introduction - Can shoot items
+* Dodge bullet
+* Attack bunkers
