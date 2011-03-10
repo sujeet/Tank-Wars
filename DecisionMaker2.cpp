@@ -4,28 +4,98 @@
 #include "DecisionMaker.h"
 #include "Constants.h"
 
-Move DECISION_MAKER::get_player_move(const Info my_info, const Info enemy_info, const MapClass &map, int my_score, int enemy_score, int total_moves_done)
+   // IMPORTANT:
+   //   First thing you need to do is understand the various 
+   // information you get from the Info object. Things like 'your 
+   // closest distance from the enemy tank' can be obtained from the
+   // Info object.
+   //
+   // OPTIONAL: ( But may be VERY helpful)
+   //   After looking at all the information you can get from
+   // the Info class, you can try to use and build on our mathematical 
+   // model.
+   //
+   //   Our idea is to calculate the best move for a particular
+   // strategy (offensive or defensive etc.) by having some weightages
+   // for some predefined possible actions ( like collect gold, attack
+   // enemy etc ) and then decide which move will give you the best
+   // result.
+   //
+   //   You may want to play in different strategies at different
+   // times of the game, so set different weightages based on the
+   // circumstances if you want. So you can build upon this
+   // mathematical model if you want.
+   //
+   // CAUTION :
+   //
+   //   Do not change the prototypes of any of the functions we have
+   // provided in the header file.
+
+Move DECISION_MAKER::get_player_move(Info my_info,
+				     Info opp_info,
+				     const MapClass &map,
+				     int my_score,
+				     int enemy_score,
+				     int total_moves_done)
 {
      // Returns a Move
-     
-      
-      /*************************************/
-      /*   PUT YOUR CODE IN THIS FUNCTION  */
-      /*************************************/
-      
-	   
+
+     // Simply say,
+     // 
+     // return Move (my_move)
+     // 
+     // where
+     // |--------------+------+-------+----+------+----------+------------+------------+-------------|
+     // | my_move      | LEFT | RIGHT | UP | DOWN | SHOOT_UP | SHOOT_DOWN | SHOOT_LEFT | SHOOT_RIGHT |
+     // | Actual value |    0 |     1 |  2 |    3 |        4 |          5 |          6 |           7 |
+     // |--------------+------+-------+----+------+----------+------------+------------+-------------|
+
      // Make sure your difficulty table is filled each time if you are using
      // it.
-     fill_difficulty_table();
+     this->my_info = my_info;
+     this->opp_info = opp_info;
 
-     return return_best_move(calculate_best_action_plan(GREEDY));
+     fill_difficulty_table(map);
+
+     /*************************************/
+     /*   PUT YOUR CODE IN THIS FUNCTION  */
+     /*************************************/
+
+     // Position my_curr_posn;
+     // Direction d;
+     
+     // my_curr_posn = info.curr_posn;
+
+     // d.get_from_integer (RIGHT);
+     // right_posn = my_curr_posn;
+     // right_posn.go_in_direction (d);
+
+     // if (map.get_element (right_posn) != WALL)
+     // 	  return Move (RIGHT);
+     // left_posn = my_curr_posn;
+     
+     // int my_move = rand () % 4;
+     // return Move (my_move);
+     return return_best_move(calculate_best_action_plan(GREEDY, map), map);
 }
+
+
+/*************************************/
+/*   PUT YOUR FUNCTIONS BELOW        */
+/*************************************/
+
+// You can change the below functions to your needs.
+ 
+// The procedural flow of the below functions is 
+// calculate_best_action_plan -> finds the most suitable action plan (attack enemy, pick up gold, etc)
+// return_best_move() then calls the appropriate function which returns a move for the given action.
 
 void DECISION_MAKER::set_weightage_table(int strategy,
 					 int go_to_nearest_gold_weight,
 					 int attack_enemy_falcon_weight,
 					 int attack_enemy_tank_weight,
-					 int defend_your_falcon_weight)
+					 int defend_your_falcon_weight,
+                     const MapClass &map)
 {
      // Sets the weightage table values as passed to the function
 
@@ -63,9 +133,10 @@ void DECISION_MAKER::set_weightage_table(int strategy,
 }
 
 void DECISION_MAKER::set_difficulty_table(int go_to_nearest_gold_difficulty,
-                                         int attack_enemy_falcon_difficulty,
-                                         int attack_enemy_tank_difficulty,
-                                         int defend_your_falcon_difficulty)
+					  int attack_enemy_falcon_difficulty,
+					  int attack_enemy_tank_difficulty,
+					  int defend_your_falcon_difficulty, 
+                      const MapClass &map)
 {
      // Sets the difficulty table values
      difficulty_table[GO_TO_NEAREST_GOLD] = go_to_nearest_gold_difficulty;
@@ -82,20 +153,21 @@ void DECISION_MAKER::DMinitializer(ID my_id, ID enemy_id)
      // The weightages are from 0 to 100.
      // go_to_nearest_gold_weight | attack_enemy_falcon_weight | attack_enemy_tank_weight | defend_your_falcon_weight
 
-     set_weightage_table(AGGRESSIVE, 0, 50, 50, 0);
-     set_weightage_table(DEFENSIVE, 20, 1, 5, 50);
-     set_weightage_table(GREEDY, 100, 15, 10, 0);
-     set_weightage_table(CUSTOMISED, 0, 0, 100, 0);
+     MapClass dummy;
+     set_weightage_table(AGGRESSIVE, 0, 50, 50, 0, dummy);
+     set_weightage_table(DEFENSIVE, 20, 1, 5, 50, dummy);
+     set_weightage_table(GREEDY, 100, 15, 10, 0, dummy);
+     set_weightage_table(CUSTOMISED, 0, 0, 100, 0, dummy);
 
      // These are just dummy values 
-     set_difficulty_table(1, 1, 1, 1);
+     set_difficulty_table(1, 1, 1, 1, dummy);
 
      // Initialize the info object so that it knows what your character symbol is,
      // player number etc
      info.initializer(my_id, enemy_id);
 }
 
-void DECISION_MAKER::fill_difficulty_table()
+void DECISION_MAKER::fill_difficulty_table(const MapClass &map)
 {
      // Here you can write the function which calculates the difficulty measure 
      // so as to fill in the difficulty table
@@ -106,10 +178,11 @@ void DECISION_MAKER::fill_difficulty_table()
      set_difficulty_table(info.nearest_gold.shortest_distance,
                           info.opp_falcon.shortest_distance,
                           info.opp_tank.shortest_distance,
-                          info.my_falcon.shortest_distance);
+                          info.my_falcon.shortest_distance,
+                          map);
 }
 
-Move DECISION_MAKER::return_best_move(int best_action_plan)
+Move DECISION_MAKER::return_best_move(int best_action_plan, const MapClass &map)
 {
      // Returns a 'Move' object by calling appropriate move calculator
      // depending upon action_plan argument passed
@@ -117,16 +190,16 @@ Move DECISION_MAKER::return_best_move(int best_action_plan)
      switch(best_action_plan)
      {
      case GO_TO_NEAREST_GOLD:
-          return go_to_nearest_gold_move();
+          return go_to_nearest_gold_move(map);
           break;
      case ATTACK_ENEMY_FALCON:
-          return attack_enemy_falcon_move();
+          return attack_enemy_falcon_move(map);
           break;
      case ATTACK_ENEMY_TANK:
-          return attack_enemy_tank_move();
+          return attack_enemy_tank_move(map);
           break;
      case DEFEND_MY_FALCON:
-          return defend_my_falcon_move();
+          return defend_my_falcon_move(map);
           break;
      default:
           cerr << " Error: Function return_best_move in DECISION_MAKER class got invalid argument = " << best_action_plan << endl;
@@ -134,7 +207,7 @@ Move DECISION_MAKER::return_best_move(int best_action_plan)
      }
 }
 
-Move DECISION_MAKER::go_to_nearest_gold_move()
+Move DECISION_MAKER::go_to_nearest_gold_move(const MapClass &map)
 {
      // Description of the function that calculates  
      // the move to 'go to gold'
@@ -151,7 +224,7 @@ Move DECISION_MAKER::go_to_nearest_gold_move()
      }
 }
 
-Move DECISION_MAKER::attack_enemy_falcon_move()
+Move DECISION_MAKER::attack_enemy_falcon_move(const MapClass &map)
 {
      // Description of the function that calculates  
      // the move to 'attack enemy falcon'
@@ -160,40 +233,39 @@ Move DECISION_MAKER::attack_enemy_falcon_move()
      return_move.shoot = info.can_shoot_at_enemy_falcon;
 
      if (info.can_shoot_at_enemy_falcon){
-         return_move.dirn = info.shoot_falcon_dirn;
+	  return_move.dirn = info.shoot_falcon_dirn;
      }
      else
      {
-         return_move.dirn = info.opp_falcon.initial_move.dirn;
+	  return_move.dirn = info.opp_falcon.initial_move.dirn;
      }
      
      return return_move;
 }
 
-Move DECISION_MAKER::attack_enemy_tank_move()
+Move DECISION_MAKER::attack_enemy_tank_move(const MapClass &map)
 {
-    Move return_move;
-    return_move.shoot = info.can_shoot_at_enemy_tank;;
-
+     Move return_move;
+     return_move.shoot = info.can_shoot_at_enemy_tank;
 
      if (info.can_shoot_at_enemy_tank){
-         return_move.dirn = info.shoot_enemy_tank_dirn;
+	  return_move.dirn = info.shoot_enemy_tank_dirn;
      }
      else
      {
-         return_move.dirn = info.opp_tank.initial_move.dirn;
+	  return_move.dirn = info.opp_tank.initial_move.dirn;
      }
      
      return return_move;
 }
 
-Move DECISION_MAKER::defend_my_falcon_move()
+Move DECISION_MAKER::defend_my_falcon_move(const MapClass &map)
 {
      // If I'm in the vicinity of my falcon, and so is he, then call attack_enemy_tank_move
      return info.my_falcon.initial_move;
 }
 
-int DECISION_MAKER::calculate_best_action_plan(int strategy)
+int DECISION_MAKER::calculate_best_action_plan(int strategy, const MapClass &map)
 {
      // A simple function to calculate the scores for each of the
      // strategies possible
@@ -236,4 +308,3 @@ int DECISION_MAKER::find_the_maximum( float* action_score )
      }
      return max_posn;
 }
-
