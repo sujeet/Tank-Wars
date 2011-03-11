@@ -80,6 +80,7 @@ void Arena::get_machine_moves (bool bullets_only)
           }
      }
 }
+
 void Arena::move_bullets ()
 {
      tank1.move_bullets ();
@@ -113,18 +114,18 @@ void Arena::get_player_moves (bool bullets_only)
           this->tank2.get_dummy_move ();
      }
      else {
-          // tank1.get_next_move (DM1.get_player_move(DM1.info, DM2.info, Map,
-          //                                          tank1.score, 
-          //                                          tank2.score, 
-          //                                          this->move_no));
-          // tank2.get_next_move (DM2.get_player_move(DM2.info, DM1.info, Map,
-          //                                          tank2.score, 
-          //                                          tank1.score, 
-          //                                          this->move_no));
+          tank1.get_next_move (DM1.get_player_move(DM1.info, DM2.info, Map,
+                                                   tank1.score, 
+                                                   tank2.score, 
+                                                   this->move_no));
+          tank2.get_next_move (DM2.get_player_move(DM2.info, DM1.info, Map,
+                                                   tank2.score, 
+                                                   tank1.score, 
+                                                   this->move_no));
 
           // The following is for only testing purposes.
-          tank1.get_machine_random_move ();
-          tank2.get_machine_random_move ();
+//           tank1.get_machine_random_move ();
+//           tank2.get_machine_random_move ();
      }
 }
 

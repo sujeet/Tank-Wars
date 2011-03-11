@@ -58,6 +58,10 @@ void Direction::get_from_integer (int inp)
           this->xdir = 0;
           this->ydir = -1;
           break;
+     case DO_NOT_MOVE:
+	  this->xdir = 0;
+	  this->ydir = 0;
+	  break;
      }
 }
 
@@ -85,7 +89,7 @@ void Move::interpret_move (int user_move, bool is_machine_gun_move)
      else if ( (is_machine_gun_move) and (user_move / 4 == 1) ) {
           // Machine guns have 25% chance of shoooting
           int temp = rand() % MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY;
-          if (temp == 1) {
+          if (!temp) {
                this->shoot = true;
           }
      }
@@ -94,8 +98,8 @@ void Move::interpret_move (int user_move, bool is_machine_gun_move)
      }
 
      if ( (is_machine_gun_move) and (this->shoot == false) ) {
-	  this->dirn.get_from_integer (user_move % 4);
-          // this->dirn.get_from_integer (DO_NOT_MOVE);
+// 	  this->dirn.get_from_integer (user_move % 4);
+          this->dirn.get_from_integer (DO_NOT_MOVE);
      }
      else {
           this->dirn.get_from_integer (user_move % 4);

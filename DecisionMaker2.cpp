@@ -31,6 +31,32 @@
    //   Do not change the prototypes of any of the functions we have
    // provided in the header file.
 
+
+int check_in_vicinity( Position posn , const MapClass & MAP )
+{
+    int counter=1;
+
+    int x = posn.x;
+    int y = posn.y;
+
+    for( int i = -5;i<6;i++ )
+    {
+        for( int j = -5;j<6;j++ )
+        {
+
+            if( x+i < MAP_SIZE-1 && y+j < MAP_SIZE-1 && x+i >= 0 && y+j >= 0 )
+            {
+//                 cout<<x+i<<endl<<y+j<<endl<<endl;
+
+                if( MAP.is_symbol ( x+i , y+j , GOLD ) )
+                    counter++;
+            }
+        }
+    }
+
+  return counter;
+}
+
 Move DECISION_MAKER::get_player_move(Info my_info,
 				     Info opp_info,
 				     const MapClass &map,
@@ -76,7 +102,29 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      
      // int my_move = rand () % 4;
      // return Move (my_move);
-     return return_best_move(calculate_best_action_plan(GREEDY, map), map);
+
+	int temp = my_info.gold.size();
+
+    if ( temp == 0 )
+    {
+        return return_best_move(calculate_best_action_plan(AGGRESSIVE , map ), map );
+    }
+
+    vector <float> usefulness ( temp );
+
+    int maximum = 0;
+
+    for (int i=0;i < temp;i++ )
+    {
+        usefulness[i] = check_in_vicinity(my_info.gold[i].posn , map) / my_info.gold[i].shortest_distance;
+
+        if ( usefulness[ maximum ] < usefulness[ i ] )
+            maximum = i;
+    }
+
+
+     return my_info.gold[maximum].initial_move;
+
 }
 
 

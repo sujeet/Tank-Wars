@@ -59,23 +59,15 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      /*************************************/
      /*   PUT YOUR CODE IN THIS FUNCTION  */
      /*************************************/
+     if(my_info.opp_falcon.shortest_distance + 15< opp_info.opp_falcon.shortest_distance)
+         return return_best_move(calculate_best_action_plan(AGGRESSIVE, map), map);
+     else if(my_info.opp_falcon.shortest_distance + 5< opp_info.opp_falcon.shortest_distance)
+         return return_best_move(calculate_best_action_plan(GREEDY, map), map);
+     else if(my_info.opp_falcon.shortest_distance > opp_info.opp_falcon.shortest_distance)
+         return return_best_move(calculate_best_action_plan(DEFENSIVE, map), map);
+     else 
+         return return_best_move(calculate_best_action_plan(GREEDY, map), map);
 
-     // Position my_curr_posn;
-     // Direction d;
-     
-     // my_curr_posn = info.curr_posn;
-
-     // d.get_from_integer (RIGHT);
-     // right_posn = my_curr_posn;
-     // right_posn.go_in_direction (d);
-
-     // if (map.get_element (right_posn) != WALL)
-     // 	  return Move (RIGHT);
-     // left_posn = my_curr_posn;
-     
-     // int my_move = rand () % 4;
-     // return Move (my_move);
-     return return_best_move(calculate_best_action_plan(GREEDY, map), map);
 }
 
 
@@ -271,22 +263,43 @@ int DECISION_MAKER::calculate_best_action_plan(int strategy, const MapClass &map
 
      // It returns the strategy with maximum score so that you make
      // the most effective move at each turn
+     switch(strategy)
+     {
+     case AGGRESSIVE:
+         if(my_info.opp_tank.shortest_distance + 3 < my_info.opp_falcon.shortest_distance)
+          return ATTACK_ENEMY_TANK;
+         else 
+         {
+             return ATTACK_ENEMY_FALCON;
+         }
+          break;
+     case DEFENSIVE:
+          if(opp_info.opp_tank.shortest_distance < opp_info.opp_falcon.shortest_distance)
+              return ATTACK_ENEMY_TANK;
+          else
+              return DEFEND_MY_FALCON;
+          break;
+     case GREEDY:
+     case CUSTOMISED:
+          float action_score[4];
 
-     float action_score[4];
+          action_score[GO_TO_NEAREST_GOLD] = 
+              float ( weightage_table[strategy][GO_TO_NEAREST_GOLD]) / float( difficulty_table[GO_TO_NEAREST_GOLD] );
+
+          action_score[ATTACK_ENEMY_FALCON] = 
+              float ( weightage_table[strategy][ATTACK_ENEMY_FALCON]) / float( difficulty_table[ATTACK_ENEMY_FALCON] );
+
+          action_score[ATTACK_ENEMY_TANK] = 
+              float ( weightage_table[strategy][ATTACK_ENEMY_TANK]) / float( difficulty_table[ATTACK_ENEMY_TANK] );
+
+          action_score[DEFEND_MY_FALCON] = 
+              float ( weightage_table[strategy][DEFEND_MY_FALCON]) / float( difficulty_table[DEFEND_MY_FALCON] );
+
+          return find_the_maximum ( action_score );
+          break;
      
-     action_score[GO_TO_NEAREST_GOLD] = 
-          float ( weightage_table[strategy][GO_TO_NEAREST_GOLD]) / float( difficulty_table[GO_TO_NEAREST_GOLD] );
-
-     action_score[ATTACK_ENEMY_FALCON] = 
-          float ( weightage_table[strategy][ATTACK_ENEMY_FALCON]) / float( difficulty_table[ATTACK_ENEMY_FALCON] );
-
-     action_score[ATTACK_ENEMY_TANK] = 
-          float ( weightage_table[strategy][ATTACK_ENEMY_TANK]) / float( difficulty_table[ATTACK_ENEMY_TANK] );
-
-     action_score[DEFEND_MY_FALCON] = 
-          float ( weightage_table[strategy][DEFEND_MY_FALCON]) / float( difficulty_table[DEFEND_MY_FALCON] );
-
-     return find_the_maximum ( action_score );
+     }
+    
 }
 
 
