@@ -9,7 +9,7 @@ using namespace std;
 
 MapClass::MapClass ()
 {
-     this->log_file.open(LOG_FILE);
+     // Don't do anything here.
 }
 
 void MapClass::create_from_file (string filename) 
@@ -17,6 +17,10 @@ void MapClass::create_from_file (string filename)
      ifstream infile;
      char letter;
      infile.open (filename.c_str());
+
+     // Open the log file here, not in
+     // the constructor.
+     this->log_file.open(LOG_FILE);
 
      for (int i = 0; i < MAP_SIZE - 1; i++){
           for (int j = 0; j < MAP_SIZE - 1; j++){
