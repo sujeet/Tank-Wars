@@ -66,7 +66,7 @@ void Info::update_distances(MapClass &map,Position source)
 	  temp.go_in_direction (d);
 	  map_element = map.get_element (temp);
 
-	  if(map_element == GOLD || map_element == EMPTY || map_element == BULLET1 || map_element == BULLET2 || map_element == enemy_ID.falcon_symbol){
+	  if(map_element == enemy_ID.my_bunker || map_element == GOLD || map_element == EMPTY || map_element == BULLET1 || map_element == BULLET2 || map_element == enemy_ID.falcon_symbol){
 
 	       // Unless the position is empty or gold
 	       // dont enqueue the position.
@@ -111,6 +111,9 @@ void Info::update_distances(MapClass &map,Position source)
 	  // gold gold vector
 	  if(char_buffer == GOLD)
 	       gold.push_back(temp_info_object);
+
+	  if(char_buffer == enemy_ID.my_bunker)
+	       enemy_bunker.push_back(temp_info_object);
 	  // If the position is a tank or a falcon update the
 	  // corresponding objects. But the neighbours shouldn't be
 	  // pushed. so continue the process
@@ -132,12 +135,7 @@ void Info::update_distances(MapClass &map,Position source)
 	       my_falcon = temp_info_object;
 	       continue;
 	  }
-	  else if( char_buffer ==  WALL)
-	  {
-	       distance[x][y] = -1;
-	       continue;
-	  }
-	  else if( char_buffer == MACHINE_GUN)
+	  else if( char_buffer ==  WALL || char_buffer == my_ID.my_bunker || char_buffer == MACHINE_GUN)
 	  {
 	       distance[x][y] = -1;
 	       continue;
@@ -152,7 +150,8 @@ void Info::update_distances(MapClass &map,Position source)
 	       // push the neighbours if they are not already visited
 	       if( visited[temp1.x][temp1.y] == 0 &&
 		   !map.is_symbol (temp1, WALL) &&
-		   !map.is_symbol (temp1, MACHINE_GUN))
+		   !map.is_symbol (temp1, MACHINE_GUN) &&
+           !map.is_symbol (temp1, my_ID.my_bunker))
 	       {
 		    q.push(temp1);
 		    // the initial move is the same as its parents

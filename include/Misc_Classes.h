@@ -8,6 +8,7 @@ public:
      int player_no;
      char tank_symbol;
      char falcon_symbol;
+     char my_bunker;
 };
 
 class Direction 

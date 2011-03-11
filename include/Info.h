@@ -35,6 +35,7 @@ public:
 
      // Sets player info initially
      vector <object_info> gold;
+     vector <object_info> enemy_bunker;
      vector <Bullet> my_bullet_list, enemy_bullet_list;
      vector <Tank> machine_gun_list;
      object_info my_falcon;
