@@ -17,11 +17,12 @@ To-do List:
 *** TODO Take care that they don't eat up the Gold, hit the falcon or do anything like that
 *** Tower MG - T - shoot if a tank is within a certain square
 *** Have some MGs just stay in one position and shoot unidirectionally to trap some Tank
-** Wall around falcon
 ** Some simple maps for the finals (?)
+** Copy Constructor for MapClass
 ** Maps
 *** Gold rush
 *** Rush to the top
 *** Cities (?)
 *** Traps
 *** Gold-less map
+*** Wall around falcon
