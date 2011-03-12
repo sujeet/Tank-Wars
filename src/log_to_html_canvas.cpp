@@ -11,177 +11,60 @@ using namespace std;
 string insert_css ()
 {
      ostringstream str_out;
-     str_out << "<style type = text/css>                                                             " << endl;
-     str_out << ".wall {                                                                             " << endl
-             << "    width                 :	 10px;                                               " << endl
-             << "    height                :	 10px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << WALL_COLOUR << ";     " << endl
-             << "    margin                :	 0pt;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "}                                                                                   " << endl
-             << ".empty {                                                                            " << endl
-             << "    -moz-border-radius    :	5px;                                                 " << endl
-             << "    -webkit-border-radius :	5px;                                                 " << endl
-             << "    width                 :	 10px;                                               " << endl
-             << "    height                :	 10px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% none;                      " << endl
-             << "    margin                :	 0pt;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "   }                                                                                " << endl
-             << ".falcon1 {                                                                          " << endl
-             << "    width                 :	 6px;                                                " << endl
-             << "    height                :	 6px;                                                " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << FALCON1_COLOUR << ";  " << endl
-             << "    margin                :	 0pt;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    border-style          :	 solid;                                              " << endl
-             << "    border-color          :	 black;                                              " << endl
-             << "    border-width          :	 2px;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "   }                                                                                " << endl
-             << ".falcon2 {                                                                          " << endl
-             << "    width                 :	 6px;                                                " << endl
-             << "    height                :	 6px;                                                " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << FALCON2_COLOUR << ";  " << endl
-             << "    margin                :	 0pt;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    border-style          :	 solid;                                              " << endl
-             << "    border-color          :	 black;                                              " << endl
-             << "    border-width          :	 2px;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "   }                                                                                " << endl
-             << ".tank1 {                                                                            " << endl
-             << "    -moz-border-radius    :	3px;                                                 " << endl
-             << "    -webkit-border-radius :	3px;                                                 " << endl
-             << "    width                 :	 10px;                                               " << endl
-             << "    height                :	 10px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0%  " << TANK1_COLOUR << ";   " << endl
-             << "    margin                :	 0pt;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "   }                                                                                " << endl
-             << ".tank2 {                                                                            " << endl
-             << "    -moz-border-radius    :	3px;                                                 " << endl
-             << "    -webkit-border-radius :	3px;                                                 " << endl
-             << "    width                 :	 10px;                                               " << endl
-             << "    height                :	 10px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << TANK2_COLOUR << ";    " << endl
-             << "    margin                :	 0pt;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "   }                                                                                " << endl
-             << ".machine_gun {                                                                      " << endl
-             << "    -moz-border-radius    :	3px;                                                 " << endl
-             << "    -webkit-border-radius :	3px;                                                 " << endl
-             << "    width                 :	 10px;                                               " << endl
-             << "    height                :	 10px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% "<< MACHINE_GUN_COLOUR<<"; " << endl
-             << "    margin                :	 0pt;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "   }                                                                                " << endl
-             << ".bullet1 {                                                                          " << endl
-             << "    -moz-border-radius    :	5px;                                                 " << endl
-             << "    -webkit-border-radius :	5px;                                                 " << endl
-             << "    width                 :	  4px;                                               " << endl
-             << "    height                :	  4px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << BULLET1_COLOUR << ";  " << endl
-             << "    margin                :	 3px;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "   }                                                                                " << endl
-             << ".bullet2 {                                                                          " << endl
-             << "    -moz-border-radius    :	5px;                                                 " << endl
-             << "    -webkit-border-radius :	5px;                                                 " << endl
-             << "    width                 :	  4px;                                               " << endl
-             << "    height                :	  4px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << BULLET2_COLOUR << ";  " << endl
-             << "    margin                :	 3px;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "   }                                                                                " << endl
-             << ".bullet3 {                                                                          " << endl
-             << "    -moz-border-radius    :	5px;                                                 " << endl
-             << "    -webkit-border-radius :	5px;                                                 " << endl
-             << "    width                 :	  4px;                                               " << endl
-             << "    height                :	  4px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << MACHINE_GUN_BULLET_COLOUR << ";  " << endl
-             << "    margin                :	 3px;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "   }                                                                                " << endl
-             << ".gold {                                                                             " << endl
-             << "    -moz-border-radius    :	3px;                                                 " << endl
-             << "    -webkit-border-radius :	3px;                                                 " << endl
-             << "    width                 :	 8px;                                                " << endl
-             << "    height                :	 8px;                                                " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << GOLD_COLOUR << ";     " << endl
-             << "    margin                :	 0pt;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "       border-style       :	 solid;                                              " << endl
-             << "       border-color       :	 gold;                                               " << endl
-             << "    border-width          :	1px;                                                 " << endl
-             << "}                                                                                   " << endl
-             << ".dead {                                                                             " << endl
-             << "    -moz-border-radius    :	5px;                                                 " << endl
-             << "    -webkit-border-radius :	5px;                                                 " << endl
-             << "    width                 :	 10px;                                               " << endl
-             << "    height                :	 10px;                                               " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << DEAD_COLOUR << ";     " << endl
-             << "    margin                :	 0pt;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "}                                                                                   " << endl
-             << ".metacontainer {                                                                    " << endl
-             << "    -moz-border-radius    :	10px;                                                " << endl
-             << "    -webkit-border-radius :	10px;                                                " << endl
-             << "    -moz-box-shadow       :	5px 5px 7px #555555;                                 " << endl
-             << "    -webkit-box-shadow    :	5px 5px 7px #555555;                                 " << endl
-             << "    width                 :	 " << (MAP_SIZE - 1)*10 + 420 << "px;                " << endl
-             << "    height                :	 " << (MAP_SIZE - 1)*10 << "px;                      " << endl
-             << "    margin                :	 0pt auto;                                           " << endl
-             << "    padding               :	 20px;                                               " << endl
-             << "    border                :	 0pt none;                                           " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << WALL_COLOUR << ";     " << endl
-             << "}                                                                                   " << endl
-             << ".legend {                                                                           " << endl
-             << "    width                 :	 200px;                                              " << endl
-             << "    height                :	 470px;                                              " << endl
-             << "    -moz-border-radius    :	10px;                                                " << endl
-             << "    -webkit-border-radius :	10px;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "    margin                :	 10px 10px 10px 0px;                                 " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << EMPTY_COLOUR << ";    " << endl
-             << "}                                                                                   " << endl
-             << ".status {                                                                           " << endl
-             << "    width                 :	 200px;                                              " << endl
-             << "    -moz-border-radius    :	10px;                                                " << endl
-             << "    -webkit-border-radius :	10px;                                                " << endl
-             << "    float                 :	 right;                                              " << endl
-             << "    margin                :	 10px 0 0;                                           " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << EMPTY_COLOUR << ";    " << endl
-             << "}                                                                                   " << endl
-             << ".control {                                                                          " << endl
-             << "    width                 :	 200px;                                              " << endl
-             << "    -moz-border-radius    :	10px;                                                " << endl
-             << "    -webkit-border-radius :	10px;                                                " << endl
-             << "    float                 :	 right;                                              " << endl
-             << "    margin                :	 20px 0 0;                                           " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << EMPTY_COLOUR << ";    " << endl
-             << "}                                                                                   " << endl
-             << "button {                                                                            " << endl
-             << "    width                 :	 100%;                                               " << endl
-             << "}                                                                                   " << endl
-             << ".container{                                                                         " << endl
-             << "    margin                :	 0pt;                                                " << endl
-             << "    padding               :	 0pt;                                                " << endl
-             << "    float                 :	 left;                                               " << endl
-             << "    border                :	 0pt none;                                           " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << EMPTY_COLOUR << ";    " << endl
-             << "}                                                                                   " << endl;
+     str_out << "<style type = text/css>                                                          " << endl
+             << ".metacontainer {                                                                 " << endl
+             << "    -moz-border-radius    :	10px;                                             " << endl
+             << "    -webkit-border-radius :	10px;                                             " << endl
+             << "    -moz-box-shadow       :	5px 5px 7px #555555;                              " << endl
+             << "    -webkit-box-shadow    :	5px 5px 7px #555555;                              " << endl
+             << "    width                 :	 " << (MAP_SIZE - 1)*10 + 420 << "px;             " << endl
+             << "    height                :	 " << (MAP_SIZE - 1)*10 << "px;                   " << endl
+             << "    margin                :	 0pt auto;                                        " << endl
+             << "    padding               :	 20px;                                            " << endl
+             << "    border                :	 0pt none;                                        " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << WALL_COLOUR << ";  " << endl
+             << "}                                                                                " << endl
+             << ".legend {                                                                        " << endl
+             << "    width                 :	 200px;                                           " << endl
+             << "    height                :	 470px;                                           " << endl
+             << "    -moz-border-radius    :	10px;                                             " << endl
+             << "    -webkit-border-radius :	10px;                                             " << endl
+             << "    float                 :	 left;                                            " << endl
+             << "    margin                :	 10px 10px 10px 0px;                              " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << EMPTY_COLOUR << "; " << endl
+             << "}                                                                                " << endl
+             << ".status {                                                                        " << endl
+             << "    width                 :	 200px;                                           " << endl
+             << "    -moz-border-radius    :	10px;                                             " << endl
+             << "    -webkit-border-radius :	10px;                                             " << endl
+             << "    float                 :	 right;                                           " << endl
+             << "    margin                :	 10px 0 0;                                        " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << EMPTY_COLOUR << "; " << endl
+             << "}                                                                                " << endl
+             << ".control, .points {                                                              " << endl
+             << "    width                 :	 200px;                                           " << endl
+             << "    -moz-border-radius    :	10px;                                             " << endl
+             << "    -webkit-border-radius :	10px;                                             " << endl
+             << "    float                 :	 right;                                           " << endl
+             << "    margin                :	 20px 0 0;                                        " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << EMPTY_COLOUR << "; " << endl
+             << "}                                                                                " << endl
+             << ".points table {                                                                  " << endl
+             << "    font-size             :	 14px;                                            " << endl
+             << "}                                                                                " << endl
+             << ".point_number {                                                                  " << endl
+             << "    text-align            :	 right;                                           " << endl
+             << "}                                                                                " << endl
+             << "button {                                                                         " << endl
+             << "    width                 :	 100%;                                            " << endl
+             << "}                                                                                " << endl
+             << ".container{                                                                      " << endl
+             << "    margin                :	 0pt;                                             " << endl
+             << "    padding               :	 0pt;                                             " << endl
+             << "    float                 :	 left;                                            " << endl
+             << "    border                :	 0pt none;                                        " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << EMPTY_COLOUR << "; " << endl
+             << "}                                                                                " << endl;
 
      // The following is the css for buttons.
      str_out << ".black {                                                                                                                " << endl
@@ -254,96 +137,108 @@ string make_divs (char * filename)
 string insert_legend ()
 {
       ostringstream str_out;
-      str_out << "<div class='legend'>                                " << endl
-              << "<table style='width: 200px; border-spacing: 10px;'> " << endl
-              << "    <tbody><tr>                                     " << endl
-              << "        <th colspan='2'> Legend </th>               " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "        <td>                                        " << endl
-              << "            <canvas id='" << GOLD << "' height=10px width=10px></canvas>                " << endl
-              << "        </td>                                       " << endl
-              << "        <td> Gold                                   " << endl
-              << "        </td>                                       " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "        <td>                                        " << endl
-              << "            <canvas id='" << FALCON1 << "' height=10px width=10px></canvas>             " << endl
-              << "        </td>                                       " << endl
-              << "        <td> Player one falcon                      " << endl
-              << "        </td>                                       " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "        <td>                                        " << endl
-              << "            <canvas id='" << TANK1 << "' height=10px width=10px></canvas>               " << endl
-              << "        </td>                                       " << endl
-              << "        <td> Player one tank                        " << endl
-              << "        </td>                                       " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "        <td>                                        " << endl
-              << "            <canvas id='" << BULLET1 << "' height=10px width=10px></canvas>             " << endl
-              << "        </td>                                       " << endl
-              << "        <td> Player one bullet                      " << endl
-              << "        </td>                                       " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "    </tr>                                           " << endl
-              << "        <tr><td>                                    " << endl
-              << "            <canvas id='" << FALCON2 << "' height=10px width=10px></canvas>             " << endl
-              << "        </td>                                       " << endl
-              << "        <td> Player two falcon                      " << endl
-              << "        </td>                                       " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "        <td>                                        " << endl
-              << "            <canvas id='" << TANK2 << "' height=10px width=10px></canvas>               " << endl
-              << "        </td>                                       " << endl
-              << "        <td> Player two tank                        " << endl
-              << "        </td>                                       " << endl
-              << "    </tr>                                           " << endl
-              << "                                                    " << endl
-              << "    <tr>                                            " << endl
-              << "        <td>                                        " << endl
-              << "            <canvas id='" << BULLET2 << "' height=10px width=10px></canvas>             " << endl
-              << "        </td>                                       " << endl
-              << "        <td> Player two bullet                      " << endl
-              << "        </td>                                       " << endl
-              << "    </tr>   <tr> </tr><tr></tr><tr>                 " << endl
-              << "        <td>                                        " << endl
-              << "            <canvas id='" << MACHINE_GUN << "' height=10px width=10px></canvas>             " << endl
-              << "        </td>                                       " << endl
-              << "        <td> Machine Gun                            " << endl
-              << "        </td>                                       " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "        <td>                                        " << endl
-              << "            <canvas id='" << MACHINE_GUN_BULLET << "' height=10px width=10px></canvas>             " << endl
-              << "        </td>                                       " << endl
-              << "        <td> Machine gun bullet                     " << endl
-              << "        </td>                                       " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "    </tr>                                           " << endl
-              << "    <tr>                                            " << endl
-              << "        <td>                                        " << endl
-              << "            <canvas id='" << WALL << "' height=10px width=10px></canvas>                " << endl
-              << "        </td>                                       " << endl
-              << "        <td> Wall                                   " << endl
-              << "        </td>                                       " << endl
-              << "    </tr>                                           " << endl
-              << "</tbody></table>                                    " << endl
-              << "</div>                                              " << endl;
+      str_out << "<div class='legend'>                                                                   " << endl
+              << "<table style='width: 200px; border-spacing: 10px; color: " << TEXT_COLOUR << ";'>      " << endl
+              << "    <tbody><tr>                                                                        " << endl
+              << "        <th colspan='2'> Legend </th>                                                  " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << GOLD << "' height=10px width=10px></canvas>               " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Gold                                                                      " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << FALCON1 << "' height=10px width=10px></canvas>            " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Player one falcon                                                         " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << TANK1 << "' height=10px width=10px></canvas>              " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Player one tank                                                           " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << BULLET1 << "' height=10px width=10px></canvas>            " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Player one bullet                                                         " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << BUNKER1 << "' height=10px width=10px></canvas>            " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Player one bunker                                                         " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << FALCON2 << "' height=10px width=10px></canvas>            " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Player two falcon                                                         " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << TANK2 << "' height=10px width=10px></canvas>              " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Player two tank                                                           " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "                                                                                       " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << BULLET2 << "' height=10px width=10px></canvas>            " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Player two bullet                                                         " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << BUNKER2 << "' height=10px width=10px></canvas>            " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Player two bunker                                                         " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << MACHINE_GUN << "' height=10px width=10px></canvas>        " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Machine Gun                                                               " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << MACHINE_GUN_BULLET << "' height=10px width=10px></canvas> " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Machine gun bullet                                                        " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "    </tr>                                                                              " << endl
+              << "    <tr>                                                                               " << endl
+              << "        <td>                                                                           " << endl
+              << "            <canvas id='" << WALL << "' height=10px width=10px></canvas>               " << endl
+              << "        </td>                                                                          " << endl
+              << "        <td> Wall                                                                      " << endl
+              << "        </td>                                                                          " << endl
+              << "    </tr>                                                                              " << endl
+              << "</tbody></table>                                                                       " << endl
+              << "</div>                                                                                 " << endl;
       return str_out.str();
 }
      
@@ -352,7 +247,7 @@ string insert_controls ()
 {
       ostringstream str_out;
       str_out << "<div class ='control'>                                                                           " << endl
-              << "<table style = 'width: 200px; border-spacing : 10px'>                                            " << endl
+              << "<table style='width: 200px; border-spacing: 10px; color: " << TEXT_COLOUR << ";'>                " << endl
               << "    <tr>                                                                                         " << endl
               << "        <th colspan='2'> Controls </th>                                                          " << endl
               << "    </tr>                                                                                        " << endl
@@ -390,12 +285,52 @@ string insert_controls ()
       return str_out.str();
 }
      
+string insert_points_table ()
+{
+      ostringstream str_out;
+      str_out << "<div class ='points'>                                                   " << endl
+              << "<table style='width: 200px; color: " << TEXT_COLOUR << ";'>             " << endl
+              << "    <tr>                                                                " << endl
+              << "        <th colspan='3'> Points </th>                                   " << endl
+              << "    </tr>                                                               " << endl
+              << "    <tr>                                                                " << endl
+              << "    </tr>                                                               " << endl
+              << "    <tr>                                                                " << endl
+              << "        <td> Enemy tank shot </td>                                      " << endl
+              << "        <td> : &nbsp; </td>                                             " << endl
+              << "        <td class='point_number'> " << ENEMY_KILLED << "</td>           " << endl
+              << "    </tr>                                                               " << endl
+              << "    <tr>                                                                " << endl
+              << "        <td> Enemy falcon shot </td>                                    " << endl
+              << "        <td> : </td>                                                    " << endl
+              << "        <td class='point_number'> " << ENEMY_FALCON_KILLED << "</td>    " << endl
+              << "    </tr>                                                               " << endl
+              << "    <tr>                                                                " << endl
+              << "        <td> Enemy bunker shot </td>                                    " << endl
+              << "        <td> : </td>                                                    " << endl
+              << "        <td class='point_number'> " << DESTROYED_ENEMY_BUNKER << "</td> " << endl
+              << "    </tr>                                                               " << endl
+              << "    <tr>                                                                " << endl
+              << "        <td> Alive at the end </td>                                     " << endl
+              << "        <td> : </td>                                                    " << endl
+              << "        <td class='point_number'> " << ALIVE_AT_THE_END << "</td>       " << endl
+              << "    </tr>                                                               " << endl
+              << "    <tr>                                                                " << endl
+              << "        <td> Picked up gold </td>                                       " << endl
+              << "        <td> : </td>                                                    " << endl
+              << "        <td class='point_number'> " << PICKED_UP_GOLD << "</td>         " << endl
+              << "    </tr>                                                               " << endl
+              << "</table>                                                                " << endl
+              << "</div>                                                                  " << endl;
+
+      return str_out.str();
+}
 
 string insert_status_notifier ()
 {
       ostringstream str_out;
       str_out << "<div class ='status'>                                                                                            " << endl
-              << "<table style = 'width : 200px'>                                                                                  " << endl
+              << "<table style='width: 200px; color: " << TEXT_COLOUR << ";'>                                                      " << endl
               << "    <tr>                                                                                                         " << endl
               << "        <th colspan='2'> Scores </th>                                                                            " << endl
               << "    </tr>                                                                                                        " << endl
@@ -468,10 +403,10 @@ string insert_js()
              << "var delay_step = " << DELAY_STEP << ";             " << endl
              << "var min_delay = " << MIN_DELAY << ";               " << endl
              << "var max_delay = " << MAX_DELAY << ";               " << endl
-             << "var canvas = document.getElementById('container'); " << endl
-             << "var ctx = canvas.getContext('2d');                 " << endl
              << "var x;                                             " << endl
-             << "var y;                                             " << endl;
+             << "var y;                                             " << endl
+             << "var canvas = document.getElementById('container'); " << endl
+             << "var ctx = canvas.getContext('2d');                 " << endl;
      
      // Function to fill out the canvas at appropriate places.
      str_out << "function fill_the_canvas (x, y, name)                  " << endl
@@ -568,7 +503,48 @@ string insert_js()
              << "   }                                                   " << endl
              << "}                                                      " << endl;
 
-
+     // Fill the legend with small canvases.
+     str_out << "canvas = document.getElementById('" << GOLD << "');               " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << GOLD << "');                         " << endl
+             << "canvas = document.getElementById('" << FALCON1 << "');            " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << FALCON1 << "');                      " << endl
+             << "canvas = document.getElementById('" << TANK1 << "');              " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << TANK1 << "');                        " << endl
+             << "canvas = document.getElementById('" << BULLET1 << "');            " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << BULLET1 << "');                      " << endl
+             << "canvas = document.getElementById('" << BUNKER1 << "');            " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << BUNKER1 << "');                      " << endl
+             << "canvas = document.getElementById('" << FALCON2 << "');            " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << FALCON2 << "');                      " << endl
+             << "canvas = document.getElementById('" << TANK2 << "');              " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << TANK2 << "');                        " << endl
+             << "canvas = document.getElementById('" << BULLET2 << "');            " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << BULLET2 << "');                      " << endl
+             << "canvas = document.getElementById('" << BUNKER2 << "');            " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << BUNKER2 << "');                      " << endl
+             << "canvas = document.getElementById('" << MACHINE_GUN << "');        " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << MACHINE_GUN << "');                  " << endl
+             << "canvas = document.getElementById('" << MACHINE_GUN_BULLET << "'); " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << MACHINE_GUN_BULLET << "');           " << endl
+             << "canvas = document.getElementById('" << WALL << "');               " << endl
+             << "ctx = canvas.getContext('2d');                                    " << endl
+             << "fill_the_canvas (0, 0, '" << WALL << "');                         " << endl;
+     
+     // Set the canvas and ctx back.
+     str_out << "canvas = document.getElementById('container'); " << endl
+             << "ctx = canvas.getContext('2d');                 " << endl;
+     
      // Now insert the function list
      str_out << insert_func_list();
      
@@ -632,6 +608,7 @@ int main()
      html_file << make_divs ( (char*) MAP_FILE );
      html_file << insert_status_notifier();
      html_file << insert_controls();
+     html_file << insert_points_table();
      html_file << "</div>" << endl;
      html_file << insert_js();
 

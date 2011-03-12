@@ -30,9 +30,9 @@ enum event
 
 #define ASCII_CHARS 128
 #define MAX_CLASS_NAME_LENGTH 10
-#define DELAY 200
-#define DELAY_STEP 50 
-#define MIN_DELAY 50
+#define DELAY 100
+#define DELAY_STEP 30 
+#define MIN_DELAY 5
 #define MAX_DELAY 1000
 #define END_SCORE_CHAR '$'
 
@@ -52,6 +52,8 @@ enum event
 
 #define MACHINE_GUN_COLOUR        "blue"
 #define MACHINE_GUN_BULLET_COLOUR "black"
+
+#define TEXT_COLOUR               "#aaaaaa"
 
 // For Misc_Classes.h
 #define MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY 5
