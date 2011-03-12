@@ -16,7 +16,7 @@ bin/TankWars.exe: obj/Arena.o \
 	if [ ! -e bin ]; then mkdir bin; fi;
 	g++ -o $@ $^ $(CFLAGS) $(MACROS)
 
-bin/log_to_html.exe: src/log_to_html_canvas.cpp \
+bin/log_to_html.exe: src/log_to_html.cpp \
                      include/Constants.h 
 	if [ ! -e bin ]; then mkdir bin; fi;
 	g++ -o $@ $< $(CFLAGS) $(MACROS)

@@ -38,8 +38,8 @@ enum event
 
 // Colour variables
 #define GOLD_COLOUR               "goldenRod"
-#define WALL_COLOUR               "#6464C8"
-#define EMPTY_COLOUR              "#111122"
+#define WALL_COLOUR               "beige"
+#define EMPTY_COLOUR              "black"
 #define DEAD_COLOUR               "red"
 
 #define TANK1_COLOUR              "#008000"
@@ -78,7 +78,7 @@ enum event
 #define MACHINE_GUN_BULLET  'K'
 
 // For TankWars.cpp
-#define TIMES 5000
+#define TIMES 500
 #define BULLET_SPEED 3
 
 // For Everybody
