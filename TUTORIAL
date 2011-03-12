@@ -53,13 +53,17 @@
 * Step 1 - A simple proof-of-concept Tank:
 ** This will make your Tank carry out the same action each time
 ** Just write :
+   ==CODE==
    return Move (GO_RIGHT);
+   ==CODE==
 ** Then, 'make play' on the command-line, followed by 'make display'
 ** Not surprisingly, this makes your Tank move right each time
 ** However, that would have either led to it being shot by one of the Machine Guns out there or inevitably dashing into a wall and dying.
 ** Note : If your Tank dies, the opponent gains 400 points, so that is another incentive to stay alive
 * Step 2 - Each of the 8 moves possible
+  // Choose any one of the following 8 moves
   // Go in one of the four directions
+  ==CODE==
   return Move (GO_UP);
   return Move (GO_DOWN);
   return Move (GO_LEFT);
@@ -70,36 +74,90 @@
   return Move (SHOOT_DOWN);
   return Move (SHOOT_LEFT);
   return Move (SHOOT_RIGHT);
+  ==CODE==
 * Step 3 - Carries out each of the four actions
 ** Now, you may not be satisfied with merely moving right or shooting left all the time.
 ** Let's try making some complex moves
 ** Say you want to pick up the gold piece nearest to you
 ** It's simple. All you need to do is 
-   return go_to_nearest_gold_move (map);
-** Now, each time, your Tank will move in the direction of the nearest gold piece. Neat, huh?
-** Similarly, if you want to
-** Attack the Enemy Falcon
-   return attack_enemy_falcon_move (map);
-** Attack the Enemy Tank itself
-   return attack_enemy_tank_move (map);
-* Step 5 - Introduce calculate_best_action_plan
+   ==CODE==
+   int my_action_plan = GO_TO_NEAREST_GOLD
+   get_best_move_for (my_action_plan)
+   ==CODE==
+** You can pass any of the following default Action Plans as parameters
+*** GO_TO_NEAREST_GOLD:
+**** Each time, your Tank will move in the direction of the nearest gold piece. Neat, huh?
+*** ATTACK_ENEMY_FALCON:
+**** That will take your Tank closer to the Enemy Falcon and shoot if it is in your sights.
+*** ATTACK_ENEMY_TANK:
+**** This will take your Tank closer to the Enemy Tank and shoot if it is in your sights
+*** DEFEND_MY_FALCON:
+**** Just go back towards your Falcon so that you can defend it from any attack
+** get_best_move_for, as the name suggests, gets you the best move you could make for a particular Action Plan.
+* Step 4 - Introduce calculate_best_action_plan
 ** However, it can get pretty monotonous doing the same action again and again.
-** To aid in making your Tank dynamic, we have come up with a Decision Making model
+** To aid in making your Tank dynamic and more adaptive, we have come up with a rudimentary Decision Making model
    You can use it to calculate the best moves for your Tank based on the situation and your preferences.
-** For example, there are four different strategies that you can choose by default.
+** We provide four different strategies that you can choose by default.
 ** They are 
-*** Aggressive
-*** Defensive
-*** Greedy
-*** Your own customized version
+*** AGGRESSIVE
+*** DEFENSIVE
+*** GREEDY
+*** CUSTOMIZED
 ** To put it in action, just say
+   ==CODE==
    int my_strategy = AGGRESSIVE;
-   int my_action_plan = calculate_best_action_plan (my_strategy, map);
+   int my_action_plan = calculate_best_action_plan_for (my_strategy);
    // Now, my_action_plan will contain one of the four basic action plans mentioned above
-   return return_best_move (my_action_plan, map);
+   return get_best_move_for (my_action_plan);
+   ==CODE==
+** Explanation
+*** What calculate_best_action_plan_for does is it looks for the utility or expected benefits of each of the four default Action Plans.
+*** This is done based on the weightage given for each plan and the difficulty of carrying each plan out as defined in your DecisionMaker object.
+*** It then returns the Action Plan which has maximum expected benefit
+*** To see what the default weightages are, go to DECISION_MAKER::DMinitializer function in DecisionMaker1.cpp
+*** To see how the default difficulty values are determined, go to DECISION_MAKER::fill_difficulty_table function in DecisionMaker1.cpp
+*** By default, the difficulty of carrying out an action plan is the shortest distance to the goal object. ie. for GO_TO_NEAREST_GOLD, the difficulty is the distance to the nearest gold
+*** In short, if a particular Action Plan, say ATTACK_ENEMY_TANK, is given higher weightage than the others then it will be recommended as the best plan when the distance from the enemy tank is not too high
+* Step 5 - Creating some local functions for calculations of your own
+** Simple. You can just create new functions in the DecisionMaker1.cpp file and call them.
+** Just remember not to change anything anywhere else.
 * Step 6 - Changing Decision Table weightage
+** Of course, you don't have to put up with the default weightages or the default ways of calculating difficulties. Try experimenting.
+** Go to [ DMinitializer function ]
+** For example, if you feel DEFENSIVE plan should never even consider ATTACK_ENEMY_TANK or ATTACK_ENEMY_FALCON, then put weightages for them as 0.
+** Maybe set GREEDY's weightage for GO_TO_NEAREST_GOLD as 100 and everything else as 0. That's really greedy! :-). Be careful, though, chances of getting shot by Machine Guns and the Enemy tank are very high.
+** You can set the values for each Strategy in the Weightage Table on the fly by calling set_weightage_table (...).
+** This can be useful when you want to tweaks based on the current situation
+* Step 7 - Changing the way Difficulty is determined
+** As said before, the difficulty for each plan is just the shortest distance to the goal object
+** Customizing that is simple
+** Say you feel shooting at and hitting an Enemy Tank when it is pretty far away is very difficult since it can move away before the bullet reaches it
+** By default, the fill_difficulty_table () called from DecisionMaker1's get_player_move function fills the table with the current values of shortest distances
+** So, simply comment that function call out and call set_difficulty_table ()
+   ==CODE==
+   // fill_difficulty_table ();
+   int attack_enemy_tank_difficulty;
+   if (my_info.opp_tank.shortest_distance >= 10){
+        // 10 is just for the sake of the example
+        set_difficulty_table(info.nearest_gold.shortest_distance, info.opp_falcon.shortest_distance, MAX_DIFFICULTY, info.my_falcon.shortest_distance);
+   }
+   else{
+        set_difficulty_table (info.nearest_gold.shortest_distance, info.opp_falcon.shortest_distance, info.opp_tank.shortest_distance, info.my_falcon.shortest_distance);
+   }
+   ==CODE==
+** MAX_DIFFICULTY is practically infinity.
+** NOTE : You MUST call set_difficulty_table (...) or fill_difficulty_table () (whichever you use) from get_player_move () so that the table is filled each time. Otherwise, you would be working with an outdated table.
+* Your Score and Number of Moves left
+** The get_player_move () function receives your score [my_score] and your enemy's score [enemy_score].
+** It also receives the [total_moves_done] so far
+** MAX_NUMBER_OF_MOVES tells you how many moves you can make
+* Introducing the Map + Position + Move + Direction
+** OK! So, now you have an all-new, shiny, mean and destructive Tank at your command. 
+** But, how exactly do you analyze the game?
 * Introduction - Can shoot items
 * Introduction - Everything else in Info
 * Hints about various advanced strategies
 * Dodge bullet
 * Attack bunkers
+* Creating maps

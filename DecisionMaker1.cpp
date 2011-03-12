@@ -137,14 +137,17 @@ void DECISION_MAKER::DMinitializer(ID my_id, ID enemy_id)
 {
      // Constructor for Decision maker.
 
-     // Here default weightage values are set which can be changed for better strategies
+     // Here default WEIGHTAGE VALUES are set which can be changed for better strategies
      // The weightages are from 0 to 100.
-     // go_to_nearest_gold_weight | attack_enemy_falcon_weight | attack_enemy_tank_weight | defend_your_falcon_weight
+
+     // |---------------------------+----------------------------+--------------------------+---------------------------|
+     // | GO_TO_NEAREST_GOLD_WEIGHT | ATTACK_ENEMY_FALCON_WEIGHT | ATTACK_ENEMY_TANK_WEIGHT | DEFEND_YOUR_FALCON_WEIGHT |
+     // |---------------------------+----------------------------+--------------------------+---------------------------|
 
      set_weightage_table(AGGRESSIVE, 0, 50, 50, 0);
      set_weightage_table(DEFENSIVE, 20, 1, 5, 50);
      set_weightage_table(GREEDY, 100, 15, 10, 0);
-     set_weightage_table(CUSTOMISED, 0, 0, 100, 0);
+     set_weightage_table(CUSTOMIZED, 0, 0, 100, 0);
 
      // These are just dummy values 
      set_difficulty_table(1, 1, 1, 1);
@@ -247,6 +250,7 @@ Move DECISION_MAKER::attack_enemy_tank_move()
 
 Move DECISION_MAKER::defend_my_falcon_move()
 {
+     // By default, just go back towards my falcon
      // If I'm in the vicinity of my falcon, and so is he, then call attack_enemy_tank_move
      return info.my_falcon.initial_move;
 }
@@ -275,7 +279,7 @@ int DECISION_MAKER::calculate_best_action_plan(int strategy)
 	       return DEFEND_MY_FALCON;
           break;
      case GREEDY:
-     case CUSTOMISED:
+     case CUSTOMIZED:
           float action_score[4];
 
           action_score[GO_TO_NEAREST_GOLD] = 

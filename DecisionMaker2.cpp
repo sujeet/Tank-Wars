@@ -94,7 +94,7 @@ void DECISION_MAKER::set_weightage_table(int strategy,
      // | AGGRESSIVE |                    |                     |                   |                  |
      // | DEFENSIVE  |                    |                     |                   |                  |
      // | GREEDY     |                    |                     |                   |                  |
-     // | CUSTOMISED |                    |                     |                   |                  |
+     // | CUSTOMIZED |                    |                     |                   |                  |
      // |------------+--------------------+---------------------+-------------------+------------------|
      
      // |---------------+-------|
@@ -103,7 +103,7 @@ void DECISION_MAKER::set_weightage_table(int strategy,
      // | AGGRESSIVE    |     0 |
      // | DEFENSIVE     |     1 |
      // | GREEDY        |     2 |
-     // | CUSTOMISED    |     3 |
+     // | CUSTOMIZED    |     3 |
      // |---------------+-------|
      
      // |---------------------+-------|
@@ -144,7 +144,7 @@ void DECISION_MAKER::DMinitializer(ID my_id, ID enemy_id)
      set_weightage_table(AGGRESSIVE, 0, 50, 50, 0);
      set_weightage_table(DEFENSIVE, 20, 1, 5, 50);
      set_weightage_table(GREEDY, 100, 15, 10, 0);
-     set_weightage_table(CUSTOMISED, 0, 0, 100, 0);
+     set_weightage_table(CUSTOMIZED, 0, 0, 100, 0);
 
      // These are just dummy values 
      set_difficulty_table(1, 1, 1, 1);
@@ -275,7 +275,7 @@ int DECISION_MAKER::calculate_best_action_plan(int strategy)
               return DEFEND_MY_FALCON;
           break;
      case GREEDY:
-     case CUSTOMISED:
+     case CUSTOMIZED:
           float action_score[4];
 
           action_score[GO_TO_NEAREST_GOLD] = 

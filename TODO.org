@@ -31,4 +31,10 @@ To-do List:
 ** Show current display speed
 ** TODO Make it just a one-step call for the user instead of him making two indirect calls -
    return_best_move (calculate_best_action_plan (his_choice_of_strategy))
-
+** WISH Tutorial as a webpage
+** WISH Webpage Hit counter
+** TODO Info about Round 1 & Round 2 on the Webpage
+** Why are there two Info objects - info and my_info - in DecisionMaker class?
+** Should we give them the option of Doing Nothing?
+** TODO Map
+*** Change surrounding colour from white to something less contrasting with black
