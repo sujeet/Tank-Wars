@@ -38,3 +38,8 @@ To-do List:
 ** Should we give them the option of Doing Nothing?
 ** TODO Map
 *** Change surrounding colour from white to something less contrasting with black
+** Tutorial
+*** Center the text
+*** Make it look like Vimtutor as much as possible
+*** Make all subheadings within the same section at indentation 0
+*** Number them?
