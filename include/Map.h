@@ -48,6 +48,9 @@ public :
      /* Function to print to log file */
      void print_log(int x, int y, char k);
      
+     /* Assignment operator */
+     MapClass & operator = (const MapClass &);
+     
      /* Destructor */
      ~MapClass();
 };

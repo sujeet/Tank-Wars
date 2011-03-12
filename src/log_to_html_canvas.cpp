@@ -263,7 +263,7 @@ string insert_legend ()
               << "    </tr>                                           " << endl
               << "    <tr>                                            " << endl
               << "        <td>                                        " << endl
-              << "            <div class='gold'></div>                " << endl
+              << "            <canvas id='" << GOLD << "' height=10px width=10px></canvas>                " << endl
               << "        </td>                                       " << endl
               << "        <td> Gold                                   " << endl
               << "        </td>                                       " << endl
@@ -274,21 +274,21 @@ string insert_legend ()
               << "    </tr>                                           " << endl
               << "    <tr>                                            " << endl
               << "        <td>                                        " << endl
-              << "            <div class='falcon1'></div>             " << endl
+              << "            <canvas id='" << FALCON1 << "' height=10px width=10px></canvas>             " << endl
               << "        </td>                                       " << endl
               << "        <td> Player one falcon                      " << endl
               << "        </td>                                       " << endl
               << "    </tr>                                           " << endl
               << "    <tr>                                            " << endl
               << "        <td>                                        " << endl
-              << "            <div class='tank1'></div>               " << endl
+              << "            <canvas id='" << TANK1 << "' height=10px width=10px></canvas>               " << endl
               << "        </td>                                       " << endl
               << "        <td> Player one tank                        " << endl
               << "        </td>                                       " << endl
               << "    </tr>                                           " << endl
               << "    <tr>                                            " << endl
               << "        <td>                                        " << endl
-              << "            <div class='bullet1'></div>             " << endl
+              << "            <canvas id='" << BULLET1 << "' height=10px width=10px></canvas>             " << endl
               << "        </td>                                       " << endl
               << "        <td> Player one bullet                      " << endl
               << "        </td>                                       " << endl
@@ -298,14 +298,14 @@ string insert_legend ()
               << "    <tr>                                            " << endl
               << "    </tr>                                           " << endl
               << "        <tr><td>                                    " << endl
-              << "            <div class='falcon2'></div>             " << endl
+              << "            <canvas id='" << FALCON2 << "' height=10px width=10px></canvas>             " << endl
               << "        </td>                                       " << endl
               << "        <td> Player two falcon                      " << endl
               << "        </td>                                       " << endl
               << "    </tr>                                           " << endl
               << "    <tr>                                            " << endl
               << "        <td>                                        " << endl
-              << "            <div class='tank2'></div>               " << endl
+              << "            <canvas id='" << TANK2 << "' height=10px width=10px></canvas>               " << endl
               << "        </td>                                       " << endl
               << "        <td> Player two tank                        " << endl
               << "        </td>                                       " << endl
@@ -313,20 +313,20 @@ string insert_legend ()
               << "                                                    " << endl
               << "    <tr>                                            " << endl
               << "        <td>                                        " << endl
-              << "            <div class='bullet2'></div>             " << endl
+              << "            <canvas id='" << BULLET2 << "' height=10px width=10px></canvas>             " << endl
               << "        </td>                                       " << endl
               << "        <td> Player two bullet                      " << endl
               << "        </td>                                       " << endl
               << "    </tr>   <tr> </tr><tr></tr><tr>                 " << endl
               << "        <td>                                        " << endl
-              << "            <div class='machine_gun'></div>         " << endl
+              << "            <canvas id='" << MACHINE_GUN << "' height=10px width=10px></canvas>             " << endl
               << "        </td>                                       " << endl
               << "        <td> Machine Gun                            " << endl
               << "        </td>                                       " << endl
               << "    </tr>                                           " << endl
               << "    <tr>                                            " << endl
               << "        <td>                                        " << endl
-              << "            <div class='bullet3'></div>             " << endl
+              << "            <canvas id='" << MACHINE_GUN_BULLET << "' height=10px width=10px></canvas>             " << endl
               << "        </td>                                       " << endl
               << "        <td> Machine gun bullet                     " << endl
               << "        </td>                                       " << endl
@@ -337,7 +337,7 @@ string insert_legend ()
               << "    </tr>                                           " << endl
               << "    <tr>                                            " << endl
               << "        <td>                                        " << endl
-              << "            <div class='wall'></div>                " << endl
+              << "            <canvas id='" << WALL << "' height=10px width=10px></canvas>                " << endl
               << "        </td>                                       " << endl
               << "        <td> Wall                                   " << endl
               << "        </td>                                       " << endl

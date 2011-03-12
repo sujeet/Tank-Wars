@@ -103,6 +103,21 @@ void MapClass::set_element (Position posn, char data, bool print_log)
      this->set_element(posn.x, posn.y, data, print_log);
 }
 
+MapClass & MapClass::operator = (const MapClass & orig_map)
+{
+     this->tank1_init_posn = orig_map.tank1_init_posn;
+     this->tank2_init_posn = orig_map.tank2_init_posn;
+     this->falcon1_posn = orig_map.falcon1_posn;
+     this->falcon2_posn = orig_map.falcon2_posn;
+     this->machine_guns_posns = orig_map.machine_guns_posns;
+     for (int i = 0; i < MAP_SIZE - 1; i++){
+          for (int j = 0; j < MAP_SIZE - 1; j++){
+               this->map[i][j] = orig_map.get_element (i, j);
+          }
+     }
+     return *this;
+}
+
 MapClass::~MapClass ()
 {
      this->log_file.close();

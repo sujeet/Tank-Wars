@@ -437,7 +437,7 @@ bool Tank::Falcon::is_killed_by (Tank &t)
           flag = true;
      }
 
-     if ((flag) and (t.falcon.symbol != this->symbol)){
+     if (flag){
           t.incr_score (ENEMY_FALCON_KILLED);
      }
      
