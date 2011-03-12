@@ -59,13 +59,13 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      /*   PUT YOUR CODE IN THIS FUNCTION  */
      /*************************************/
      if(my_info.opp_falcon.shortest_distance + 15< opp_info.opp_falcon.shortest_distance)
-         return return_best_move(calculate_best_action_plan(AGGRESSIVE));
+         return get_best_move_for(calculate_best_action_plan(AGGRESSIVE));
      else if(my_info.opp_falcon.shortest_distance + 5< opp_info.opp_falcon.shortest_distance)
-         return return_best_move(calculate_best_action_plan(GREEDY));
+         return get_best_move_for(calculate_best_action_plan(GREEDY));
      else if(my_info.opp_falcon.shortest_distance > opp_info.opp_falcon.shortest_distance)
-         return return_best_move(calculate_best_action_plan(DEFENSIVE));
+         return get_best_move_for(calculate_best_action_plan(DEFENSIVE));
      else 
-         return return_best_move(calculate_best_action_plan(GREEDY));
+         return get_best_move_for(calculate_best_action_plan(GREEDY));
 
 }
 
@@ -78,7 +78,7 @@ Move DECISION_MAKER::get_player_move(Info my_info,
  
 // The procedural flow of the below functions is 
 // calculate_best_action_plan -> finds the most suitable action plan (attack enemy, pick up gold, etc)
-// return_best_move() then calls the appropriate function which returns a move for the given action.
+// get_best_move_for() then calls the appropriate function which returns a move for the given action.
 
 void DECISION_MAKER::set_weightage_table(int strategy,
                                          int go_to_nearest_gold_weight,
@@ -168,7 +168,7 @@ void DECISION_MAKER::fill_difficulty_table()
                           info.my_falcon.shortest_distance);
 }
 
-Move DECISION_MAKER::return_best_move(int best_action_plan)
+Move DECISION_MAKER::get_best_move_for(int best_action_plan)
 {
      // Returns a 'Move' object by calling appropriate move calculator
      // depending upon action_plan argument passed
@@ -188,7 +188,7 @@ Move DECISION_MAKER::return_best_move(int best_action_plan)
           return defend_my_falcon_move();
           break;
      default:
-          cerr << " Error: Function return_best_move in DECISION_MAKER class got invalid argument = " << best_action_plan << endl;
+          cerr << " Error: Function get_best_move_for in DECISION_MAKER class got invalid argument = " << best_action_plan << endl;
           exit(-1);
      }
 }

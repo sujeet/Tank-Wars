@@ -17,9 +17,9 @@ Aim:
     game. Points can be earned by collecting gold or by killing enemy
     base or enemy tank.
 *   Game ends when
-    * one of the tanks or
+    * one of the tanks is killed or
     * the bases is shot down or
-    * when the time (or maximum moves) ends.
+    * when the maximum number of moves have been made
 
 How to Get Started:
 ------------------
@@ -52,8 +52,8 @@ To get started with coding:
     Info file
 
     You can look at Info.h to understand better the information we
-    pass you. It is strongly discouraged to modify any other file
-    apart from DecisionMaker1.cpp and participants shall be
+    pass you. You are strongly discouraged to modify any other file
+    apart from DecisionMaker1.cpp and you shall be
     disqualified if they are found to have done so.
     
     The information there will help you go beyond the basic functions
@@ -90,11 +90,11 @@ How to test your Bots:
 
      Now, execute the following commands in order:
 
-make play
+	make play
 
      This will literally 'play' the game with your DecisionMaker1 code controlling Tank 1 and DecisionMaker2 code controlling Tank 2
 
-make display
+	make display
 
      This will open the match just played in Firefox. Just click on
      Play to see the match. Alternatively, open the game_display.html

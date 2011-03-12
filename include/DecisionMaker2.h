@@ -40,8 +40,8 @@ public:
 
      // Make it just a one-step call for the user instead of him
      // having to say
-     // return_best_move (calculate_best_action_plan (his_choice_of_strategy))?
-     Move return_best_move(int);
+     // get_best_move_for (calculate_best_action_plan (his_choice_of_strategy))?
+     Move get_best_move_for(int);
 
      Move get_player_move(const Info my_info,
                           const Info enemy_info,

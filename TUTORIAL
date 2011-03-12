@@ -4,11 +4,11 @@
 ** The TankWars.zip file - Unzip it in any folder of your choice
 ** 10 minutes
 
-
 * Introduction :
 ** As mentioned in the README, all you need to do to control your Tank is fill in the get_player_move () function in DecisionMaker1.cpp.
-** To that end, this tutorial will take you through a series of increasingly complex definitions for that function.
+** This tutorial will take you through a series of increasingly complex definitions for that function.
 ** That will also familiarize you with the general information and structure of the code available to you to make your ultimate, indestructible Tank
+** If you're really, REALLY impatient, you can simply check out the code bits under each step and copy-paste them into your DecisionMaker file and run them. You'd probably figure the rest out as you go along.
 
 * Aim of the Game:
 ** To end the game with maximum points
@@ -16,8 +16,8 @@
 
 * Description :
 ** The general structure of the Game is as follows :
-*** The Arena or the environment in which the game runs and where the Bots clash contains all objects
-*** So, in TankWars.cpp, where we want to run the Game Loop again and again, we simply call various methods of Arena object which will carry out various actions.
+*** The 'Arena' Class is the environment in which the game runs and where the Bots clash . It contains all objects.
+*** So, in TankWars.cpp, where we want to have each Tank make its move, we simply call various methods of Arena object which will carry out various actions. This goes on until the game ends.
 *** We need not be concerned with any of that
 *** All that matters is that at each iteration, DecisionMaker1 is asked for a Move which will be used to make the Tank move on the Map
 *** Of course, it is not just a matter of returning a Move, because you have to consider all the various elements on the Map, like Gold pieces, Machine Guns, Enemy Tank, Enemy Base (ie. Falcon), etc. in order to win the game
