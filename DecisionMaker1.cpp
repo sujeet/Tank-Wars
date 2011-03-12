@@ -4,32 +4,32 @@
 #include "DecisionMaker.h"
 #include "Constants.h"
 
-   // IMPORTANT:
-   //   First thing you need to do is understand the various 
-   // information you get from the Info object. Things like 'your 
-   // closest distance from the enemy tank' can be obtained from the
-   // Info object.
-   //
-   // OPTIONAL: ( But may be VERY helpful)
-   //   After looking at all the information you can get from
-   // the Info class, you can try to use and build on our mathematical 
-   // model.
-   //
-   //   Our idea is to calculate the best move for a particular
-   // strategy (offensive or defensive etc.) by having some weightages
-   // for some predefined possible actions ( like collect gold, attack
-   // enemy etc ) and then decide which move will give you the best
-   // result.
-   //
-   //   You may want to play in different strategies at different
-   // times of the game, so set different weightages based on the
-   // circumstances if you want. So you can build upon this
-   // mathematical model if you want.
-   //
-   // CAUTION :
-   //
-   //   Do not change the prototypes of any of the functions we have
-   // provided in the header file.
+// IMPORTANT:
+//   First thing you need to do is understand the various 
+// information you get from the Info object. Things like 'your 
+// closest distance from the enemy tank' can be obtained from the
+// Info object.
+//
+// OPTIONAL: ( But may be VERY helpful)
+//   After looking at all the information you can get from
+// the Info class, you can try to use and build on our mathematical 
+// model.
+//
+//   Our idea is to calculate the best move for a particular
+// strategy (offensive or defensive etc.) by having some weightages
+// for some predefined possible actions ( like collect gold, attack
+// enemy etc ) and then decide which move will give you the best
+// result.
+//
+//   You may want to play in different strategies at different
+// times of the game, so set different weightages based on the
+// circumstances if you want. So you can build upon this
+// mathematical model if you want.
+//
+// CAUTION :
+//
+//   Do not change the prototypes of any of the functions we have
+// provided in the header file.
 
 Move DECISION_MAKER::get_player_move(Info my_info,
 				     Info opp_info,
@@ -94,7 +94,7 @@ void DECISION_MAKER::set_weightage_table(int strategy,
      // | AGGRESSIVE |                    |                     |                   |                  |
      // | DEFENSIVE  |                    |                     |                   |                  |
      // | GREEDY     |                    |                     |                   |                  |
-     // | CUSTOMISED |                    |                     |                   |                  |
+     // | CUSTOMIZED |                    |                     |                   |                  |
      // |------------+--------------------+---------------------+-------------------+------------------|
      
      // |---------------+-------|
@@ -103,7 +103,7 @@ void DECISION_MAKER::set_weightage_table(int strategy,
      // | AGGRESSIVE    |     0 |
      // | DEFENSIVE     |     1 |
      // | GREEDY        |     2 |
-     // | CUSTOMISED    |     3 |
+     // | CUSTOMIZED    |     3 |
      // |---------------+-------|
      
      // |---------------------+-------|
@@ -261,34 +261,34 @@ int DECISION_MAKER::calculate_best_action_plan(int strategy)
      switch(strategy)
      {
      case AGGRESSIVE:
-         if(my_info.opp_tank.shortest_distance + 3 < my_info.opp_falcon.shortest_distance)
-          return ATTACK_ENEMY_TANK;
-         else 
-         {
-             return ATTACK_ENEMY_FALCON;
-         }
+	  if(my_info.opp_tank.shortest_distance + 3 < my_info.opp_falcon.shortest_distance)
+	       return ATTACK_ENEMY_TANK;
+	  else 
+	  {
+	       return ATTACK_ENEMY_FALCON;
+	  }
           break;
      case DEFENSIVE:
           if(opp_info.opp_tank.shortest_distance < opp_info.opp_falcon.shortest_distance)
-              return ATTACK_ENEMY_TANK;
+	       return ATTACK_ENEMY_TANK;
           else
-              return DEFEND_MY_FALCON;
+	       return DEFEND_MY_FALCON;
           break;
      case GREEDY:
      case CUSTOMISED:
           float action_score[4];
 
           action_score[GO_TO_NEAREST_GOLD] = 
-              float ( weightage_table[strategy][GO_TO_NEAREST_GOLD]) / float( difficulty_table[GO_TO_NEAREST_GOLD] );
+	       float ( weightage_table[strategy][GO_TO_NEAREST_GOLD]) / float( difficulty_table[GO_TO_NEAREST_GOLD] );
 
           action_score[ATTACK_ENEMY_FALCON] = 
-              float ( weightage_table[strategy][ATTACK_ENEMY_FALCON]) / float( difficulty_table[ATTACK_ENEMY_FALCON] );
+	       float ( weightage_table[strategy][ATTACK_ENEMY_FALCON]) / float( difficulty_table[ATTACK_ENEMY_FALCON] );
 
           action_score[ATTACK_ENEMY_TANK] = 
-              float ( weightage_table[strategy][ATTACK_ENEMY_TANK]) / float( difficulty_table[ATTACK_ENEMY_TANK] );
+	       float ( weightage_table[strategy][ATTACK_ENEMY_TANK]) / float( difficulty_table[ATTACK_ENEMY_TANK] );
 
           action_score[DEFEND_MY_FALCON] = 
-              float ( weightage_table[strategy][DEFEND_MY_FALCON]) / float( difficulty_table[DEFEND_MY_FALCON] );
+	       float ( weightage_table[strategy][DEFEND_MY_FALCON]) / float( difficulty_table[DEFEND_MY_FALCON] );
 
           return find_the_maximum ( action_score );
           break;
