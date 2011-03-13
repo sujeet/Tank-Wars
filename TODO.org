@@ -47,3 +47,6 @@ To-do List:
 **** Wrap the text at a certain column
 ** Info should have just have a vector of object_infos about Machine guns instead of vector of Tanks. 
 ** Do the same about Bullets (?) - with an added Direction. That way, they wouldn't need to know anything about other class definitions.
+** Major change required - The number of moves is actually 1/ (Bullet speed) times the number of moves defined in constants.h. Which means it is only about 500/3 moves.(as of now.)
+   Let's just have i < (MAX_NUMBER_OF_MOVES * BULLET_SPEED); so that MAX_NUMBER_OF_MOVES really describes the max number of moves that a tank can make
+** BUG The Legends on game_display.html extend out of the white square.
