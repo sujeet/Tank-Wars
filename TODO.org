@@ -43,3 +43,7 @@ To-do List:
 *** Make it look like Vimtutor as much as possible
 *** Make all subheadings within the same section at indentation 0
 *** Number them?
+*** Html version
+**** Wrap the text at a certain column
+** Info should have just have a vector of object_infos about Machine guns instead of vector of Tanks. 
+** Do the same about Bullets (?) - with an added Direction. That way, they wouldn't need to know anything about other class definitions.

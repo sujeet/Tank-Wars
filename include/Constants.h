@@ -59,6 +59,7 @@ enum event
 #define MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY 5
 #define END_SCORE_CHAR '$'
 
+// For map.h
 #define GOLD                'G'
 #define WALL                '#'
 #define EMPTY               '.'

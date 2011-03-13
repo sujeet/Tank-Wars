@@ -1,4 +1,18 @@
-10-Minute Complete Step-by-Step Tutorial
+#+TITLE:     Tank Wars - 10-Minute Complete Step-by-Step Tutorial
+#+AUTHOR:    pradeep
+#+EMAIL:     pradeep@pradeep-laptop
+#+DATE:      2011-03-13 Sun
+#+DESCRIPTION: 
+#+KEYWORDS: 
+#+LANGUAGE:  en
+#+OPTIONS:   H:1 num:nil toc:1 \n:t @:t ::nil |:t ^:nil -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+
 
 * Prerequisites :
 ** The TankWars.zip file - Unzip it in any folder of your choice
@@ -53,9 +67,9 @@
 * Step 1 - A simple proof-of-concept Tank:
 ** This will make your Tank carry out the same action each time
 ** Just write :
-   ==CODE==
+   #+BEGIN_SRC c++
    return Move (GO_RIGHT);
-   ==CODE==
+   #+END_SRC
 ** Then, 'make play' on the command-line, followed by 'make display'
 ** Not surprisingly, this makes your Tank move right each time
 ** However, that would have either led to it being shot by one of the Machine Guns out there or inevitably dashing into a wall and dying.
@@ -63,7 +77,7 @@
 * Step 2 - Each of the 8 moves possible
   // Choose any one of the following 8 moves
   // Go in one of the four directions
-  ==CODE==
+  #+BEGIN_SRC c++
   return Move (GO_UP);
   return Move (GO_DOWN);
   return Move (GO_LEFT);
@@ -74,16 +88,16 @@
   return Move (SHOOT_DOWN);
   return Move (SHOOT_LEFT);
   return Move (SHOOT_RIGHT);
-  ==CODE==
+  #+END_SRC
 * Step 3 - Carries out each of the four actions
 ** Now, you may not be satisfied with merely moving right or shooting left all the time.
 ** Let's try making some complex moves
 ** Say you want to pick up the gold piece nearest to you
 ** It's simple. All you need to do is 
-   ==CODE==
+   #+BEGIN_SRC c++
    int my_action_plan = GO_TO_NEAREST_GOLD
    get_best_move_for (my_action_plan)
-   ==CODE==
+   #+END_SRC
 ** You can pass any of the following default Action Plans as parameters
 *** GO_TO_NEAREST_GOLD:
 **** Each time, your Tank will move in the direction of the nearest gold piece. Neat, huh?
@@ -105,12 +119,12 @@
 *** GREEDY
 *** CUSTOMIZED
 ** To put it in action, just say
-   ==CODE==
+   #+BEGIN_SRC c++
    int my_strategy = AGGRESSIVE;
    int my_action_plan = calculate_best_action_plan_for (my_strategy);
    // Now, my_action_plan will contain one of the four basic action plans mentioned above
    return get_best_move_for (my_action_plan);
-   ==CODE==
+   #+END_SRC
 ** Explanation
 *** What calculate_best_action_plan_for does is it looks for the utility or expected benefits of each of the four default Action Plans.
 *** This is done based on the weightage given for each plan and the difficulty of carrying each plan out as defined in your DecisionMaker object.
@@ -135,7 +149,7 @@
 ** Say you feel shooting at and hitting an Enemy Tank when it is pretty far away is very difficult since it can move away before the bullet reaches it
 ** By default, the fill_difficulty_table () called from DecisionMaker1's get_player_move function fills the table with the current values of shortest distances
 ** So, simply comment that function call out and call set_difficulty_table ()
-   ==CODE==
+   #+BEGIN_SRC c++
    // fill_difficulty_table ();
    int attack_enemy_tank_difficulty;
    if (my_info.opp_tank.shortest_distance >= 10){
@@ -145,17 +159,103 @@
    else{
         set_difficulty_table (info.nearest_gold.shortest_distance, info.opp_falcon.shortest_distance, info.opp_tank.shortest_distance, info.my_falcon.shortest_distance);
    }
-   ==CODE==
+   #+END_SRC
 ** MAX_DIFFICULTY is practically infinity.
 ** NOTE : You MUST call set_difficulty_table (...) or fill_difficulty_table () (whichever you use) from get_player_move () so that the table is filled each time. Otherwise, you would be working with an outdated table.
 * Your Score and Number of Moves left
 ** The get_player_move () function receives your score [my_score] and your enemy's score [enemy_score].
 ** It also receives the [total_moves_done] so far
 ** MAX_NUMBER_OF_MOVES tells you how many moves you can make
-* Introducing the Map + Position + Move + Direction
+* Introducing the Map
 ** OK! So, now you have an all-new, shiny, mean and destructive Tank at your command. 
 ** But, how exactly do you analyze the game?
-** TODO
+** How do you know what to do? Should you be GREEDY? Should you switch to an AGGRESSIVE strategy? Should you do something else altogether?
+** For that you need to look at the "Map" 
+** It is nothing but the 2-D array of cells in which all the Tanks, Bunkers, Falcons, Walls, etc. are stored.
+** Each object occupies one cell.
+** Your DecisionMaker class will have an object called
+   MapClass my_map;
+** This contains a 2-D array -
+   char map[MAP_SIZE][MAP_SIZE];
+** This is what will get updated each time as your Tank and your Enemy's tank move around and shoot bullets
+** This is what is shown in your browser when you call 'make display'
+** The character symbols represent various objects
+   |------------------+--------------------+------------------|
+   | Object           | Constant defined   | Actual character |
+   |------------------+--------------------+------------------|
+   | Gold piece       | GOLD               | G                |
+   | Wall             | WALL               | #                |
+   | Empty cell       | EMPTY              | .                |
+   | Dead Tank / MG   | DEAD               | D                |
+   |                  |                    |                  |
+   | Tank 1           | TANK1              | 1                |
+   | Bunker of Tank 1 | BUNKER1            | X                |
+   | Falcon of Tank 1 | FALCON1            | F                |
+   | Bullet of Tank 1 | BULLET1            | A                |
+   |                  |                    |                  |
+   | Tank 2           | TANK2              | 2                |
+   | Bunker of Tank 2 | BUNKER2            | Y                |
+   | Falcon of Tank 2 | FALCON2            | E                |
+   | Bullet of Tank 2 | BULLET2            | B                |
+   |                  |                    |                  |
+   | Machine Gun      | MACHINE_GUN        | M                |
+   | Bullet of MG     | MACHINE_GUN_BULLET | K                |
+   |------------------+--------------------+------------------|
+** You can access the elements of the map[][] array directly. Like so
+   #+BEGIN_SRC c++
+     if (my_map.map[i][j] == WALL){
+          // Then move away!!!
+     }
+     else if (my_map.map[i][j] == GOLD){
+          // Yippee!!
+     }
+   #+END_SRC
+* Introducing Info
+** To make life even easier for you, we've created an Info object, which contains pretty much all the basic game information you're going to need
+** This way you don't even have to know what Breadth-First Search means or deal with things like 'What is the next move to make in order to shoot the Enemy Falcon?'. Phew!
+** DecisionMaker contains two objects
+   #+BEGIN_SRC c++
+   Info my_info;
+   Info opp_info;
+   #+END_SRC
+** my_info pertains to information about your Tank
+** opp_info pertains to information about the Enemy Tank
+** Contents
+|------------------------+---------------------------+----------------------------------------------|
+| Type                   | Variable                  | Value                                        |
+|------------------------+---------------------------+----------------------------------------------|
+| Position               | curr_posn                 | Your current Position                        |
+| ID                     | my_ID                     | Your ID                                      |
+| ID                     | enemy_ID                  | Enemy ID                                     |
+| bool                   | can_shoot_at_enemy_tank   | Whether the enemy tank is in your sights     |
+| bool                   | can_shoot_at_enemy_falcon | Whether the enemy Falcon is in your sights   |
+| Direction              | shoot_falcon_dirn         | Direction in which Enemy Falcon lies         |
+| Direction              | shoot_enemy_tank_dirn     | Direction in which Enemy Tank lies           |
+| Vector of object_infos | gold                      | Information about all gold pieces            |
+| Vector of Bullets      | my_bullet_list            | Information about all bullets you shot       |
+| Vector of Bullets      | enemy_bullet_list         | Information about all bullets the Enemy shot |
+| Vector of Tanks        | machine_gun_list          | Information about all the MGs                |
+| Object_info            | my_falcon                 | Information about your falcon                |
+| Object_info            | opp_falcon                | Information about Enemy falcon               |
+| Object_info            | opp_tank                  | Information about Enemy Tank                 |
+| Object_info            | nearest_gold              | Information about the nearest gold piece     |
+| bool                   | gold_available            | Do any more gold pieces exist on Map?        |
+|------------------------+---------------------------+----------------------------------------------|
+*** Your current position - curr_posn
+    To get your x and y coordinate, just say -
+   #+BEGIN_SRC c++
+     curr_posn.x
+     // or
+     curr_posn.y
+   #+END_SRC
+*** That's all
+* Position + Move + Direction
+** However, to make your life simpler, we have different objects
+** Position Class
+*** This basically just stores x coordinate and y coordinate of a position
+*** In DecisionMaker, you have
+    #+BEGIN_SRC c++
+    #+END_SRC
 * Introduction - Can shoot items
 * Introduction - Everything else in Info
 * Hints about various advanced strategies
