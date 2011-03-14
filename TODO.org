@@ -5,19 +5,19 @@ To-do List:
 * Devesh Y
 * Guru P
 * S. Pradeep Kumar
-** TODO (?) Setting both players to AGGRESSIVE makes the game run really really long, which means, of course, that the game can't be displayed, etc.
-** WISH Display a blast when bullets collide
-** Documentation
-** Note : Since, we're calling the same functions for Machine Gun as for Tank, all sorts of stuff is done for Machine Guns. eg. Its score gets updated. Just fyi
 ** BUG Check validity of submission
 ** BUG Check whether submission takes too long to compute stuff
-** Machine guns shoot unidirectionally
-** TODO Moving machine guns			:ARCHIVE:
+** TODO (?) Setting both players to AGGRESSIVE makes the game run really really long, which means, of course, that the game can't be displayed, etc. :ARCHIVE:
+** WISH Display a blast when bullets collide	:ARCHIVE:
+** Documentation
+** Note : Since, we're calling the same functions for Machine Gun as for Tank, all sorts of stuff is done for Machine Guns. eg. Its score gets updated. Just fyi :ARCHIVE:
+** Machine Guns
+*** Machine guns shoot unidirectionally
+*** TODO Moving machine guns			:ARCHIVE:
 *** Bundle DecisionMaker along with each Machine gun, so that they can make their own decisions
 *** TODO Take care that they don't eat up the Gold, hit the falcon or do anything like that
 *** Tower MG - T - shoot if a tank is within a certain square
 *** Have some MGs just stay in one position and shoot unidirectionally to trap some Tank
-** Some simple maps for the finals (?)
 ** Copy Constructor for MapClass
 ** Maps
 *** Gold rush
@@ -26,14 +26,11 @@ To-do List:
 *** Traps
 *** Gold-less map
 *** Wall around falcon
+*** Some simple maps for the finals (?)
 ** BUG The zip file should have a folder called Tank-Wars inside which everything else is present. Right now it just puts everything into the same folder as the zip file.
 ** Put points keys in descending order
-** Show current display speed
-** TODO Make it just a one-step call for the user instead of him making two indirect calls -
-   return_best_move (calculate_best_action_plan (his_choice_of_strategy))
 ** WISH Tutorial as a webpage
 ** WISH Webpage Hit counter
-** TODO Info about Round 1 & Round 2 on the Webpage
 ** Why are there two Info objects - info and my_info - in DecisionMaker class?
 ** Should we give them the option of Doing Nothing?
 ** TODO Map
