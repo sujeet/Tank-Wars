@@ -7,11 +7,11 @@
 // For Tank.cpp
 enum event
 {
-     ENEMY_KILLED = 500,
-     PICKED_UP_GOLD = 40,
-     ENEMY_FALCON_KILLED = 1000,
-     ALIVE_AT_THE_END = 400,
-     DESTROYED_ENEMY_BUNKER = 65
+     ENEMY_FALCON_KILLED	= 1000,
+     ENEMY_KILLED		= 500,
+     ALIVE_AT_THE_END		= 400,
+     DESTROYED_ENEMY_BUNKER	= 65,
+     PICKED_UP_GOLD		= 40
 };
 
 // For Info.h
@@ -23,7 +23,7 @@ enum event
 #define AGGRESSIVE 0
 #define DEFENSIVE 1 
 #define GREEDY 2
-#define CUSTOMISED 3
+#define CUSTOMIZED 3
 
 // For log_to_html.cpp
 #define MAP_SIZE 51
@@ -59,6 +59,7 @@ enum event
 #define MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY 5
 #define END_SCORE_CHAR '$'
 
+// For map.h
 #define GOLD                'G'
 #define WALL                '#'
 #define EMPTY               '.'
@@ -78,7 +79,7 @@ enum event
 #define MACHINE_GUN_BULLET  'K'
 
 // For TankWars.cpp
-#define TIMES 500
+#define MAX_NUMBER_OF_MOVES 500
 #define BULLET_SPEED 3
 
 // For Everybody
@@ -95,5 +96,7 @@ enum event
 #define  SHOOT_DOWN  5
 #define  SHOOT_RIGHT 6
 #define  SHOOT_LEFT  7
+
+#define MAX_DIFFICULTY 10000
 
 #endif

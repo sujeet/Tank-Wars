@@ -59,13 +59,13 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      /*   PUT YOUR CODE IN THIS FUNCTION  */
      /*************************************/
      if(my_info.opp_falcon.shortest_distance + 15< opp_info.opp_falcon.shortest_distance)
-         return return_best_move(calculate_best_action_plan(AGGRESSIVE));
+         return get_best_move_for(calculate_best_action_plan(AGGRESSIVE));
      else if(my_info.opp_falcon.shortest_distance + 5< opp_info.opp_falcon.shortest_distance)
-         return return_best_move(calculate_best_action_plan(GREEDY));
+         return get_best_move_for(calculate_best_action_plan(GREEDY));
      else if(my_info.opp_falcon.shortest_distance > opp_info.opp_falcon.shortest_distance)
-         return return_best_move(calculate_best_action_plan(DEFENSIVE));
+         return get_best_move_for(calculate_best_action_plan(DEFENSIVE));
      else 
-         return return_best_move(calculate_best_action_plan(GREEDY));
+         return get_best_move_for(calculate_best_action_plan(GREEDY));
 
 }
 
@@ -78,7 +78,7 @@ Move DECISION_MAKER::get_player_move(Info my_info,
  
 // The procedural flow of the below functions is 
 // calculate_best_action_plan -> finds the most suitable action plan (attack enemy, pick up gold, etc)
-// return_best_move() then calls the appropriate function which returns a move for the given action.
+// get_best_move_for() then calls the appropriate function which returns a move for the given action.
 
 void DECISION_MAKER::set_weightage_table(int strategy,
                                          int go_to_nearest_gold_weight,
@@ -137,14 +137,17 @@ void DECISION_MAKER::DMinitializer(ID my_id, ID enemy_id)
 {
      // Constructor for Decision maker.
 
-     // Here default weightage values are set which can be changed for better strategies
+     // Here default WEIGHTAGE VALUES are set which can be changed for better strategies
      // The weightages are from 0 to 100.
-     // go_to_nearest_gold_weight | attack_enemy_falcon_weight | attack_enemy_tank_weight | defend_your_falcon_weight
+
+     // |---------------------------+----------------------------+--------------------------+---------------------------|
+     // | GO_TO_NEAREST_GOLD_WEIGHT | ATTACK_ENEMY_FALCON_WEIGHT | ATTACK_ENEMY_TANK_WEIGHT | DEFEND_YOUR_FALCON_WEIGHT |
+     // |---------------------------+----------------------------+--------------------------+---------------------------|
 
      set_weightage_table(AGGRESSIVE, 0, 50, 50, 0);
      set_weightage_table(DEFENSIVE, 20, 1, 5, 50);
      set_weightage_table(GREEDY, 100, 15, 10, 0);
-     set_weightage_table(CUSTOMISED, 0, 0, 100, 0);
+     set_weightage_table(CUSTOMIZED, 0, 0, 100, 0);
 
      // These are just dummy values 
      set_difficulty_table(1, 1, 1, 1);
@@ -168,7 +171,7 @@ void DECISION_MAKER::fill_difficulty_table()
                           info.my_falcon.shortest_distance);
 }
 
-Move DECISION_MAKER::return_best_move(int best_action_plan)
+Move DECISION_MAKER::get_best_move_for(int best_action_plan)
 {
      // Returns a 'Move' object by calling appropriate move calculator
      // depending upon action_plan argument passed
@@ -188,7 +191,7 @@ Move DECISION_MAKER::return_best_move(int best_action_plan)
           return defend_my_falcon_move();
           break;
      default:
-          cerr << " Error: Function return_best_move in DECISION_MAKER class got invalid argument = " << best_action_plan << endl;
+          cerr << " Error: Function get_best_move_for in DECISION_MAKER class got invalid argument = " << best_action_plan << endl;
           exit(-1);
      }
 }
@@ -247,6 +250,7 @@ Move DECISION_MAKER::attack_enemy_tank_move()
 
 Move DECISION_MAKER::defend_my_falcon_move()
 {
+     // By default, just go back towards my falcon
      // If I'm in the vicinity of my falcon, and so is he, then call attack_enemy_tank_move
      return info.my_falcon.initial_move;
 }
@@ -275,7 +279,7 @@ int DECISION_MAKER::calculate_best_action_plan(int strategy)
 	       return DEFEND_MY_FALCON;
           break;
      case GREEDY:
-     case CUSTOMISED:
+     case CUSTOMIZED:
           float action_score[4];
 
           action_score[GO_TO_NEAREST_GOLD] = 

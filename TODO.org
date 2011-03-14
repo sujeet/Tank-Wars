@@ -26,3 +26,27 @@ To-do List:
 *** Traps
 *** Gold-less map
 *** Wall around falcon
+** BUG The zip file should have a folder called Tank-Wars inside which everything else is present. Right now it just puts everything into the same folder as the zip file.
+** Put points keys in descending order
+** Show current display speed
+** TODO Make it just a one-step call for the user instead of him making two indirect calls -
+   return_best_move (calculate_best_action_plan (his_choice_of_strategy))
+** WISH Tutorial as a webpage
+** WISH Webpage Hit counter
+** TODO Info about Round 1 & Round 2 on the Webpage
+** Why are there two Info objects - info and my_info - in DecisionMaker class?
+** Should we give them the option of Doing Nothing?
+** TODO Map
+*** Change surrounding colour from white to something less contrasting with black
+** Tutorial
+*** Center the text
+*** Make it look like Vimtutor as much as possible
+*** Make all subheadings within the same section at indentation 0
+*** Number them?
+*** Html version
+**** Wrap the text at a certain column
+** Info should have just have a vector of object_infos about Machine guns instead of vector of Tanks. 
+** Do the same about Bullets (?) - with an added Direction. That way, they wouldn't need to know anything about other class definitions.
+** Major change required - The number of moves is actually 1/ (Bullet speed) times the number of moves defined in constants.h. Which means it is only about 500/3 moves.(as of now.)
+   Let's just have i < (MAX_NUMBER_OF_MOVES * BULLET_SPEED); so that MAX_NUMBER_OF_MOVES really describes the max number of moves that a tank can make
+** BUG The Legends on game_display.html extend out of the white square.

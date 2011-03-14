@@ -1,0 +1,322 @@
+
+include/DecisionMaker2.h,337
+#define DECISION_MAKER_2_HDECISION_MAKER_2_H2,27
+class DecisionMaker2DecisionMaker215,343
+     int weightage_table[4][4];weightage_table19,395
+     int difficulty_table[4];difficulty_table20,427
+     Info my_info;my_info21,457
+     Info opp_info;opp_info22,476
+     MapClass my_map;my_map23,496
+     Info info;info24,518
+
+include/DecisionMaker1.h,337
+#define DECISION_MAKER_1_HDECISION_MAKER_1_H2,27
+class DecisionMaker1DecisionMaker115,343
+     int weightage_table[4][4];weightage_table19,395
+     int difficulty_table[4];difficulty_table20,427
+     Info my_info;my_info21,457
+     Info opp_info;opp_info22,476
+     MapClass my_map;my_map23,496
+     Info info;info24,518
+
+include/DecisionMaker.h,333
+#define DECISION_MAKER_HDECISION_MAKER_H2,25
+class DECISION_MAKERDECISION_MAKER15,339
+     int weightage_table[4][4];weightage_table19,391
+     int difficulty_table[4];difficulty_table20,423
+     Info my_info;my_info21,453
+     Info opp_info;opp_info22,472
+     MapClass my_map;my_map23,492
+     Info info;info24,514
+
+include/Info.h,1194
+#define INFO_HINFO_H2,15
+class object_infoobject_info15,186
+     int shortest_distance;shortest_distance19,235
+     Move initial_move;initial_move20,263
+     Position posn;posn21,287
+class InfoInfo25,331
+     Position curr_posn;curr_posn30,412
+     ID my_ID, enemy_ID;my_ID32,499
+     ID my_ID, enemy_ID;enemy_ID32,499
+     bool can_shoot_at_enemy_tank, can_shoot_at_enemy_falcon;can_shoot_at_enemy_tank33,524
+     bool can_shoot_at_enemy_tank, can_shoot_at_enemy_falcon;can_shoot_at_enemy_falcon33,524
+     Direction shoot_falcon_dirn, shoot_enemy_tank_dirn; shoot_falcon_dirn34,586
+     Direction shoot_falcon_dirn, shoot_enemy_tank_dirn; shoot_enemy_tank_dirn34,586
+     vector <object_info> gold;gold37,680
+     vector <Bullet> my_bullet_list, enemy_bullet_list;my_bullet_list38,712
+     vector <Bullet> my_bullet_list, enemy_bullet_list;enemy_bullet_list38,712
+     vector <Tank> machine_gun_list;machine_gun_list39,768
+     object_info my_falcon;my_falcon40,805
+     object_info opp_falcon;opp_falcon41,833
+     object_info opp_tank; opp_tank42,862
+     object_info nearest_gold;nearest_gold43,890
+     bool gold_available;gold_available44,921
+
+include/Tank.h,1188
+#define TANK_HTANK_H3,16
+class BulletBullet13,112
+     char symbol;symbol17,153
+     Direction curr_dirn;curr_dirn18,171
+     Position curr_posn, prev_posn;curr_posn19,197
+     Position curr_posn, prev_posn;prev_posn19,197
+     bool disappear_flag;disappear_flag20,233
+     Bullet ()Bullet23,279
+     void set_disappear_flag ()set_disappear_flag30,489
+     void print ()print36,668
+class TankTank48,918
+     class FalconFalcon52,940
+          bool dead_flag;dead_flag56,1001
+          char symbol;symbol57,1027
+          Position posn;posn58,1050
+          Falcon (){Falcon61,1097
+     char symbol;symbol72,1363
+     ID id;id73,1381
+     Falcon falcon;falcon74,1393
+     char bullet_symbol;bullet_symbol75,1413
+     vector<Bullet> bullet_list;bullet_list76,1438
+     Move next_move;next_move77,1471
+     Position curr_posn, prev_posn;curr_posn78,1492
+     Position curr_posn, prev_posn;prev_posn78,1492
+     bool dead_flag;dead_flag79,1528
+     int score;score80,1549
+     Tank () { };Tank84,1593
+     void print_bullets ()print_bullets98,2067
+     Tank operator=(const Tank copyate)operator =105,2231
+     ~Tank()~Tank155,4095
+
+include/Arena.h,372
+#define ARENA_HARENA_H3,17
+class ArenaArena16,206
+     MapClass Map;Map23,294
+     bool game_over_flag;game_over_flag24,313
+     Tank tank1, tank2;tank125,339
+     Tank tank1, tank2;tank225,339
+     DecisionMaker1 DM1;DM126,363
+     DecisionMaker2 DM2;DM227,388
+     vector <Tank> machine_gun_list;machine_gun_list28,413
+     int move_no;move_no29,450
+
+include/Map.h,425
+#define MAP_HMAP_H3,15
+class MapClassMapClass11,118
+     std::ofstream log_file;log_file14,145
+     char map[MAP_SIZE][MAP_SIZE];map18,243
+     Position tank1_init_posn;tank1_init_posn19,278
+     Position tank2_init_posn;tank2_init_posn20,309
+     Position falcon1_posn;falcon1_posn23,398
+     Position falcon2_posn;falcon2_posn24,426
+     std::vector <Position> machine_guns_posns;machine_guns_posns27,510
+
+include/Misc_Classes.h,446
+#define MISC_CLASSES_HMISC_CLASSES_H2,23
+class IDID5,48
+     int player_no;player_no8,67
+     char tank_symbol;tank_symbol9,87
+     char falcon_symbol;falcon_symbol10,110
+class Direction Direction13,139
+     int xdir, ydir;xdir16,166
+     int xdir, ydir;ydir16,166
+class MoveMove27,392
+     bool shoot;shoot30,413
+     Direction dirn;dirn31,430
+class PositionPosition40,659
+     int x, y;x43,684
+     int x, y;y43,684
+
+include/Constants.h,2708
+#define CONSTANTS_HCONSTANTS_H2,20
+#define DO_NOT_MOVE DO_NOT_MOVE5,58
+enum eventevent8,98
+     ENEMY_KILLED = 500,ENEMY_KILLED10,111
+     PICKED_UP_GOLD = 40,PICKED_UP_GOLD11,136
+     ENEMY_FALCON_KILLED = 1000,ENEMY_FALCON_KILLED12,162
+     ALIVE_AT_THE_END = 400,ALIVE_AT_THE_END13,195
+     DESTROYED_ENEMY_BUNKER = 65DESTROYED_ENEMY_BUNKER14,224
+#define GO_TO_NEAREST_GOLD GO_TO_NEAREST_GOLD18,275
+#define ATTACK_ENEMY_FALCON ATTACK_ENEMY_FALCON19,304
+#define ATTACK_ENEMY_TANK ATTACK_ENEMY_TANK20,334
+#define DEFEND_MY_FALCON DEFEND_MY_FALCON21,362
+#define AGGRESSIVE AGGRESSIVE23,390
+#define DEFENSIVE DEFENSIVE24,411
+#define GREEDY GREEDY25,432
+#define CUSTOMIZED CUSTOMIZED26,449
+#define MAP_SIZE MAP_SIZE29,494
+#define ASCII_CHARS ASCII_CHARS31,515
+#define MAX_CLASS_NAME_LENGTH MAX_CLASS_NAME_LENGTH32,539
+#define DELAY DELAY33,572
+#define DELAY_STEP DELAY_STEP34,590
+#define MIN_DELAY MIN_DELAY35,613
+#define MAX_DELAY MAX_DELAY36,633
+#define END_SCORE_CHAR END_SCORE_CHAR37,656
+#define GOLD_COLOUR GOLD_COLOUR40,704
+#define WALL_COLOUR WALL_COLOUR41,750
+#define EMPTY_COLOUR EMPTY_COLOUR42,792
+#define DEAD_COLOUR DEAD_COLOUR43,834
+#define TANK1_COLOUR TANK1_COLOUR45,875
+#define FALCON1_COLOUR FALCON1_COLOUR46,919
+#define BULLET1_COLOUR BULLET1_COLOUR47,963
+#define TANK2_COLOUR TANK2_COLOUR49,1006
+#define FALCON2_COLOUR FALCON2_COLOUR50,1050
+#define BULLET2_COLOUR BULLET2_COLOUR51,1094
+#define MACHINE_GUN_COLOUR MACHINE_GUN_COLOUR53,1137
+#define MACHINE_GUN_BULLET_COLOUR MACHINE_GUN_BULLET_COLOUR54,1178
+#define TEXT_COLOUR TEXT_COLOUR56,1221
+#define MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY59,1288
+#define END_SCORE_CHAR END_SCORE_CHAR60,1334
+#define GOLD GOLD62,1362
+#define WALL WALL63,1394
+#define EMPTY EMPTY64,1426
+#define DEAD DEAD65,1458
+#define TANK1 TANK167,1491
+#define BUNKER1 BUNKER168,1523
+#define FALCON1 FALCON169,1555
+#define BULLET1 BULLET170,1587
+#define TANK2 TANK272,1620
+#define BUNKER2 BUNKER273,1652
+#define FALCON2 FALCON274,1684
+#define BULLET2 BULLET275,1716
+#define MACHINE_GUN MACHINE_GUN77,1749
+#define MACHINE_GUN_BULLET MACHINE_GUN_BULLET78,1781
+#define MAX_NUMBER_OF_MOVES MAX_NUMBER_OF_MOVES81,1834
+#define BULLET_SPEED BULLET_SPEED82,1852
+#define  UP UP85,1893
+#define  DOWN DOWN86,1908
+#define  RIGHT RIGHT87,1925
+#define  LEFT LEFT88,1942
+#define  GO_UP GO_UP90,1960
+#define  GO_DOWN GO_DOWN91,1978
+#define  GO_RIGHT GO_RIGHT92,1998
+#define  GO_LEFT GO_LEFT93,2018
+#define  SHOOT_UP SHOOT_UP94,2038
+#define  SHOOT_DOWN SHOOT_DOWN95,2059
+#define  SHOOT_RIGHT SHOOT_RIGHT96,2082
+#define  SHOOT_LEFT SHOOT_LEFT97,2105
+
+DecisionMaker1.cpp,1008
+Move DECISION_MAKER::get_player_move(Info my_info,get_player_move34,1104
+void DECISION_MAKER::set_weightage_table(int strategy,set_weightage_table83,3106
+void DECISION_MAKER::set_difficulty_table(int go_to_nearest_gold_difficulty,set_difficulty_table124,5312
+void DECISION_MAKER::DMinitializer(ID my_id, ID enemy_id)DMinitializer136,5964
+void DECISION_MAKER::fill_difficulty_table()fill_difficulty_table157,6750
+Move DECISION_MAKER::return_best_move(int best_action_plan)return_best_move171,7323
+Move DECISION_MAKER::go_to_nearest_gold_move()go_to_nearest_gold_move196,8080
+Move DECISION_MAKER::attack_enemy_falcon_move()attack_enemy_falcon_move213,8494
+Move DECISION_MAKER::attack_enemy_tank_move()attack_enemy_tank_move232,8936
+Move DECISION_MAKER::defend_my_falcon_move()defend_my_falcon_move248,9273
+int DECISION_MAKER::calculate_best_action_plan(int strategy)calculate_best_action_plan254,9456
+int DECISION_MAKER::find_the_maximum( float* action_score )find_the_maximum302,11018
+
+DecisionMaker2.cpp,1008
+Move DECISION_MAKER::get_player_move(Info my_info,get_player_move34,1182
+void DECISION_MAKER::set_weightage_table(int strategy,set_weightage_table83,3184
+void DECISION_MAKER::set_difficulty_table(int go_to_nearest_gold_difficulty,set_difficulty_table124,5390
+void DECISION_MAKER::DMinitializer(ID my_id, ID enemy_id)DMinitializer136,6042
+void DECISION_MAKER::fill_difficulty_table()fill_difficulty_table157,6828
+Move DECISION_MAKER::return_best_move(int best_action_plan)return_best_move171,7401
+Move DECISION_MAKER::go_to_nearest_gold_move()go_to_nearest_gold_move196,8158
+Move DECISION_MAKER::attack_enemy_falcon_move()attack_enemy_falcon_move213,8572
+Move DECISION_MAKER::attack_enemy_tank_move()attack_enemy_tank_move232,9014
+Move DECISION_MAKER::defend_my_falcon_move()defend_my_falcon_move248,9351
+int DECISION_MAKER::calculate_best_action_plan(int strategy)calculate_best_action_plan254,9534
+int DECISION_MAKER::find_the_maximum( float* action_score )find_the_maximum303,11169
+
+src/Arena.cpp,663
+void Arena::initialize_machine_guns()initialize_machine_guns11,131
+Arena::Arena () Arena28,568
+void Arena::print_scores ()print_scores57,1355
+void Arena::get_machine_moves (bool bullets_only)get_machine_moves71,1664
+void Arena::move_bullets ()move_bullets84,2061
+void Arena::get_player_moves (bool bullets_only)get_player_moves93,2281
+void Arena::execute_tank_moves ()execute_tank_moves137,3984
+void Arena::evaluate_static_interactions ()evaluate_static_interactions151,4308
+void Arena::evaluate_dynamic_interactions ()evaluate_dynamic_interactions167,4800
+void Arena::update_map ()update_map245,7307
+void Arena::end_game ()end_game287,8396
+
+src/Map.cpp,810
+MapClass::MapClass ()MapClass10,117
+void MapClass::create_from_file (string filename) create_from_file15,176
+char MapClass::get_element (int x_coord, int y_coord) constget_element50,1285
+char MapClass::get_element (Position posn) constget_element67,1755
+bool MapClass::is_symbol (int x_coord, int y_coord, char symbol) constis_symbol72,1857
+bool MapClass::is_symbol (Position posn, char symbol) constis_symbol77,1992
+void MapClass::set_element (int x_coord, int y_coord, char data, bool print_log)set_element82,2104
+void MapClass::set_element (Position posn, char data, bool print_log) set_element101,2718
+MapClass & MapClass::operator = (const MapClass & orig_map)operator =106,2851
+MapClass::~MapClass ()~MapClass121,3380
+void MapClass::print_log(int x, int y, char k)print_log126,3437
+
+src/log_to_html.cpp,439
+string insert_css ()insert_css11,142
+string make_divs (char * filename)make_divs123,12942
+string insert_legend ()insert_legend137,13290
+string insert_controls ()insert_controls246,25113
+string insert_points_table ()insert_points_table288,29583
+string insert_status_notifier ()insert_status_notifier329,33077
+string insert_func_list()insert_func_list357,36135
+string insert_js()insert_js393,37240
+int main() main603,53809
+
+src/TankWars.cpp,82
+void print_scores(const Arena & arena)print_scores11,141
+int main()main31,827
+
+src/Tank.cpp,1707
+Tank::Tank (char symbol,Tank9,101
+void Tank::initialize_from (int given_player_no,initialize_from22,427
+void Tank::get_next_move (Move move)get_next_move54,1245
+void Tank::get_dummy_move ()get_dummy_move70,1750
+void Tank::get_machine_random_move () get_machine_random_move75,1827
+void Tank::move_bullets ()move_bullets86,2012
+void Tank::execute_next_move()execute_next_move96,2294
+void Tank::move ()move108,2533
+void Tank::shoot_bullet ()shoot_bullet117,2760
+void Tank::evaluate_static_interactions (MapClass & Map)evaluate_static_interactions131,3098
+bool Tank::is_killed_by (Tank t)is_killed_by154,3786
+void Tank::die_by_tank (Tank &t)die_by_tank183,4519
+void Tank::pick_up_gold_if_possible (MapClass & Map)pick_up_gold_if_possible190,4678
+bool Tank::crashed_into_wall (MapClass & Map)crashed_into_wall198,4897
+bool Tank::crashed_into_bunker (MapClass & Map)crashed_into_bunker206,5045
+void Tank::die_by_wall_crash ()die_by_wall_crash222,5404
+void Tank::die_by_bunker_crash ()die_by_bunker_crash228,5476
+void Tank::check_bullet_interactions (Tank t)check_bullet_interactions234,5550
+void Tank::incr_score (event e)incr_score253,6265
+void Tank::update_bullets_on_map (MapClass & Map)update_bullets_on_map259,6359
+void Tank::update_on_map (MapClass & Map)update_on_map290,7115
+void Bullet::move ()move320,8062
+void Bullet::check_for_crashes (MapClass & Map)check_for_crashes329,8219
+bool Bullet::destroyed_enemy_bunker (MapClass & Map) destroyed_enemy_bunker360,9236
+void Bullet::update_on_map (MapClass & Map)update_on_map375,9640
+void Tank::Falcon::set_dead_flag ()set_dead_flag412,10856
+bool Tank::Falcon::is_killed_by (Tank &t)is_killed_by418,10921
+
+src/Info.cpp,434
+void Info::initializer(const ID mine, const ID enemy)initializer14,178
+void Info::update_distances(MapClass &map,Position source)update_distances27,491
+void Info::update_info (MapClass &map, update_info209,5864
+bool Info::update_shoot_variables (MapClass &Map)update_shoot_variables224,6355
+void Info::print_info()print_info315,8336
+object_info::object_info ()object_info330,8726
+void object_info::print ()print335,8788
+
+src/Misc_Classes.cpp,1025
+Direction::Direction()Direction11,131
+Direction::Direction(int given_dirn)Direction17,219
+Direction::Direction(int xdir, int ydir)Direction22,303
+void Direction::print ()print28,395
+void Direction::get_from_integer (int inp)get_from_integer47,762
+Move::Move() Move73,1248
+Move::Move (int given_move)Move78,1293
+Move::Move (bool shoot, int xdir, int ydir)Move83,1366
+void Move::interpret_move (int user_move, bool is_machine_gun_move)interpret_move89,1483
+void Move::print() print114,2222
+Position::Position ()Position120,2325
+Position::Position (int x, int y)Position125,2368
+void Position::go_in_direction (Direction d)go_in_direction131,2443
+bool Position::operator== (Position p)operator ==137,2529
+Position Position::get_neighbour (Direction d)get_neighbour142,2625
+void Position::print ()print150,2755
+Position Position::operator = (Position pos)operator =155,2837
+Move Move::operator = (Move mov)operator =162,2950
+Direction Direction::operator = (Direction dir)operator =169,3065

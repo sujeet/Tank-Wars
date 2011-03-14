@@ -24,7 +24,7 @@ public:
 
 class Info
 {
-     // Info object contains info reg a particular player 
+     // Info object contains info reg a particular Tank 
 
 public:
      Position curr_posn;
