@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <pthread.h>
+#include <unistd.h>
+#include <cstdlib>
 
 #include "Arena.h"
 #include "Misc_Classes.h"
@@ -7,6 +10,19 @@
 
 using namespace std;
 
+static void* enforce_timeout_1 (void* arena_ptr)
+{
+     usleep (TIMEOUT_LIMIT);
+     ((Arena *)arena_ptr)->end_game (TIMEOUT_ERROR, 1);
+     return (void *)1;
+}
+
+static void* enforce_timeout_2 (void* arena_ptr)
+{
+     usleep (TIMEOUT_LIMIT);
+     ((Arena *)arena_ptr)->end_game (TIMEOUT_ERROR, 2);
+     return (void*)2;
+}
 
 void Arena::initialize_machine_guns()
 {
@@ -117,20 +133,40 @@ void Arena::get_player_moves (bool bullets_only)
           this->tank2.get_dummy_move ();
      }
      else {
-          tank1.get_next_move (DM1.get_player_move(DM1.info,
-                                                   DM2.info,
-                                                   tank1.score, 
-                                                   tank2.score, 
-                                                   this->move_no));
+          // Variable for threading.
+          pthread_t thread_id;
+          pthread_attr_t attr;
+
+          // Create a thread for tank1 response.
+          pthread_attr_init (&attr);
+          pthread_create (&thread_id,
+                          &attr,
+                          enforce_timeout_1,
+                          this);
+          while (true) {
+               continue;
+          }
+          // tank1.get_next_move (DM1.get_player_move(DM1.info,
+          //                                          DM2.info,
+          //                                          tank1.score, 
+          //                                          tank2.score, 
+          //                                          this->move_no));
+          pthread_cancel (thread_id);
+          // End of thread of tank1 response.
+
+          // Create a thread for tank2 response.
+          pthread_attr_init (&attr);
+          pthread_create (&thread_id,
+                          &attr,
+                          enforce_timeout_2,
+                          this);
           tank2.get_next_move (DM2.get_player_move(DM2.info,
                                                    DM1.info,
                                                    tank2.score, 
                                                    tank1.score, 
                                                    this->move_no));
-
-          // The following is for only testing purposes.
-//           tank1.get_machine_random_move ();
-//           tank2.get_machine_random_move ();
+          pthread_cancel (thread_id);
+          // End of thread of tank2 response.
      }
 }
 
@@ -284,8 +320,72 @@ void Arena::update_map ()
      tank2.update_on_map (Map);
 }
 
-void Arena::end_game ()
+void Arena::terminate_with_error (error err_code, int faulty_tank_number)
 {
-     // Add stuff later
+     string err_string;
+     string error_code;         // This is webbed feet specific thing.
+     switch (err_code) {
+     case TIMEOUT_ERROR :
+          err_string = "time_limit_exceeded";
+          error_code = "TO";
+          if (faulty_tank_number == 1) {
+               tank1.incr_score (TIME_LIMIT_EXCEEDED);
+               error_code.append ("1");
+          }
+          else {
+               tank2.incr_score (TIME_LIMIT_EXCEEDED);
+               error_code.append ("2");
+          }
+          break;
+     }
+     
+     cout << error_code << " " << this->tank1.score << " " << this->tank2.score << endl;
+     cout << endl << endl;
+     cout << "##########[ Result ]#############" << endl;
+     cout << err_string << endl;
+     cout << "Tank 1 score : " << this->tank1.score << endl;
+     cout << "Tank 2 score : " << this->tank2.score << endl;
+     if (this->tank2.score < this->tank1.score) {
+          cout << "          Tank 1 won." << endl;
+     }
+     else if (this->tank1.score < this->tank2.score) {
+          cout << "          Tank 2 won." << endl;
+     }
+     else {
+          cout << "The match was a tie." << endl;
+     }
+     cout << "#################################" << endl;
+     cout << endl;
 }
 
+void Arena::print_result ()
+{
+     cout << this->tank1.score << " " << this->tank2.score << endl;
+     cout << endl << endl;
+     cout << "##########[ Result ]#############" << endl;
+     cout << "Tank 1 score : " << this->tank1.score << endl;
+     cout << "Tank 2 score : " << this->tank2.score << endl;
+     if (this->tank2.score < this->tank1.score) {
+          cout << "          Tank 1 won." << endl;
+     }
+     else if (this->tank1.score < this->tank2.score) {
+          cout << "          Tank 2 won." << endl;
+     }
+     else {
+          cout << "The match was a tie." << endl;
+     }
+     cout << "#################################" << endl;
+     cout << endl;
+}
+
+void Arena::end_game (error error_code, int faulty_tank_number)
+{
+     if (error_code == NO_ERROR) {
+          this->print_result ();
+          exit (0);
+     }
+     else {
+          this->terminate_with_error (error_code, faulty_tank_number);
+          exit (0);
+     }
+}

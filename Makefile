@@ -1,6 +1,6 @@
 # CFLAGS = -D N=50
 CFLAGS = -Wall -pedantic -g -I./include/
-MACROS = -DMAP_FILE=\"map.txt\" -DLOG_FILE=\"log.txt\" -DHTML_FILE=\"game_display.html\"
+MACROS = -DMAP_FILE=\"map.txt\" -DLOG_FILE=\"log.txt\" -DHTML_FILE=\"game_display.html\" -lpthread
 
 all: bin/TankWars.exe bin/log_to_html.exe
 	echo "Done!"

@@ -8,26 +8,6 @@
 
 using namespace std;
 
-void print_scores(const Arena & arena)
-{
-     cout << arena.tank1.score << " " << arena.tank2.score << endl;
-     cout << endl << endl;
-     cout << "##########[ Result ]#############" << endl;
-     cout << "Tank 1 score : " << arena.tank1.score << endl;
-     cout << "Tank 2 score : " << arena.tank2.score << endl;
-     if (arena.tank2.score < arena.tank1.score) {
-          cout << "          Tank 1 won." << endl;
-     }
-     else if (arena.tank1.score < arena.tank2.score) {
-          cout << "          Tank 2 won." << endl;
-     }
-     else {
-          cout << "The match was a tie." << endl;
-     }
-     cout << "#################################" << endl;
-     cout << endl;
-}
-
 int main()
 {
      Arena arena;
@@ -74,10 +54,8 @@ int main()
 
           // If the game is over
           if (arena.game_over_flag){
-               // arena.machine_gun_list.clear();
-               break;
+               arena.end_game (NO_ERROR);
           }
      }
-     print_scores(arena);
-     return 0;
+     return -1;
 }

@@ -3,15 +3,23 @@
 
 // For Arena.cpp
 #define DO_NOT_MOVE 10
+#define TIMEOUT_LIMIT 500000    /* Half a second */
+enum error
+{
+     NO_ERROR,
+     TIMEOUT_ERROR,
+     MOVE_ERROR
+};
 
 // For Tank.cpp
 enum event
 {
      ENEMY_FALCON_KILLED	= 1000,
-     ENEMY_KILLED		= 500,
+     ENEMY_KILLED           = 500,
      ALIVE_AT_THE_END		= 400,
      DESTROYED_ENEMY_BUNKER	= 65,
-     PICKED_UP_GOLD		= 40
+     PICKED_UP_GOLD         = 40,
+     TIME_LIMIT_EXCEEDED    = -300
 };
 
 // For Info.h
