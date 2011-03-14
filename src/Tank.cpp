@@ -444,6 +444,11 @@ bool Tank::Falcon::is_killed_by (Tank &t)
      return flag;
 }
 
+bool Tank::move_is_invalid () 
+{
+     return not this->next_move.is_valid();
+}
+
 //Tank::~Tank()
 //{
 //    this->bullet_list.clear();

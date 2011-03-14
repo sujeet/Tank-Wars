@@ -22,6 +22,19 @@ public:
      void print ();
 };
 
+class machine_gun_position
+{
+    public:
+    Position posn;
+};
+
+class bullet_info
+{
+    public:
+    Position posn;
+    Direction dirn;
+};
+
 class Info
 {
      // Info object contains info reg a particular Tank 
@@ -35,6 +48,11 @@ public:
 
      // Sets player info initially
      vector <object_info> gold;
+     vector <object_info> enemy_bunker;
+     vector <machine_gun_position> machine_guns;
+     vector <bullet_info> my_bullets;
+     vector <bullet_info> enemy_bullets;
+     vector <bullet_info> machine_gun_bullets;
      vector <Bullet> my_bullet_list, enemy_bullet_list;
      vector <Tank> machine_gun_list;
      object_info my_falcon;
@@ -42,6 +60,9 @@ public:
      object_info opp_tank; 
      object_info nearest_gold;
      bool gold_available;
+     void update_bullets(vector <Bullet> my_bullets, vector <Bullet> enemy_bullets);
+     void update_machine_gun_list(vector <Tank> machine_gun_list);
+
 
      bool update_shoot_variables (MapClass &); 
      void update_info (MapClass &, Position, vector <Bullet> , vector <Bullet> , vector <Tank> );

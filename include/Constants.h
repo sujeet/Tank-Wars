@@ -8,7 +8,7 @@ enum error
 {
      NO_ERROR,
      TIMEOUT_ERROR,
-     MOVE_ERROR
+     INVALID_MOVE_ERROR
 };
 
 // For Tank.cpp
@@ -19,7 +19,8 @@ enum event
      ALIVE_AT_THE_END		= 400,
      DESTROYED_ENEMY_BUNKER	= 65,
      PICKED_UP_GOLD         = 40,
-     TIME_LIMIT_EXCEEDED    = -300
+     TIME_LIMIT_EXCEEDED    = -300,
+     INVALID_MOVE           = -100
 };
 
 // For Info.h

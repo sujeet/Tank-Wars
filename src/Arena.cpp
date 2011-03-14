@@ -112,17 +112,17 @@ void Arena::get_player_moves (bool bullets_only)
 
      // DM1 and DM2 is the interface between the 
      // game engine and the bots.
-     DM1.info.update_info (this->Map,
-                           tank1.curr_posn,
-                           tank1.bullet_list,
-                           tank2.bullet_list,
-                           machine_gun_list); 
+     DM1.my_info.update_info (this->Map,
+			      tank1.curr_posn,
+			      tank1.bullet_list,
+			      tank2.bullet_list,
+			      machine_gun_list); 
 
-     DM2.info.update_info (this->Map,
-                           tank2.curr_posn,
-                           tank2.bullet_list,
-                           tank1.bullet_list,
-                           machine_gun_list);
+     DM2.my_info.update_info (this->Map,
+			      tank2.curr_posn,
+			      tank2.bullet_list,
+			      tank1.bullet_list,
+			      machine_gun_list);
      // Update the maps in decision makers.
      DM1.my_map = this->Map;
      DM2.my_map = this->Map;
@@ -143,14 +143,11 @@ void Arena::get_player_moves (bool bullets_only)
                           &attr,
                           enforce_timeout_1,
                           this);
-          while (true) {
-               continue;
-          }
-          // tank1.get_next_move (DM1.get_player_move(DM1.info,
-          //                                          DM2.info,
-          //                                          tank1.score, 
-          //                                          tank2.score, 
-          //                                          this->move_no));
+          tank1.get_next_move (DM1.get_player_move(DM1.my_info,
+                                                   DM1.opp_info,
+                                                   tank1.score, 
+                                                   tank2.score, 
+                                                   this->move_no));
           pthread_cancel (thread_id);
           // End of thread of tank1 response.
 
@@ -160,13 +157,21 @@ void Arena::get_player_moves (bool bullets_only)
                           &attr,
                           enforce_timeout_2,
                           this);
-          tank2.get_next_move (DM2.get_player_move(DM2.info,
-                                                   DM1.info,
+          tank2.get_next_move (DM2.get_player_move(DM2.my_info,
+                                                   DM2.opp_info,
                                                    tank2.score, 
                                                    tank1.score, 
                                                    this->move_no));
           pthread_cancel (thread_id);
           // End of thread of tank2 response.
+
+          // Now check validity of moves.
+          if (tank1.move_is_invalid()) {
+               this->end_game (INVALID_MOVE_ERROR, 1);
+          }
+          if (tank2.move_is_invalid()) {
+               this->end_game (INVALID_MOVE_ERROR, 2);
+          }
      }
 }
 
@@ -334,6 +339,18 @@ void Arena::terminate_with_error (error err_code, int faulty_tank_number)
           }
           else {
                tank2.incr_score (TIME_LIMIT_EXCEEDED);
+               error_code.append ("2");
+          }
+          break;
+     case INVALID_MOVE_ERROR :
+          err_string = "invalid_move";
+          error_code = "DQ";
+          if (faulty_tank_number == 1) {
+               tank1.incr_score (INVALID_MOVE);
+               error_code.append ("1");
+          }
+          else {
+               tank2.incr_score (INVALID_MOVE);
                error_code.append ("2");
           }
           break;

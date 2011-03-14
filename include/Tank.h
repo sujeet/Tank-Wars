@@ -131,10 +131,10 @@ public:
      void incr_score (event e);
      void check_bullet_interactions (Tank t);
 
-//      bool on_gold ();
+     /* bool on_gold (); */
      bool crashed_into_wall (MapClass & Map);	// Just set_dead_flag () as of now
      bool crashed_into_bunker (MapClass & Map);
-     
+     bool move_is_invalid ();   /* Checks the validity of next move */
      bool is_killed_by (Tank t);
      bool crashed_tank (Tank t); // Can be skipped as of now. Should
      // check if two tanks are crashing in

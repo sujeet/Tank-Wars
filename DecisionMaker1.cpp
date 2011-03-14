@@ -154,7 +154,7 @@ void DECISION_MAKER::DMinitializer(ID my_id, ID enemy_id)
 
      // Initialize the info object so that it knows what your character symbol is,
      // player number etc
-     info.initializer(my_id, enemy_id);
+     my_info.initializer(my_id, enemy_id);
 }
 
 void DECISION_MAKER::fill_difficulty_table()
@@ -165,10 +165,10 @@ void DECISION_MAKER::fill_difficulty_table()
      // By default, the difficulty of each action plan is set to be
      // the shortest distance needed to be covered to carry out the
      // action
-     set_difficulty_table(info.nearest_gold.shortest_distance,
-                          info.opp_falcon.shortest_distance,
-                          info.opp_tank.shortest_distance,
-                          info.my_falcon.shortest_distance);
+     set_difficulty_table(my_info.nearest_gold.shortest_distance,
+                          my_info.opp_falcon.shortest_distance,
+                          my_info.opp_tank.shortest_distance,
+                          my_info.my_falcon.shortest_distance);
 }
 
 Move DECISION_MAKER::get_best_move_for(int best_action_plan)
@@ -201,15 +201,15 @@ Move DECISION_MAKER::go_to_nearest_gold_move()
      // Description of the function that calculates  
      // the move to 'go to gold'
 
-     if(info.gold_available) 
+     if(my_info.gold_available) 
      {
 	  // If there are gold pieces on the map, go to the nearest gold piece
-          return info.nearest_gold.initial_move;
+          return my_info.nearest_gold.initial_move;
      }
      else
      {
 	  // Else, just go near the enemy tank
-          return info.opp_tank.initial_move;
+          return my_info.opp_tank.initial_move;
      }
 }
 
@@ -219,14 +219,14 @@ Move DECISION_MAKER::attack_enemy_falcon_move()
      // the move to 'attack enemy falcon'
     
      Move return_move;
-     return_move.shoot = info.can_shoot_at_enemy_falcon;
+     return_move.shoot = my_info.can_shoot_at_enemy_falcon;
 
-     if (info.can_shoot_at_enemy_falcon){
-	  return_move.dirn = info.shoot_falcon_dirn;
+     if (my_info.can_shoot_at_enemy_falcon){
+	  return_move.dirn = my_info.shoot_falcon_dirn;
      }
      else
      {
-	  return_move.dirn = info.opp_falcon.initial_move.dirn;
+	  return_move.dirn = my_info.opp_falcon.initial_move.dirn;
      }
      
      return return_move;
@@ -235,14 +235,14 @@ Move DECISION_MAKER::attack_enemy_falcon_move()
 Move DECISION_MAKER::attack_enemy_tank_move()
 {
      Move return_move;
-     return_move.shoot = info.can_shoot_at_enemy_tank;
+     return_move.shoot = my_info.can_shoot_at_enemy_tank;
 
-     if (info.can_shoot_at_enemy_tank){
-	  return_move.dirn = info.shoot_enemy_tank_dirn;
+     if (my_info.can_shoot_at_enemy_tank){
+	  return_move.dirn = my_info.shoot_enemy_tank_dirn;
      }
      else
      {
-	  return_move.dirn = info.opp_tank.initial_move.dirn;
+	  return_move.dirn = my_info.opp_tank.initial_move.dirn;
      }
      
      return return_move;
@@ -252,7 +252,7 @@ Move DECISION_MAKER::defend_my_falcon_move()
 {
      // By default, just go back towards my falcon
      // If I'm in the vicinity of my falcon, and so is he, then call attack_enemy_tank_move
-     return info.my_falcon.initial_move;
+     return my_info.my_falcon.initial_move;
 }
 
 int DECISION_MAKER::calculate_best_action_plan(int strategy)

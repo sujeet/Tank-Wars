@@ -86,6 +86,18 @@ Move::Move (bool shoot, int xdir, int ydir)
      this->dirn = Direction (xdir, ydir);
 }
 
+bool Move::is_valid ()
+{
+     // only the following combinations are valid.
+     // 1, 0 | 0, 1 | -1, 0 | 0, -1
+     int x = this->dirn.xdir;
+     int y = this->dirn.ydir;
+     if (x*x + y*y >= 2) {
+          return false;
+     }
+     return true;
+}
+
 void Move::interpret_move (int user_move, bool is_machine_gun_move)
 {
      if ( (not is_machine_gun_move) and (user_move / 4 == 1) ) {

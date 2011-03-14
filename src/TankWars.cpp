@@ -13,7 +13,7 @@ int main()
      Arena arena;
      bool bullets_only;
      srand(time(NULL));
-     for (arena.move_no = 0; arena.move_no < MAX_NUMBER_OF_MOVES; arena.move_no++){
+     for (arena.move_no = 0; arena.move_no < MAX_NUMBER_OF_MOVES * BULLET_SPEED; arena.move_no++){
           // Set the flag which indicates whether everything should move
           // or only bullets should move.
           if (arena.move_no % BULLET_SPEED != 0) {
@@ -57,5 +57,5 @@ int main()
                arena.end_game (NO_ERROR);
           }
      }
-     return -1;
+     arena.end_game (NO_ERROR);
 }

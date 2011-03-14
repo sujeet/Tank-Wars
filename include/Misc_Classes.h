@@ -8,6 +8,7 @@ public:
      int player_no;
      char tank_symbol;
      char falcon_symbol;
+     char my_bunker;
 };
 
 class Direction 
@@ -35,6 +36,7 @@ public:
      Move operator = (Move mov);
      void interpret_move (int user_move, bool is_machine_gun_move = false);
      void print ();
+     bool is_valid ();
 };
 
 class Position

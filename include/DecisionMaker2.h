@@ -21,7 +21,6 @@ public:
      Info my_info;
      Info opp_info;
      MapClass my_map;
-     Info info;
 
      /* Methods */
      void DMinitializer(ID, ID);
