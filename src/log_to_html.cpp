@@ -433,15 +433,11 @@ string insert_js()
              << "       case '" << BUNKER1 << "' :                      " << endl
              << "           ctx.fillStyle = 'rgba(0, 256, 0, 0.2)';     " << endl
              << "           ctx.fillRect (x, y, 10, 10);                " << endl
-             // << "           ctx.fillStyle = 'rgba(0, 256, 0, 1)';       " << endl
-             // << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
              << "           break;                                      " << endl
              << "                                                       " << endl
              << "       case '" << BUNKER2 << "' :                      " << endl
              << "           ctx.fillStyle = 'rgba(256, 0, 0, 0.2)';     " << endl
              << "           ctx.fillRect (x, y, 10, 10);                " << endl
-             // << "           ctx.fillStyle = 'rgba(256, 0, 0, 1)';       " << endl
-             // << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
              << "           break;                                      " << endl
              << "                                                       " << endl
              << "       case '" << TANK1 << "' :                        " << endl
@@ -487,8 +483,12 @@ string insert_js()
              << "           break;                                      " << endl
              << "                                                       " << endl
              << "       case '" << DEAD << "' :                         " << endl
+             << "           fill_the_canvas (x, y, '" << EMPTY << "');  " << endl
              << "           ctx.fillStyle = '" << DEAD_COLOUR << "';    " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                " << endl
+             << "           ctx.beginPath();                            " << endl
+             << "           ctx.arc(x+5, y+5, 5, 0, Math.PI*2, true);   " << endl
+             << "           ctx.closePath();                            " << endl
+             << "           ctx.fill();                                 " << endl
              << "           break;                                      " << endl
              << "                                                       " << endl
              << "       case '" << FALCON1 << "' :                      " << endl
