@@ -66,7 +66,7 @@ void Info::update_distances(MapClass &map,Position source)
 	  temp.go_in_direction (d);
 	  map_element = map.get_element (temp);
 
-	  if(map_element == GOLD || map_element == EMPTY || map_element == BULLET1 || map_element == BULLET2 || map_element == enemy_ID.falcon_symbol){
+	  if(map_element == enemy_ID.my_bunker || map_element == GOLD || map_element == EMPTY || map_element == BULLET1 || map_element == BULLET2 || map_element == enemy_ID.falcon_symbol){
 
 	       // Unless the position is empty or gold
 	       // dont enqueue the position.
@@ -111,6 +111,9 @@ void Info::update_distances(MapClass &map,Position source)
 	  // gold gold vector
 	  if(char_buffer == GOLD)
 	       gold.push_back(temp_info_object);
+
+	  if(char_buffer == enemy_ID.my_bunker)
+	       enemy_bunker.push_back(temp_info_object);
 	  // If the position is a tank or a falcon update the
 	  // corresponding objects. But the neighbours shouldn't be
 	  // pushed. so continue the process
@@ -132,12 +135,7 @@ void Info::update_distances(MapClass &map,Position source)
 	       my_falcon = temp_info_object;
 	       continue;
 	  }
-	  else if( char_buffer ==  WALL)
-	  {
-	       distance[x][y] = -1;
-	       continue;
-	  }
-	  else if( char_buffer == MACHINE_GUN)
+	  else if( char_buffer ==  WALL || char_buffer == my_ID.my_bunker || char_buffer == MACHINE_GUN)
 	  {
 	       distance[x][y] = -1;
 	       continue;
@@ -152,7 +150,8 @@ void Info::update_distances(MapClass &map,Position source)
 	       // push the neighbours if they are not already visited
 	       if( visited[temp1.x][temp1.y] == 0 &&
 		   !map.is_symbol (temp1, WALL) &&
-		   !map.is_symbol (temp1, MACHINE_GUN))
+		   !map.is_symbol (temp1, MACHINE_GUN) &&
+           !map.is_symbol (temp1, my_ID.my_bunker))
 	       {
 		    q.push(temp1);
 		    // the initial move is the same as its parents
@@ -204,7 +203,52 @@ void Info::update_distances(MapClass &map,Position source)
 
 }
 
+void Info::update_bullets(vector <Bullet> my_bullet_list, vector <Bullet> enemy_bullet_list)
+{
+    my_bullets.clear();
+    enemy_bullets.clear();
+    int size = my_bullets.size();
+    bullet_info temp;
+    int i;
+    for(i = 0; i < size; i++)
+    {
+        temp.posn = my_bullet_list[i].curr_posn;
+        temp.dirn = my_bullet_list[i].curr_dirn;
+        my_bullets.push_back(temp);
+    }
+    size = enemy_bullets.size();
+    for(i = 0; i < size; i++)
+    {
+        temp.posn = enemy_bullet_list[i].curr_posn;
+        temp.dirn = enemy_bullet_list[i].curr_dirn;
+        enemy_bullets.push_back(temp);
+    }
+} 
 
+void Info::update_machine_gun_list(vector <Tank> machine_gun_list)
+{
+    int machine_gun_size = machine_gun_list.size();
+    int j;
+    bullet_info temp;
+    machine_gun_position temp2;
+    machine_guns.clear();
+    machine_gun_bullets.clear();
+    for(j = 0; j < machine_gun_size; j++) 
+    {
+        int bullets_size = machine_gun_list[j].bullet_list.size();
+        int i;
+        for(i = 0; i < bullets_size; i++)
+        {
+            temp.posn = machine_gun_list[j].bullet_list[i].curr_posn;
+            temp.dirn = machine_gun_list[j].bullet_list[i].curr_dirn;
+            machine_gun_bullets.push_back(temp);
+        }
+        temp2.posn = machine_gun_list[j].curr_posn;
+        machine_guns.push_back(temp2);
+    }
+}
+
+    
 
 void Info::update_info (MapClass &map, 
             Position source, 
@@ -215,10 +259,9 @@ void Info::update_info (MapClass &map,
      curr_posn = source;
      update_distances(map,source);
      update_shoot_variables (map);
-     
-     this->my_bullet_list = given_my_bullet_list;
-     this->enemy_bullet_list = given_enemy_bullet_list;
-     this->machine_gun_list = given_machine_gun_list;
+     update_bullets(given_my_bullet_list, given_enemy_bullet_list);
+     update_machine_gun_list(given_machine_gun_list);
+
 }
 
 bool Info::update_shoot_variables (MapClass &Map)

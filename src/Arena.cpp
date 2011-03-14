@@ -112,17 +112,17 @@ void Arena::get_player_moves (bool bullets_only)
 
      // DM1 and DM2 is the interface between the 
      // game engine and the bots.
-     DM1.info.update_info (this->Map,
-                           tank1.curr_posn,
-                           tank1.bullet_list,
-                           tank2.bullet_list,
-                           machine_gun_list); 
+     DM1.my_info.update_info (this->Map,
+			      tank1.curr_posn,
+			      tank1.bullet_list,
+			      tank2.bullet_list,
+			      machine_gun_list); 
 
-     DM2.info.update_info (this->Map,
-                           tank2.curr_posn,
-                           tank2.bullet_list,
-                           tank1.bullet_list,
-                           machine_gun_list);
+     DM2.my_info.update_info (this->Map,
+			      tank2.curr_posn,
+			      tank2.bullet_list,
+			      tank1.bullet_list,
+			      machine_gun_list);
      // Update the maps in decision makers.
      DM1.my_map = this->Map;
      DM2.my_map = this->Map;
@@ -146,11 +146,11 @@ void Arena::get_player_moves (bool bullets_only)
           while (true) {
                continue;
           }
-          // tank1.get_next_move (DM1.get_player_move(DM1.info,
-          //                                          DM2.info,
-          //                                          tank1.score, 
-          //                                          tank2.score, 
-          //                                          this->move_no));
+          tank1.get_next_move (DM1.get_player_move(DM1.info,
+                                                   DM2.info,
+                                                   tank1.score, 
+                                                   tank2.score, 
+                                                   this->move_no));
           pthread_cancel (thread_id);
           // End of thread of tank1 response.
 
