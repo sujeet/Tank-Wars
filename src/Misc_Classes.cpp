@@ -14,6 +14,11 @@ Direction::Direction()
      this->get_from_integer (0);
 }
 
+Direction::Direction(int given_dirn)
+{
+     this->get_from_integer (given_dirn);
+}
+
 Direction::Direction(int xdir, int ydir)
 {
     this->xdir = xdir;
@@ -42,19 +47,19 @@ void Direction::print ()
 void Direction::get_from_integer (int inp)
 {
      switch (inp){
-     case 0:
+     case UP:
           this->xdir = -1;
           this->ydir = 0;
           break;
-     case 1:
+     case DOWN:
           this->xdir = 1;
           this->ydir = 0;
           break;
-     case 2:
+     case RIGHT:
           this->xdir = 0;
           this->ydir = 1;
           break;
-     case 3:
+     case LEFT:
           this->xdir = 0;
           this->ydir = -1;
           break;
@@ -133,6 +138,14 @@ bool Position::operator== (Position p)
 {
      return ((this->x == p.x) && (this->y == p.y));
 }
+
+Position Position::get_neighbour (Direction d)
+{
+     Position temp = *this;
+     temp.go_in_direction (d);
+     return temp;
+}
+
 
 void Position::print ()
 {

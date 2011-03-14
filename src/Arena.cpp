@@ -107,6 +107,9 @@ void Arena::get_player_moves (bool bullets_only)
                            tank2.bullet_list,
                            tank1.bullet_list,
                            machine_gun_list);
+     // Update the maps in decision makers.
+     DM1.my_map = this->Map;
+     DM2.my_map = this->Map;
 
      if (bullets_only) {
           // Return a move which neither moves nor shoots.
@@ -114,11 +117,13 @@ void Arena::get_player_moves (bool bullets_only)
           this->tank2.get_dummy_move ();
      }
      else {
-          tank1.get_next_move (DM1.get_player_move(DM1.info, DM2.info, Map,
+          tank1.get_next_move (DM1.get_player_move(DM1.info,
+                                                   DM2.info,
                                                    tank1.score, 
                                                    tank2.score, 
                                                    this->move_no));
-          tank2.get_next_move (DM2.get_player_move(DM2.info, DM1.info, Map,
+          tank2.get_next_move (DM2.get_player_move(DM2.info,
+                                                   DM1.info,
                                                    tank2.score, 
                                                    tank1.score, 
                                                    this->move_no));

@@ -37,7 +37,7 @@ public :
      char get_element (int x_coord, int y_coord) const;
      char get_element (Position posn) const;
 
-     /* Methods to check whether the given pons/coord has the symbol */
+     /* Methods to check whether the given posn/coord has the symbol */
      bool is_symbol (int x_coord, int y_coord, char symbol) const;
      bool is_symbol (Position posn, char symbol) const;
      
@@ -47,6 +47,9 @@ public :
 
      /* Function to print to log file */
      void print_log(int x, int y, char k);
+     
+     /* Assignment operator */
+     MapClass & operator = (const MapClass &);
      
      /* Destructor */
      ~MapClass();

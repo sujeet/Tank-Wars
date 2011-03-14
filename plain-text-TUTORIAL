@@ -1,0 +1,282 @@
+	       10-MINUTE COMPLETE STEP-BY-STEP TUTORIAL
+	       ========================================
+
+			  * PREREQUISITES :
+			  =================
+ * The TankWars.zip file - Unzip it in any folder of your choice
+ * 10 minutes
+
+--------------------------------------------------------------------------------
+
+			   * INTRODUCTION :
+			  =================
+ * As mentioned in the README, all you need to do to control your Tank
+is fill in the get_player_move () function in DecisionMaker1.cpp.
+ * This tutorial will take you through a series of increasingly
+complex definitions for that function.
+ * That will also familiarize you with the general information and
+structure of the code available to you to make your ultimate,
+indestructible Tank
+ * If you're really, REALLY impatient, you can simply check out the
+code bits under each step and copy-paste them into your DecisionMaker
+file and run them. You'd probably figure the rest out as you go along.
+
+--------------------------------------------------------------------------------
+
+			  * AIM OF THE GAME:
+			  =================
+ * To end the game with maximum points
+ * The game ends when either your Falcon (military base) is killed or
+if your Tank dies or if the same happens to the opponent or if the
+Maximum number of moves are exceeded
+
+--------------------------------------------------------------------------------
+
+			   * DESCRIPTION :
+			  =================
+ * The general structure of the Game is as follows :
+  * The 'Arena' Class is the environment in which the game runs and
+where the Bots clash . It contains all objects.
+  * So, in TankWars.cpp, where we want to have each Tank make its
+move, we simply call various methods of Arena object which will carry
+out various actions. This goes on until the game ends.
+  * We need not be concerned with any of that
+  * All that matters is that at each iteration, DecisionMaker1 is
+asked for a Move which will be used to make the Tank move on the Map
+  * Of course, it is not just a matter of returning a Move, because
+you have to consider all the various elements on the Map, like Gold
+pieces, Machine Guns, Enemy Tank, Enemy Base (ie. Falcon), etc. in
+order to win the game
+  * So, we'll consider all the mechanisms in place to give us the
+information we need and analyze them to return the best move we can
+think of
+
+--------------------------------------------------------------------------------
+
+		   * STEP 0 - THE CO-ORDINATE AXES
+	           =====================================
+
+  (0, 0)
+  +------------------------> (y-axis)
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+  v
+  (x-axis)
+
+		       ^ UP
+                       |
+                       |
+               LEFT | RIGHT
+              <--------|-------->
+                       |
+                       |
+                       |
+		       v DOWN
+
+--------------------------------------------------------------------------------
+
+	      * STEP 1 - A SIMPLE PROOF-OF-CONCEPT TANK:
+	      ==========================================
+ * This will make your Tank carry out the same action each time
+ * Just write :
+
+   ==CODE==
+   return Move (GO_RIGHT);
+   ==CODE==
+
+ * Then, 'make play' on the command-line, followed by 'make display'
+ * Not surprisingly, this makes your Tank move right each time
+ * However, that would have either led to it being shot by one of the
+Machine Guns out there or inevitably dashing into a wall and dying.
+ * Note : If your Tank dies, the opponent gains 400 points, so that is
+another incentive to stay alive
+
+--------------------------------------------------------------------------------
+
+	       * STEP 2 - EACH OF THE 8 MOVES POSSIBLE
+	      ==========================================
+  // Choose any one of the following 8 moves
+  // Go in one of the four directions
+
+  ==CODE==
+  return Move (GO_UP);
+  return Move (GO_DOWN);
+  return Move (GO_LEFT);
+  return Move (GO_RIGHT);
+
+  // Shoot in one of the four directions
+  return Move (SHOOT_UP);
+  return Move (SHOOT_DOWN);
+  return Move (SHOOT_LEFT);
+  return Move (SHOOT_RIGHT);
+  ==CODE==
+
+--------------------------------------------------------------------------------
+
+	   * STEP 3 - CARRIES OUT EACH OF THE FOUR ACTIONS
+	      ==========================================
+ * Now, you may not be satisfied with merely moving right or shooting
+left all the time.
+ * Let's try making some complex moves
+ * Say you want to pick up the gold piece nearest to you
+ * It's simple. All you need to do is
+
+   ==CODE==
+   int my_action_plan = GO_TO_NEAREST_GOLD
+   get_best_move_for (my_action_plan)
+   ==CODE==
+
+ * You can pass any of the following default Action Plans as
+parameters
+  * GO_TO_NEAREST_GOLD:
+   * Each time, your Tank will move in the direction of the nearest
+gold piece. Neat, huh?
+  * ATTACK_ENEMY_FALCON:
+   * That will take your Tank closer to the Enemy Falcon and shoot if
+it is in your sights.
+  * ATTACK_ENEMY_TANK:
+   * This will take your Tank closer to the Enemy Tank and shoot if it
+is in your sights
+  * DEFEND_MY_FALCON:
+   * Just go back towards your Falcon so that you can defend it from
+any attack
+ * get_best_move_for, as the name suggests, gets you the best move you
+could make for a particular Action Plan.
+
+--------------------------------------------------------------------------------
+
+	   * STEP 4 - INTRODUCE CALCULATE_BEST_ACTION_PLAN
+	   =============================================
+ * However, it can get pretty monotonous doing the same action again
+and again.
+ * To aid in making your Tank dynamic and more adaptive, we have come
+up with a rudimentary Decision Making model
+   You can use it to calculate the best moves for your Tank based on
+the situation and your preferences.
+ * We provide four different strategies that you can choose by
+default.
+ * They are
+  * AGGRESSIVE
+  * DEFENSIVE
+  * GREEDY
+  * CUSTOMIZED
+ * To put it in action, just say
+
+   ==CODE==
+   int my_strategy = AGGRESSIVE;
+   int my_action_plan = calculate_best_action_plan_for (my_strategy);
+   // Now, my_action_plan will contain one of the four basic action
+plans mentioned above
+   return get_best_move_for (my_action_plan);
+   ==CODE==
+
+ * Explanation
+  * What calculate_best_action_plan_for does is it looks for the
+utility or expected benefits of each of the four default Action Plans.
+  * This is done based on the weightage given for each plan and the
+difficulty of carrying each plan out as defined in your DecisionMaker
+object.
+  * It then returns the Action Plan which has maximum expected benefit
+  * To see what the default weightages are, go to
+DECISION_MAKER::DMinitializer function in DecisionMaker1.cpp
+  * To see how the default difficulty values are determined, go to
+DECISION_MAKER::fill_difficulty_table function in DecisionMaker1.cpp
+  * By default, the difficulty of carrying out an action plan is the
+shortest distance to the goal object. ie. for GO_TO_NEAREST_GOLD, the
+difficulty is the distance to the nearest gold
+  * In short, if a particular Action Plan, say ATTACK_ENEMY_TANK, is
+given higher weightage than the others then it will be recommended as
+the best plan when the distance from the enemy tank is not too high
+
+--------------------------------------------------------------------------------
+
+	       * STEP 5 - CREATING SOME LOCAL FUNCTIONS
+	      ==========================================
+ * Simple. You can just create new functions in the DecisionMaker1.cpp
+file and call them.
+ * Just remember not to change anything anywhere else.
+
+--------------------------------------------------------------------------------
+
+	     * STEP 6 - CHANGING DECISION TABLE WEIGHTAGE
+	     ===========================================
+ * Of course, you don't have to put up with the default weightages or
+the default ways of calculating difficulties. Try experimenting.
+ * Go to [ DMinitializer function ]
+ * For example, if you feel DEFENSIVE plan should never even consider
+ATTACK_ENEMY_TANK or ATTACK_ENEMY_FALCON, then put weightages for them
+as 0.
+ * Maybe set GREEDY's weightage for GO_TO_NEAREST_GOLD as 100 and
+everything else as 0. That's really greedy! :-). Be careful, though,
+chances of getting shot by Machine Guns and the Enemy tank are very
+high.
+ * You can set the values for each Strategy in the Weightage Table on
+the fly by calling set_weightage_table (...).
+ * This can be useful when you want to tweaks based on the current
+situation
+
+--------------------------------------------------------------------------------
+
+	 * STEP 7 - CHANGING THE WAY DIFFICULTY IS DETERMINED
+	 ===============================================
+ * As said before, the difficulty for each plan is just the shortest
+distance to the goal object
+ * Customizing that is simple
+ * Say you feel shooting at and hitting an Enemy Tank when it is
+pretty far away is very difficult since it can move away before the
+bullet reaches it
+ * By default, the fill_difficulty_table () called from
+DecisionMaker1's get_player_move function fills the table with the
+current values of shortest distances
+ * So, simply comment that function call out and call
+set_difficulty_table ()
+
+   ==CODE==
+   // fill_difficulty_table ();
+   int attack_enemy_tank_difficulty;
+   if (my_info.opp_tank.shortest_distance >= 10){
+        // 10 is just for the sake of the example
+        set_difficulty_table(info.nearest_gold.shortest_distance,
+info.opp_falcon.shortest_distance, MAX_DIFFICULTY,
+info.my_falcon.shortest_distance);
+   }
+   else{
+        set_difficulty_table (info.nearest_gold.shortest_distance,
+info.opp_falcon.shortest_distance, info.opp_tank.shortest_distance,
+info.my_falcon.shortest_distance);
+   }
+   ==CODE==
+
+ * MAX_DIFFICULTY is practically infinity.
+ * NOTE : You MUST call set_difficulty_table (...) or
+fill_difficulty_table () (whichever you use) from get_player_move ()
+so that the table is filled each time. Otherwise, you would be working
+with an outdated table
+
+--------------------------------------------------------------------------------
+
+		* Your Score and Number of Moves left
+		=====================================
+ * The get_player_move () function receives your score [my_score] and
+your enemy's score [enemy_score].
+ * It also receives the [total_moves_done] so far
+ * MAX_NUMBER_OF_MOVES tells you how many moves you can make
+
+--------------------------------------------------------------------------------
+
+* Introducing the Map + Position + Move + Direction
+ * OK! So, now you have an all-new, shiny, mean and destructive Tank
+at your command.
+ * But, how exactly do you analyze the game?
+ * TODO
+* Introduction - Can shoot items
+* Introduction - Everything else in Info Hints about various advanced
+strategies Dodge bullet Attack bunkers Creating maps
