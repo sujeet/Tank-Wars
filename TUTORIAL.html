@@ -73,8 +73,6 @@ lang="en" xml:lang="en">
 <h1 class="title">Tank Wars - 10-Minute Complete Step-by-Step Tutorial</h1>
 
 
-<p><br/>
-</p>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -82,25 +80,28 @@ lang="en" xml:lang="en">
 <li><a href="#sec-1">Prerequisites : </a></li>
 <li><a href="#sec-2">Introduction : </a></li>
 <li><a href="#sec-3">Aim of the Game: </a></li>
-<li><a href="#sec-4">Description : </a></li>
-<li><a href="#sec-5">Step 0 - The co-ordinate axes </a></li>
-<li><a href="#sec-6">Step 1 - A simple proof-of-concept Tank: </a></li>
-<li><a href="#sec-7">Step 2 - Each of the 8 moves possible </a></li>
-<li><a href="#sec-8">Step 3 - Carries out each of the four actions </a></li>
-<li><a href="#sec-9">Step 4 - Introduce calculate_best_action_plan </a></li>
-<li><a href="#sec-10">Step 5 - Creating some local functions for calculations of your own </a></li>
-<li><a href="#sec-11">Step 6 - Changing Decision Table weightage </a></li>
-<li><a href="#sec-12">Step 7 - Changing the way Difficulty is determined </a></li>
-<li><a href="#sec-13">Your Score and Number of Moves left </a></li>
-<li><a href="#sec-14">Introducing the Map </a></li>
-<li><a href="#sec-15">Introducing Info </a></li>
-<li><a href="#sec-16">Position + Move + Direction </a></li>
-<li><a href="#sec-17">Introduction - Can shoot items </a></li>
-<li><a href="#sec-18">Introduction - Everything else in Info </a></li>
-<li><a href="#sec-19">Hints about various advanced strategies </a></li>
-<li><a href="#sec-20">Dodge bullet </a></li>
-<li><a href="#sec-21">Attack bunkers </a></li>
-<li><a href="#sec-22">Creating maps </a></li>
+<li><a href="#sec-4">Instructions for running the game </a></li>
+<li><a href="#sec-5">Your Score and Number of Moves left </a></li>
+<li><a href="#sec-6">Step 0 - The co-ordinate axes </a></li>
+<li><a href="#sec-7">Step 1 - A simple proof-of-concept Tank: </a></li>
+<li><a href="#sec-8">Step 2 - Each of the 8 moves possible </a></li>
+<li><a href="#sec-9">Code Example - Attack enemy falcon </a></li>
+<li><a href="#sec-10">Step 3 - Carries out each of the four actions </a></li>
+<li><a href="#sec-11">Code Example - Attack enemy bunkers </a></li>
+<li><a href="#sec-12">Step 4 - Introduce calculate_best_action_plan </a></li>
+<li><a href="#sec-13">Code Example - Dodge bullets </a></li>
+<li><a href="#sec-14">Step 5 - Creating some local functions for calculations of your own </a></li>
+<li><a href="#sec-15">Step 6 - Changing Decision Table weightage </a></li>
+<li><a href="#sec-16">Introducing Info </a></li>
+<li><a href="#sec-17">Introducing the Map </a></li>
+<li><a href="#sec-18">Direction </a></li>
+<li><a href="#sec-19">Move </a></li>
+<li><a href="#sec-20">Position </a></li>
+<li><a href="#sec-21">Object Info </a></li>
+<li><a href="#sec-22">Each bullet_info object has </a></li>
+<li><a href="#sec-23">Hints about various advanced strategies </a></li>
+<li><a href="#sec-24">Creating maps </a></li>
+<li><a href="#sec-25">Scoring Key </a></li>
 </ul>
 </div>
 </div>
@@ -113,9 +114,7 @@ lang="en" xml:lang="en">
 <li id="sec-1.1">The TankWars.zip file - Unzip it in any folder of your choice <br/>
 </li>
 <li id="sec-1.2">10 minutes <br/>
-
-<p><br/>
-</p></li>
+</li>
 </ul>
 </div>
 
@@ -126,16 +125,14 @@ lang="en" xml:lang="en">
 <div class="outline-text-2" id="text-2">
 
 <ul>
-<li id="sec-2.1">As mentioned in the README, all you need to do to control your Tank is fill in the get_player_move () function in DecisionMaker1.cpp. <br/>
+<li id="sec-2.1">All you need to do to control your Tank is fill in the get_player_move () function in DecisionMaker1.cpp. <br/>
 </li>
 <li id="sec-2.2">This tutorial will take you through a series of increasingly complex definitions for that function. <br/>
 </li>
 <li id="sec-2.3">That will also familiarize you with the general information and structure of the code available to you to make your ultimate, indestructible Tank <br/>
 </li>
 <li id="sec-2.4">If you're really, REALLY impatient, you can simply check out the code bits under each step and copy-paste them into your DecisionMaker file and run them. You'd probably figure the rest out as you go along. <br/>
-
-<p><br/>
-</p></li>
+</li>
 </ul>
 </div>
 
@@ -149,45 +146,65 @@ lang="en" xml:lang="en">
 <li id="sec-3.1">To end the game with maximum points <br/>
 </li>
 <li id="sec-3.2">The game ends when either your Falcon (military base) is killed or if your Tank dies or if the same happens to the opponent or if the Maximum number of moves are exceeded <br/>
-
-<p><br/>
-</p></li>
+</li>
 </ul>
 </div>
 
 </div>
 
 <div id="outline-container-4" class="outline-2">
-<h2 id="sec-4">Description : </h2>
+<h2 id="sec-4">Instructions for running the game </h2>
 <div class="outline-text-2" id="text-4">
 
 <ul>
-<li id="sec-4.1">The general structure of the Game is as follows : <br/>
-<ul>
-<li id="sec-4.1.1">The 'Arena' Class is the environment in which the game runs and where the Bots clash . It contains all objects. <br/>
-</li>
-<li id="sec-4.1.2">So, in TankWars.cpp, where we want to have each Tank make its move, we simply call various methods of Arena object which will carry out various actions. This goes on until the game ends. <br/>
-</li>
-<li id="sec-4.1.3">We need not be concerned with any of that <br/>
-</li>
-<li id="sec-4.1.4">All that matters is that at each iteration, DecisionMaker1 is asked for a Move which will be used to make the Tank move on the Map <br/>
-</li>
-<li id="sec-4.1.5">Of course, it is not just a matter of returning a Move, because you have to consider all the various elements on the Map, like Gold pieces, Machine Guns, Enemy Tank, Enemy Base (ie. Falcon), etc. in order to win the game <br/>
-</li>
-<li id="sec-4.1.6">So, we'll consider all the mechanisms in place to give us the information we need and analyze them to return the best move we can think of <br/>
+<li id="sec-4.1">Simply open a terminal and type <br/>
 
 <p><br/>
+<pre class="src src-bash">make play
+</pre>
+
+
+
 </p></li>
-</ul>
-</li>
+<li id="sec-4.2">To display the game in your browser, just type <br/>
+
+<p><br/>
+<pre class="src src-bash">make display
+</pre>
+
+
+
+</p></li>
 </ul>
 </div>
 
 </div>
 
 <div id="outline-container-5" class="outline-2">
-<h2 id="sec-5">Step 0 - The co-ordinate axes </h2>
+<h2 id="sec-5">Your Score and Number of Moves left </h2>
 <div class="outline-text-2" id="text-5">
+
+<ul>
+<li id="sec-5.1">The get_player_move () function receives <br/>
+<ul>
+<li id="sec-5.1.1">Your score [my_score] and <br/>
+</li>
+<li id="sec-5.1.2">Your enemy's score [enemy_score]. <br/>
+</li>
+</ul>
+</li>
+<li id="sec-5.2">It also receives the [total_moves_done] so far <br/>
+</li>
+<li id="sec-5.3">MAX_NUMBER_OF_MOVES tells you how many moves you can make <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6">Step 0 - The co-ordinate axes </h2>
+<div class="outline-text-2" id="text-6">
 
 
 <p><br/>
@@ -207,14 +224,12 @@ v DOWN<br/>
 
 </div>
 
-<div id="outline-container-6" class="outline-2">
-<h2 id="sec-6">Step 1 - A simple proof-of-concept Tank: </h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7">Step 1 - A simple proof-of-concept Tank: </h2>
+<div class="outline-text-2" id="text-7">
 
 <ul>
-<li id="sec-6.1">This will make your Tank carry out the same action each time <br/>
-</li>
-<li id="sec-6.2">Just write : <br/>
+<li id="sec-7.1">Just type : <br/>
 
 <p><br/>
 <pre class="src src-c++"><span style="color: #729fcf; font-weight: bold;">return</span> Move (GO_RIGHT);
@@ -223,32 +238,31 @@ v DOWN<br/>
 
 
 </p></li>
-<li id="sec-6.3">Then, 'make play' on the command-line, followed by 'make display' <br/>
+<li id="sec-7.2">Not surprisingly, this makes your Tank move right each time <br/>
 </li>
-<li id="sec-6.4">Not surprisingly, this makes your Tank move right each time <br/>
+<li id="sec-7.3">However, that would have either led to it being shot by one of the Machine Guns out there or inevitably dashing into a wall and dying. <br/>
 </li>
-<li id="sec-6.5">However, that would have either led to it being shot by one of the Machine Guns out there or inevitably dashing into a wall and dying. <br/>
-</li>
-<li id="sec-6.6">Note : If your Tank dies, the opponent gains 400 points, so that is another incentive to stay alive <br/>
+<li id="sec-7.4">Note : If your Tank dies, the opponent gains 400 points, so that is another incentive to stay alive <br/>
 </li>
 </ul>
 </div>
 
 </div>
 
-<div id="outline-container-7" class="outline-2">
-<h2 id="sec-7">Step 2 - Each of the 8 moves possible </h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8">Step 2 - Each of the 8 moves possible </h2>
+<div class="outline-text-2" id="text-8">
 
-<p>// Choose any one of the following 8 moves<br/>
-// Go in one of the four directions<br/>
-</p>
+<ul>
+<li id="sec-8.1">Choose any one of the following 8 moves <br/>
+
 <p><br/>
-<pre class="src src-c++"><span style="color: #729fcf; font-weight: bold;">return</span> Move (GO_UP);
+<pre class="src src-c++"><span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Go in one of the four directions
+</span><span style="color: #729fcf; font-weight: bold;">return</span> Move (GO_UP);
 <span style="color: #729fcf; font-weight: bold;">return</span> Move (GO_DOWN);
 <span style="color: #729fcf; font-weight: bold;">return</span> Move (GO_LEFT);
 <span style="color: #729fcf; font-weight: bold;">return</span> Move (GO_RIGHT);
-
+ 
 <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Shoot in one of the four directions
 </span><span style="color: #729fcf; font-weight: bold;">return</span> Move (SHOOT_UP);
 <span style="color: #729fcf; font-weight: bold;">return</span> Move (SHOOT_DOWN);
@@ -258,22 +272,82 @@ v DOWN<br/>
 
 
 
-</p></div>
+</p></li>
+</ul>
+</div>
 
 </div>
 
-<div id="outline-container-8" class="outline-2">
-<h2 id="sec-8">Step 3 - Carries out each of the four actions </h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9">Code Example - Attack enemy falcon </h2>
+<div class="outline-text-2" id="text-9">
 
 <ul>
-<li id="sec-8.1">Now, you may not be satisfied with merely moving right or shooting left all the time. <br/>
+<li id="sec-9.1">Let's dive into the actual coding process by skipping all the boring documentation bit <br/>
 </li>
-<li id="sec-8.2">Let's try making some complex moves <br/>
+<li id="sec-9.2">How would you attack the Enemy Falcon? <br/>
 </li>
-<li id="sec-8.3">Say you want to pick up the gold piece nearest to you <br/>
+<li id="sec-9.3">For that you need 3 things <br/>
+<ul>
+<li id="sec-9.3.1">The position of the falcon <br/>
 </li>
-<li id="sec-8.4">It's simple. All you need to do is <br/>
+<li id="sec-9.3.2">The next move you have to make in order to get closer to it <br/>
+</li>
+<li id="sec-9.3.3">And the direction to shoot in so that you hit the Falcon <br/>
+</li>
+</ul>
+</li>
+<li id="sec-9.4">The answers are in the variable my_info in the DecisionMaker class <br/>
+</li>
+<li id="sec-9.5">It contains <br/>
+
+<p><br/>
+<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">object_info</span> <span style="color: #ff6347;">opp_falcon</span>;
+</pre>
+
+
+
+</p></li>
+<li id="sec-9.6">Also, my_info contains a boolean - can_shoot_at_enemy_falcon - which is true whenever the Falcon is in your sights <br/>
+</li>
+<li id="sec-9.7">The resulting code is simple enough <br/>
+
+<p><br/>
+<pre class="src src-c++"><span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">If you can shoot at the Enemy Falcon from the current position, do so
+</span><span style="color: #8ae234; font-weight: bold;">Move</span> <span style="color: #ff6347;">my_next_move</span>;
+<span style="color: #729fcf; font-weight: bold;">if</span> (my_info.can_shoot_at_enemy_falcon){
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">This is the move to go closer
+</span>     my_next_move = my_info.my_falcon.initial_move;
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">However, we don't want to go closer
+</span>     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">We want to shoot in that direction!
+</span>     my_next_move.shoot = <span style="color: #8ae234;">true</span>;
+     <span style="color: #729fcf; font-weight: bold;">return</span> my_next_move;
+}
+<span style="color: #729fcf; font-weight: bold;">else</span>{
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Just go closer
+</span>     my_next_move = my_info.my_falcon.initial_move;
+     <span style="color: #729fcf; font-weight: bold;">return</span> my_next_move;
+}
+</pre>
+
+
+
+</p></li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-10" class="outline-2">
+<h2 id="sec-10">Step 3 - Carries out each of the four actions </h2>
+<div class="outline-text-2" id="text-10">
+
+<ul>
+<li id="sec-10.1">Let's try making some more complex moves <br/>
+</li>
+<li id="sec-10.2">Say you want to pick up the gold piece nearest to you <br/>
+</li>
+<li id="sec-10.3">It's simple. All you need to do is <br/>
 
 <p><br/>
 <pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">int</span> <span style="color: #ff6347;">my_action_plan</span> = GO_TO_NEAREST_GOLD
@@ -283,66 +357,68 @@ get_best_move_for (my_action_plan)
 
 
 </p></li>
-<li id="sec-8.5">You can pass any of the following default Action Plans as parameters <br/>
-<ul>
-<li id="sec-8.5.1">GO_TO_NEAREST_GOLD: <br/>
-<ul>
-<li id="sec-8.5.1.1">Each time, your Tank will move in the direction of the nearest gold piece. Neat, huh? <br/>
+<li id="sec-10.4">You can pass any of the following default Action Plans as parameters <br/>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /><col align="left" />
+</colgroup>
+<tbody>
+<tr><td>GO_TO_NEAREST_GOLD</td><td>Each time, your Tank will move in the direction of the nearest gold piece. Neat, huh?</td></tr>
+<tr><td>ATTACK_ENEMY_FALCON</td><td>That will take your Tank closer to the Enemy Falcon and shoot if it is in your sights.</td></tr>
+<tr><td>ATTACK_ENEMY_TANK</td><td>This will take your Tank closer to the Enemy Tank and shoot if it is in your sights</td></tr>
+<tr><td>DEFEND_MY_FALCON</td><td>Just go back towards your Falcon so that you can defend it from any attack</td></tr>
+</tbody>
+</table>
+
 </li>
-</ul>
-</li>
-<li id="sec-8.5.2">ATTACK_ENEMY_FALCON: <br/>
-<ul>
-<li id="sec-8.5.2.1">That will take your Tank closer to the Enemy Falcon and shoot if it is in your sights. <br/>
-</li>
-</ul>
-</li>
-<li id="sec-8.5.3">ATTACK_ENEMY_TANK: <br/>
-<ul>
-<li id="sec-8.5.3.1">This will take your Tank closer to the Enemy Tank and shoot if it is in your sights <br/>
-</li>
-</ul>
-</li>
-<li id="sec-8.5.4">DEFEND_MY_FALCON: <br/>
-<ul>
-<li id="sec-8.5.4.1">Just go back towards your Falcon so that you can defend it from any attack <br/>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li id="sec-8.6">get_best_move_for, as the name suggests, gets you the best move you could make for a particular Action Plan. <br/>
+<li id="sec-10.5">get_best_move_for, as the name suggests, gets you the best move you could make for a particular Action Plan. <br/>
 </li>
 </ul>
 </div>
 
 </div>
 
-<div id="outline-container-9" class="outline-2">
-<h2 id="sec-9">Step 4 - Introduce calculate_best_action_plan </h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-11" class="outline-2">
+<h2 id="sec-11">Code Example - Attack enemy bunkers </h2>
+<div class="outline-text-2" id="text-11">
 
 <ul>
-<li id="sec-9.1">However, it can get pretty monotonous doing the same action again and again. <br/>
+<li id="sec-11.1">Again, my_info comes to the rescue. You have a vector of object_infos which tell you about each bunker's position, distance from you, initial_move, etc. <br/>
 </li>
-<li id="sec-9.2">To aid in making your Tank dynamic and more adaptive, we have come up with a rudimentary Decision Making model <br/>
+<li id="sec-11.2">Code is pretty much the same as for attack enemy falcon <br/>
+</li>
+<li id="sec-11.3">And, you can do the same to attack the Enemy Tank itself! <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-12" class="outline-2">
+<h2 id="sec-12">Step 4 - Introduce calculate_best_action_plan </h2>
+<div class="outline-text-2" id="text-12">
+
+<ul>
+<li id="sec-12.1">However, it can get pretty monotonous doing the same action again and again. <br/>
+</li>
+<li id="sec-12.2">To aid in making your Tank dynamic and more adaptive, we have come up with a rudimentary Decision Making model <br/>
 You can use it to calculate the best moves for your Tank based on the situation and your preferences.<br/>
 </li>
-<li id="sec-9.3">We provide four different strategies that you can choose by default. <br/>
+<li id="sec-12.3">We provide four different strategies that you can choose by default. <br/>
 </li>
-<li id="sec-9.4">They are <br/>
+<li id="sec-12.4">They are <br/>
 <ul>
-<li id="sec-9.4.1">AGGRESSIVE <br/>
+<li id="sec-12.4.1">AGGRESSIVE <br/>
 </li>
-<li id="sec-9.4.2">DEFENSIVE <br/>
+<li id="sec-12.4.2">DEFENSIVE <br/>
 </li>
-<li id="sec-9.4.3">GREEDY <br/>
+<li id="sec-12.4.3">GREEDY <br/>
 </li>
-<li id="sec-9.4.4">CUSTOMIZED <br/>
+<li id="sec-12.4.4">CUSTOMIZED <br/>
 </li>
 </ul>
 </li>
-<li id="sec-9.5">To put it in action, just say <br/>
+<li id="sec-12.5">To put it in action, just say <br/>
 
 <p><br/>
 <pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">int</span> <span style="color: #ff6347;">my_strategy</span> = AGGRESSIVE;
@@ -354,98 +430,23 @@ You can use it to calculate the best moves for your Tank based on the situation 
 
 
 </p></li>
-<li id="sec-9.6">Explanation <br/>
+<li id="sec-12.6">Explanation <br/>
 <ul>
-<li id="sec-9.6.1">What calculate_best_action_plan_for does is it looks for the utility or expected benefits of each of the four default Action Plans. <br/>
+<li id="sec-12.6.1">What calculate_best_action_plan_for does is it looks for the utility or expected benefits of each of the four default Action Plans. <br/>
 </li>
-<li id="sec-9.6.2">This is done based on the weightage given for each plan and the difficulty of carrying each plan out as defined in your DecisionMaker object. <br/>
+<li id="sec-12.6.2">This is done based on the weightage given for each plan and the difficulty of carrying each plan out as defined in your DecisionMaker object. <br/>
 </li>
-<li id="sec-9.6.3">It then returns the Action Plan which has maximum expected benefit <br/>
+<li id="sec-12.6.3">It then returns the Action Plan which has maximum expected benefit <br/>
 </li>
-<li id="sec-9.6.4">To see what the default weightages are, go to DECISION_MAKER::DMinitializer function in DecisionMaker1.cpp <br/>
+<li id="sec-12.6.4">To see what the default weightages are, go to DECISION_MAKER::DMinitializer function in DecisionMaker1.cpp <br/>
 </li>
-<li id="sec-9.6.5">To see how the default difficulty values are determined, go to DECISION_MAKER::fill_difficulty_table function in DecisionMaker1.cpp <br/>
+<li id="sec-12.6.5">To see how the default difficulty values are determined, go to DECISION_MAKER::fill_difficulty_table function in DecisionMaker1.cpp <br/>
 </li>
-<li id="sec-9.6.6">By default, the difficulty of carrying out an action plan is the shortest distance to the goal object. ie. for GO_TO_NEAREST_GOLD, the difficulty is the distance to the nearest gold <br/>
+<li id="sec-12.6.6">By default, the difficulty of carrying out an action plan is the shortest distance to the goal object. ie. for GO_TO_NEAREST_GOLD, the difficulty is the distance to the nearest gold <br/>
 </li>
-<li id="sec-9.6.7">In short, if a particular Action Plan, say ATTACK_ENEMY_TANK, is given higher weightage than the others then it will be recommended as the best plan when the distance from the enemy tank is not too high <br/>
+<li id="sec-12.6.7">In short, if a particular Action Plan, say ATTACK_ENEMY_TANK, is given higher weightage than the others then it will be recommended as the best plan when the distance from the enemy tank is not too high <br/>
 </li>
 </ul>
-</li>
-</ul>
-</div>
-
-</div>
-
-<div id="outline-container-10" class="outline-2">
-<h2 id="sec-10">Step 5 - Creating some local functions for calculations of your own </h2>
-<div class="outline-text-2" id="text-10">
-
-<ul>
-<li id="sec-10.1">Simple. You can just create new functions in the DecisionMaker1.cpp file and call them. <br/>
-</li>
-<li id="sec-10.2">Just remember not to change anything anywhere else. <br/>
-</li>
-</ul>
-</div>
-
-</div>
-
-<div id="outline-container-11" class="outline-2">
-<h2 id="sec-11">Step 6 - Changing Decision Table weightage </h2>
-<div class="outline-text-2" id="text-11">
-
-<ul>
-<li id="sec-11.1">Of course, you don't have to put up with the default weightages or the default ways of calculating difficulties. Try experimenting. <br/>
-</li>
-<li id="sec-11.2">Go to [ DMinitializer function ] <br/>
-</li>
-<li id="sec-11.3">For example, if you feel DEFENSIVE plan should never even consider ATTACK_ENEMY_TANK or ATTACK_ENEMY_FALCON, then put weightages for them as 0. <br/>
-</li>
-<li id="sec-11.4">Maybe set GREEDY's weightage for GO_TO_NEAREST_GOLD as 100 and everything else as 0. That's really greedy! :-). Be careful, though, chances of getting shot by Machine Guns and the Enemy tank are very high. <br/>
-</li>
-<li id="sec-11.5">You can set the values for each Strategy in the Weightage Table on the fly by calling set_weightage_table (&hellip;). <br/>
-</li>
-<li id="sec-11.6">This can be useful when you want to tweaks based on the current situation <br/>
-</li>
-</ul>
-</div>
-
-</div>
-
-<div id="outline-container-12" class="outline-2">
-<h2 id="sec-12">Step 7 - Changing the way Difficulty is determined </h2>
-<div class="outline-text-2" id="text-12">
-
-<ul>
-<li id="sec-12.1">As said before, the difficulty for each plan is just the shortest distance to the goal object <br/>
-</li>
-<li id="sec-12.2">Customizing that is simple <br/>
-</li>
-<li id="sec-12.3">Say you feel shooting at and hitting an Enemy Tank when it is pretty far away is very difficult since it can move away before the bullet reaches it <br/>
-</li>
-<li id="sec-12.4">By default, the fill_difficulty_table () called from DecisionMaker1's get_player_move function fills the table with the current values of shortest distances <br/>
-</li>
-<li id="sec-12.5">So, simply comment that function call out and call set_difficulty_table () <br/>
-
-<p><br/>
-<pre class="src src-c++"><span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">fill_difficulty_table ();
-</span><span style="color: #8ae234; font-weight: bold;">int</span> <span style="color: #ff6347;">attack_enemy_tank_difficulty</span>;
-<span style="color: #729fcf; font-weight: bold;">if</span> (my_info.opp_tank.shortest_distance &gt;= 10){
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">10 is just for the sake of the example
-</span>     set_difficulty_table(info.nearest_gold.shortest_distance, info.opp_falcon.shortest_distance, MAX_DIFFICULTY, info.my_falcon.shortest_distance);
-}
-<span style="color: #729fcf; font-weight: bold;">else</span>{
-     set_difficulty_table (info.nearest_gold.shortest_distance, info.opp_falcon.shortest_distance, info.opp_tank.shortest_distance, info.my_falcon.shortest_distance);
-}
-</pre>
-
-
-
-</p></li>
-<li id="sec-12.6">MAX_DIFFICULTY is practically infinity. <br/>
-</li>
-<li id="sec-12.7">NOTE : You MUST call set_difficulty_table (&hellip;) or fill_difficulty_table () (whichever you use) from get_player_move () so that the table is filled each time. Otherwise, you would be working with an outdated table. <br/>
 </li>
 </ul>
 </div>
@@ -453,15 +454,80 @@ You can use it to calculate the best moves for your Tank based on the situation 
 </div>
 
 <div id="outline-container-13" class="outline-2">
-<h2 id="sec-13">Your Score and Number of Moves left </h2>
+<h2 id="sec-13">Code Example - Dodge bullets </h2>
 <div class="outline-text-2" id="text-13">
 
 <ul>
-<li id="sec-13.1">The get_player_move () function receives your score [my_score] and your enemy's score [enemy_score]. <br/>
+<li id="sec-13.1">If you play the game for long enough, you'll find that most of the time, your Tank dies because it was hit by some bullet <br/>
 </li>
-<li id="sec-13.2">It also receives the [total_moves_done] so far <br/>
+<li id="sec-13.2">Let's try to dodge those pesky bullets <br/>
 </li>
-<li id="sec-13.3">MAX_NUMBER_OF_MOVES tells you how many moves you can make <br/>
+<li id="sec-13.3">A naive method <br/>
+
+<p><br/>
+<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">bullet_info</span> <span style="color: #ff6347;">curr_bullet</span>;
+<span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Tank's current position
+</span>posn = my_info.curr_posn;
+
+<span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Go this many steps to the RIGHT and see if any bullet there is
+</span><span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">coming towards you
+</span><span style="color: #729fcf; font-weight: bold;">for</span> (i = 1; i &lt;= BULLET_SPEED; i++){
+
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Make posn become the position to its right
+</span>     posn.go_in_direction (Direction (RIGHT));
+     safe_dirn = UP;            <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Direction in which to dodge
+</span>     opposite_dirn = LEFT;      <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Direction in which bullets will come
+</span>
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">For each bullet out there
+</span>     <span style="color: #729fcf; font-weight: bold;">for</span> (j = 0; j &lt; my_info.machine_gun_bullets.size (); j++){
+          curr_bullet = my_info.machine_gun_bullets[j];
+
+          <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">If you are within its range and if it is coming towards you
+</span>          <span style="color: #729fcf; font-weight: bold;">if</span> (curr_bullet.posn == posn &amp;&amp; curr_bullet.dirn == Direction (opposite_dirn)){
+               <span style="color: #729fcf; font-weight: bold;">return</span> Move (safe_dirn); <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Dodge
+</span>          }
+     }
+}
+</pre>
+
+
+
+</p></li>
+<li id="sec-13.4">This example introduces <br/>
+<ul>
+<li id="sec-13.4.1">Position curr_posn <br/>
+</li>
+<li id="sec-13.4.2">BULLET_SPEED <br/>
+Each bullet travels BULLET_SPEED steps in one move<br/>
+</li>
+<li id="sec-13.4.3">Direction <br/>
+</li>
+<li id="sec-13.4.4">Bullet Lists in my_info <br/>
+<ul>
+<li id="sec-13.4.4.1">The info object contains 3 Bullet Lists <br/>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /><col align="left" />
+</colgroup>
+<tbody>
+<tr><td>my_bullets</td><td>List of info about all my bullets</td></tr>
+<tr><td>enemy_bullets</td><td>List of info about all enemy bullets</td></tr>
+<tr><td>machine_gun_bullets</td><td>List of info about all MG bullets</td></tr>
+</tbody>
+</table>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="sec-13.5">Of course, it is just a toy example. :-) <br/>
+</li>
+<li id="sec-13.6">Your version should take care of bullets from all Directions plus Bullets by the Enemy Tank <br/>
+</li>
+<li id="sec-13.7">Plus, there is the gotcha that you might hit bullets when you move left, right, up, down, etc. <br/>
+</li>
+<li id="sec-13.8">Watch out for other obstacles as well! <br/>
 </li>
 </ul>
 </div>
@@ -469,33 +535,149 @@ You can use it to calculate the best moves for your Tank based on the situation 
 </div>
 
 <div id="outline-container-14" class="outline-2">
-<h2 id="sec-14">Introducing the Map </h2>
+<h2 id="sec-14">Step 5 - Creating some local functions for calculations of your own </h2>
 <div class="outline-text-2" id="text-14">
 
 <ul>
-<li id="sec-14.1">OK! So, now you have an all-new, shiny, mean and destructive Tank at your command. <br/>
+<li id="sec-14.1">Simple. You can just create new functions in the DecisionMaker1.cpp file and call them. <br/>
 </li>
-<li id="sec-14.2">But, how exactly do you analyze the game? <br/>
+<li id="sec-14.2">Just remember not to change anything anywhere else. <br/>
 </li>
-<li id="sec-14.3">How do you know what to do? Should you be GREEDY? Should you switch to an AGGRESSIVE strategy? Should you do something else altogether? <br/>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-15" class="outline-2">
+<h2 id="sec-15">Step 6 - Changing Decision Table weightage </h2>
+<div class="outline-text-2" id="text-15">
+
+<ul>
+<li id="sec-15.1">Of course, you don't have to put up with the default weightages or the default ways of calculating difficulties. Try experimenting. <br/>
 </li>
-<li id="sec-14.4">For that you need to look at the "Map" <br/>
+<li id="sec-15.2">Go to [ DMinitializer function ] <br/>
 </li>
-<li id="sec-14.5">It is nothing but the 2-D array of cells in which all the Tanks, Bunkers, Falcons, Walls, etc. are stored. <br/>
+<li id="sec-15.3">For example, if you feel DEFENSIVE plan should never even consider ATTACK_ENEMY_TANK or ATTACK_ENEMY_FALCON, then put weightages for them as 0. <br/>
 </li>
-<li id="sec-14.6">Each object occupies one cell. <br/>
+<li id="sec-15.4">Maybe set GREEDY's weightage for GO_TO_NEAREST_GOLD as 100 and everything else as 0. That's really greedy! :-). Be careful, though, chances of getting shot by Machine Guns and the Enemy tank are very high. <br/>
 </li>
-<li id="sec-14.7">Your DecisionMaker class will have an object called <br/>
-MapClass my_map;<br/>
+<li id="sec-15.5">You can set the values for each Strategy in the Weightage Table on the fly by calling <br/>
+
+<p><br/>
+<pre class="src src-c++">set_weightage_table (AGGRESSIVE, 20, 80, 80, 0);
+</pre>
+
+
+
+</p></li>
+<li id="sec-15.6">This can be useful when you want to tweaks based on the current situation <br/>
 </li>
-<li id="sec-14.8">This contains a 2-D array - <br/>
-char map[MAP_SIZE][MAP_SIZE];<br/>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-16" class="outline-2">
+<h2 id="sec-16">Introducing Info </h2>
+<div class="outline-text-2" id="text-16">
+
+<ul>
+<li id="sec-16.1">Info object contains pretty much all the basic game information you're going to need <br/>
 </li>
-<li id="sec-14.9">This is what will get updated each time as your Tank and your Enemy's tank move around and shoot bullets <br/>
+<li id="sec-16.2">This way you don't even have to know what Breadth-First Search means or deal with things like 'What is the next move to make in order to shoot the Enemy Falcon?'. Phew! <br/>
 </li>
-<li id="sec-14.10">This is what is shown in your browser when you call 'make display' <br/>
+<li id="sec-16.3">DecisionMaker contains two objects <br/>
+
+<p><br/>
+<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">Info</span> <span style="color: #ff6347;">my_info</span>;
+<span style="color: #8ae234; font-weight: bold;">Info</span> <span style="color: #ff6347;">opp_info</span>;
+</pre>
+
+
+
+</p></li>
+<li id="sec-16.4">my_info pertains to information about your Tank <br/>
 </li>
-<li id="sec-14.11">The character symbols represent various objects <br/>
+<li id="sec-16.5">opp_info pertains to information about the Enemy Tank <br/>
+</li>
+<li id="sec-16.6">Contents <br/>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /><col align="left" /><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col">Type</th><th scope="col">Variable</th><th scope="col">Value</th></tr>
+</thead>
+<tbody>
+<tr><td>Position</td><td>curr_posn</td><td>Your current Position</td></tr>
+<tr><td>ID</td><td>my_ID</td><td>Your ID</td></tr>
+<tr><td>ID</td><td>enemy_ID</td><td>Enemy ID</td></tr>
+<tr><td>bool</td><td>can_shoot_at_enemy_tank</td><td>Whether the enemy tank is in your sights</td></tr>
+<tr><td>bool</td><td>can_shoot_at_enemy_falcon</td><td>Whether the enemy Falcon is in your sights</td></tr>
+<tr><td>Direction</td><td>shoot_falcon_dirn</td><td>Direction in which Enemy Falcon lies</td></tr>
+<tr><td>Direction</td><td>shoot_enemy_tank_dirn</td><td>Direction in which Enemy Tank lies</td></tr>
+<tr><td>Vector of Bullet Info</td><td>my_bullets</td><td>Information about all bullets you shot</td></tr>
+<tr><td>Vector of Bullet Info</td><td>enemy_bullets</td><td>Information about all bullets the Enemy shot</td></tr>
+<tr><td>Vector of Bullet Info</td><td>machine_gun_bullets</td><td>Information about all bullets the MGs shot</td></tr>
+<tr><td>Vector of object_infos</td><td>gold</td><td>Information about all gold pieces</td></tr>
+<tr><td>Object_info</td><td>my_falcon</td><td>Information about your falcon</td></tr>
+<tr><td>Object_info</td><td>opp_falcon</td><td>Information about Enemy falcon</td></tr>
+<tr><td>Object_info</td><td>opp_tank</td><td>Information about Enemy Tank</td></tr>
+<tr><td>Object_info</td><td>nearest_gold</td><td>Information about the nearest gold piece</td></tr>
+<tr><td>bool</td><td>gold_available</td><td>Do any more gold pieces exist on Map?</td></tr>
+</tbody>
+</table>
+
+<ul>
+<li id="sec-16.6.1">That's all <br/>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-17" class="outline-2">
+<h2 id="sec-17">Introducing the Map </h2>
+<div class="outline-text-2" id="text-17">
+
+<ul>
+<li id="sec-17.1">OK! So, now you have an all-new, shiny, mean and destructive Tank at your command. <br/>
+</li>
+<li id="sec-17.2">But, how exactly do you analyze the game? <br/>
+</li>
+<li id="sec-17.3">How do you know what to do? Should you be GREEDY? Should you switch to an AGGRESSIVE strategy? Should you do something else altogether? <br/>
+</li>
+<li id="sec-17.4">For that you need to look at the "Map" <br/>
+</li>
+<li id="sec-17.5">It is nothing but the 2-D array of cells in which all the Tanks, Bunkers, Falcons, Walls, etc. are stored. <br/>
+</li>
+<li id="sec-17.6">Each object occupies one cell. <br/>
+</li>
+<li id="sec-17.7">Your DecisionMaker class will have an object called <br/>
+
+<p><br/>
+<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">MapClass</span> <span style="color: #ff6347;">my_map</span>;
+</pre>
+
+
+
+</p></li>
+<li id="sec-17.8">This contains a 2-D array - <br/>
+
+<p><br/>
+<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">char</span> <span style="color: #ff6347;">map</span>[MAP_SIZE][MAP_SIZE];
+</pre>
+
+
+
+</p></li>
+<li id="sec-17.9">This is what will get updated each time as your Tank and your Enemy's tank move around and shoot bullets <br/>
+</li>
+<li id="sec-17.10">This is what is shown in your browser when you call 'make display' <br/>
+</li>
+<li id="sec-17.11">The character symbols represent various objects <br/>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption></caption>
 <colgroup><col align="left" /><col align="left" /><col align="left" />
@@ -522,14 +704,30 @@ char map[MAP_SIZE][MAP_SIZE];<br/>
 </table>
 
 </li>
-<li id="sec-14.12">You can access the elements of the map[][] array directly. Like so <br/>
+<li id="sec-17.12">You can access the elements of the map[][] array directly. Like so <br/>
 
 <p><br/>
 <pre class="src src-c++"><span style="color: #729fcf; font-weight: bold;">if</span> (my_map.map[i][j] == WALL){
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Then move away!!!
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Then do something
 </span>}
 <span style="color: #729fcf; font-weight: bold;">else</span> <span style="color: #729fcf; font-weight: bold;">if</span> (my_map.map[i][j] == GOLD){
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Yippee!!
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Go for it!
+</span>}
+</pre>
+
+
+
+</p></li>
+<li id="sec-17.13">Or, more simply, you can simply use Positions <br/>
+
+<p><br/>
+<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">Direction</span> <span style="color: #ff6347;">d</span> = Direction (RIGHT);                <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">or (LEFT) or (0), (1), etc.
+</span>my_neighbour = curr_posn.get_neighbour (d);
+<span style="color: #729fcf; font-weight: bold;">if</span> (my_map.get_element (my_neighbour) == WALL){
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Then do something
+</span>}
+<span style="color: #729fcf; font-weight: bold;">else</span> <span style="color: #729fcf; font-weight: bold;">if</span> (my_map.get_element (my_neighbour) == GOLD){
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Go for it!
 </span>}
 </pre>
 
@@ -537,146 +735,172 @@ char map[MAP_SIZE][MAP_SIZE];<br/>
 
 </p></li>
 </ul>
-</div>
-
-</div>
-
-<div id="outline-container-15" class="outline-2">
-<h2 id="sec-15">Introducing Info </h2>
-<div class="outline-text-2" id="text-15">
-
-<ul>
-<li id="sec-15.1">To make life even easier for you, we've created an Info object, which contains pretty much all the basic game information you're going to need <br/>
-</li>
-<li id="sec-15.2">This way you don't even have to know what Breadth-First Search means or deal with things like 'What is the next move to make in order to shoot the Enemy Falcon?'. Phew! <br/>
-</li>
-<li id="sec-15.3">DecisionMaker contains two objects <br/>
-
-<p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">Info</span> <span style="color: #ff6347;">my_info</span>;
-<span style="color: #8ae234; font-weight: bold;">Info</span> <span style="color: #ff6347;">opp_info</span>;
-</pre>
-
-
-
-</p></li>
-<li id="sec-15.4">my_info pertains to information about your Tank <br/>
-</li>
-<li id="sec-15.5">opp_info pertains to information about the Enemy Tank <br/>
-</li>
-<li id="sec-15.6">Contents <br/>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption></caption>
-<colgroup><col align="left" /><col align="left" /><col align="left" />
-</colgroup>
-<thead>
-<tr><th scope="col">Type</th><th scope="col">Variable</th><th scope="col">Value</th></tr>
-</thead>
-<tbody>
-<tr><td>Position</td><td>curr_posn</td><td>Your current Position</td></tr>
-<tr><td>ID</td><td>my_ID</td><td>Your ID</td></tr>
-<tr><td>ID</td><td>enemy_ID</td><td>Enemy ID</td></tr>
-<tr><td>bool</td><td>can_shoot_at_enemy_tank</td><td>Whether the enemy tank is in your sights</td></tr>
-<tr><td>bool</td><td>can_shoot_at_enemy_falcon</td><td>Whether the enemy Falcon is in your sights</td></tr>
-<tr><td>Direction</td><td>shoot_falcon_dirn</td><td>Direction in which Enemy Falcon lies</td></tr>
-<tr><td>Direction</td><td>shoot_enemy_tank_dirn</td><td>Direction in which Enemy Tank lies</td></tr>
-<tr><td>Vector of object_infos</td><td>gold</td><td>Information about all gold pieces</td></tr>
-<tr><td>Vector of Bullets</td><td>my_bullet_list</td><td>Information about all bullets you shot</td></tr>
-<tr><td>Vector of Bullets</td><td>enemy_bullet_list</td><td>Information about all bullets the Enemy shot</td></tr>
-<tr><td>Vector of Tanks</td><td>machine_gun_list</td><td>Information about all the MGs</td></tr>
-<tr><td>Object_info</td><td>my_falcon</td><td>Information about your falcon</td></tr>
-<tr><td>Object_info</td><td>opp_falcon</td><td>Information about Enemy falcon</td></tr>
-<tr><td>Object_info</td><td>opp_tank</td><td>Information about Enemy Tank</td></tr>
-<tr><td>Object_info</td><td>nearest_gold</td><td>Information about the nearest gold piece</td></tr>
-<tr><td>bool</td><td>gold_available</td><td>Do any more gold pieces exist on Map?</td></tr>
-</tbody>
-</table>
-
-<ul>
-<li id="sec-15.6.1">Your current position - curr_posn <br/>
-To get your x and y coordinate, just say -<br/>
-
-<p><br/>
-<pre class="src src-c++">curr_posn.x
-<span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">or
-</span>curr_posn.y
-</pre>
-
-
-
-</p></li>
-<li id="sec-15.6.2">That's all <br/>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-
-</div>
-
-<div id="outline-container-16" class="outline-2">
-<h2 id="sec-16">Position + Move + Direction </h2>
-<div class="outline-text-2" id="text-16">
-
-<ul>
-<li id="sec-16.1">However, to make your life simpler, we have different objects <br/>
-</li>
-<li id="sec-16.2">Position Class <br/>
-<ul>
-<li id="sec-16.2.1">This basically just stores x coordinate and y coordinate of a position <br/>
-</li>
-<li id="sec-16.2.2">In DecisionMaker, you have <br/>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-
-</div>
-
-<div id="outline-container-17" class="outline-2">
-<h2 id="sec-17">Introduction - Can shoot items </h2>
-<div class="outline-text-2" id="text-17">
-
 </div>
 
 </div>
 
 <div id="outline-container-18" class="outline-2">
-<h2 id="sec-18">Introduction - Everything else in Info </h2>
+<h2 id="sec-18">Direction </h2>
 <div class="outline-text-2" id="text-18">
 
+<ul>
+<li id="sec-18.1">Basically just a pair - xdir and ydir <br/>
+</li>
+<li id="sec-18.2">You can use it in different ways <br/>
+
+<p><br/>
+<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">Direction</span> <span style="color: #ff6347;">dirn</span> = Direction (LEFT); <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">RIGHT, etc
+</span><span style="color: #8ae234; font-weight: bold;">Direction</span> <span style="color: #ff6347;">dirn2</span> = dirn;
+<span style="color: #729fcf; font-weight: bold;">if</span> (dirn == Direction (1)){      <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">1 : DOWN
+</span>     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Something or the other
+</span>}
+</pre>
+
+
+
+</p></li>
+</ul>
 </div>
 
 </div>
 
 <div id="outline-container-19" class="outline-2">
-<h2 id="sec-19">Hints about various advanced strategies </h2>
+<h2 id="sec-19">Move </h2>
 <div class="outline-text-2" id="text-19">
 
+<ul>
+<li id="sec-19.1">It has two variables <br/>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /><col align="left" />
+</colgroup>
+<tbody>
+<tr><td>bool</td><td>shoot</td></tr>
+<tr><td>Direction</td><td>dirn</td></tr>
+</tbody>
+</table>
+
+</li>
+<li id="sec-19.2">Usage <br/>
+
+<p><br/>
+<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">Move</span> <span style="color: #ff6347;">my_move</span> = Move (SHOOT_LEFT);
+<span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">or
+</span><span style="color: #8ae234; font-weight: bold;">Move</span> <span style="color: #ff6347;">move1</span>;
+move1.shoot = <span style="color: #8ae234;">true</span>;
+move1.dirn = Direction (LEFT);
+<span style="color: #8ae234; font-weight: bold;">Move</span> <span style="color: #ff6347;">move2</span> = move1;
+</pre>
+
+
+
+</p></li>
+</ul>
 </div>
 
 </div>
 
 <div id="outline-container-20" class="outline-2">
-<h2 id="sec-20">Dodge bullet </h2>
+<h2 id="sec-20">Position </h2>
 <div class="outline-text-2" id="text-20">
 
+<ul>
+<li id="sec-20.1">Again just a pair - x, y <br/>
+</li>
+<li id="sec-20.2">Main usage <br/>
+
+<p><br/>
+<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">Position</span> <span style="color: #ff6347;">posn</span> = my_info.curr_posn;
+my_left_neighbour = posn.get_neighbour (Direction (LEFT));
+posn.go_in_direction (Direction (RIGHT));
+<span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Now, posn is the cell to the right
+</span></pre>
+
+
+
+</p></li>
+</ul>
 </div>
 
 </div>
 
 <div id="outline-container-21" class="outline-2">
-<h2 id="sec-21">Attack bunkers </h2>
+<h2 id="sec-21">Object Info </h2>
 <div class="outline-text-2" id="text-21">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col">Variable</th><th scope="col">Value</th></tr>
+</thead>
+<tbody>
+<tr><td>shortest_distance</td><td>Shortest Distance to the Object</td></tr>
+<tr><td>posn</td><td>The Position of the Object</td></tr>
+<tr><td>initial_move</td><td>The Move you need to make now to get closer to the Object</td></tr>
+</tbody>
+</table>
 
 </div>
 
 </div>
 
 <div id="outline-container-22" class="outline-2">
-<h2 id="sec-22">Creating maps </h2>
+<h2 id="sec-22">Each bullet_info object has </h2>
 <div class="outline-text-2" id="text-22">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /><col align="left" />
+</colgroup>
+<tbody>
+<tr><td>posn</td><td>Current position of the Bullet</td></tr>
+<tr><td>dirn</td><td>Direction in which it is travelling</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div id="outline-container-23" class="outline-2">
+<h2 id="sec-23">Hints about various advanced strategies </h2>
+<div class="outline-text-2" id="text-23">
+
+</div>
+
+</div>
+
+<div id="outline-container-24" class="outline-2">
+<h2 id="sec-24">Creating maps </h2>
+<div class="outline-text-2" id="text-24">
+
+</div>
+
+</div>
+
+<div id="outline-container-25" class="outline-2">
+<h2 id="sec-25">Scoring Key </h2>
+<div class="outline-text-2" id="text-25">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /><col align="right" />
+</colgroup>
+<thead>
+<tr><th scope="col">Event</th><th scope="col">Points</th></tr>
+</thead>
+<tbody>
+<tr><td>ENEMY_FALCON_KILLED</td><td>1000</td></tr>
+<tr><td>ENEMY_KILLED</td><td>500</td></tr>
+<tr><td>ALIVE_AT_THE_END</td><td>400</td></tr>
+<tr><td>DESTROYED_ENEMY_BUNKER</td><td>65</td></tr>
+<tr><td>PICKED_UP_GOLD</td><td>40</td></tr>
+<tr><td>TIME_LIMIT_EXCEEDED</td><td>-300</td></tr>
+<tr><td>INVALID_MOVE</td><td>-100</td></tr>
+</tbody>
+</table>
 
 </div>
 </div>

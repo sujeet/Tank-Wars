@@ -13,30 +13,32 @@
 #+LINK_UP:   
 #+LINK_HOME: 
 
-
 * Prerequisites :
 ** The TankWars.zip file - Unzip it in any folder of your choice
 ** 10 minutes
-
 * Introduction :
-** As mentioned in the README, all you need to do to control your Tank is fill in the get_player_move () function in DecisionMaker1.cpp.
+** All you need to do to control your Tank is fill in the get_player_move () function in DecisionMaker1.cpp.
 ** This tutorial will take you through a series of increasingly complex definitions for that function.
 ** That will also familiarize you with the general information and structure of the code available to you to make your ultimate, indestructible Tank
 ** If you're really, REALLY impatient, you can simply check out the code bits under each step and copy-paste them into your DecisionMaker file and run them. You'd probably figure the rest out as you go along.
-
 * Aim of the Game:
 ** To end the game with maximum points
 ** The game ends when either your Falcon (military base) is killed or if your Tank dies or if the same happens to the opponent or if the Maximum number of moves are exceeded
-
-* Description :
-** The general structure of the Game is as follows :
-*** The 'Arena' Class is the environment in which the game runs and where the Bots clash . It contains all objects.
-*** So, in TankWars.cpp, where we want to have each Tank make its move, we simply call various methods of Arena object which will carry out various actions. This goes on until the game ends.
-*** We need not be concerned with any of that
-*** All that matters is that at each iteration, DecisionMaker1 is asked for a Move which will be used to make the Tank move on the Map
-*** Of course, it is not just a matter of returning a Move, because you have to consider all the various elements on the Map, like Gold pieces, Machine Guns, Enemy Tank, Enemy Base (ie. Falcon), etc. in order to win the game
-*** So, we'll consider all the mechanisms in place to give us the information we need and analyze them to return the best move we can think of
 * Instructions for running the game
+** Simply open a terminal and type
+   #+BEGIN_SRC bash
+   make play
+   #+END_SRC
+** To display the game in your browser, just type
+   #+BEGIN_SRC bash
+   make display
+   #+END_SRC
+* Your Score and Number of Moves left
+** The get_player_move () function receives
+*** Your score [my_score] and
+*** Your enemy's score [enemy_score].
+** It also receives the [total_moves_done] so far
+** MAX_NUMBER_OF_MOVES tells you how many moves you can make
 * Step 0 - The co-ordinate axes
 
   (0, 0)
@@ -65,35 +67,29 @@
 		       v DOWN
 
 * Step 1 - A simple proof-of-concept Tank:
-** This will make your Tank carry out the same action each time
-** Just write :
+** Just type :
    #+BEGIN_SRC c++
    return Move (GO_RIGHT);
    #+END_SRC
-** Then, 'make play' on the command-line, followed by 'make display'
 ** Not surprisingly, this makes your Tank move right each time
 ** However, that would have either led to it being shot by one of the Machine Guns out there or inevitably dashing into a wall and dying.
 ** Note : If your Tank dies, the opponent gains 400 points, so that is another incentive to stay alive
 * Step 2 - Each of the 8 moves possible
-  #+BEGIN_SRC c++
-  // Choose any one of the following 8 moves
-  // Go in one of the four directions
-  return Move (GO_UP);
-  return Move (GO_DOWN);
-  return Move (GO_LEFT);
-  return Move (GO_RIGHT);
-
-  // Shoot in one of the four directions
-  return Move (SHOOT_UP);
-  return Move (SHOOT_DOWN);
-  return Move (SHOOT_LEFT);
-  return Move (SHOOT_RIGHT);
-  #+END_SRC
-* Your Score and Number of Moves left
-** The get_player_move () function receives your score [my_score] and your enemy's score [enemy_score].
-** It also receives the [total_moves_done] so far
-** MAX_NUMBER_OF_MOVES tells you how many moves you can make
-* Example 1 - Attack enemy falcon
+** Choose any one of the following 8 moves
+   #+BEGIN_SRC c++
+   // Go in one of the four directions
+   return Move (GO_UP);
+   return Move (GO_DOWN);
+   return Move (GO_LEFT);
+   return Move (GO_RIGHT);
+    
+   // Shoot in one of the four directions
+   return Move (SHOOT_UP);
+   return Move (SHOOT_DOWN);
+   return Move (SHOOT_LEFT);
+   return Move (SHOOT_RIGHT);
+   #+END_SRC
+* Code Example - Attack enemy falcon
 ** Let's dive into the actual coding process by skipping all the boring documentation bit
 ** How would you attack the Enemy Falcon?
 ** For that you need 3 things
@@ -110,11 +106,11 @@
    #+BEGIN_SRC c++
      // If you can shoot at the Enemy Falcon from the current position, do so
      Move my_next_move;
-     if (can_shoot_at_enemy_falcon){
+     if (my_info.can_shoot_at_enemy_falcon){
           // This is the move to go closer
           my_next_move = my_info.my_falcon.initial_move;
           // However, we don't want to go closer
-          // We want to shoot!
+          // We want to shoot in that direction!
           my_next_move.shoot = true;
           return my_next_move;
      }
@@ -124,10 +120,111 @@
           return my_next_move;
      }
    #+END_SRC
-* Example 2 - Attack enemy bunkers
-* Example 3 - Dodge bullets
+* Step 3 - Carries out each of the four actions
+** Let's try making some more complex moves
+** Say you want to pick up the gold piece nearest to you
+** It's simple. All you need to do is 
+   #+BEGIN_SRC c++
+   int my_action_plan = GO_TO_NEAREST_GOLD
+   get_best_move_for (my_action_plan)
+   #+END_SRC
+** You can pass any of the following default Action Plans as parameters
+   |---------------------+----------------------------------------------------------------------------------------|
+   | GO_TO_NEAREST_GOLD  | Each time, your Tank will move in the direction of the nearest gold piece. Neat, huh?  |
+   | ATTACK_ENEMY_FALCON | That will take your Tank closer to the Enemy Falcon and shoot if it is in your sights. |
+   | ATTACK_ENEMY_TANK   | This will take your Tank closer to the Enemy Tank and shoot if it is in your sights    |
+   | DEFEND_MY_FALCON    | Just go back towards your Falcon so that you can defend it from any attack             |
+   |---------------------+----------------------------------------------------------------------------------------|
+** get_best_move_for, as the name suggests, gets you the best move you could make for a particular Action Plan.
+* Code Example - Attack enemy bunkers
+** Again, my_info comes to the rescue. You have a vector of object_infos which tell you about each bunker's position, distance from you, initial_move, etc.
+** Code is pretty much the same as for attack enemy falcon
+** And, you can do the same to attack the Enemy Tank itself!
+* Step 4 - Introduce calculate_best_action_plan
+** However, it can get pretty monotonous doing the same action again and again.
+** To aid in making your Tank dynamic and more adaptive, we have come up with a rudimentary Decision Making model
+   You can use it to calculate the best moves for your Tank based on the situation and your preferences.
+** We provide four different strategies that you can choose by default.
+** They are 
+*** AGGRESSIVE
+*** DEFENSIVE
+*** GREEDY
+*** CUSTOMIZED
+** To put it in action, just say
+   #+BEGIN_SRC c++
+   int my_strategy = AGGRESSIVE;
+   int my_action_plan = calculate_best_action_plan_for (my_strategy);
+   // Now, my_action_plan will contain one of the four basic action plans mentioned above
+   return get_best_move_for (my_action_plan);
+   #+END_SRC
+** Explanation
+*** What calculate_best_action_plan_for does is it looks for the utility or expected benefits of each of the four default Action Plans.
+*** This is done based on the weightage given for each plan and the difficulty of carrying each plan out as defined in your DecisionMaker object.
+*** It then returns the Action Plan which has maximum expected benefit
+*** To see what the default weightages are, go to DECISION_MAKER::DMinitializer function in DecisionMaker1.cpp
+*** To see how the default difficulty values are determined, go to DECISION_MAKER::fill_difficulty_table function in DecisionMaker1.cpp
+*** By default, the difficulty of carrying out an action plan is the shortest distance to the goal object. ie. for GO_TO_NEAREST_GOLD, the difficulty is the distance to the nearest gold
+*** In short, if a particular Action Plan, say ATTACK_ENEMY_TANK, is given higher weightage than the others then it will be recommended as the best plan when the distance from the enemy tank is not too high
+* Code Example - Dodge bullets
+** If you play the game for long enough, you'll find that most of the time, your Tank dies because it was hit by some bullet
+** Let's try to dodge those pesky bullets
+** A naive method
+   #+BEGIN_SRC c++
+     bullet_info curr_bullet;
+     // Tank's current position
+     posn = my_info.curr_posn;
+     
+     // Go this many steps to the RIGHT and see if any bullet there is
+     // coming towards you
+     for (i = 1; i <= BULLET_SPEED; i++){
+     
+          // Make posn become the position to its right
+          posn.go_in_direction (Direction (RIGHT));
+          safe_dirn = UP;            // Direction in which to dodge
+          opposite_dirn = LEFT;      // Direction in which bullets will come
+     
+          // For each bullet out there
+          for (j = 0; j < my_info.machine_gun_bullets.size (); j++){
+               curr_bullet = my_info.machine_gun_bullets[j];
+     
+               // If you are within its range and if it is coming towards you
+               if (curr_bullet.posn == posn && curr_bullet.dirn == Direction (opposite_dirn)){
+                    return Move (safe_dirn); // Dodge
+               }
+          }
+     }
+   #+END_SRC
+** This example introduces
+*** Position curr_posn
+*** BULLET_SPEED
+    Each bullet travels BULLET_SPEED steps in one move
+*** Direction
+*** Bullet Lists in my_info
+**** The info object contains 3 Bullet Lists
+     |---------------------+--------------------------------------|
+     | my_bullets          | List of info about all my bullets    |
+     | enemy_bullets       | List of info about all enemy bullets |
+     | machine_gun_bullets | List of info about all MG bullets    |
+     |---------------------+--------------------------------------|
+** Of course, it is just a toy example. :-)
+** Your version should take care of bullets from all Directions plus Bullets by the Enemy Tank
+** Plus, there is the gotcha that you might hit bullets when you move left, right, up, down, etc.
+** Watch out for other obstacles as well!
+* Step 5 - Creating some local functions for calculations of your own
+** Simple. You can just create new functions in the DecisionMaker1.cpp file and call them.
+** Just remember not to change anything anywhere else.
+* Step 6 - Changing Decision Table weightage
+** Of course, you don't have to put up with the default weightages or the default ways of calculating difficulties. Try experimenting.
+** Go to [ DMinitializer function ]
+** For example, if you feel DEFENSIVE plan should never even consider ATTACK_ENEMY_TANK or ATTACK_ENEMY_FALCON, then put weightages for them as 0.
+** Maybe set GREEDY's weightage for GO_TO_NEAREST_GOLD as 100 and everything else as 0. That's really greedy! :-). Be careful, though, chances of getting shot by Machine Guns and the Enemy tank are very high.
+** You can set the values for each Strategy in the Weightage Table on the fly by calling
+   #+BEGIN_SRC c++
+     set_weightage_table (AGGRESSIVE, 20, 80, 80, 0);
+   #+END_SRC
+** This can be useful when you want to tweaks based on the current situation
 * Introducing Info
-** To make life even easier for you, we've created an Info object, which contains pretty much all the basic game information you're going to need
+** Info object contains pretty much all the basic game information you're going to need
 ** This way you don't even have to know what Breadth-First Search means or deal with things like 'What is the next move to make in order to shoot the Enemy Falcon?'. Phew!
 ** DecisionMaker contains two objects
    #+BEGIN_SRC c++
@@ -147,10 +244,10 @@
    | bool                   | can_shoot_at_enemy_falcon | Whether the enemy Falcon is in your sights   |
    | Direction              | shoot_falcon_dirn         | Direction in which Enemy Falcon lies         |
    | Direction              | shoot_enemy_tank_dirn     | Direction in which Enemy Tank lies           |
+   | Vector of Bullet Info  | my_bullets                | Information about all bullets you shot       |
+   | Vector of Bullet Info  | enemy_bullets             | Information about all bullets the Enemy shot |
+   | Vector of Bullet Info  | machine_gun_bullets       | Information about all bullets the MGs shot   |
    | Vector of object_infos | gold                      | Information about all gold pieces            |
-   | Vector of Bullets      | my_bullet_list            | Information about all bullets you shot       |
-   | Vector of Bullets      | enemy_bullet_list         | Information about all bullets the Enemy shot |
-   | Vector of Tanks        | machine_gun_list          | Information about all the MGs                |
    | Object_info            | my_falcon                 | Information about your falcon                |
    | Object_info            | opp_falcon                | Information about Enemy falcon               |
    | Object_info            | opp_tank                  | Information about Enemy Tank                 |
@@ -206,96 +303,51 @@
           // Go for it!
      }
    #+END_SRC
-* Position Class
-** However, to make your life simpler, we have different objects
-** This basically just stores x coordinate and y coordinate of a position
-** Your current position - curr_posn
-   To get your x and y coordinate, just say -
-    #+BEGIN_SRC c++
-    curr_posn.x
-    // or
-    curr_posn.y
-    #+END_SRC
-* Introduction - Can shoot items
-* Introduction - Everything else in Info
-* Hints about various advanced strategies
-* Dodge bullet
-* Attack bunkers
-* Creating maps
-* Step 3 - Carries out each of the four actions
-** Now, you may not be satisfied with merely moving right or shooting left all the time.
-** Let's try making some complex moves
-** Say you want to pick up the gold piece nearest to you
-** It's simple. All you need to do is 
+** Or, more simply, you can simply use Positions 
    #+BEGIN_SRC c++
-   int my_action_plan = GO_TO_NEAREST_GOLD
-   get_best_move_for (my_action_plan)
+     Direction d = Direction (RIGHT);                // or (LEFT) or (0), (1), etc.
+     my_neighbour = curr_posn.get_neighbour (d);
+     if (my_map.get_element (my_neighbour) == WALL){
+          // Then do something
+     }
+     else if (my_map.get_element (my_neighbour) == GOLD){
+          // Go for it!
+     }
    #+END_SRC
-** PUT THIS IN A TABLE
-** You can pass any of the following default Action Plans as parameters
-*** GO_TO_NEAREST_GOLD:
-**** Each time, your Tank will move in the direction of the nearest gold piece. Neat, huh?
-*** ATTACK_ENEMY_FALCON:
-**** That will take your Tank closer to the Enemy Falcon and shoot if it is in your sights.
-*** ATTACK_ENEMY_TANK:
-**** This will take your Tank closer to the Enemy Tank and shoot if it is in your sights
-*** DEFEND_MY_FALCON:
-**** Just go back towards your Falcon so that you can defend it from any attack
-** get_best_move_for, as the name suggests, gets you the best move you could make for a particular Action Plan.
-* Step 4 - Introduce calculate_best_action_plan
-** However, it can get pretty monotonous doing the same action again and again.
-** To aid in making your Tank dynamic and more adaptive, we have come up with a rudimentary Decision Making model
-   You can use it to calculate the best moves for your Tank based on the situation and your preferences.
-** We provide four different strategies that you can choose by default.
-** They are 
-*** AGGRESSIVE
-*** DEFENSIVE
-*** GREEDY
-*** CUSTOMIZED
-** To put it in action, just say
+* Direction
+** Basically just a pair - xdir and ydir
+** You can use it in different ways
    #+BEGIN_SRC c++
-   int my_strategy = AGGRESSIVE;
-   int my_action_plan = calculate_best_action_plan_for (my_strategy);
-   // Now, my_action_plan will contain one of the four basic action plans mentioned above
-   return get_best_move_for (my_action_plan);
+     Direction dirn = Direction (LEFT); // RIGHT, etc
+     Direction dirn2 = dirn;
+     if (dirn == Direction (1)){      // 1 : DOWN
+          // Something or the other
+     }
    #+END_SRC
-** Explanation
-*** What calculate_best_action_plan_for does is it looks for the utility or expected benefits of each of the four default Action Plans.
-*** This is done based on the weightage given for each plan and the difficulty of carrying each plan out as defined in your DecisionMaker object.
-*** It then returns the Action Plan which has maximum expected benefit
-*** To see what the default weightages are, go to DECISION_MAKER::DMinitializer function in DecisionMaker1.cpp
-*** To see how the default difficulty values are determined, go to DECISION_MAKER::fill_difficulty_table function in DecisionMaker1.cpp
-*** By default, the difficulty of carrying out an action plan is the shortest distance to the goal object. ie. for GO_TO_NEAREST_GOLD, the difficulty is the distance to the nearest gold
-*** In short, if a particular Action Plan, say ATTACK_ENEMY_TANK, is given higher weightage than the others then it will be recommended as the best plan when the distance from the enemy tank is not too high
-* Step 5 - Creating some local functions for calculations of your own
-** Simple. You can just create new functions in the DecisionMaker1.cpp file and call them.
-** Just remember not to change anything anywhere else.
-* Step 6 - Changing Decision Table weightage
-** Of course, you don't have to put up with the default weightages or the default ways of calculating difficulties. Try experimenting.
-** Go to [ DMinitializer function ]
-** For example, if you feel DEFENSIVE plan should never even consider ATTACK_ENEMY_TANK or ATTACK_ENEMY_FALCON, then put weightages for them as 0.
-** Maybe set GREEDY's weightage for GO_TO_NEAREST_GOLD as 100 and everything else as 0. That's really greedy! :-). Be careful, though, chances of getting shot by Machine Guns and the Enemy tank are very high.
-** You can set the values for each Strategy in the Weightage Table on the fly by calling set_weightage_table (...).
-** This can be useful when you want to tweaks based on the current situation
-* TODO Step 7 - Changing the way Difficulty is determined
-** As said before, the difficulty for each plan is just the shortest distance to the goal object
-** Customizing that is simple
-** Say you feel shooting at and hitting an Enemy Tank when it is pretty far away is very difficult since it can move away before the bullet reaches it
-** By default, the fill_difficulty_table () called from DecisionMaker1's get_player_move function fills the table with the current values of shortest distances
-** So, simply comment that function call out and call set_difficulty_table ()
+* Move
+** It has two variables
+   |-----------+-------|
+   | bool      | shoot |
+   | Direction | dirn  |
+   |-----------+-------|
+** Usage
    #+BEGIN_SRC c++
-   // fill_difficulty_table ();
-   int attack_enemy_tank_difficulty;
-   if (my_info.opp_tank.shortest_distance >= 10){
-        // 10 is just for the sake of the example
-        set_difficulty_table(info.nearest_gold.shortest_distance, info.opp_falcon.shortest_distance, MAX_DIFFICULTY, info.my_falcon.shortest_distance);
-   }
-   else{
-        set_difficulty_table (info.nearest_gold.shortest_distance, info.opp_falcon.shortest_distance, info.opp_tank.shortest_distance, info.my_falcon.shortest_distance);
-   }
+     Move my_move = Move (SHOOT_LEFT);
+     // or
+     Move move1;
+     move1.shoot = true;
+     move1.dirn = Direction (LEFT);
+     Move move2 = move1;
    #+END_SRC
-** MAX_DIFFICULTY is practically infinity.
-** NOTE : You MUST call set_difficulty_table (...) or fill_difficulty_table () (whichever you use) from get_player_move () so that the table is filled each time. Otherwise, you would be working with an outdated table.
+* Position
+** Again just a pair - x, y
+** Main usage
+   #+BEGIN_SRC c++
+     Position posn = my_info.curr_posn;
+     my_left_neighbour = posn.get_neighbour (Direction (LEFT));
+     posn.go_in_direction (Direction (RIGHT));
+     // Now, posn is the cell to the right
+   #+END_SRC
 * Object Info 
  |-------------------+-----------------------------------------------------------|
  | Variable          | Value                                                    |
@@ -304,3 +356,22 @@
  | posn              | The Position of the Object                                |
  | initial_move      | The Move you need to make now to get closer to the Object |
  |-------------------+-----------------------------------------------------------|
+* Each bullet_info object has
+  |------+-------------------------------------|
+  | posn | Current position of the Bullet      |
+  | dirn | Direction in which it is travelling |
+  |------+-------------------------------------|
+* Hints about various advanced strategies
+* Creating maps
+* Scoring Key
+  |------------------------+--------|
+  | Event                  | Points |
+  |------------------------+--------|
+  | ENEMY_FALCON_KILLED    |   1000 |
+  | ENEMY_KILLED           |    500 |
+  | ALIVE_AT_THE_END       |    400 |
+  | DESTROYED_ENEMY_BUNKER |     65 |
+  | PICKED_UP_GOLD         |     40 |
+  | TIME_LIMIT_EXCEEDED    |   -300 |
+  | INVALID_MOVE           |   -100 |
+  |------------------------+--------|

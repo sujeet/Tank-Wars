@@ -22,6 +22,7 @@ public:
      Direction (int);
      void get_from_integer (int inp);
      Direction operator = (Direction dir);
+     bool operator== (Direction dirn);
      void print ();
 };
 

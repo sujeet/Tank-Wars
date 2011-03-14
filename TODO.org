@@ -7,18 +7,8 @@ To-do List:
 * S. Pradeep Kumar
 ** BUG Check validity of submission
 ** BUG Check whether submission takes too long to compute stuff
-** TODO (?) Setting both players to AGGRESSIVE makes the game run really really long, which means, of course, that the game can't be displayed, etc. :ARCHIVE:
-** WISH Display a blast when bullets collide	:ARCHIVE:
-** Documentation
-** Note : Since, we're calling the same functions for Machine Gun as for Tank, all sorts of stuff is done for Machine Guns. eg. Its score gets updated. Just fyi :ARCHIVE:
-** Machine Guns
-*** Machine guns shoot unidirectionally
-*** TODO Moving machine guns			:ARCHIVE:
-*** Bundle DecisionMaker along with each Machine gun, so that they can make their own decisions
-*** TODO Take care that they don't eat up the Gold, hit the falcon or do anything like that
-*** Tower MG - T - shoot if a tank is within a certain square
-*** Have some MGs just stay in one position and shoot unidirectionally to trap some Tank
-** Copy Constructor for MapClass
+** BUG The zip file should have a folder called Tank-Wars inside which everything else is present. Right now it just puts everything into the same folder as the zip file.
+** Put points keys in descending order
 ** Maps
 *** Gold rush
 *** Rush to the top
@@ -27,23 +17,28 @@ To-do List:
 *** Gold-less map
 *** Wall around falcon
 *** Some simple maps for the finals (?)
-** BUG The zip file should have a folder called Tank-Wars inside which everything else is present. Right now it just puts everything into the same folder as the zip file.
-** Put points keys in descending order
 ** WISH Tutorial as a webpage
 ** WISH Webpage Hit counter
-** Why are there two Info objects - info and my_info - in DecisionMaker class?
-** Should we give them the option of Doing Nothing?
 ** TODO Map
 *** Change surrounding colour from white to something less contrasting with black
 ** Tutorial
-*** Center the text
-*** Make it look like Vimtutor as much as possible
-*** Make all subheadings within the same section at indentation 0
-*** Number them?
+*** Link the references to the documentation
+*** Have a proper font
 *** Html version
 **** Wrap the text at a certain column
-** Info should have just have a vector of object_infos about Machine guns instead of vector of Tanks. 
-** Do the same about Bullets (?) - with an added Direction. That way, they wouldn't need to know anything about other class definitions.
-** Major change required - The number of moves is actually 1/ (Bullet speed) times the number of moves defined in constants.h. Which means it is only about 500/3 moves.(as of now.)
-   Let's just have i < (MAX_NUMBER_OF_MOVES * BULLET_SPEED); so that MAX_NUMBER_OF_MOVES really describes the max number of moves that a tank can make
-** BUG The Legends on game_display.html extend out of the white square.
+** Game Display - make the initial frame visible
+** BUG Have a proper scoring mechanism - so that people whose games get over early don't suffer
+** BUG I've made bullets get updated after get_player_move
+*** Otherwise, the bullet list the players get will be the updated bullet list
+*** Which is kinda confusing
+*** So, peace!
+** TODO Machine Guns
+*** Machine guns shoot unidirectionally
+*** TODO Moving machine guns			:ARCHIVE:
+*** Bundle DecisionMaker along with each Machine gun, so that they can make their own decisions
+*** TODO Take care that they don't eat up the Gold, hit the falcon or do anything like that
+*** Tower MG - T - shoot if a tank is within a certain square
+*** Have some MGs just stay in one position and shoot unidirectionally to trap some Tank
+** TODO (?) Setting both players to AGGRESSIVE makes the game run really really long, which means, of course, that the game can't be displayed, etc. :ARCHIVE:
+** WISH Display a blast when bullets collide	:ARCHIVE:
+** Note : Since, we're calling the same functions for Machine Gun as for Tank, all sorts of stuff is done for Machine Guns. eg. Its score gets updated. Just fyi :ARCHIVE:

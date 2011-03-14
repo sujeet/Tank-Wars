@@ -44,10 +44,10 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      // return Move (my_move)
      // 
      // where
-     // |--------------+------+-------+----+------+----------+------------+------------+-------------|
-     // | my_move      | LEFT | RIGHT | UP | DOWN | SHOOT_UP | SHOOT_DOWN | SHOOT_LEFT | SHOOT_RIGHT |
-     // | Actual value |    0 |     1 |  2 |    3 |        4 |          5 |          6 |           7 |
-     // |--------------+------+-------+----+------+----------+------------+------------+-------------|
+     // |--------------+---------+----------+-------+---------+----------+------------+------------+-------------|
+     // | my_move      | GO_LEFT | GO_RIGHT | GO_UP | GO_DOWN | SHOOT_UP | SHOOT_DOWN | SHOOT_LEFT | SHOOT_RIGHT |
+     // | Actual value |       0 |        1 |     2 |       3 |        4 |          5 |          6 |           7 |
+     // |--------------+---------+----------+-------+---------+----------+------------+------------+-------------|
 
      // Make sure your difficulty table is filled each time if you are using
      // it.
@@ -58,14 +58,8 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      /*************************************/
      /*   PUT YOUR CODE IN THIS FUNCTION  */
      /*************************************/
-     if(my_info.opp_falcon.shortest_distance + 15< opp_info.opp_falcon.shortest_distance)
-         return get_best_move_for(calculate_best_action_plan(AGGRESSIVE));
-     else if(my_info.opp_falcon.shortest_distance + 5< opp_info.opp_falcon.shortest_distance)
-         return get_best_move_for(calculate_best_action_plan(GREEDY));
-     else if(my_info.opp_falcon.shortest_distance > opp_info.opp_falcon.shortest_distance)
-         return get_best_move_for(calculate_best_action_plan(DEFENSIVE));
-     else 
-         return get_best_move_for(calculate_best_action_plan(GREEDY));
+     return Move (SHOOT_RIGHT);
+     // return get_best_move_for(calculate_best_action_plan(GREEDY));
 
 }
 

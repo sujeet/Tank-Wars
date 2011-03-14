@@ -15,12 +15,12 @@ enum error
 enum event
 {
      ENEMY_FALCON_KILLED	= 1000,
-     ENEMY_KILLED           = 500,
+     ENEMY_KILLED		= 500,
      ALIVE_AT_THE_END		= 400,
      DESTROYED_ENEMY_BUNKER	= 65,
-     PICKED_UP_GOLD         = 40,
-     TIME_LIMIT_EXCEEDED    = -300,
-     INVALID_MOVE           = -100
+     PICKED_UP_GOLD		= 40,
+     TIME_LIMIT_EXCEEDED	= -300,
+     INVALID_MOVE		= -100
 };
 
 // For Info.h

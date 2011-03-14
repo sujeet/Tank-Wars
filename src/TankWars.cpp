@@ -26,12 +26,12 @@ int main()
           // Get the moves for the Machine guns
           arena.get_machine_moves (bullets_only);
 
-          // Move the bullets one step in their current direction
-          arena.move_bullets ();
 
           // Get player moves - ie. Call DecisionMaker
           arena.get_player_moves (bullets_only);
 
+          // Move the bullets one step in their current direction
+          arena.move_bullets ();
           // For each Tank, first, either shoot or move tank
           // (ie. update its curr_posn)
           arena.execute_tank_moves ();

@@ -25,6 +25,11 @@ Direction::Direction(int xdir, int ydir)
     this->ydir = ydir;
 }
 
+bool Direction::operator== (Direction dirn)
+{
+     return (this->xdir == dirn.xdir && this->ydir == dirn.ydir);
+}
+
 void Direction::print ()
 {
      switch((xdir + 4*ydir))

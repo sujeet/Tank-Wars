@@ -58,14 +58,47 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      /*************************************/
      /*   PUT YOUR CODE IN THIS FUNCTION  */
      /*************************************/
-     if(my_info.opp_falcon.shortest_distance + 15< opp_info.opp_falcon.shortest_distance)
-         return get_best_move_for(calculate_best_action_plan(AGGRESSIVE));
-     else if(my_info.opp_falcon.shortest_distance + 5< opp_info.opp_falcon.shortest_distance)
-         return get_best_move_for(calculate_best_action_plan(GREEDY));
-     else if(my_info.opp_falcon.shortest_distance > opp_info.opp_falcon.shortest_distance)
-         return get_best_move_for(calculate_best_action_plan(DEFENSIVE));
-     else 
-         return get_best_move_for(calculate_best_action_plan(GREEDY));
+     Position posn = my_info.curr_posn;
+     int d, i, j, safe_dirn, opposite_dirn;
+     bool is_coming_at_me;
+     // for (d = 0; d <= 3; ++d){
+     // d = RIGHT;
+     bullet_info curr_bullet;
+     for (d = 0; d <= 3; d++){
+	  posn = my_info.curr_posn;
+	  for (i = 1; i <= BULLET_SPEED; i++){
+	       posn.go_in_direction (Direction (d));
+	       switch (d){
+	       case UP:
+		    safe_dirn = RIGHT;
+		    opposite_dirn = DOWN;
+		    break;
+	       case DOWN:
+		    safe_dirn = RIGHT;
+		    opposite_dirn = UP;
+		    break;
+	       case RIGHT:
+		    safe_dirn = UP;
+		    opposite_dirn = LEFT;
+		    break;
+	       case LEFT:
+		    safe_dirn = UP;
+		    opposite_dirn = RIGHT;
+		    break;
+	       }
+	       for (j = 0; j < my_info.machine_gun_bullets.size (); j++){
+		    curr_bullet = my_info.machine_gun_bullets[j];
+		    if (curr_bullet.posn == posn && curr_bullet.dirn == Direction (opposite_dirn)){
+			 // Move away!
+			 return Move (safe_dirn);
+		    }
+	       }
+	  }
+     }
+     
+     // return Move (SHOOT_UP);
+     
+     return get_best_move_for(calculate_best_action_plan(GREEDY));
 
 }
 
