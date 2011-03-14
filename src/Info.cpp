@@ -203,7 +203,52 @@ void Info::update_distances(MapClass &map,Position source)
 
 }
 
+void Info::update_bullets(vector <Bullet> my_bullet_list, vector <Bullet> enemy_bullet_list)
+{
+    my_bullets.clear();
+    enemy_bullets.clear();
+    int size = my_bullets.size();
+    bullet_info temp;
+    int i;
+    for(i = 0; i < size; i++)
+    {
+        temp.posn = my_bullet_list[i].curr_posn;
+        temp.dirn = my_bullet_list[i].curr_dirn;
+        my_bullets.push_back(temp);
+    }
+    size = enemy_bullets.size();
+    for(i = 0; i < size; i++)
+    {
+        temp.posn = enemy_bullet_list[i].curr_posn;
+        temp.dirn = enemy_bullet_list[i].curr_dirn;
+        enemy_bullets.push_back(temp);
+    }
+} 
 
+void Info::update_machine_gun_list(vector <Tank> machine_gun_list)
+{
+    int machine_gun_size = machine_gun_list.size();
+    int j;
+    bullet_info temp;
+    machine_gun_position temp2;
+    machine_guns.clear();
+    machine_gun_bullets.clear();
+    for(j = 0; j < machine_gun_size; j++) 
+    {
+        int bullets_size = machine_gun_list[j].bullet_list.size();
+        int i;
+        for(i = 0; i < bullets_size; i++)
+        {
+            temp.posn = machine_gun_list[j].bullet_list[i].curr_posn;
+            temp.dirn = machine_gun_list[j].bullet_list[i].curr_dirn;
+            machine_gun_bullets.push_back(temp);
+        }
+        temp2.posn = machine_gun_list[j].curr_posn;
+        machine_guns.push_back(temp2);
+    }
+}
+
+    
 
 void Info::update_info (MapClass &map, 
             Position source, 
@@ -214,10 +259,9 @@ void Info::update_info (MapClass &map,
      curr_posn = source;
      update_distances(map,source);
      update_shoot_variables (map);
-     
-     this->my_bullet_list = given_my_bullet_list;
-     this->enemy_bullet_list = given_enemy_bullet_list;
-     this->machine_gun_list = given_machine_gun_list;
+     update_bullets(given_my_bullet_list, given_enemy_bullet_list);
+     update_machine_gun_list(given_machine_gun_list);
+
 }
 
 bool Info::update_shoot_variables (MapClass &Map)
