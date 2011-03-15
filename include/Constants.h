@@ -47,7 +47,7 @@ enum event
 
 // Colour variables
 #define GOLD_COLOUR               "goldenRod"
-#define WALL_COLOUR               "beige"
+#define WALL_COLOUR               "#444444"
 #define EMPTY_COLOUR              "black"
 #define DEAD_COLOUR               "red"
 
@@ -63,6 +63,7 @@ enum event
 #define MACHINE_GUN_BULLET_COLOUR "black"
 
 #define TEXT_COLOUR               "#aaaaaa"
+#define BKG_COLOUR                "black"
 
 // For Misc_Classes.h
 #define MACHINE_GUN_SHOOT_ONCE_IN_THIS_MANY 5

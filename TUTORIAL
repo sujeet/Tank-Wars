@@ -1,6 +1,6 @@
 #+TITLE:     Tank Wars - 10-Minute Complete Step-by-Step Tutorial
-#+AUTHOR:    pradeep
-#+EMAIL:     pradeep@pradeep-laptop
+#+AUTHOR:    Tank Wars Team
+#+EMAIL:     tankwars@exebit.org
 #+DATE:      2011-03-13 Sun
 #+DESCRIPTION: 
 #+KEYWORDS: 
@@ -39,6 +39,7 @@
 *** Your enemy's score [enemy_score].
 ** It also receives the [total_moves_done] so far
 ** MAX_NUMBER_OF_MOVES tells you how many moves you can make
+** [[Scoring%20Key][Scoring Key]]
 * Step 0 - The co-ordinate axes
 
   (0, 0)
@@ -89,6 +90,7 @@
    return Move (SHOOT_LEFT);
    return Move (SHOOT_RIGHT);
    #+END_SRC
+** Documentation - [[Move]]
 * Code Example - Attack enemy falcon
 ** Let's dive into the actual coding process by skipping all the boring documentation bit
 ** How would you attack the Enemy Falcon?
@@ -120,6 +122,7 @@
           return my_next_move;
      }
    #+END_SRC
+** Documentation - [[Position]]
 * Step 3 - Carries out each of the four actions
 ** Let's try making some more complex moves
 ** Say you want to pick up the gold piece nearest to you
@@ -199,7 +202,9 @@
 *** BULLET_SPEED
     Each bullet travels BULLET_SPEED steps in one move
 *** Direction
+    Documentation - [[Direction]]
 *** Bullet Lists in my_info
+    Documentation - [[Bullet Info]]
 **** The info object contains 3 Bullet Lists
      |---------------------+--------------------------------------|
      | my_bullets          | List of info about all my bullets    |
@@ -207,9 +212,7 @@
      | machine_gun_bullets | List of info about all MG bullets    |
      |---------------------+--------------------------------------|
 ** Of course, it is just a toy example. :-)
-** Your version should take care of bullets from all Directions plus Bullets by the Enemy Tank
-** Plus, there is the gotcha that you might hit bullets when you move left, right, up, down, etc.
-** Watch out for other obstacles as well!
+** Your actual function should take care of a lot of factors and check for various corner cases. Good Luck! :-)
 * Step 5 - Creating some local functions for calculations of your own
 ** Simple. You can just create new functions in the DecisionMaker1.cpp file and call them.
 ** Just remember not to change anything anywhere else.
@@ -223,6 +226,7 @@
      set_weightage_table (AGGRESSIVE, 20, 80, 80, 0);
    #+END_SRC
 ** This can be useful when you want to tweaks based on the current situation
+# <<Info>>
 * Introducing Info
 ** Info object contains pretty much all the basic game information you're going to need
 ** This way you don't even have to know what Breadth-First Search means or deal with things like 'What is the next move to make in order to shoot the Enemy Falcon?'. Phew!
@@ -255,6 +259,7 @@
    | bool                   | gold_available            | Do any more gold pieces exist on Map?        |
    |------------------------+---------------------------+----------------------------------------------|
 *** That's all
+# <<Map>>
 * Introducing the Map
 ** OK! So, now you have an all-new, shiny, mean and destructive Tank at your command. 
 ** But, how exactly do you analyze the game?
@@ -272,6 +277,7 @@
    #+END_SRC
 ** This is what will get updated each time as your Tank and your Enemy's tank move around and shoot bullets
 ** This is what is shown in your browser when you call 'make display'
+# <<Symbols>>
 ** The character symbols represent various objects
    |------------------+--------------------+------------------|
    | Object           | Constant defined   | Actual character |
@@ -314,6 +320,7 @@
           // Go for it!
      }
    #+END_SRC
+# <<Direction>>
 * Direction
 ** Basically just a pair - xdir and ydir
 ** You can use it in different ways
@@ -324,6 +331,7 @@
           // Something or the other
      }
    #+END_SRC
+# <<Move>>
 * Move
 ** It has two variables
    |-----------+-------|
@@ -339,6 +347,7 @@
      move1.dirn = Direction (LEFT);
      Move move2 = move1;
    #+END_SRC
+# <<Position>>
 * Position
 ** Again just a pair - x, y
 ** Main usage
@@ -348,6 +357,7 @@
      posn.go_in_direction (Direction (RIGHT));
      // Now, posn is the cell to the right
    #+END_SRC
+# <<Object Info>>
 * Object Info 
  |-------------------+-----------------------------------------------------------|
  | Variable          | Value                                                    |
@@ -356,13 +366,13 @@
  | posn              | The Position of the Object                                |
  | initial_move      | The Move you need to make now to get closer to the Object |
  |-------------------+-----------------------------------------------------------|
-* Each bullet_info object has
+# <<Bullet Info>>
+* Bullet Info
   |------+-------------------------------------|
   | posn | Current position of the Bullet      |
   | dirn | Direction in which it is travelling |
   |------+-------------------------------------|
-* Hints about various advanced strategies
-* Creating maps
+# <<Scoring Key>>
 * Scoring Key
   |------------------------+--------|
   | Event                  | Points |
@@ -375,3 +385,22 @@
   | TIME_LIMIT_EXCEEDED    |   -300 |
   | INVALID_MOVE           |   -100 |
   |------------------------+--------|
+* Testing
+** You can test your bots on your own computer by changing the code for DecisionMaker2 as well.
+** You can even run your bot against another bot just like itself and seet what the result is! :-)
+* Creating maps
+** To test your bot's functionality, you can try creating your own maps
+** Simply edit 'map.txt' in your Tank-Wars folder
+** The symbols representing each object are described in [[Symbols]]
+** The only conditions on the Map are that it should have
+*** TANK1
+*** TANK2
+*** FALCON1
+*** FALCON2
+** That's all
+** Some sample maps are present in maps/ directory.
+* Hints and Cautions about various advanced strategies
+** Make sure you can handle Bunkers (both yours and the enemy's). Maps in the tournament will be more and more complex 
+** Make sure that your bot doesn't get stuck shooting continuously in the same direction
+   That can happen when both you and the enemy tank are facing each other and want to kill each other. The game might go on and on with you both shooting at each other
+** Make sure you prioritize according to the situations and the point allocation. 

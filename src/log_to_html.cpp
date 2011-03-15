@@ -22,7 +22,7 @@ string insert_css ()
              << "    margin                :	 0pt auto;                                        " << endl
              << "    padding               :	 20px;                                            " << endl
              << "    border                :	 0pt none;                                        " << endl
-             << "    background            :	 none repeat scroll 0% 0% " << WALL_COLOUR << ";  " << endl
+             << "    background            :	 none repeat scroll 0% 0% " << BKG_COLOUR << ";   " << endl
              << "}                                                                                " << endl
              << ".legend {                                                                        " << endl
              << "    width                 :	 200px;                                           " << endl
@@ -296,24 +296,24 @@ string insert_points_table ()
               << "    <tr>                                                                " << endl
               << "    </tr>                                                               " << endl
               << "    <tr>                                                                " << endl
-              << "        <td> Enemy tank shot </td>                                      " << endl
-              << "        <td> : &nbsp; </td>                                             " << endl
-              << "        <td class='point_number'> " << ENEMY_KILLED << "</td>           " << endl
-              << "    </tr>                                                               " << endl
-              << "    <tr>                                                                " << endl
               << "        <td> Enemy falcon shot </td>                                    " << endl
-              << "        <td> : </td>                                                    " << endl
+              << "        <td> : &nbsp; </td>                                             " << endl
               << "        <td class='point_number'> " << ENEMY_FALCON_KILLED << "</td>    " << endl
               << "    </tr>                                                               " << endl
               << "    <tr>                                                                " << endl
-              << "        <td> Enemy bunker shot </td>                                    " << endl
+              << "        <td> Enemy tank shot </td>                                      " << endl
               << "        <td> : </td>                                                    " << endl
-              << "        <td class='point_number'> " << DESTROYED_ENEMY_BUNKER << "</td> " << endl
+              << "        <td class='point_number'> " << ENEMY_KILLED << "</td>           " << endl
               << "    </tr>                                                               " << endl
               << "    <tr>                                                                " << endl
               << "        <td> Alive at the end </td>                                     " << endl
               << "        <td> : </td>                                                    " << endl
               << "        <td class='point_number'> " << ALIVE_AT_THE_END << "</td>       " << endl
+              << "    </tr>                                                               " << endl
+              << "    <tr>                                                                " << endl
+              << "        <td> Enemy bunker shot </td>                                    " << endl
+              << "        <td> : </td>                                                    " << endl
+              << "        <td class='point_number'> " << DESTROYED_ENEMY_BUNKER << "</td> " << endl
               << "    </tr>                                                               " << endl
               << "    <tr>                                                                " << endl
               << "        <td> Picked up gold </td>                                       " << endl
@@ -398,7 +398,7 @@ string insert_js()
      // Global variabrles for js
      str_out << "var pause = true;                                  " << endl
              << "var func_array = {};                               " << endl
-             << "var function_counter = 0;                          " << endl
+             << "var function_counter = 1;                          " << endl
              << "var delay = " << DELAY << ";                       " << endl
              << "var delay_step = " << DELAY_STEP << ";             " << endl
              << "var min_delay = " << MIN_DELAY << ";               " << endl
@@ -408,106 +408,122 @@ string insert_js()
              << "var canvas = document.getElementById('container'); " << endl
              << "var ctx = canvas.getContext('2d');                 " << endl;
      
+     // Function to draw the blast when the bot is dead.
+     str_out << "function drawStar(ctx,r, x, y, color, spikes){   " << endl
+             << "    ctx.save();                                  " << endl
+             << "    ctx.beginPath();                             " << endl
+             << "    ctx.translate (x, y);                        " << endl
+             << "    ctx.fillStyle = color;                       " << endl
+             << "    ctx.moveTo(r,0);                             " << endl
+             << "    for (var i=0;i<( 2*spikes - 1 );i++){        " << endl
+             << "        ctx.rotate(Math.PI/spikes);              " << endl
+             << "        if(i%2 == 0) {                           " << endl
+             << "            ctx.lineTo((r/0.525731)*0.200811,0); " << endl
+             << "        } else {                                 " << endl
+             << "            ctx.lineTo(r,0);                     " << endl
+             << "        }                                        " << endl
+             << "    }                                            " << endl
+             << "    ctx.closePath();                             " << endl
+             << "    ctx.fill();                                  " << endl
+             << "    ctx.restore();                               " << endl
+             << "}                                                " << endl;
+
      // Function to fill out the canvas at appropriate places.
-     str_out << "function fill_the_canvas (x, y, name)                  " << endl
-             << "{                                                      " << endl
-             << "   switch (name)                                       " << endl
-             << "   {                                                   " << endl
-             << "       case '" << WALL << "' :                         " << endl
-             << "           ctx.fillStyle = '" << WALL_COLOUR << "';    " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << EMPTY << "' :                        " << endl
-             << "           ctx.fillStyle = '" << EMPTY_COLOUR << "';   " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << GOLD << "' :                         " << endl
-             << "           ctx.fillStyle = 'rgba(256, 220, 0, 0.5)';   " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                " << endl
-             << "           ctx.fillStyle = 'rgba(256, 220, 0, 1)';     " << endl
-             << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << BUNKER1 << "' :                      " << endl
-             << "           ctx.fillStyle = 'rgba(0, 256, 0, 0.2)';     " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << BUNKER2 << "' :                      " << endl
-             << "           ctx.fillStyle = 'rgba(256, 0, 0, 0.2)';     " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << TANK1 << "' :                        " << endl
-             << "           ctx.fillStyle = 'rgba(0, 256, 0, 0.5)';     " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                " << endl
-             << "           ctx.fillStyle = 'rgba(0, 256, 0, 1)';       " << endl
-             << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << TANK2 << "' :                        " << endl
-             << "           ctx.fillStyle = 'rgba(256, 0, 0, 0.5)';     " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                " << endl
-             << "           ctx.fillStyle = 'rgba(256, 0, 0, 1)';       " << endl
-             << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << MACHINE_GUN << "' :                  " << endl
-             << "           ctx.fillStyle = 'rgba(0, 256, 256, 0.5)';   " << endl
-             << "           ctx.fillRect (x, y, 10, 10);                " << endl
-             << "           ctx.fillStyle = 'rgba(0, 256, 256, 1)';     " << endl
-             << "           ctx.fillRect (x+2, y+2, 6, 6);              " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << BULLET1 << "' :                      " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)'; " << endl
-             << "           ctx.fillRect (x+3, y+3, 4, 4);              " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';   " << endl
-             << "           ctx.fillRect (x+4, y+4, 2, 2);              " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << BULLET2 << "' :                      " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)'; " << endl
-             << "           ctx.fillRect (x+3, y+3, 4, 4);              " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';   " << endl
-             << "           ctx.fillRect (x+4, y+4, 2, 2);              " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << MACHINE_GUN_BULLET << "' :           " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)'; " << endl
-             << "           ctx.fillRect (x+3, y+3, 4, 4);              " << endl
-             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';   " << endl
-             << "           ctx.fillRect (x+4, y+4, 2, 2);              " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << DEAD << "' :                         " << endl
-             << "           fill_the_canvas (x, y, '" << EMPTY << "');  " << endl
-             << "           ctx.fillStyle = '" << DEAD_COLOUR << "';    " << endl
-             << "           ctx.beginPath();                            " << endl
-             << "           ctx.arc(x+5, y+5, 5, 0, Math.PI*2, true);   " << endl
-             << "           ctx.closePath();                            " << endl
-             << "           ctx.fill();                                 " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << FALCON1 << "' :                      " << endl
-             << "           ctx.fillStyle = '" << FALCON1_COLOUR << "'; " << endl
-             << "           ctx.beginPath();                            " << endl
-             << "           ctx.arc(x+5, y+5, 5, 0, Math.PI*2, true);   " << endl
-             << "           ctx.closePath();                            " << endl
-             << "           ctx.fill();                                 " << endl
-             << "           break;                                      " << endl
-             << "                                                       " << endl
-             << "       case '" << FALCON2 << "' :                      " << endl
-             << "           ctx.fillStyle = '" << FALCON2_COLOUR << "'; " << endl
-             << "           ctx.beginPath();                            " << endl
-             << "           ctx.arc(x+5, y+5, 5, 0, Math.PI*2, true);   " << endl
-             << "           ctx.closePath();                            " << endl
-             << "           ctx.fill();                                 " << endl
-             << "           break;                                      " << endl
-             << "   }                                                   " << endl
-             << "}                                                      " << endl;
+     str_out << "function fill_the_canvas (x, y, name)                   " << endl
+             << "{                                                       " << endl
+             << "   switch (name)                                        " << endl
+             << "   {                                                    " << endl
+             << "       case '" << DEAD << "' :                          " << endl
+             << "           drawStar(ctx, 10, x + 5, y + 5, 'red', 7);   " << endl
+             << "           drawStar(ctx, 6, x + 5, y + 5, 'yellow', 7); " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << WALL << "' :                          " << endl
+             << "           ctx.fillStyle = '" << WALL_COLOUR << "';     " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                 " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << EMPTY << "' :                         " << endl
+             << "           ctx.fillStyle = '" << EMPTY_COLOUR << "';    " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                 " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << GOLD << "' :                          " << endl
+             << "           ctx.fillStyle = 'rgba(256, 220, 0, 0.5)';    " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                 " << endl
+             << "           ctx.fillStyle = 'rgba(256, 220, 0, 1)';      " << endl
+             << "           ctx.fillRect (x+2, y+2, 6, 6);               " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << BUNKER1 << "' :                       " << endl
+             << "           ctx.fillStyle = 'rgba(0, 256, 0, 0.2)';      " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                 " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << BUNKER2 << "' :                       " << endl
+             << "           ctx.fillStyle = 'rgba(256, 0, 0, 0.2)';      " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                 " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << TANK1 << "' :                         " << endl
+             << "           ctx.fillStyle = 'rgba(0, 256, 0, 0.5)';      " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                 " << endl
+             << "           ctx.fillStyle = 'rgba(0, 256, 0, 1)';        " << endl
+             << "           ctx.fillRect (x+2, y+2, 6, 6);               " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << TANK2 << "' :                         " << endl
+             << "           ctx.fillStyle = 'rgba(256, 0, 0, 0.5)';      " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                 " << endl
+             << "           ctx.fillStyle = 'rgba(256, 0, 0, 1)';        " << endl
+             << "           ctx.fillRect (x+2, y+2, 6, 6);               " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << MACHINE_GUN << "' :                   " << endl
+             << "           ctx.fillStyle = 'rgba(0, 256, 256, 0.5)';    " << endl
+             << "           ctx.fillRect (x, y, 10, 10);                 " << endl
+             << "           ctx.fillStyle = 'rgba(0, 256, 256, 1)';      " << endl
+             << "           ctx.fillRect (x+2, y+2, 6, 6);               " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << BULLET1 << "' :                       " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)';  " << endl
+             << "           ctx.fillRect (x+3, y+3, 4, 4);               " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';    " << endl
+             << "           ctx.fillRect (x+4, y+4, 2, 2);               " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << BULLET2 << "' :                       " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)';  " << endl
+             << "           ctx.fillRect (x+3, y+3, 4, 4);               " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';    " << endl
+             << "           ctx.fillRect (x+4, y+4, 2, 2);               " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << MACHINE_GUN_BULLET << "' :            " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 0.5)';  " << endl
+             << "           ctx.fillRect (x+3, y+3, 4, 4);               " << endl
+             << "           ctx.fillStyle = 'rgba(256, 256, 256, 1)';    " << endl
+             << "           ctx.fillRect (x+4, y+4, 2, 2);               " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << FALCON1 << "' :                       " << endl
+             << "           ctx.fillStyle = '" << FALCON1_COLOUR << "';  " << endl
+             << "           ctx.beginPath();                             " << endl
+             << "           ctx.arc(x+5, y+5, 5, 0, Math.PI*2, true);    " << endl
+             << "           ctx.closePath();                             " << endl
+             << "           ctx.fill();                                  " << endl
+             << "           break;                                       " << endl
+             << "                                                        " << endl
+             << "       case '" << FALCON2 << "' :                       " << endl
+             << "           ctx.fillStyle = '" << FALCON2_COLOUR << "';  " << endl
+             << "           ctx.beginPath();                             " << endl
+             << "           ctx.arc(x+5, y+5, 5, 0, Math.PI*2, true);    " << endl
+             << "           ctx.closePath();                             " << endl
+             << "           ctx.fill();                                  " << endl
+             << "           break;                                       " << endl
+             << "   }                                                    " << endl
+             << "}                                                       " << endl;
 
      // Fill the legend with small canvases.
      str_out << "canvas = document.getElementById('" << GOLD << "');               " << endl
@@ -594,6 +610,9 @@ string insert_js()
              << "        delay += delay_step;                                " << endl
              << "    }                                                       " << endl
              << "}                                                           " << endl;
+
+     // Now call the function to paint initially.
+     str_out << "update_map_0 ();" << endl;
 
      str_out << "</script>" << endl;
 
