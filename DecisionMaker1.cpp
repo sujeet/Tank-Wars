@@ -91,7 +91,7 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      		    curr_bullet = my_info.enemy_bullets[j];
      		    if (curr_bullet.posn == posn && curr_bullet.dirn == Direction (opposite_dirn)){
      			 // Move away!
-			 cout << "Try to dodge" << endl;
+			 // cout << "Try to dodge" << endl;
      			 return Move (safe_dirn);
      		    }
      	       }
@@ -100,7 +100,7 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      		    curr_bullet = my_info.machine_gun_bullets[j];
      		    if (curr_bullet.posn == posn && curr_bullet.dirn == Direction (opposite_dirn)){
      			 // Move away!
-			 cout << "Try to dodge" << endl;
+			 // cout << "Try to dodge" << endl;
      			 return Move (safe_dirn);
      		    }
      	       }
@@ -108,6 +108,11 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      }
      
      // return Move (SHOOT_UP);
+     // if (my_info.opp_tank.shortest_distance < 3 and !my_info.can_shoot_at_enemy_tank){
+     // 	 switch (my_info.opp_tank.initial_move.dirn) 
+     // }
+     
+	  
      
      return get_best_move_for(calculate_best_action_plan(AGGRESSIVE));
 
@@ -188,7 +193,7 @@ void DECISION_MAKER::DMinitializer(ID my_id, ID enemy_id)
      // | GO_TO_NEAREST_GOLD_WEIGHT | ATTACK_ENEMY_FALCON_WEIGHT | ATTACK_ENEMY_TANK_WEIGHT | DEFEND_YOUR_FALCON_WEIGHT |
      // |---------------------------+----------------------------+--------------------------+---------------------------|
 
-     set_weightage_table(AGGRESSIVE, 0, 100, 50, 0);
+     set_weightage_table(AGGRESSIVE, 0, 100, 10, 0);
      set_weightage_table(DEFENSIVE, 20, 1, 5, 50);
      set_weightage_table(GREEDY, 100, 15, 10, 0);
      set_weightage_table(CUSTOMIZED, 0, 0, 100, 0);
