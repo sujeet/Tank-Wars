@@ -354,6 +354,9 @@ void Arena::terminate_with_error (error err_code, int faulty_tank_number)
                error_code.append ("2");
           }
           break;
+     default :
+          // Got nothing to do!
+          break;
      }
      
      cout << error_code << " " << this->tank1.score << " " << this->tank2.score << endl;
