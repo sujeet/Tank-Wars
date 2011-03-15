@@ -58,8 +58,8 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      /*************************************/
      /*   PUT YOUR CODE IN THIS FUNCTION  */
      /*************************************/
-     return Move (SHOOT_RIGHT);
-     // return get_best_move_for(calculate_best_action_plan(GREEDY));
+     // return Move (SHOOT_RIGHT);
+     return get_best_move_for(calculate_best_action_plan(AGGRESSIVE));
 
 }
 

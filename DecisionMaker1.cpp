@@ -60,45 +60,56 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      /*************************************/
      Position posn = my_info.curr_posn;
      int d, i, j, safe_dirn, opposite_dirn;
-     bool is_coming_at_me;
+     // bool is_coming_at_me;
      // for (d = 0; d <= 3; ++d){
      // d = RIGHT;
      bullet_info curr_bullet;
      for (d = 0; d <= 3; d++){
-	  posn = my_info.curr_posn;
-	  for (i = 1; i <= BULLET_SPEED; i++){
-	       posn.go_in_direction (Direction (d));
-	       switch (d){
-	       case UP:
-		    safe_dirn = RIGHT;
-		    opposite_dirn = DOWN;
-		    break;
-	       case DOWN:
-		    safe_dirn = RIGHT;
-		    opposite_dirn = UP;
-		    break;
-	       case RIGHT:
-		    safe_dirn = UP;
-		    opposite_dirn = LEFT;
-		    break;
-	       case LEFT:
-		    safe_dirn = UP;
-		    opposite_dirn = RIGHT;
-		    break;
-	       }
-	       for (j = 0; j < my_info.machine_gun_bullets.size (); j++){
-		    curr_bullet = my_info.machine_gun_bullets[j];
-		    if (curr_bullet.posn == posn && curr_bullet.dirn == Direction (opposite_dirn)){
-			 // Move away!
-			 return Move (safe_dirn);
-		    }
-	       }
-	  }
+     	  posn = my_info.curr_posn;
+     	  for (i = 1; i <= BULLET_SPEED; i++){
+     	       posn.go_in_direction (Direction (d));
+     	       switch (d){
+     	       case UP:
+     		    safe_dirn = RIGHT;
+     		    opposite_dirn = DOWN;
+     		    break;
+     	       case DOWN:
+     		    safe_dirn = RIGHT;
+     		    opposite_dirn = UP;
+     		    break;
+     	       case RIGHT:
+     		    safe_dirn = UP;
+     		    opposite_dirn = LEFT;
+     		    break;
+     	       case LEFT:
+     		    safe_dirn = UP;
+     		    opposite_dirn = RIGHT;
+     		    break;
+     	       }
+     	       // Enemy Tank's bullets
+     	       for (j = 0; j < my_info.enemy_bullets.size (); j++){
+     		    curr_bullet = my_info.enemy_bullets[j];
+     		    if (curr_bullet.posn == posn && curr_bullet.dirn == Direction (opposite_dirn)){
+     			 // Move away!
+			 cout << "Try to dodge" << endl;
+     			 return Move (safe_dirn);
+     		    }
+     	       }
+     	       // MGs' bullets
+     	       for (j = 0; j < my_info.machine_gun_bullets.size (); j++){
+     		    curr_bullet = my_info.machine_gun_bullets[j];
+     		    if (curr_bullet.posn == posn && curr_bullet.dirn == Direction (opposite_dirn)){
+     			 // Move away!
+			 cout << "Try to dodge" << endl;
+     			 return Move (safe_dirn);
+     		    }
+     	       }
+     	  }
      }
      
      // return Move (SHOOT_UP);
      
-     return get_best_move_for(calculate_best_action_plan(GREEDY));
+     return get_best_move_for(calculate_best_action_plan(AGGRESSIVE));
 
 }
 
@@ -177,7 +188,7 @@ void DECISION_MAKER::DMinitializer(ID my_id, ID enemy_id)
      // | GO_TO_NEAREST_GOLD_WEIGHT | ATTACK_ENEMY_FALCON_WEIGHT | ATTACK_ENEMY_TANK_WEIGHT | DEFEND_YOUR_FALCON_WEIGHT |
      // |---------------------------+----------------------------+--------------------------+---------------------------|
 
-     set_weightage_table(AGGRESSIVE, 0, 50, 50, 0);
+     set_weightage_table(AGGRESSIVE, 0, 100, 50, 0);
      set_weightage_table(DEFENSIVE, 20, 1, 5, 50);
      set_weightage_table(GREEDY, 100, 15, 10, 0);
      set_weightage_table(CUSTOMIZED, 0, 0, 100, 0);
@@ -298,19 +309,19 @@ int DECISION_MAKER::calculate_best_action_plan(int strategy)
      switch(strategy)
      {
      case AGGRESSIVE:
-	  if(my_info.opp_tank.shortest_distance + 3 < my_info.opp_falcon.shortest_distance)
-	       return ATTACK_ENEMY_TANK;
-	  else 
-	  {
-	       return ATTACK_ENEMY_FALCON;
-	  }
-          break;
+	  // if(my_info.opp_tank.shortest_distance + 3 < my_info.opp_falcon.shortest_distance)
+	  //      return ATTACK_ENEMY_TANK;
+	  // else 
+	  // {
+	  //      return ATTACK_ENEMY_FALCON;
+	  // }
+          // break;
      case DEFENSIVE:
-          if(opp_info.opp_tank.shortest_distance < opp_info.opp_falcon.shortest_distance)
-	       return ATTACK_ENEMY_TANK;
-          else
-	       return DEFEND_MY_FALCON;
-          break;
+          // if(opp_info.opp_tank.shortest_distance < opp_info.opp_falcon.shortest_distance)
+	  //      return ATTACK_ENEMY_TANK;
+          // else
+	  //      return DEFEND_MY_FALCON;
+          // break;
      case GREEDY:
      case CUSTOMIZED:
           float action_score[4];
