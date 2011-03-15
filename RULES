@@ -1,0 +1,48 @@
+#+TITLE:     Rules and Regulations
+#+AUTHOR:    Tank Wars Team
+#+EMAIL:     tankwars@exebit.org
+#+DATE:      2011-03-15 Tue
+#+DESCRIPTION: 
+#+KEYWORDS: 
+#+LANGUAGE:  en
+#+OPTIONS:   H:1 num:nil toc:1 \n:t @:t ::nil |:t ^:nil -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+
+#+SEQ_TODO: WARNING RULE WISH STATUS-MESSAGE
+
+* WARNING *DO NOT* modify any part of the code except for the functions in DecisionMaker1.cpp.
+* WARNING *DO NOT* change any of the header files.
+** Any team found to have been doing so will be disqualified immediately
+* WARNING Do not write or open any file in your program
+** Your bot will be disqualified
+* STATUS-MESSAGE - Bot Timed Out
+** Your function get_player_move () must return a move within the specified TIME_LIMIT (which is 0.5 seconds)
+** If not, your bot will get negative points and be deactivated
+** The match will not be considered
+* STATUS-MESSAGE - Disqualified
+** Invalid Move
+** Your bot must not return any invalid move -
+*** ie. A move that is not one of the 8 moves as described in the Tutorial and in the DecisionMaker Class
+** If so, your bot will get negative points and be deactivated
+* STATUS-MESSAGE - OK
+** The match was played without any disqualification.
+* RULE Gold pieces will not be regenerated on the map once they have been picked up by a tank
+* RULE Same goes for Bunkers that have been shot
+* Take care to not get into an loop where you keep doing the same thing over and over again.
+** For instance, when two AGGRESSIVE bots face each other, they might keep shooting at each other and do that forever, since neither will be able to hit the other
+* Use the constants defined in Constants.h as far as possible
+** eg. WALL, SHOOT_RIGHT
+* We may change the value of BULLET_SPEED at any time. So *DO NOT* hard-code it in your program.
+** Use BULLET_SPEED instead
+* Testing of Bots
+** You may test your bots against bots submitted by players all over India by uploading it on the Tank Wars Online Judge
+** You may submit any number of bots you want.
+** However, only the 3 latest uploaded bots will be active at any point of time. To make some of your older bots play, you should deactivate some of the active bots and activate the older one (s)
+** At the end of the Round, the latest bot of each team will be considered as their final entry.
+* Tournament
+** A tournament will be held amongst the final bots and results will be instantly updated on the Judge as the matches are held.

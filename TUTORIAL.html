@@ -8,12 +8,12 @@ lang="en" xml:lang="en">
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="generator" content="Org-mode"/>
 <meta name="generated" content="2011-03-13 Sun"/>
-<meta name="author" content="pradeep"/>
+<meta name="author" content="Tank Wars Team"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Verdana, serif; font-size: 12pt; }
+  html { font-family: Verdana; font-size: 12pt; }
   .title  { text-align: center; }
   .todo   { color: red; }
   .done   { color: green; }
@@ -98,10 +98,11 @@ lang="en" xml:lang="en">
 <li><a href="#sec-19">Move </a></li>
 <li><a href="#sec-20">Position </a></li>
 <li><a href="#sec-21">Object Info </a></li>
-<li><a href="#sec-22">Each bullet_info object has </a></li>
-<li><a href="#sec-23">Hints about various advanced strategies </a></li>
-<li><a href="#sec-24">Creating maps </a></li>
-<li><a href="#sec-25">Scoring Key </a></li>
+<li><a href="#sec-22">Bullet Info </a></li>
+<li><a href="#sec-23">Scoring Key </a></li>
+<li><a href="#sec-24">Testing </a></li>
+<li><a href="#sec-25">Creating maps </a></li>
+<li><a href="#sec-26">Hints and Cautions about various advanced strategies </a></li>
 </ul>
 </div>
 </div>
@@ -197,6 +198,8 @@ lang="en" xml:lang="en">
 </li>
 <li id="sec-5.3">MAX_NUMBER_OF_MOVES tells you how many moves you can make <br/>
 </li>
+<li id="sec-5.4"><a href="#sec-23">Scoring Key</a> <br/>
+</li>
 </ul>
 </div>
 
@@ -232,7 +235,7 @@ v DOWN<br/>
 <li id="sec-7.1">Just type : <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #729fcf; font-weight: bold;">return</span> Move (GO_RIGHT);
+<pre class="src src-c++"><span style="color: #a020f0;">return</span> Move (GO_RIGHT);
 </pre>
 
 
@@ -257,22 +260,24 @@ v DOWN<br/>
 <li id="sec-8.1">Choose any one of the following 8 moves <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Go in one of the four directions
-</span><span style="color: #729fcf; font-weight: bold;">return</span> Move (GO_UP);
-<span style="color: #729fcf; font-weight: bold;">return</span> Move (GO_DOWN);
-<span style="color: #729fcf; font-weight: bold;">return</span> Move (GO_LEFT);
-<span style="color: #729fcf; font-weight: bold;">return</span> Move (GO_RIGHT);
+<pre class="src src-c++"><span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Go in one of the four directions
+</span><span style="color: #a020f0;">return</span> Move (GO_UP);
+<span style="color: #a020f0;">return</span> Move (GO_DOWN);
+<span style="color: #a020f0;">return</span> Move (GO_LEFT);
+<span style="color: #a020f0;">return</span> Move (GO_RIGHT);
  
-<span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Shoot in one of the four directions
-</span><span style="color: #729fcf; font-weight: bold;">return</span> Move (SHOOT_UP);
-<span style="color: #729fcf; font-weight: bold;">return</span> Move (SHOOT_DOWN);
-<span style="color: #729fcf; font-weight: bold;">return</span> Move (SHOOT_LEFT);
-<span style="color: #729fcf; font-weight: bold;">return</span> Move (SHOOT_RIGHT);
+<span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Shoot in one of the four directions
+</span><span style="color: #a020f0;">return</span> Move (SHOOT_UP);
+<span style="color: #a020f0;">return</span> Move (SHOOT_DOWN);
+<span style="color: #a020f0;">return</span> Move (SHOOT_LEFT);
+<span style="color: #a020f0;">return</span> Move (SHOOT_RIGHT);
 </pre>
 
 
 
 </p></li>
+<li id="sec-8.2">Documentation - <a href="#sec-19">Move</a> <br/>
+</li>
 </ul>
 </div>
 
@@ -302,7 +307,7 @@ v DOWN<br/>
 <li id="sec-9.5">It contains <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">object_info</span> <span style="color: #ff6347;">opp_falcon</span>;
+<pre class="src src-c++"><span style="color: #228b22;">object_info</span> <span style="color: #b8860b;">opp_falcon</span>;
 </pre>
 
 
@@ -313,26 +318,28 @@ v DOWN<br/>
 <li id="sec-9.7">The resulting code is simple enough <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">If you can shoot at the Enemy Falcon from the current position, do so
-</span><span style="color: #8ae234; font-weight: bold;">Move</span> <span style="color: #ff6347;">my_next_move</span>;
-<span style="color: #729fcf; font-weight: bold;">if</span> (my_info.can_shoot_at_enemy_falcon){
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">This is the move to go closer
+<pre class="src src-c++"><span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">If you can shoot at the Enemy Falcon from the current position, do so
+</span><span style="color: #228b22;">Move</span> <span style="color: #b8860b;">my_next_move</span>;
+<span style="color: #a020f0;">if</span> (my_info.can_shoot_at_enemy_falcon){
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">This is the move to go closer
 </span>     my_next_move = my_info.my_falcon.initial_move;
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">However, we don't want to go closer
-</span>     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">We want to shoot in that direction!
-</span>     my_next_move.shoot = <span style="color: #8ae234;">true</span>;
-     <span style="color: #729fcf; font-weight: bold;">return</span> my_next_move;
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">However, we don't want to go closer
+</span>     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">We want to shoot in that direction!
+</span>     my_next_move.shoot = <span style="color: #5f9ea0;">true</span>;
+     <span style="color: #a020f0;">return</span> my_next_move;
 }
-<span style="color: #729fcf; font-weight: bold;">else</span>{
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Just go closer
+<span style="color: #a020f0;">else</span>{
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Just go closer
 </span>     my_next_move = my_info.my_falcon.initial_move;
-     <span style="color: #729fcf; font-weight: bold;">return</span> my_next_move;
+     <span style="color: #a020f0;">return</span> my_next_move;
 }
 </pre>
 
 
 
 </p></li>
+<li id="sec-9.8">Documentation - <a href="#sec-20">Position</a> <br/>
+</li>
 </ul>
 </div>
 
@@ -350,7 +357,7 @@ v DOWN<br/>
 <li id="sec-10.3">It's simple. All you need to do is <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">int</span> <span style="color: #ff6347;">my_action_plan</span> = GO_TO_NEAREST_GOLD
+<pre class="src src-c++"><span style="color: #228b22;">int</span> <span style="color: #b8860b;">my_action_plan</span> = GO_TO_NEAREST_GOLD
 get_best_move_for (my_action_plan)
 </pre>
 
@@ -421,10 +428,10 @@ You can use it to calculate the best moves for your Tank based on the situation 
 <li id="sec-12.5">To put it in action, just say <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">int</span> <span style="color: #ff6347;">my_strategy</span> = AGGRESSIVE;
-<span style="color: #8ae234; font-weight: bold;">int</span> <span style="color: #ff6347;">my_action_plan</span> = calculate_best_action_plan_for (my_strategy);
-<span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Now, my_action_plan will contain one of the four basic action plans mentioned above
-</span><span style="color: #729fcf; font-weight: bold;">return</span> get_best_move_for (my_action_plan);
+<pre class="src src-c++"><span style="color: #228b22;">int</span> <span style="color: #b8860b;">my_strategy</span> = AGGRESSIVE;
+<span style="color: #228b22;">int</span> <span style="color: #b8860b;">my_action_plan</span> = calculate_best_action_plan_for (my_strategy);
+<span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Now, my_action_plan will contain one of the four basic action plans mentioned above
+</span><span style="color: #a020f0;">return</span> get_best_move_for (my_action_plan);
 </pre>
 
 
@@ -465,26 +472,26 @@ You can use it to calculate the best moves for your Tank based on the situation 
 <li id="sec-13.3">A naive method <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">bullet_info</span> <span style="color: #ff6347;">curr_bullet</span>;
-<span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Tank's current position
+<pre class="src src-c++"><span style="color: #228b22;">bullet_info</span> <span style="color: #b8860b;">curr_bullet</span>;
+<span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Tank's current position
 </span>posn = my_info.curr_posn;
 
-<span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Go this many steps to the RIGHT and see if any bullet there is
-</span><span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">coming towards you
-</span><span style="color: #729fcf; font-weight: bold;">for</span> (i = 1; i &lt;= BULLET_SPEED; i++){
+<span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Go this many steps to the RIGHT and see if any bullet there is
+</span><span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">coming towards you
+</span><span style="color: #a020f0;">for</span> (i = 1; i &lt;= BULLET_SPEED; i++){
 
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Make posn become the position to its right
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Make posn become the position to its right
 </span>     posn.go_in_direction (Direction (RIGHT));
-     safe_dirn = UP;            <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Direction in which to dodge
-</span>     opposite_dirn = LEFT;      <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Direction in which bullets will come
+     safe_dirn = UP;            <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Direction in which to dodge
+</span>     opposite_dirn = LEFT;      <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Direction in which bullets will come
 </span>
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">For each bullet out there
-</span>     <span style="color: #729fcf; font-weight: bold;">for</span> (j = 0; j &lt; my_info.machine_gun_bullets.size (); j++){
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">For each bullet out there
+</span>     <span style="color: #a020f0;">for</span> (j = 0; j &lt; my_info.machine_gun_bullets.size (); j++){
           curr_bullet = my_info.machine_gun_bullets[j];
 
-          <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">If you are within its range and if it is coming towards you
-</span>          <span style="color: #729fcf; font-weight: bold;">if</span> (curr_bullet.posn == posn &amp;&amp; curr_bullet.dirn == Direction (opposite_dirn)){
-               <span style="color: #729fcf; font-weight: bold;">return</span> Move (safe_dirn); <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Dodge
+          <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">If you are within its range and if it is coming towards you
+</span>          <span style="color: #a020f0;">if</span> (curr_bullet.posn == posn &amp;&amp; curr_bullet.dirn == Direction (opposite_dirn)){
+               <span style="color: #a020f0;">return</span> Move (safe_dirn); <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Dodge
 </span>          }
      }
 }
@@ -501,8 +508,10 @@ You can use it to calculate the best moves for your Tank based on the situation 
 Each bullet travels BULLET_SPEED steps in one move<br/>
 </li>
 <li id="sec-13.4.3">Direction <br/>
+Documentation - <a href="#sec-18">Direction</a><br/>
 </li>
 <li id="sec-13.4.4">Bullet Lists in my_info <br/>
+Documentation - <a href="#sec-22">Bullet Info</a><br/>
 <ul>
 <li id="sec-13.4.4.1">The info object contains 3 Bullet Lists <br/>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -523,11 +532,7 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 </li>
 <li id="sec-13.5">Of course, it is just a toy example. :-) <br/>
 </li>
-<li id="sec-13.6">Your version should take care of bullets from all Directions plus Bullets by the Enemy Tank <br/>
-</li>
-<li id="sec-13.7">Plus, there is the gotcha that you might hit bullets when you move left, right, up, down, etc. <br/>
-</li>
-<li id="sec-13.8">Watch out for other obstacles as well! <br/>
+<li id="sec-13.6">Your actual function should take care of a lot of factors and check for various corner cases. Good Luck! :-) <br/>
 </li>
 </ul>
 </div>
@@ -570,7 +575,7 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 
 
 </p></li>
-<li id="sec-15.6">This can be useful when you want to tweaks based on the current situation <br/>
+<li id="sec-15.6"><a name="Info" id="Info"></a>This can be useful when you want to tweaks based on the current situation <br/>
 </li>
 </ul>
 </div>
@@ -589,8 +594,8 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 <li id="sec-16.3">DecisionMaker contains two objects <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">Info</span> <span style="color: #ff6347;">my_info</span>;
-<span style="color: #8ae234; font-weight: bold;">Info</span> <span style="color: #ff6347;">opp_info</span>;
+<pre class="src src-c++"><span style="color: #228b22;">Info</span> <span style="color: #b8860b;">my_info</span>;
+<span style="color: #228b22;">Info</span> <span style="color: #b8860b;">opp_info</span>;
 </pre>
 
 
@@ -629,7 +634,7 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 </table>
 
 <ul>
-<li id="sec-16.6.1">That's all <br/>
+<li id="sec-16.6.1"><a name="Map" id="Map"></a>That's all <br/>
 </li>
 </ul>
 </li>
@@ -658,7 +663,7 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 <li id="sec-17.7">Your DecisionMaker class will have an object called <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">MapClass</span> <span style="color: #ff6347;">my_map</span>;
+<pre class="src src-c++"><span style="color: #228b22;">MapClass</span> <span style="color: #b8860b;">my_map</span>;
 </pre>
 
 
@@ -667,7 +672,7 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 <li id="sec-17.8">This contains a 2-D array - <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">char</span> <span style="color: #ff6347;">map</span>[MAP_SIZE][MAP_SIZE];
+<pre class="src src-c++"><span style="color: #228b22;">char</span> <span style="color: #b8860b;">map</span>[MAP_SIZE][MAP_SIZE];
 </pre>
 
 
@@ -675,7 +680,7 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 </p></li>
 <li id="sec-17.9">This is what will get updated each time as your Tank and your Enemy's tank move around and shoot bullets <br/>
 </li>
-<li id="sec-17.10">This is what is shown in your browser when you call 'make display' <br/>
+<li id="sec-17.10"><a name="Symbols" id="Symbols"></a>This is what is shown in your browser when you call 'make display' <br/>
 </li>
 <li id="sec-17.11">The character symbols represent various objects <br/>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -707,11 +712,11 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 <li id="sec-17.12">You can access the elements of the map[][] array directly. Like so <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #729fcf; font-weight: bold;">if</span> (my_map.map[i][j] == WALL){
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Then do something
+<pre class="src src-c++"><span style="color: #a020f0;">if</span> (my_map.map[i][j] == WALL){
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Then do something
 </span>}
-<span style="color: #729fcf; font-weight: bold;">else</span> <span style="color: #729fcf; font-weight: bold;">if</span> (my_map.map[i][j] == GOLD){
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Go for it!
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (my_map.map[i][j] == GOLD){
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Go for it!
 </span>}
 </pre>
 
@@ -721,13 +726,13 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 <li id="sec-17.13">Or, more simply, you can simply use Positions <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">Direction</span> <span style="color: #ff6347;">d</span> = Direction (RIGHT);                <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">or (LEFT) or (0), (1), etc.
+<pre class="src src-c++"><span style="color: #228b22;">Direction</span> <span style="color: #b8860b;">d</span> = Direction (RIGHT);                <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">or (LEFT) or (0), (1), etc.
 </span>my_neighbour = curr_posn.get_neighbour (d);
-<span style="color: #729fcf; font-weight: bold;">if</span> (my_map.get_element (my_neighbour) == WALL){
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Then do something
+<span style="color: #a020f0;">if</span> (my_map.get_element (my_neighbour) == WALL){
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Then do something
 </span>}
-<span style="color: #729fcf; font-weight: bold;">else</span> <span style="color: #729fcf; font-weight: bold;">if</span> (my_map.get_element (my_neighbour) == GOLD){
-     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Go for it!
+<span style="color: #a020f0;">else</span> <span style="color: #a020f0;">if</span> (my_map.get_element (my_neighbour) == GOLD){
+     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Go for it!
 </span>}
 </pre>
 
@@ -740,7 +745,7 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 </div>
 
 <div id="outline-container-18" class="outline-2">
-<h2 id="sec-18">Direction </h2>
+<h2 id="sec-18"><a name="Direction" id="Direction"></a>Direction </h2>
 <div class="outline-text-2" id="text-18">
 
 <ul>
@@ -749,10 +754,10 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 <li id="sec-18.2">You can use it in different ways <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">Direction</span> <span style="color: #ff6347;">dirn</span> = Direction (LEFT); <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">RIGHT, etc
-</span><span style="color: #8ae234; font-weight: bold;">Direction</span> <span style="color: #ff6347;">dirn2</span> = dirn;
-<span style="color: #729fcf; font-weight: bold;">if</span> (dirn == Direction (1)){      <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">1 : DOWN
-</span>     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Something or the other
+<pre class="src src-c++"><span style="color: #228b22;">Direction</span> <span style="color: #b8860b;">dirn</span> = Direction (LEFT); <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">RIGHT, etc
+</span><span style="color: #228b22;">Direction</span> <span style="color: #b8860b;">dirn2</span> = dirn;
+<span style="color: #a020f0;">if</span> (dirn == Direction (1)){      <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">1 : DOWN
+</span>     <span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Something or the other
 </span>}
 </pre>
 
@@ -765,7 +770,7 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 </div>
 
 <div id="outline-container-19" class="outline-2">
-<h2 id="sec-19">Move </h2>
+<h2 id="sec-19"><a name="Move" id="Move"></a>Move </h2>
 <div class="outline-text-2" id="text-19">
 
 <ul>
@@ -784,12 +789,12 @@ Each bullet travels BULLET_SPEED steps in one move<br/>
 <li id="sec-19.2">Usage <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">Move</span> <span style="color: #ff6347;">my_move</span> = Move (SHOOT_LEFT);
-<span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">or
-</span><span style="color: #8ae234; font-weight: bold;">Move</span> <span style="color: #ff6347;">move1</span>;
-move1.shoot = <span style="color: #8ae234;">true</span>;
+<pre class="src src-c++"><span style="color: #228b22;">Move</span> <span style="color: #b8860b;">my_move</span> = Move (SHOOT_LEFT);
+<span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">or
+</span><span style="color: #228b22;">Move</span> <span style="color: #b8860b;">move1</span>;
+move1.shoot = <span style="color: #5f9ea0;">true</span>;
 move1.dirn = Direction (LEFT);
-<span style="color: #8ae234; font-weight: bold;">Move</span> <span style="color: #ff6347;">move2</span> = move1;
+<span style="color: #228b22;">Move</span> <span style="color: #b8860b;">move2</span> = move1;
 </pre>
 
 
@@ -801,7 +806,7 @@ move1.dirn = Direction (LEFT);
 </div>
 
 <div id="outline-container-20" class="outline-2">
-<h2 id="sec-20">Position </h2>
+<h2 id="sec-20"><a name="Position" id="Position"></a>Position </h2>
 <div class="outline-text-2" id="text-20">
 
 <ul>
@@ -810,10 +815,10 @@ move1.dirn = Direction (LEFT);
 <li id="sec-20.2">Main usage <br/>
 
 <p><br/>
-<pre class="src src-c++"><span style="color: #8ae234; font-weight: bold;">Position</span> <span style="color: #ff6347;">posn</span> = my_info.curr_posn;
+<pre class="src src-c++"><span style="color: #228b22;">Position</span> <span style="color: #b8860b;">posn</span> = my_info.curr_posn;
 my_left_neighbour = posn.get_neighbour (Direction (LEFT));
 posn.go_in_direction (Direction (RIGHT));
-<span style="color: #99968b; font-style: italic;">// </span><span style="color: #888a85;">Now, posn is the cell to the right
+<span style="color: #99968b; font-style: italic;">// </span><span style="color: #b22222;">Now, posn is the cell to the right
 </span></pre>
 
 
@@ -825,7 +830,7 @@ posn.go_in_direction (Direction (RIGHT));
 </div>
 
 <div id="outline-container-21" class="outline-2">
-<h2 id="sec-21">Object Info </h2>
+<h2 id="sec-21"><a name="Object==Info" id="Object==Info"></a>Object Info </h2>
 <div class="outline-text-2" id="text-21">
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -847,7 +852,7 @@ posn.go_in_direction (Direction (RIGHT));
 </div>
 
 <div id="outline-container-22" class="outline-2">
-<h2 id="sec-22">Each bullet_info object has </h2>
+<h2 id="sec-22"><a name="Bullet==Info" id="Bullet==Info"></a>Bullet Info </h2>
 <div class="outline-text-2" id="text-22">
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -865,24 +870,8 @@ posn.go_in_direction (Direction (RIGHT));
 </div>
 
 <div id="outline-container-23" class="outline-2">
-<h2 id="sec-23">Hints about various advanced strategies </h2>
+<h2 id="sec-23"><a name="Scoring==Key" id="Scoring==Key"></a>Scoring Key </h2>
 <div class="outline-text-2" id="text-23">
-
-</div>
-
-</div>
-
-<div id="outline-container-24" class="outline-2">
-<h2 id="sec-24">Creating maps </h2>
-<div class="outline-text-2" id="text-24">
-
-</div>
-
-</div>
-
-<div id="outline-container-25" class="outline-2">
-<h2 id="sec-25">Scoring Key </h2>
-<div class="outline-text-2" id="text-25">
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption></caption>
@@ -903,10 +892,73 @@ posn.go_in_direction (Direction (RIGHT));
 </table>
 
 </div>
+
+</div>
+
+<div id="outline-container-24" class="outline-2">
+<h2 id="sec-24">Testing </h2>
+<div class="outline-text-2" id="text-24">
+
+<ul>
+<li id="sec-24.1">You can test your bots on your own computer by changing the code for DecisionMaker2 as well. <br/>
+</li>
+<li id="sec-24.2">You can even run your bot against another bot just like itself and seet what the result is! :-) <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-25" class="outline-2">
+<h2 id="sec-25">Creating maps </h2>
+<div class="outline-text-2" id="text-25">
+
+<ul>
+<li id="sec-25.1">To test your bot's functionality, you can try creating your own maps <br/>
+</li>
+<li id="sec-25.2">Simply edit 'map.txt' in your Tank-Wars folder <br/>
+</li>
+<li id="sec-25.3">The symbols representing each object are described in <a href="#sec-17.10">Symbols</a> <br/>
+</li>
+<li id="sec-25.4">The only conditions on the Map are that it should have <br/>
+<ul>
+<li id="sec-25.4.1">TANK1 <br/>
+</li>
+<li id="sec-25.4.2">TANK2 <br/>
+</li>
+<li id="sec-25.4.3">FALCON1 <br/>
+</li>
+<li id="sec-25.4.4">FALCON2 <br/>
+</li>
+</ul>
+</li>
+<li id="sec-25.5">That's all <br/>
+</li>
+<li id="sec-25.6">Some sample maps are present in maps/ directory. <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-26" class="outline-2">
+<h2 id="sec-26">Hints and Cautions about various advanced strategies </h2>
+<div class="outline-text-2" id="text-26">
+
+<ul>
+<li id="sec-26.1">Make sure you can handle Bunkers (both yours and the enemy's). Maps in the tournament will be more and more complex <br/>
+</li>
+<li id="sec-26.2">Make sure that your bot doesn't get stuck shooting continuously in the same direction <br/>
+That can happen when both you and the enemy tank are facing each other and want to kill each other. The game might go on and on with you both shooting at each other<br/>
+</li>
+<li id="sec-26.3">Make sure you prioritize according to the situations and the point allocation. <br/>
+</li>
+</ul>
+</div>
 </div>
 <div id="postamble">
-<p class="author"> Author: pradeep
-<a href="mailto:pradeep@pradeep-laptop">&lt;pradeep@pradeep-laptop&gt;</a>
+<p class="author"> Author: Tank Wars Team
+<a href="mailto:tankwars@exebit.org">&lt;tankwars@exebit.org&gt;</a>
 </p>
 <p class="date"> Date: 2011-03-13 Sun</p>
 <p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>

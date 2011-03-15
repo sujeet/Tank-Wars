@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>Rules and Regulations</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2011-03-15 Tue"/>
+<meta name="author" content="Tank Wars Team"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Verdana; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">Rules and Regulations</h1>
+
+
+<p><br/>
+</p>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1"><b>DO NOT</b> modify any part of the code except for the functions in DecisionMaker1.cpp. </a></li>
+<li><a href="#sec-2"><b>DO NOT</b> change any of the header files. </a></li>
+<li><a href="#sec-3">Do not write or open any file in your program </a></li>
+<li><a href="#sec-4">- Bot Timed Out </a></li>
+<li><a href="#sec-5">- Disqualified </a></li>
+<li><a href="#sec-6">- OK </a></li>
+<li><a href="#sec-7">Gold pieces will not be regenerated on the map once they have been picked up by a tank </a></li>
+<li><a href="#sec-8">Same goes for Bunkers that have been shot </a></li>
+<li><a href="#sec-9">Take care to not get into an loop where you keep doing the same thing over and over again. </a></li>
+<li><a href="#sec-10">Use the constants defined in Constants.h as far as possible </a></li>
+<li><a href="#sec-11">We may change the value of BULLET_SPEED at any time. So <b>DO NOT</b> hard-code it in your program. </a></li>
+<li><a href="#sec-12">Testing of Bots </a></li>
+<li><a href="#sec-13">Tournament </a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="todo WARNING"> WARNING</span> <b>DO NOT</b> modify any part of the code except for the functions in DecisionMaker1.cpp. </h2>
+<div class="outline-text-2" id="text-1">
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="todo WARNING"> WARNING</span> <b>DO NOT</b> change any of the header files. </h2>
+<div class="outline-text-2" id="text-2">
+
+<ul>
+<li id="sec-2.1">Any team found to have been doing so will be disqualified immediately <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="todo WARNING"> WARNING</span> Do not write or open any file in your program </h2>
+<div class="outline-text-2" id="text-3">
+
+<ul>
+<li id="sec-3.1">Your bot will be disqualified <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="done STATUS-MESSAGE"> STATUS_MESSAGE</span> - Bot Timed Out </h2>
+<div class="outline-text-2" id="text-4">
+
+<ul>
+<li id="sec-4.1">Your function get_player_move () must return a move within the specified TIME_LIMIT (which is 0.5 seconds) <br/>
+</li>
+<li id="sec-4.2">If not, your bot will get negative points and be deactivated <br/>
+</li>
+<li id="sec-4.3">The match will not be considered <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="done STATUS-MESSAGE"> STATUS_MESSAGE</span> - Disqualified </h2>
+<div class="outline-text-2" id="text-5">
+
+<ul>
+<li id="sec-5.1">Invalid Move <br/>
+</li>
+<li id="sec-5.2">Your bot must not return any invalid move - <br/>
+<ul>
+<li id="sec-5.2.1">ie. A move that is not one of the 8 moves as described in the Tutorial and in the DecisionMaker Class <br/>
+</li>
+</ul>
+</li>
+<li id="sec-5.3">If so, your bot will get negative points and be deactivated <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="done STATUS-MESSAGE"> STATUS_MESSAGE</span> - OK </h2>
+<div class="outline-text-2" id="text-6">
+
+<ul>
+<li id="sec-6.1">The match was played without any disqualification. <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="todo RULE"> RULE</span> Gold pieces will not be regenerated on the map once they have been picked up by a tank </h2>
+<div class="outline-text-2" id="text-7">
+
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="todo RULE"> RULE</span> Same goes for Bunkers that have been shot </h2>
+<div class="outline-text-2" id="text-8">
+
+</div>
+
+</div>
+
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9">Take care to not get into an loop where you keep doing the same thing over and over again. </h2>
+<div class="outline-text-2" id="text-9">
+
+<ul>
+<li id="sec-9.1">For instance, when two AGGRESSIVE bots face each other, they might keep shooting at each other and do that forever, since neither will be able to hit the other <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-10" class="outline-2">
+<h2 id="sec-10">Use the constants defined in Constants.h as far as possible </h2>
+<div class="outline-text-2" id="text-10">
+
+<ul>
+<li id="sec-10.1">eg. WALL, SHOOT_RIGHT <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-11" class="outline-2">
+<h2 id="sec-11">We may change the value of BULLET_SPEED at any time. So <b>DO NOT</b> hard-code it in your program. </h2>
+<div class="outline-text-2" id="text-11">
+
+<ul>
+<li id="sec-11.1">Use BULLET_SPEED instead <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-12" class="outline-2">
+<h2 id="sec-12">Testing of Bots </h2>
+<div class="outline-text-2" id="text-12">
+
+<ul>
+<li id="sec-12.1">You may test your bots against bots submitted by players all over India by uploading it on the Tank Wars Online Judge <br/>
+</li>
+<li id="sec-12.2">You may submit any number of bots you want. <br/>
+</li>
+<li id="sec-12.3">However, only the 3 latest uploaded bots will be active at any point of time. To make some of your older bots play, you should deactivate some of the active bots and activate the older one (s) <br/>
+</li>
+<li id="sec-12.4">At the end of the Round, the latest bot of each team will be considered as their final entry. <br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-13" class="outline-2">
+<h2 id="sec-13">Tournament </h2>
+<div class="outline-text-2" id="text-13">
+
+<ul>
+<li id="sec-13.1">A tournament will be held amongst the final bots and results will be instantly updated on the Judge as the matches are held. <br/>
+</li>
+</ul>
+</div>
+</div>
+<div id="postamble">
+<p class="author"> Author: Tank Wars Team
+<a href="mailto:tankwars@exebit.org">&lt;tankwars@exebit.org&gt;</a>
+</p>
+<p class="date"> Date: 2011-03-15 Tue</p>
+<p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
+</div>
+</div>
+</body>
+</html>
