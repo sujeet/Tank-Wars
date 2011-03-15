@@ -5,11 +5,9 @@ To-do List:
 * Devesh Y
 * Guru P
 * S. Pradeep Kumar
-** BUG Check validity of submission
-** BUG Check whether submission takes too long to compute stuff
+** BUG Have a proper scoring mechanism - so that people whose games get over early don't suffer
 ** BUG The zip file should have a folder called Tank-Wars inside which everything else is present. Right now it just puts everything into the same folder as the zip file.
-** Put points keys in descending order
-** Maps
+** Maps								    :ARCHIVE:
 *** Gold rush
 *** Rush to the top
 *** Cities (?)
@@ -17,28 +15,16 @@ To-do List:
 *** Gold-less map
 *** Wall around falcon
 *** Some simple maps for the finals (?)
-** WISH Tutorial as a webpage
-** WISH Webpage Hit counter
-** TODO Map
-*** Change surrounding colour from white to something less contrasting with black
-** Tutorial
-*** Link the references to the documentation
-*** Have a proper font
-*** Html version
-**** Wrap the text at a certain column
-** Game Display - make the initial frame visible
-** BUG Have a proper scoring mechanism - so that people whose games get over early don't suffer
 ** BUG I've made bullets get updated after get_player_move
 *** Otherwise, the bullet list the players get will be the updated bullet list
 *** Which is kinda confusing
 *** So, peace!
-** TODO Machine Guns
+** TODO Machine Guns						    :ARCHIVE:
 *** Machine guns shoot unidirectionally
 *** TODO Moving machine guns			:ARCHIVE:
 *** Bundle DecisionMaker along with each Machine gun, so that they can make their own decisions
 *** TODO Take care that they don't eat up the Gold, hit the falcon or do anything like that
 *** Tower MG - T - shoot if a tank is within a certain square
 *** Have some MGs just stay in one position and shoot unidirectionally to trap some Tank
-** TODO (?) Setting both players to AGGRESSIVE makes the game run really really long, which means, of course, that the game can't be displayed, etc. :ARCHIVE:
 ** WISH Display a blast when bullets collide	:ARCHIVE:
 ** Note : Since, we're calling the same functions for Machine Gun as for Tank, all sorts of stuff is done for Machine Guns. eg. Its score gets updated. Just fyi :ARCHIVE:
