@@ -209,7 +209,7 @@ void Info::update_bullets(vector <Bullet> my_bullet_list, vector <Bullet> enemy_
 {
      my_bullets.clear();
      enemy_bullets.clear();
-     int size = my_bullets.size();
+     int size = my_bullet_list.size();
      bullet_info temp;
      int i;
      for(i = 0; i < size; i++)
@@ -218,7 +218,7 @@ void Info::update_bullets(vector <Bullet> my_bullet_list, vector <Bullet> enemy_
           temp.dirn = my_bullet_list[i].curr_dirn;
           my_bullets.push_back(temp);
      }
-     size = enemy_bullets.size();
+     size = enemy_bullet_list.size();
      for(i = 0; i < size; i++)
      {
           temp.posn = enemy_bullet_list[i].curr_posn;
