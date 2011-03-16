@@ -38,12 +38,14 @@ void Tank::initialize_from (int given_player_no,
      this->id.tank_symbol = symbol;
      this->id.falcon_symbol = falcon_symbol;
 
-     // Initialize Bullet Symbol
+     // Initialize Bullet Symbol and id's my_bunker
      if (symbol == TANK1){
           bullet_symbol = BULLET1;
+          this->id.my_bunker = BUNKER1;
      }
      else{
           bullet_symbol = BULLET2;
+          this->id.my_bunker = BUNKER2;
      }
     
      
