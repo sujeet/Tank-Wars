@@ -28,3 +28,6 @@ To-do List:
 *** Have some MGs just stay in one position and shoot unidirectionally to trap some Tank
 ** WISH Display a blast when bullets collide	:ARCHIVE:
 ** Note : Since, we're calling the same functions for Machine Gun as for Tank, all sorts of stuff is done for Machine Guns. eg. Its score gets updated. Just fyi :ARCHIVE:
+** Make the Move counter show current move number / BULLET_SPEED in Arena
+** Something to indicate that the Falcon was killed
+** Maybe display 'Tank 1 has won!!

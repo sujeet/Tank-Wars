@@ -207,24 +207,24 @@ void Info::update_distances(MapClass &map,Position source)
 
 void Info::update_bullets(vector <Bullet> my_bullet_list, vector <Bullet> enemy_bullet_list)
 {
-     my_bullets.clear();
-     enemy_bullets.clear();
-     int size = my_bullet_list.size();
-     bullet_info temp;
-     int i;
-     for(i = 0; i < size; i++)
-     {
-          temp.posn = my_bullet_list[i].curr_posn;
-          temp.dirn = my_bullet_list[i].curr_dirn;
-          my_bullets.push_back(temp);
-     }
-     size = enemy_bullet_list.size();
-     for(i = 0; i < size; i++)
-     {
-          temp.posn = enemy_bullet_list[i].curr_posn;
-          temp.dirn = enemy_bullet_list[i].curr_dirn;
-          enemy_bullets.push_back(temp);
-     }
+    my_bullets.clear();
+    enemy_bullets.clear();
+    int size = my_bullet_list.size();
+    bullet_info temp;
+    int i;
+    for(i = 0; i < size; i++)
+    {
+        temp.posn = my_bullet_list[i].curr_posn;
+        temp.dirn = my_bullet_list[i].curr_dirn;
+        my_bullets.push_back(temp);
+    }
+    size = enemy_bullet_list.size();
+    for(i = 0; i < size; i++)
+    {
+        temp.posn = enemy_bullet_list[i].curr_posn;
+        temp.dirn = enemy_bullet_list[i].curr_dirn;
+        enemy_bullets.push_back(temp);
+    }
 } 
 
 void Info::update_machine_gun_list(vector <Tank> machine_gun_list)

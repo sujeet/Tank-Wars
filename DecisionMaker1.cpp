@@ -44,10 +44,10 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      // return Move (my_move)
      // 
      // where
-     // |--------------+------+-------+----+------+----------+------------+------------+-------------|
-     // | my_move      | LEFT | RIGHT | UP | DOWN | SHOOT_UP | SHOOT_DOWN | SHOOT_LEFT | SHOOT_RIGHT |
-     // | Actual value |    0 |     1 |  2 |    3 |        4 |          5 |          6 |           7 |
-     // |--------------+------+-------+----+------+----------+------------+------------+-------------|
+     // |--------------+---------+----------+-------+---------+----------+------------+------------+-------------|
+     // | my_move      | GO_LEFT | GO_RIGHT | GO_UP | GO_DOWN | SHOOT_UP | SHOOT_DOWN | SHOOT_LEFT | SHOOT_RIGHT |
+     // | Actual value |       0 |        1 |     2 |       3 |        4 |          5 |          6 |           7 |
+     // |--------------+---------+----------+-------+---------+----------+------------+------------+-------------|
 
      // Make sure your difficulty table is filled each time if you are using
      // it.
@@ -58,46 +58,7 @@ Move DECISION_MAKER::get_player_move(Info my_info,
      /*************************************/
      /*   PUT YOUR CODE IN THIS FUNCTION  */
      /*************************************/
-     Position posn = my_info.curr_posn;
-     int d, i, j, safe_dirn, opposite_dirn;
-     bool is_coming_at_me;
-     // for (d = 0; d <= 3; ++d){
-     // d = RIGHT;
-     bullet_info curr_bullet;
-     for (d = 0; d <= 3; d++){
-	  posn = my_info.curr_posn;
-	  for (i = 1; i <= BULLET_SPEED; i++){
-	       posn.go_in_direction (Direction (d));
-	       switch (d){
-	       case UP:
-		    safe_dirn = RIGHT;
-		    opposite_dirn = DOWN;
-		    break;
-	       case DOWN:
-		    safe_dirn = RIGHT;
-		    opposite_dirn = UP;
-		    break;
-	       case RIGHT:
-		    safe_dirn = UP;
-		    opposite_dirn = LEFT;
-		    break;
-	       case LEFT:
-		    safe_dirn = UP;
-		    opposite_dirn = RIGHT;
-		    break;
-	       }
-	       for (j = 0; j < my_info.machine_gun_bullets.size (); j++){
-		    curr_bullet = my_info.machine_gun_bullets[j];
-		    if (curr_bullet.posn == posn && curr_bullet.dirn == Direction (opposite_dirn)){
-			 // Move away!
-			 return Move (safe_dirn);
-		    }
-	       }
-	  }
-     }
-     
-     // return Move (SHOOT_UP);
-     
+     // return Move (SHOOT_RIGHT);
      return get_best_move_for(calculate_best_action_plan(GREEDY));
 
 }
