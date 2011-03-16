@@ -113,16 +113,29 @@ void Arena::get_player_moves (bool bullets_only)
      // DM1 and DM2 is the interface between the 
      // game engine and the bots.
      DM1.my_info.update_info (this->Map,
-			      tank1.curr_posn,
-			      tank1.bullet_list,
-			      tank2.bullet_list,
-			      machine_gun_list); 
+                              tank1.curr_posn,
+                              tank1.bullet_list,
+                              tank2.bullet_list,
+                              machine_gun_list); 
 
      DM2.my_info.update_info (this->Map,
-			      tank2.curr_posn,
-			      tank2.bullet_list,
-			      tank1.bullet_list,
-			      machine_gun_list);
+                              tank2.curr_posn,
+                              tank2.bullet_list,
+                              tank1.bullet_list,
+                              machine_gun_list);
+
+     DM1.opp_info.update_info (this->Map,
+                              tank2.curr_posn,
+                              tank2.bullet_list,
+                              tank1.bullet_list,
+                              machine_gun_list); 
+
+     DM2.opp_info.update_info (this->Map,
+                              tank1.curr_posn,
+                              tank1.bullet_list,
+                              tank2.bullet_list,
+                              machine_gun_list);
+
      // Update the maps in decision makers.
      DM1.my_map = this->Map;
      DM2.my_map = this->Map;
