@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Tank-wars by sujeetgholap</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Tank-wars</h1>
+        <h2>A game in which bots battle it out for glory and fortune!!</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/sujeetgholap/Tank-Wars/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/sujeetgholap/Tank-Wars/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/sujeetgholap/Tank-Wars" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h2>
+<a name="tank-wars-v10" class="anchor" href="#tank-wars-v10"><span class="octicon octicon-link"></span></a>TANK WARS v1.0</h2>
+
+<h2>
+<a name="intro" class="anchor" href="#intro"><span class="octicon octicon-link"></span></a>Intro:</h2>
+
+<p>This game is inspired by the evergreen classic Battle City.</p>
+
+<ul>
+<li>  There are two Tanks which can move around the Arena, collect
+items and shoot at other destructable objects.</li>
+<li>  There is a Command Base (referred to as Falcon) for each Tank.</li>
+</ul><h2>
+<a name="aim" class="anchor" href="#aim"><span class="octicon octicon-link"></span></a>Aim:</h2>
+
+<ul>
+<li>  The aim of the game is to score maximum points by the end of the
+game. Points can be earned by collecting gold or by killing enemy
+base or enemy tank.</li>
+<li>  Game ends when
+
+<ul>
+<li>one of the tanks is killed or</li>
+<li>the bases is shot down or</li>
+<li>when the maximum number of moves have been made</li>
+</ul>
+</li>
+</ul><h2>
+<a name="how-to-get-started" class="anchor" href="#how-to-get-started"><span class="octicon octicon-link"></span></a>How to Get Started:</h2>
+
+<pre><code>We have done most of the hard work for you guys :P. All you guys
+need to do is just write one function, the brain (or the Decision
+Maker of the Tank as we see it :) ).
+
+To enable you to get a feel for the game very early, we have a
+pre-played game stored in this folder. Just double-click on the
+tank_video_player.html file and click on play. You can see a
+sample match being played there.
+</code></pre>
+
+<h2>
+<a name="to-get-started-with-coding" class="anchor" href="#to-get-started-with-coding"><span class="octicon octicon-link"></span></a>To get started with coding:</h2>
+
+<pre><code>For those who can't wait to get started on their bots, here's the Quick-Start Guide.
+
+The three important files from the player's perspective are the 
+* DecisionMaker1.cpp
+* Info.h (in the include folder)
+* Info.cpp (in the src folder)
+
+Decision Maker 
+
+The participants (players) are required ONLY to modify
+DecisionMaker1.cpp. All your code and supporting functions (if
+any) will go into this file.
+
+Info file
+
+You can look at Info.h to understand better the information we
+pass you. You are strongly discouraged to modify any other file
+apart from DecisionMaker1.cpp and you shall be
+disqualified if they are found to have done so.
+
+The information there will help you go beyond the basic functions
+we provide you and implement your very own special
+strategies.
+
+Then you can start coding by writing the appropriate
+logic of your implementation in the get_player_move () function of
+the DECISIONMAKER Class.
+
+You can proceed in two ways : 
+
+    * You can directly just look at the various possibilities and 
+      code for them so that you take appropriate action
+
+                            OR
+
+    * You can try to build some mathematical model. We have given
+      a basic Decision Making framework where you can set values
+      for various strategies in a Weightage Table and Difficulty
+      Table and calculate the best actions as per those weights.
+
+    Best Mathematical models will be awarded special prizes.
+</code></pre>
+
+<h2>
+<a name="how-to-test-your-bots" class="anchor" href="#how-to-test-your-bots"><span class="octicon octicon-link"></span></a>How to test your Bots:</h2>
+
+<pre><code> After you fill in DecisionMaker1.cpp with your code just use the
+ terminal to go to the main directory which contains all these
+ folders (especially the Makefile). You will find that we have
+ already filled in default code for DecisionMaker2.cpp so that you
+ can test your bot against it on your computer.
+
+ Now, execute the following commands in order:
+
+make play
+
+ This will literally 'play' the game with your DecisionMaker1 code controlling Tank 1 and DecisionMaker2 code controlling Tank 2
+
+make display
+
+ This will open the match just played in Firefox. Just click on
+ Play to see the match. Alternatively, open the game_display.html
+ file manually in your favourite browser.
+</code></pre>
+
+<h2>
+<a name="how-to-submit-your-bot" class="anchor" href="#how-to-submit-your-bot"><span class="octicon octicon-link"></span></a>How to submit your bot:</h2>
+
+<pre><code> All you need to do is submit the DecisionMaker1.cpp to our online
+ judge.  The initial few days are only for testing and feedback
+ for participants.  At the end of this period you will be asked to
+ submit your final bot. For further details and latest updates,
+ visit our webpage online.
+
+ Our online judge can be found at
+
+ www.exebit.org or
+ www.cse.iitm.ac.in/exebit/site
+
+                        ALL THE BEST!!
+</code></pre>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
